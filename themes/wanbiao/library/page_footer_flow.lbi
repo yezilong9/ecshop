@@ -1,0 +1,110 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="foot_flow clearfix">
+  
+  <div class="foottext"> 
+   
+    {$copyright} {$shop_postcode} 
+    {$shop_address} 
+    <!-- 客服电话{if $service_phone} --> 
+    Tel: {$service_phone} 
+    <!-- 结束客服电话{/if} --> 
+    <!-- 邮件{if $service_email} --> 
+    E-mail: {$service_email} 
+    <!-- 结束邮件{/if} --> 
+    <!-- QQ 号码 {foreach from=$qq item=im} --> 
+    <!-- {if $im} --> 
+    <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$im}&amp;Site={$shop_name}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$im}:4" height="16" border="0" alt="QQ" /> {$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} 结束QQ号码 --> 
+    <!-- 淘宝旺旺 {foreach from=$ww item=im} --> 
+    <!-- {if $im} --> 
+    <a href="http://amos1.taobao.com/msg.ww?v=2&uid={$im|escape:u8_url}&s=2" target="_blank"><img src="http://amos1.taobao.com/online.ww?v=2&uid={$im|escape:u8_url}&s=2" width="16" height="16" border="0" alt="淘宝旺旺" />{$im}</a> 
+    <!-- {/if} --> 
+    <!--{/foreach} 结束淘宝旺旺 --> 
+    <!-- Yahoo Messenger {foreach from=$ym item=im} --> 
+    <!-- {if $im} --> 
+    <a href="http://edit.yahoo.com/config/send_webmesg?.target={$im}n&.src=pg" target="_blank"><img src="../images/yahoo.gif" width="18" height="17" border="0" alt="Yahoo Messenger" /> {$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} 结束Yahoo Messenger --> 
+    <!-- MSN Messenger {foreach from=$msn item=im} --> 
+    <!-- {if $im} --> 
+    <img src="../images/msn.gif" width="18" height="17" border="0" alt="MSN" /> <a href="msnim:chat?contact={$im}">{$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} 结束MSN Messenger --> 
+    <!-- Skype {foreach from=$skype item=im} --> 
+    <!-- {if $im} --> 
+    <img src="http://mystatus.skype.com/smallclassic/{$im|escape:url}" alt="Skype" /><a href="skype:{$im|escape:url}?call">{$im}</a> 
+    <!-- {/if} --> 
+    <!-- {/foreach} --><br />
+    
+   <!-- <div algin="center">技术支持: <a href="www.ecmoban.com">广州市新泛联数码科技有限公司</a> </div>
+    <div align="center" style="margin-top:5px;"><a href="http://www.ecmoban.com/" target="_blank"><img src="images/ecmoban.gif" alt="ECShop模板" /></a></div>-->
+  </div>
+  <div class="lnks1" id="lnks1"> 
+  <a href="#" rel="nofollow" target="_blank"> <img alt="放心消费网站"  src="images/fxxf.gif"></a> 
+  <a href="#" rel="nofollow" target="_blank"> <img alt="工商网监" src="../images/gzaic.gif"></a>
+  <a href="#" rel="nofollow" target="_blank"> <img src="../images/eca01.jpg"  border="0"></a> 
+  <a href="#" target="_blank" rel="nofollow" > <img src="../images/top100.gif"></a>
+  <a href="#" target="_blank" rel="nofollow" > <img src="../images/etao.jpg" height="35"></a> 
+  <a target="_blank" rel="nofollow" href="#"> <img src="../images/tenpay.jpg" border="0"></a> 
+  <a href="#" id="kx_verify" target="_blank" kx_type="图标式" style="display:inline-block;"> <img src="../images/cnnic.png" style="border:none;" oncontextmenu="return false;" alt="可信网站"> </a>
+   <a id="___szfw_logo___" href="#" target="_blank"> <img src="../images/cert.png" style="height:35px;"></a></div>
+  
+  
+</div>
+<div id="topcontrol" style="width:78px; height:112px;">
+  <div id="return"> <a id="sider_returntop" href="javascript:void(0);" class="c__gotop sider_returntop" style="display: block;"></a> </div>
+</div>
+<div id="kf" style="display: none; ">
+  <div class="context"><a href="javascript:void(0);" class="close" title="客服" rel="nofollow">&nbsp;</a>
+    <div class="space"></div>
+    <span title="购买咨询" class="kf_btn01"><a href="http://wpa.qq.com/msgrd?v=3&uin=1597076731&site=qq&menu=yes" target="_blank"">购买咨询</a></span><span title="售后服务" class="kf_btn02"><a href="http://wpa.qq.com/msgrd?v=3&uin=1597076731&site=qq&menu=yes">售后服务</a></span></div>
+</div>
+<div id="kfs" style="display: block; ">
+  <div class="context"><a href="javascript:void(0);" class="show" title="客服" rel="nofollow">&nbsp;</a></div>
+</div>
+<script>
+$(function(){
+	isIe6 = false;
+	
+	if ('undefined' == typeof(document.body.style.maxHeight)) {
+		isIe6 = true;
+	}
+
+	var offset = $("#topcontrol").offset();		
+	var bottom = $("#topcontrol").css("bottom");		
+	$(window).scroll(function(){
+		if ($(window).scrollTop() > 500){
+			$("#topcontrol").fadeIn(800);
+			
+			if(isIe6)
+			{			
+				$("#topcontrol").css("position","absolute")	
+				$("#topcontrol").css("bottom",bottom)
+			}
+		}
+		else
+		{
+			$("#topcontrol").fadeOut(500);
+		}
+		
+	});
+	
+	$("#topcontrol #sider_returntop").click(function(){
+		$('body,html').animate({scrollTop:0},500);
+		return false;
+	});
+	
+	$("#kfs").mouseenter(function(){
+		$(this).hide();
+		$("#kf").show();	
+	})
+	
+	$("#kf").mouseleave(function(){
+		$(this).hide();
+		$("#kfs").show();	
+	})
+
+})
+
+</script>

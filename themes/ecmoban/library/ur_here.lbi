@@ -1,0 +1,8 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="block box">
+<div class="blank"></div>
+ <div id="ur_here">
+{$lang.ur_here} {$ur_here} 
+</div>
+</div>
+<div class="blank"></div>

@@ -1,0 +1,27 @@
+          <div class="header-nav">
+            <div class="header-nav-bd">
+              <ul class="items">
+                <li {if $ecs_session == 'index'}class="current"{/if}>
+                  <a href="index.php">
+                    <i class="icon icon-fire"></i><span class="label-for-icon">热门</span>
+                  </a>
+                </li>
+                <li {if $ecs_session == 'allcate'}class="current"{/if}>
+                  <a href="allcate.php">
+                    <i class="icon icon-category"></i><span class="label-for-icon">分类</span>
+                  </a>
+                </li>
+                <li {if $ecs_session == 'topic'}class="current"{/if}>
+                  <!-- <a href="topic.php">-->
+                    <a href="christmas_activity.php">
+                    <i class="icon icon-gift"></i><span class="label-for-icon">活动</span>
+                  </a>
+                </li>
+                <li {if $ecs_session == 'user'}class="current"{/if}>
+                  <a href="user.php">
+                    <i class="icon icon-member"></i><span class="label-for-icon">帐户</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>

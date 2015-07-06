@@ -1,0 +1,135 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+{insert_scripts files="validator.js"}
+<div>
+<form method="post" action="compensate_instal.php">
+            <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                <tr>
+                    <td align="right" class="label">消费补偿对象：</td>
+                    <td>
+                        <input type="radio" name="on" value="1" checked="true" onClick="show_tb_a()" />非代理商跨站购物 &nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="on" value="2" onClick="show_tb_b()" />代理商跨站消费
+                    </td>
+                </tr>  
+                <tr id="show_tb_b_1" style="display:none">
+                    <td align="right" class="label">给V1补偿比例百分比：</td>
+                    <td><input type="text" name="rank_b_1" maxlength="10" size="5" value="{$config}" onkeyup="check_peecent(this)"/>%
+                    </td>
+                </tr>
+                <tr id="show_tb_a_1">
+                    <td align="right" class="label">给V1补偿比例百分比：</td>
+                    <td><input type="text" name="rank_a_1" id="rank_a_1" maxlength="10" size="5" value="{$config}" onkeyup="check_peecent(this)"/>%
+                    </td>
+                </tr>
+                <tr id="show_tb_a_2">
+                    <td align="right" class="label">给V2补偿比例百分比：</td>
+                    <td><input type="text" name="rank_a_2" id="rank_a_2" maxlength="10" size="5" value="{$config}" onkeyup="check_peecent(this)"/>%
+                    </td>
+                </tr>
+                
+                <tr><td></td>
+                    <td>
+                    <input type="hidden" name="act" value="insert" />
+                    <input type="submit" value="{$lang.button_submit}" class="button" onclick="return sub_ok()"/>
+                    </td>
+                </tr>
+            </table>
+    </form>
+</div>
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellspacing='1' cellpadding='3'>
+	<tr>
+		<th name="levels" width="10%">消费补偿对象</th>
+		<th name="level_point" Type="TextBox">V1补偿比例</th>
+		<th name="level_money" Type="TextBox">V2补偿比例</th>
+	</tr>
+	{foreach from=$split_instal item=val}
+    <tr align="center">    
+	<td><span > {if $val.user_rank == 1}非代理商跨站购物{else}代理商跨站消费{/if}</span></td>
+	<td><span > {$val.v1_percent}%</span></td>
+	<td><span > {if $val.user_rank == 1}{$val.v2_percent}%{else}V2不参与分润{/if}</span></td>
+    </tr>
+    {/foreach}
+</table>
+
+{if $full_page}
+</div>
+</div>
+<script type="Text/Javascript" language="JavaScript">
+<!--
+
+
+var all_null = '{$lang.all_null}';
+{literal}
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+  
+}
+
+function actDiv(divname, flag)
+{
+    //document.getElementById(divname).style.display = flag;
+}
+
+
+{/literal}
+//-->
+
+
+</script>
+<script type="text/javascript">
+     
+function show_tb_a()
+{
+  document.getElementById( "show_tb_a_1").style.display= "";   
+  document.getElementById( "show_tb_a_2").style.display= ""; 
+  document.getElementById( "show_tb_b_1").style.display= "none";  
+}
+function show_tb_b()
+{
+    document.getElementById( "show_tb_a_1").style.display= "none "; 
+    document.getElementById( "show_tb_a_2").style.display= "none "; 
+    document.getElementById( "show_tb_b_1").style.display= "";  
+}
+
+function sub_ok()
+{
+    var temp = document.getElementsByName("on");
+    for(var i=0;i<temp.length;i++)
+    {
+     if(temp[i].checked)
+     var intHot = temp[i].value;
+    }
+    //alert(intHot);
+    if(intHot == '1')
+    {
+        var v1_percent = parseInt(document.getElementById("rank_a_1").value);
+        var v2_percent = parseInt(document.getElementById("rank_a_2").value);
+        //alert(v1_percent);
+        if((v1_percent+v2_percent) > 100 )
+        {
+            alert("分润比例不能超过100%"); 
+            return false;
+        }
+    }
+}
+function check_peecent(obj)
+{
+    if (obj != null) 
+    {  
+        obj.value = obj.value.replace(/[^\d.]/g,"");  
+        if(obj.value > 100)
+        {
+           alert("该分润比例不能超过100%"); 
+           obj.value = ""; 
+        }
+    }  
+}
+</script>
+{include file="pagefooter.htm"}
+{/if}

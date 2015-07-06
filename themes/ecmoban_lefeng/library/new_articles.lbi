@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="mallNews" class="f_r box_1">
+    <h3><span>新闻快讯</span></h3>
+    <div class="NewsList tc  " style="border-top:none">
+        <ul>
+        <!--{foreach from=$new_articles item=article}-->
+        <li>
+      <a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title|truncate:20:"...":true}</a>
+        </li>
+        <!--{/foreach}-->
+        </ul>
+    </div>
+</div>

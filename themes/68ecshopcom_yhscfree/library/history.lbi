@@ -1,0 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<h1 class="mod2tit" style="background:url(../images/category_tree_bg.gif); height:27px;">{$lang.view_history}</h1>
+<div id='history_div'>
+<div class="mod1 mod2 blank" id="historybox">
+	<span class="lb"></span><span class="rb"></span>
+
+	<div id='history_list' class="history_list mod2con">
+	 {insert name='history'}
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+divheight("historybox");
+if (document.getElementById('history_list').innerHTML.replace(/\s/g,'').length<1)
+{
+    document.getElementById('history_div').style.display='none';
+}
+else
+{
+    document.getElementById('history_div').style.display='block';
+}
+function clear_history()
+{
+Ajax.call('user.php', 'act=clear_history',clear_history_Response, 'GET', 'TEXT',1,1);
+}
+function clear_history_Response(res)
+{
+document.getElementById('history_list').innerHTML = '{$lang.no_history}';
+}
+</script>

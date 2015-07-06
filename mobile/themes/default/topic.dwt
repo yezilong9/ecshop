@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+		<!-- 头部-->
+		<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="activities" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!--Header(start)-->
+			<!--导航栏-->
+			<!-- #BeginLibraryItem "/library/meun.lbi" --><!-- #EndLibraryItem -->
+          <!--Header(end)-->
+          <!-- section(start) -->
+          <div class="section">
+            <div class="items">
+			{if $false}
+              <div class="item">
+                暂无活动
+              </div>
+			{else}
+			{foreach from=$topic item=item}
+              <div class="item">
+                <a href="{$item.url}"><img src="/{$item.topic_img}" width="308" height="144" /></a>
+              </div>
+			{/foreach}
+			{/if}
+            </div>
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->         
+</div>
+<!-- Views(end) -->
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/search_form.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<!--主体内容 start-->
+<div class="block clearfix">
+  <div class="mod1 blank" id="respond">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$lang.system_info}</h1>
+	<div class="mod1con">
+		<div class="tips">{$message}</div>
+		<!--{if $virtual_card}-->
+		 <div class="shipping_name">
+		 <!--{foreach from=$virtual_card item=vgoods}-->
+			<font class="f14b">{$vgoods.goods_name}</font><br />
+				<!--{foreach from=$vgoods.info item=card}-->
+					<!--{if $card.card_sn}-->
+					<strong>{$lang.card_sn}：</strong><font class="f1">{$card.card_sn}</font><br />
+					<!--{/if}-->
+					<!--{if $card.card_password}-->
+					<strong>{$lang.card_password}：</strong><font class="f1">{$card.card_password}</font><br />
+					<!--{/if}-->
+					<!--{if $card.end_date}-->
+					<strong>{$lang.end_date}：</strong>{$card.end_date}<br />
+					<!--{/if}-->
+				<!--{/foreach}-->
+			<!--{/foreach}-->
+		 </div>
+		 <!--{/if}-->
+		<a href="{$shop_url}">{$lang.back_home}</a>
+	</div>
+	</div>
+	<script type="text/javascript">divheight("respond");</script>
+</div>
+<!--主体内容 end-->
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

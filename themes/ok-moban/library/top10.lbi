@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+ <div class="box_1">
+  <h3><span>销售排行榜</span></h3>
+  <div class="top10List clearfix">
+  <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+ 
+     
+    <ul class="clearfix">
+    
+      <li style=" padding:5px; padding-left:8px;">
+      <img src="../images/top_{$smarty.foreach.top_goods.iteration}.gif">
+      
+      
+      <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a>
+
+      </li>
+    </ul>
+    
+
+  <!-- {/foreach} -->
+  </div>
+ </div>
+
+<div class="blank"></div>

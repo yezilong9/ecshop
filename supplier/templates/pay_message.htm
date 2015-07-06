@@ -1,0 +1,151 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>支付商银行管理--系统管理</title>
+<link href="styles/pay/admin.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/css.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/style.css" rel="stylesheet" type="text/css">
+
+{if $full_page}
+
+{insert_scripts files="../js/transport.js,common.js"}
+<script language="JavaScript">
+<!--
+// 这里把JS用到的所有语言都赋值到这里
+{foreach from=$lang.js_languages key=key item=item}
+var {$key} = "{$item}";
+{/foreach}
+//-->
+</script>
+{insert_scripts files="../js/utils.js,listtable.js"}
+{if $message_page}
+<script language="javascript" src="styles/pay/listtable.js"></script>
+{/if}
+{/if}
+
+</head>
+
+<body>
+<div id="listDiv">
+<hr  style="margin-top:8px;margin-bottom:8px;">
+<table class="functionBar" cellspacing="0" border="0" width="100%">
+  <tbody><tr class="bTitle">
+    <td class="top-font01" height="25">&nbsp;
+      <a href="pay.php?act=payment">支付商管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_type">支付方式管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=bank">支付商银行管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_set">支付通道设置</a>&nbsp;|&nbsp;
+      <a href="pay_message.php?act=message">支付商银行查询</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=show_bank">银行设置</a>&nbsp;|&nbsp;
+    </td>   
+  </tr>
+</tbody></table><hr size="1">
+<form name="cp_frm" method="GET" action="pay_message.php">
+<fieldset>
+<legend class="" top-font01"=""> 支付商银行查询 </legend>
+<!--搜查条件 开始-->
+<table cellspacing="1" bgcolor="#D8D8D8" border="0" width="100%">
+
+	<input name="act" value="message_seach" type="hidden">
+	<tbody><tr bgcolor="#FFFFFF">
+	  <td align="right" bgcolor="#C2E0E2" height="30" width="15%">支付商：</td>
+	  <td align="left" width="35%">
+		<select id="pay_way_id" name="pay_way_id">
+			<option selected="selected" value="">请选择</option>
+			{foreach from=$payment_list item=payment}
+			<option value="{$payment.pay_id}" {if $message_seach.pay_way_id eq $payment.pay_id} selected="selected"{/if}>{$payment.pay_name}</option>
+			{/foreach}
+		</select>
+    </td>
+	  <td align="right" bgcolor="#C2E0E2" width="15%">支付方式：</td>
+	  <td align="left" width="35%">
+		<select id="pay_mode" name="pay_mode">
+			<option selected="selected" value="">请选择</option>
+			{foreach from=$typ_list item=typ}
+			<option value="{$typ.paytype_id}" {if $message_seach.pay_mode eq $typ.paytype_id} selected="selected"{/if}>{$typ.type_name}</option>
+			{/foreach}
+		</select>
+	  </td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+	  <td align="right" bgcolor="#C2E0E2" height="30" width="150">开通状态：</td>
+	  <td align="left">
+       <input id="status" name="status" value="1" {if $message_seach.status eq 1} checked="checked"{/if} type="radio">开启	 
+	   <input id="status" name="status" value="0" {if $message_seach.status eq 2} checked="checked"{/if} type="radio">关闭
+    </td>
+	  <td align="right" bgcolor="#C2E0E2">支付商银行名称：</td>
+	  <td align="left">
+      <input name="query_pay_bank_name" id="query_pay_bank_name" type="text" value="{$message_seach.query_pay_bank_name}"><span class="comment">[例如：工商银行]</span>	  </td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+	  <td align="right" bgcolor="#C2E0E2" height="30">银行代码：</td>
+	  <td align="left">
+      <input name="query_pay_num" id="query_pay_num" type="text" value="{$message_seach.query_pay_num}"><span class="comment">[例如：1001]</span>    </td>
+	  <td align="right" bgcolor="#C2E0E2">本地代码：</td>
+	  <td align="left">
+      <input name="query_bank_pay_num" id="query_bank_pay_num" type="text" value="{$message_seach.query_bank_pay_num}"><span class="comment">[例如：ICBC]</span>	  </td>
+  </tr>
+	<tr bgcolor="#FFFFFF">
+	  <td align="right" bgcolor="#C2E0E2" height="30"> </td>
+	   <td colspan="3" align="left">
+      <input value="查询" class="right-button07" type="submit">
+      <input value="重 置" class="right-button07" type="reset">
+	  <input value="返 回" class="right-button07" onclick="javascript:history.go(-1)" type="button">	   </td>	   
+	</tr>
+  
+</tbody></table>
+</fieldset>
+</form> 
+<!--搜查条件 结束-->
+<hr size="1">
+<br>
+<table cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" border="0" width="100%"> 
+  <tbody>
+  <tr>
+    <th align="center" bgcolor="#C2E0E2" height="30" width="263">支付商名称</th>
+    <th align="center" bgcolor="#C2E0E2" width="244">银行名称</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">银行代码</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">本地代码</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">支付方式</th>
+	  <th align="center" bgcolor="#C2E0E2" width="194">当前状态</th>
+	  <th align="center" bgcolor="#C2E0E2" width="218">操作</th>
+  </tr>
+  {if !empty($message_list)}
+	{foreach from=$message_list item=message key=k}
+	{$k++;}
+   <tr  bgcolor="{if ($k)%2}#f2f2f2{else}#ffffff{/if}">
+    <td align="center" height="25">{$message.pay_name}</td>
+    <td align="center">{$message.bank_name}</td>
+    <td align="center">{$message.bank_code}</td>
+    <td align="center">{$message.bank_pay_num}</td>
+	  <td align="center">{$message.type_name}</td>
+	  <td align="center">
+	     {if $message.enabled eq 1}开通{else}<font color="red">关闭</font>{/if} 
+	  </td>
+	  <td align="center">
+	   <a href="pay_message.php?act=message_edit&paybank_id={$message.paybank_id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <a href="javascript:void(0)" onclick="if(window.confirm('您确定要删除此条记录吗？')) this.href='pay_message.php?act=message_del&paybank_id={$message.paybank_id}'">删除</a>
+    </td>
+  </tr>
+	{/foreach}
+	{else}
+	<tr  bgcolor="#ffffff">
+	<td align="center" height="25" colspan="7"><font color="red">暂无查询结果</font></td>
+	</tr>
+	{/if}
+    </tbody></table>
+ <hr size="1">
+<table border="0" width="100%">
+	<tbody><tr><td align="right" bgcolor="#FFFFFF">
+		{include file="page.htm"}</td>
+	</tr>
+</tbody></table>
+</div>
+ <script>
+//分页js赋值
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+</script>
+</body></html>

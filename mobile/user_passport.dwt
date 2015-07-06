@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html manifest="/manifest/tmallCateAppCache.manifest">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">          
+<meta charset="utf-8">     
+<title>{$page_title}触屏版</title>      
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" name="viewport">     
+<meta content="yes" name="apple-mobile-web-app-capable">     
+<meta content="black" name="apple-mobile-web-app-status-bar-style">     
+<meta content="telephone=no" name="format-detection">    
+<LINK rel=apple-touch-icon-precomposed href="themes/default/images/touch-icon.png">
+<LINK rel="shortcut icon" type=image/x-icon href="themes/default/images/favicon2.ico"> 
+<LINK rel=stylesheet type=text/css href="themes/default/user.css">
+</head>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,user.js,transport.js'}
+ 
+<body>
+ <div id="tbh5v0">
+<div class="screen-wrap fullscreen login">
+
+<!--#登录界面 start-->
+<!-- {if $action eq 'login'} -->
+ 
+<header id="header">
+	<div class="c-inav">
+		<section>
+			<button class="back">
+			<span><em></em></span><a href="../index.php">首页</a>
+			</button>
+		</section>
+		<section>
+			<span>会员登录</span>
+		</section>
+		<section></section>
+	</div>
+</header>
+<section class="innercontent">
+<form class="c-form login-form"  id="J_Login"  name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
+	<fieldset>
+	<div class="field username">
+	<div class="c-form-search">
+	<input type="text"  name="username" id="J_UserNameTxt" placeholder="手机号/会员名" value=""><button type="button" style="display: none; "><span></span></button></div>
+	</div>
+	<div class="field pwd">
+	<input type="password"  name="password" id="J_PassWordTxt" placeholder="密码" class="c-form-txt-normal">
+	</div>
+	<!-- 判断是否启用验证码{if $enabled_captcha} -->
+	<div class="field auth-code">
+	<input type="text" name="captcha"  id="J_AuthCodeTxt" placeholder="验证码" class="c-form-txt-normal">
+	 <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" />
+	</div>
+	<!--{/if}-->
+	<div class="field submit-btn">
+	<input type="submit" class="c-btn-oran-big" value="登 录">
+	</div>
+	<div class="field login-option">
+	<input type="checkbox" value="1" name="remember" id="remember" /><label class="bf1" for="remember">保留信息</label>
+	<span class="reg-find-pwd">
+	<a href="user.php?act=register" class="reg">免费注册</a>
+	<a href="user.php?act=get_password" class="forget-pwd">找回密码</a>
+	</span>
+	</div>
+	<input type="hidden" name="act" value="act_login" />
+	<input type="hidden" name="back_act" value="{$back_act}" />
+	</fieldset>
+	<!--rsa-->
+</form>
+</section>
+ 
+
+<!--{/if}-->
+<!--#登录界面 end-->
+
+<!--*会员注册界面 start-->
+    <!--{if $action eq 'register'}-->
+    <!-- {if $shop_reg_closed eq 1} -->
+	<header id="header">
+	<div class="c-inav">
+		<section>
+			<button class="back">
+			<span><em></em></span><a href="../index.php">首页</a>
+			</button>
+			</section>
+			<section>
+			<span>会员注册</span>
+		</section>
+		<section></section>
+	</div>
+	</header>
+	<section class="innercontent">
+		<div style="text-align:center">
+		{$lang.shop_register_closed}
+		</div>
+	</section>
+    <!-- {else} -->
+    {insert_scripts files='utils.js'}
+ 
+	<header id="header">
+		<div class="c-inav">
+			<section>
+				<button class="back">
+				<span><em></em></span><a href="../index.php">首页</a>
+				</button>
+				</section>
+				<section>
+				<span>会员注册</span>
+			</section>
+			<section></section>
+		</div>
+	</header>
+	<section class="innercontent">
+		<form action="user.php" method="post" name="formUser" onSubmit="return register();">
+			<fieldset>
+			<div class="field username">
+				<div class="c-form-search st">
+				<input name="username" type="text"  id="username" onBlur="is_registered(this.value);" class="c-f-text"/> 
+				<button type="button" disabled="true"><span >  </span></button>
+				</div>
+				<div  id="username_notice"  style="color:#FF0000">  </div>
+			</div>
+			<div class="field email">
+				<div class="ptxt st">
+				<input name="email" type="text" size="25" id="email" onBlur="checkEmail(this.value);"   placeholder="email"  class="c-f-text" />
+				</div>
+				<div id="email_notice"  style="color:#FF0000"></div>
+			</div>
+			<div class="field phone">
+				<div class="c-form-search st">
+				<input type="telephone" id="J_PhoneTxt" placeholder="手机号" value="" class="c-f-text">
+				<button type="button" disabled="true"><span></span></button>
+				</div>
+				<div style="color:#FF0000" id=""></div>
+			</div>
+			<div class="field pwd">
+				<div class="ptxt st">
+				<input id="password1" type="password" name="password" value="" placeholder="密码" class="c-f-text">
+				</div>
+				<div style="color:#FF0000" id="password_notice"></div>
+			</div>
+			<!-- 判断是否启用验证码{if $enabled_captcha} -->
+			<div class="field identifyCode">
+				<div class="c-form-search">
+					<div class="codeTxt">
+					<input   name="captcha" type="tel" value="" placeholder="输入验证码" class="c-f-text">
+					</div>
+					<div class="codePhoto">
+					<img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" /> 
+					</div>
+					<div class="identifyCodeRefresh" id="J_codePhotoRefresh"></div>
+				</div>
+				<div class="tips"></div>
+			</div>
+			<!--{/if}-->
+			<div class="field submit-btn">
+				<input name="act" type="hidden" value="act_register" >
+				<input type="hidden" name="back_act" value="{$back_act}" />
+				<input name="Submit" type="submit"  class="c-btn-orange" value="注 册">
+				<div class="tips"> <input name="agreement" type="checkbox" value="1" checked="checked" /> {$lang.agreement} </div>
+			</div>
+			</fieldset>
+		</form>
+	</section>
+<!--{/if}-->
+<!--{/if}-->
+<!--#会员注册界面 end-->
+
+<!--*找回密码界面 -->
+    <!--{if $action eq 'get_password'} -->
+    {insert_scripts files='utils.js'}
+    <script type="text/javascript">
+    {foreach from=$lang.password_js item=item key=key}
+      var {$key} = "{$item}";
+    {/foreach}
+    </script>
+ 
+ 
+ 
+<header id="header">
+	<div class="c-inav">
+		<section>
+			<button class="back">
+			<span><em></em></span><a href="../user.php">登录</a>
+			</button>
+		</section>
+		<section>
+			<span>找回密码</span>
+		</section>
+		<section></section>
+	</div>
+</header>
+
+
+<section class="innercontent">
+<form  action="user.php" method="post" name="getPassword" onSubmit="return submitPwdInfo();">
+	<fieldset>
+	<div class="field username">
+		<div class="c-form-search st">
+		<input name="user_name" type="text"  id="username" onBlur="is_registered(this.value);" class="c-f-text"/> 
+		<button type="button" disabled="true"><span >  </span></button>
+		</div>
+	</div>
+  
+	<div class="field email">
+		<div class="ptxt st">
+		<input name="email" type="text" size="25" id="email" onBlur="checkEmail(this.value);"   placeholder="email"  class="c-f-text" />
+		</div>
+	</div>
+ 
+	
+	<div class="field submit-btn">
+ 
+	<input type="hidden" name="act" value="send_pwd_email" />
+	<input type="submit" name="submit" value="{$lang.submit}"  class="c-btn-orange"  style="border:none;" />
+ 	</div>
+	</fieldset>
+</form>
+</section>
+
+  
+<!--{/if}-->
+
+ 
+ 
+<!--#找回密码界面 end-->
+
+
+
+ 
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+</div>
+</div>
+<div style="width:1px; height:1px; overflow:hidden">{foreach from=$lang.p_y item=pv}{$pv}{/foreach}</div>
+
+
+</body>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+{foreach from=$lang.passport_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var username_exist = "{$lang.username_exist}";
+</script>
+
+
+
+</html>

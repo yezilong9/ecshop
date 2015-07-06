@@ -1,0 +1,46 @@
+.wrap{width:1000px;margin:0 auto;padding-top:10px;position:relative;}
+.choosecities{border:1px solid #ccc;font-family: "ÐÂËÎÌå", Arial, Helvetica, sans-serif ;position:relative;}
+/*city-province*/
+.city-province{border-bottom:1px solid #ccc;background-color:#f4f4f4;padding:16px 20px;position:relative;position:relative;}
+.city-province select{height:24px;width:125px;font-size:12px;color:#5e5e5e;}
+.city-province b{color:#000;}
+.choose-submit{width:35px;height:24px;background-color:#b01330;display:inline-block;color:#fff;text-align:center;line-height:24px;border-radius:3px;}
+.choose-search{padding-left:35px;}
+.choose-txt{width:180px;border:1px solid #d4d4d4;line-height:24px;height:24px;color:#ccc;padding-left:5px;font-size:12px;}
+/*city-list*/
+.city-list{border-bottom:1px solid #ccc;background-color:#fff;padding:20px;font-weight:bold;}
+.city-list h3{display:inline-block;vertical-align:top;zoom:1;}
+.city-list p{display:inline-block;vertical-align:top;zoom:1;width:860px;font-size:14px;margin-top:3px;}
+.city-list p a{display:inline-block;zoom:1;width:4.5em;margin-right:17px;color:#b01330; padding-top:6px;}
+.city-list a:hover{text-decoration:underline;}
+
+/**/
+.citieslist h2{display:inline-block;zoom:1;height:32px;margin:20px 20px 12px 20px;padding:0 14px;line-height:30px;border-radius:0;background-color:#b01330;position:relative;color:#fff; font-size:14px;}
+.citieslist span{width:900px;display:inline-block;zoom:1;vertical-align:top; font-size:14px;}
+.citieslist h2 span{float:none;display:block;position:absolute;top:32px;left:20px;width:0;height:0;font-size:0;line-height:0;border-style:solid;border-color:#b01330 #FFF #FFF #FFF;border-width:6px;}
+.cf{zoom:1;}
+.hasallcity .cf{padding:6px 10px 6px 30px;}
+.citieslist li{border-top:1px #FFF solid;border-bottom:1px #FFF solid;}
+.citieslist p{padding:6px 10px 6px 30px;border-top:1px #FFF solid;border-bottom:1px #FFF solid;}
+.citieslist .label{display:inline-block;width:30px;height:30px;vertical-align:top;border:1px solid #ddd;margin-right:5px;zoom:1;line-height:24px;color:#666;}
+.citieslist .label strong{width:28px;height:28px;text-align:center;border:1px #ff0000 solid;font-size:16px;background-color:#fff;display:inline-block;}
+.citieslist .hover .label strong{background-color:#b01330;border-color:#b01330;color:#fff;}
+.citieslist a{display:inline-block;zoom:1;height:20px;padding:0 2px 1px;margin:5px 10px 0px 10px;line-height:20px;color:#b01330;font-weight:bold;}
+.citieslist li:hover{background-color:#f7f7f7;border-top:1px #ccc solid;border-bottom:1px #ccc solid;}
+
+.lay .main .wrap .choosecities .city-province .select_region{font-size:14px; text-align:center; color:#000000;}
+.lay .main .wrap .choosecities .city-province .select_region option{font-size:14px; text-align:center; color:#000000;}
+#show_hint{border:1px solid #ccc; width:185px;z-index:99px;position:absolute;left:626px;top:42px; background-color:#FFFFFF; text-align:left; display:none;}
+#show_hint table tr:hover{ background-color:#99CCFF;}
+/*2014 09 15  °¡Æ¼ÐÞ¸Ä*/
+.label{float: left;}
+.label-city{float: left;width:900px;position: relative;}
+.city-content{float: left;}
+.city-county{width:900px;color: #640013;zoom:1;line-height:30px;border-radius:0;background-color:#ffe013;position:absolute;margin-left:0px;
+	margin-top:0px; z-index:222;display: none;padding: 0 5px;left: 0;}
+.city-county span{display:inline-block;zoom:1;vertical-align:top;}
+/*.arrow-up{float:none;display:block;position:absolute;top:-10px;left:20px;width:0;height:0;font-size:0;line-height:0;border-style:solid;border-color:#FFF #FFF #ffe013 #FFF;border-width:5px;}*/
+
+
+.active .link{background: url(./images/arrow-up.png) center bottom no-repeat;font-size:14px;}
+.active .city-county{display:block;}

@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $article_categories } -->
+<h1 class="mod2tit">{$lang.article_cat}</h1><div class="mod1 mod2 blank" id="historybox">
+<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+
+
+
+<div class="cagegoryConNew clearfix">
+		 <!--{foreach from=$article_categories item=cat}-->
+			<div class="goodsbox1">
+			 <div class="helpTit1"><a href="{$cat.url}">{$cat.name|escape:html}</a></div>
+			 <div class="helpList1 tl">
+				 <!--{foreach from=$cat.children item=child}-->
+				·<a href="{$child.url}">{$child.name|escape:html}</a><br />
+				 <!--{/foreach}-->
+			 </div>
+			</div>
+		 <!-- {/foreach} -->	
+		</div>
+
+
+</div>
+<!--{/if} -->
+
+

@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<h1 class="mod1tit">{$goods_cat.name|escape:html}<a href="{$goods_cat.url}" class="more">更多</a></h1>
+	<div class="mod1 blank" id="CatGoods">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	
+	<div class="mod1con group">
+		<!--{foreach from=$cat_goods item=goods}-->
+	 <div class="goodsbox">
+	  <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a></div>
+   <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name|escape:html}</a><br />
+    <font class="goodspice market">{$goods.market_price}</font>
+			 <!-- {if $goods.promote_price neq ""} -->
+			 <b class="f1">{$goods.promote_price}</b><br />
+			 <!-- {else}-->
+			 <b class="f1">{$goods.shop_price}</b><br />
+			 <!--{/if}-->
+	</div>
+ <!--{/foreach}-->
+	</div>
+</div>
+<script type="text/javascript">divheight("CatGoods");</script>

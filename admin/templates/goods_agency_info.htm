@@ -1,0 +1,140 @@
+<!-- $Id: goods_list.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+{if $full_page}
+{insert_scripts files="../js/transport.js,common.js"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<script language="JavaScript">
+<!--
+// 这里把JS用到的所有语言都赋值到这里
+{foreach from=$lang.js_languages key=key item=item}
+var {$key} = "{$item}";
+{/foreach}
+//-->
+</script>
+
+
+{include file="pageheader.htm"}
+{if $warning}
+<ul style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
+  <li style="border: 1px solid #CC0000; background: #FFFFCC; padding: 10px; margin-bottom: 5px;" >{$warning}</li>
+</ul>
+{/if}
+
+<!-- start goods form -->   
+	<h1 style="background:#BBDDE5; color:#123458">
+     <span class="action-span1">代理商商品列表</span>
+	{if $code neq virtual_card}
+		<span class="action-span"><a href="goods.php?act=add&add=1">手动添加商品</a></span>
+	{/if}
+	</h1>  
+
+
+<div class="form-div">
+  <form action="javascript:search_agency_goods()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+
+    <!-- 分类 -->
+    <select name="cat_id"><option value="0">{$lang.goods_cat}</option>{$cat_list}</select>
+    <!-- 品牌 -->
+    <select name="brand_id"><option value="0">{$lang.goods_brand}</option>{html_options options=$brand_list selected=$brand_id}</select>
+
+    <!-- 关键字 -->
+    {$lang.keyword} <input type="text" name="keyword" size="15" value="{$search_keyword}"/>
+    <input type="submit" value="搜索" class="button" />（关键字可以输入商品名称或商品货号搜索）
+	<br />
+	<span style="margin-left:30px;color:black;">价格比例：</span><input type="txet" value="1.1" id="price_ratio" style="width:40px;"/>
+	<input type="button" value="生成本店售价" onclick="ceshi();" class="button" />
+	（示例：0.9就是成本价90%出售，1.2就是120%出售）
+  </form>
+</div>
+<script>
+function ceshi()
+{
+	var price_ratio_v = $('#price_ratio').val()*1;
+	if(isNaN(price_ratio_v) || price_ratio_v == 0){
+		alert('请输入正确的价格比例');
+		return false;
+	}
+	var price_arr = eval(listTable.filter.goods_price_arr);
+	var for_arr = eval(listTable.filter.goods_id_arr);
+	for(var i=0;i<for_arr.length;i++){
+		$('input[name="agency_shop_price['+for_arr[i]+']"]').attr('value',(price_arr[i]*price_ratio_v).toFixed(2))
+	}
+	
+}
+</script>
+
+<form method="post" action="goods.php?act=agency_add_goods" name="listForm" onsubmit="return agencyfirmSubmit(this)">
+<div class="list-div" id="listDiv">
+{/if}
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+      <a href="javascript:listTable.sort('goods_id'); ">{$lang.record_id}</a>{$sort_goods_id}
+    </th>
+	<th><a href="javascript:listTable.sort('goods_name'); ">{$lang.goods_name}</a>{$sort_goods_name}</th>
+    <th>销售价</th>
+    <th>成本价</th>
+    <th>状态</th>
+    <th>操作</th>
+  </tr>
+  {foreach from=$goods_res item=good}
+  <tr>
+    <td><input type="checkbox" {if $good.sta eq 1}disabled="true"{/if} name="checkboxes[]" value="{$good.goods_id}" />{$good.goods_id}</td>
+    <td class="first-cell">{$good.goods_name}</td>
+    <td class="w10"><input style="width:60px;" {if $good.sta eq 1}disabled="true"{/if} type="text" value="" name="agency_shop_price[{$good.goods_id}]"></td>
+    <td class="w10">￥{$good.shop_price}</td>
+    <td class="w10">{if $good.sta eq 1}<span style="color:red">已添加</span>{else}尚未添加{/if}</td>
+    <td class="w10"><input type="button" {if $good.sta eq 1}disabled="true"{/if} style="cursor:pointer" value="添加编辑" class="button" onclick="location.href='goods.php?goods_id={$good.goods_id}&act=copy&extension_code={$virtual_card}'"/></td>
+  </tr>
+  {/foreach}
+</table>
+<!-- end goods list -->
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+{if $full_page}
+</div>
+<div>
+  <input type="submit" value="上架" id="btnSubmit" name="btnSubmit" class="button" disabled="" />
+</div>
+
+</form>
+
+
+ <script>
+//分页js赋值
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+{foreach from=$filter item=item key=key}
+	listTable.filter.{$key} = '{$item}';
+{/foreach}
+listTable.query = 'agency_add_query';
+{literal}
+ function search_agency_goods()
+    {	
+		listTable.query = 'agency_add_query';
+        listTable.filter['cat_id'] = document.forms['searchForm'].elements['cat_id'].value;
+        listTable.filter['brand_id'] = document.forms['searchForm'].elements['brand_id'].value;
+         
+        listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+        listTable.filter['page'] = 1;
+
+        listTable.loadList();
+    }
+
+{/literal}
+</script>
+<!-- end goods form -->
+
+{include file="pagefooter.htm"}
+{/if}

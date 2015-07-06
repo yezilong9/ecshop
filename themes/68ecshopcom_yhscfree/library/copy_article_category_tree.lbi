@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $article_categories } -->
+
+
+
+<h1 class="cagegoryTit">{$lang.article_cat}</h1>
+<div class="cagegoryCon clearfix">
+<!--{foreach from=$article_categories item=cat}-->
+ <dl>
+ <dt><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+
+ <dd class="clearfix">
+ <!--{foreach from=$cat.children item=child}-->
+			&nbsp;&nbsp;·<a href="{$child.url}">{$child.name|escape:html}</a><br />
+ <!--{/foreach}-->
+ </dd>
+
+ </dl>
+ <!--{/foreach}-->
+</div>
+<div class="cagegoryBnt blank"></div>
+<!--{/if} -->

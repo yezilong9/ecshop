@@ -1,0 +1,24 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--{if $helps}-->
+<div class="block" >
+  <div class="boxhelp mod1 mod2">
+  <span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+   <div class="helpTitBg clearfix">
+   <div class="f_l" >
+<!-- {foreach from=$helps item=help_cat} -->
+<dl>
+  <dt><a href='{$help_cat.cat_id}' title="{$help_cat.cat_name}">{$help_cat.cat_name}</a></dt>
+  <!-- {foreach from=$help_cat.article item=item} -->
+  <dd style="background:url(../images/tubiao.gif)  no-repeat left center;"><a href="{$item.url}" title="{$item.title|escape:html}">{$item.short_title}</a></dd>
+  <!-- {/foreach} -->
+</dl>
+<!-- {/foreach} -->
+</div>
+
+   </div>
+  </div>
+</div>
+<!--{/if}-->
+
+<div class="blank"></div>

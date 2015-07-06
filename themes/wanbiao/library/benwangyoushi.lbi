@@ -1,0 +1,40 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="slideTxtBox3 clearfix"  style="width: 995px;margin: 38px 0 0 0px; border:#ddd solid 1px" >
+  <div class="hd" style="width: 995px;">
+    <ul>
+      <li style="margin:0" class="li1" ><i class="i1"></i></li>
+      <li style="margin:0" class="li2" ><i class="i2"></i></li>
+      <li style="margin:0" class="li3" ><i class="i3"></i></li>
+      <li style="margin:0" class="li4" ><i class="i4"></i></li>
+      <li style="margin:0" class="li5" ><i class="i5"></i></li>
+      <li style="margin:0" class="li6" ><i class="i6"></i></li>
+      <li style="margin:0" class="li7" ><i class="i7"></i></li>
+    </ul>
+  </div>
+  <div class="bd">
+
+  <ul>
+      <div > <img src="../images/mall_tab01.jpg" border="0"> </div>
+    </ul>
+    <ul>
+      <div  > <img src="../images/mall_tab02.jpg" border="0"> </div>
+    </ul>
+    <ul>
+      <div > <img src="../images/mall_tab03.jpg" border="0"> </div>
+    </ul>
+    <ul>
+      <div > <img src="../images/mall_tab04.jpg" border="0"> </div>
+    </ul>
+    <ul>
+      <div > <img src="../images/mall_tab05.jpg" border="0"> </div>
+    </ul>
+    <ul>
+      <div > <img src="../images/mall_tab06.jpg" border="0"> </div>
+    </ul>
+    <ul>
+      <div > <img src="../images/mall_tab07.jpg" border="0"> </div>
+    </ul>
+
+  </div>
+</div>
+<script type="text/javascript">jQuery(".slideTxtBox3").slide();</script> 

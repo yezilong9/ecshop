@@ -1,0 +1,151 @@
+{* TitlePicWidth: 2 *}
+{* TitlePicHeight: 38 *}
+
+{* 说明：$title_pic，分类标题图片地址； *}
+{* 说明：$base_style，基本风格样式颜色； *}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Stritc//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{if $topic.css neq ''}
+<style type="text/css">
+  {$topic.css}
+</style>
+{/if}
+<style type="text/css">
+h6{
+font-family:"黑体";
+background:url({$title_pic}) repeat-x 0 0;
+text-align:left;
+height:38px;
+line-height:38px;
+padding-left:20px;
+font-weight:200;
+font-size:18px;
+color:#fff;
+}
+.goodsbox{
+margin:5px;
+background:#fff;
+border:1px solid {$base_style};
+width:170px;
+min-height:1px;
+display: -moz-inline-stack;
+display: inline-block;
+text-align:center;
+vertical-align: top;
+zoom:1;
+*display:inline;
+_height:1px;
+}
+  .goodsbox .imgbox{
+	width:170px;
+	margin:0 0 5px 0;
+	overflow:hidden;
+	border:none;
+	} 
+.sort_box{
+border:1px solid #ccc;
+padding:10px 0 10px 10px;
+}	
+.sort_box a{
+color:#222;
+}
+</style>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<!--主体内容 start-->
+<div class="block clearfix blank">
+
+<div class="blank">
+	{if $topic.htmls eq ''}
+  <script language="javascript">
+	var topic_width  = "1000";
+	var topic_height = "300";
+	var img_url      = "{$topic.topic_img}";
+	
+	if (img_url.indexOf('.swf') != -1)
+	{
+		document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ topic_width +'" height="'+ topic_height +'">');
+		document.write('<param name="movie" value="'+ img_url +'"><param name="quality" value="high">');
+		document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+		document.write('<embed src="'+ img_url +'" wmode="opaque" menu="false" quality="high" width="'+ topic_width +'" height="'+ topic_height +'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent"/>');
+		document.write('</object>');
+	}
+	else
+	{
+		document.write('<img width="' + topic_width + '" height="' + topic_height + '" border="0" src="' + img_url + '">');
+	}
+  </script>
+{else}
+	{$topic.htmls}
+{/if}
+
+{if $topic.intro neq ''}
+ {$topic.intro}
+{/if}
+</div>
+
+<!-- {if $topic.title_pic eq ''} -->
+<!-- {foreach from=$sort_goods_arr item=sort key=sort_name} -->
+  <div class="goodsTitle blank">{$sort_name}</div>
+	<div class="grid">
+	<!-- {foreach from=$sort item=goods} -->
+	<div class="goodsbox">
+	 <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}" /></a></div>
+   <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a><br />
+	 <font class="price">
+   <!-- {if $goods.promote_price neq ""} -->
+      {$goods.promote_price}
+      <!-- {else}-->
+      {$goods.shop_price}
+      <!--{/if}-->
+	 </font>
+	</div>
+   <!--{/foreach}-->
+	</div>
+<!--{/foreach}-->
+<!-- {else} -->
+<!-- {foreach from=$sort_goods_arr item=sort key=sort_name} 可自定义部分-->
+ <div class="clearfix">
+   <h6>{$sort_name}</h6>
+	 <div class="sort_box blank">
+    <!-- {foreach from=$sort item=goods} -->
+    <div class="goodsbox">
+       <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}" /></a></div>
+       <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a><br />
+       <!-- {if $goods.promote_price neq ""} -->
+       {$goods.promote_price}<br />
+       <!-- {else}-->
+       {$goods.shop_price}<br />
+       <!--{/if}-->
+    </div>
+    <!--{/foreach}-->
+		</div>
+ </div>
+    <!--{/foreach}-->
+<!--{/if}-->
+
+</div>
+<!--主体内容 end-->
+
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

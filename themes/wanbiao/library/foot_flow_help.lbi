@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="foot_flow">
+  <div class="help r1">
+    <!--帮助中心开始--> 
+    <!--{if $helps}--> 
+    
+    <!-- {foreach from=$helps item=help_cat name=no} -->
+    <dl class=" w188">
+      <dt><a href='{$help_cat.cat_id}' title="{$help_cat.cat_name}">{$help_cat.cat_name}</a></dt>
+      <dd class=" w110"><!-- {foreach from=$help_cat.article item=item} --> 
+        <a href="{$item.url}" title="{$item.title|escape:html}">{$item.short_title}</a> 
+        <!-- {/foreach} --></dd>
+    </dl>
+    <!-- {/foreach} --> 
+    
+    <!--{/if}--> 
+  </div>
+  <!--帮助中心结束-->
+  
+  
+  
+  
+  
+</div>
+
+
+

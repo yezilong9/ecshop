@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+	{* 包含脚本文件 *}
+	{insert_scripts files='transport.js,common.js,user.js'}
+    {insert_scripts files='transport.js,utils.js'}
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="user.php" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">我的收藏</h1>
+          </a>
+        </div>
+        <div class="right">
+          
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="member-favorites" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            <!--我的订单列表(start)-->
+            <div class="list-block media-list">
+              <ul>
+			{foreach from=$goods_list item=goods}
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <img src="/{$goods.goods_thumb}" width="60" height="60" />
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title"><a href="{$goods.url}" class="f6">{$goods.goods_name|escape:html}</a></div>
+                      <div class="item-buy">
+                        <strong class="price">
+						<!-- {if $goods.promote_price neq ""} -->
+						 {$goods.promote_price}</span>
+						  <!-- {else}-->
+						  {$goods.shop_price}</span>
+						  <!--{/if}--></strong>
+		   <a class="button button-round color-orange" href="goods.php?id={$goods.goods_id}&state=buy" class="f6">购买</a>
+		   <a class="button button-round color-orange" href="javascript:if (confirm('{$lang.remove_collection_confirm}')) location.href='user.php?act=delete_collection&collection_id={$goods.rec_id}'" class="f6">{$lang.drop}</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+			{/foreach} 
+              </ul>
+            </div>          
+            <!--我的订单列表(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+</body>
+</html>

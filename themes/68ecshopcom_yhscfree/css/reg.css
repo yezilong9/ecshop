@@ -1,0 +1,441 @@
+.reg_box {
+width:898px;
+margin:0 auto;
+}
+
+.reg_box .title {
+border-bottom:#b25d60 1px solid;
+margin:0 0 20px;
+padding:20px 0 10px;
+}
+
+.reg_box .title h2 {
+background:url(../images/bg_f.gif) no-repeat 0 -48px;
+height:20px;
+}
+
+.reg_box .content {
+position:relative;
+}
+
+.fd label {
+display:block;
+overflow:hidden;
+line-height:24px;
+height:24px;
+}
+
+.fd label span {
+float:left;
+width:304px;
+color:#666;
+line-height:24px;
+height:24px;
+text-align:right;
+}
+
+.fd label span em {
+color:#9b0101;
+}
+
+.fd label img {
+display:inline;
+float:left;
+margin:0 8px;
+}
+
+.r_form .fd p {
+height:28px;
+padding:0 0 0 304px;
+}
+
+.fd p span {
+display:block;
+width:100%;
+text-indent:16px;
+line-height:28px;
+height:28px;
+}
+
+.fd p .right {
+color:#01980f;
+}
+
+.fd p .error {
+background:url(../images/bg_f.gif) no-repeat -481px -118px;
+color:#980102;
+}
+
+.rverify {
+border-right:#bbc1d1 1px solid;
+border-top:#bbc1d1 1px solid;
+float:left;
+text-transform:uppercase;
+border-left:#bbc1d1 1px solid;
+width:78px;
+border-bottom:#bbc1d1 1px solid;
+height:17px;
+padding:3px 1px 1px;
+}
+
+.r_form {
+padding:30px 0 0;
+}
+
+.r_form p {
+height:23px;
+padding:5px 0 5px 260px;
+}
+
+.r_form form label {
+display:block;
+height:23px;
+padding:15px 0 15px 260px;
+}
+
+.r_form form label input {
+border-right:#bbc1d1 1px solid;
+border-top:#bbc1d1 1px solid;
+border-left:#bbc1d1 1px solid;
+width:200px;
+border-bottom:#bbc1d1 1px solid;
+height:17px;
+margin:0 6px;
+padding:3px 1px 1px;
+}
+
+.r_form form div.btns {
+padding:10px 0 10px 260px;
+}
+
+.r_tips {
+right:40px;
+background:url(../images/dot2.gif) repeat-y left 0;
+width:322px;
+position:absolute;
+top:0;
+height:145px;
+padding:30px 0 0;
+}
+
+.r_tips p {
+background:url(../images/dot1.gif) repeat-x left bottom;
+color:#666;
+line-height:18px;
+margin:0 0 11px 11px;
+padding:0 0 5px;
+}
+
+.reg_box .btns {
+float:left;
+padding:30px 0 40px 199px;
+}
+
+.reg_box .ot {
+float:left;
+padding:22px 0 0;
+}
+
+.reg_box .ot p {
+height:14px;
+padding:3px 0 3px 30px;
+}
+
+.reg_box .ot p a {
+background:url(../images/bg_f.gif) no-repeat -487px -68px;
+color:#0069cc;
+text-decoration:underline;
+padding:0 0 0 12px;
+}
+
+.reg_box .btns label {
+float:left;
+overflow:hidden;
+cursor:pointer;
+margin:10px;
+}
+
+.reg_box .btns label span a {
+color:#0201ff;
+}
+
+.btn_submit {
+font-weight:600;
+font-size:14px;
+background:url(../images/zhuce.gif);
+vertical-align:middle;
+width:134px;
+cursor:pointer;
+color:#fff;
+line-height:29px;
+height:31px;
+text-align:center;
+border-width:0;
+
+}
+
+.btn_submit_b {
+font-weight:600;
+font-size:14px;
+background:url(../images/denglu.gif) no-repeat ;
+vertical-align:middle;
+width:80px;
+cursor:pointer;
+color:#fff;
+line-height:29px;
+height:29px;
+text-align:center;
+float:left;
+border-width:0;
+}
+
+.reg {
+width:806px;
+margin:0 auto;
+}
+
+.r_step {
+margin:0 0 20px;
+padding:20px 0 10px;
+}
+
+.r_step h2 {
+background:url(../images/) no-repeat 0 0;
+text-indent:-999px;
+height:20px;
+}
+
+.mbox {
+border-right:#dbdee3 1px solid;
+border-top:#dbdee3 1px solid;
+float:left;
+border-left:#dbdee3 1px solid;
+width:388px;
+border-bottom:#dbdee3 1px solid;
+height:374px;
+}
+
+.mbox .title {
+background:url() repeat-x 0 1px;
+height:44px;
+}
+
+.mbox .title h2 {
+width:346px;
+border-bottom:#b25d60 1px solid;
+margin:0 auto;
+padding:10px 0;
+}
+
+.login .title h2 span {
+display:block;
+background:url(../images/bg_f.gif) no-repeat 0 -68px;
+height:19px;
+}
+
+.reg2 .title h2 span {
+display:block;
+background:url(../images/bg_f.gif) no-repeat 0 -87px;
+height:19px;
+}
+
+div.login {
+margin:0 26px 0 0;
+}
+
+.cont_mbox {
+width:388px;
+margin:0 auto;
+}
+
+.l_box {
+width:306px;
+margin:20px auto;
+}
+
+.l_box p {
+color:#9b9b9b;
+text-indent:16px;
+line-height:23px;
+}
+
+.l_box p a {
+display:block;
+width:113px;
+height:40px;
+margin:20px 0 0;
+}
+
+.l_box label {
+display:block;
+overflow:hidden;
+height:24px;
+margin:20px 0 0;
+}
+
+.l_box label.verify input {
+width:78px;
+margin:0 8px 0 0;
+}
+
+.l_box p.verify {
+text-indent:184px;
+}
+
+.l_box p.verify a {
+display:inline;
+color:#9b9b9b;
+}
+
+.l_box label span {
+float:left;
+width:90px;
+line-height:23px;
+height:23px;
+text-align:right;
+padding:0 10px 0 0;
+}
+
+.l_box p.forgot1 {
+float:left;
+padding:14px 0 0;
+}
+
+.l_box p.forgot1 a {
+color:#9b9b9b;
+}
+
+.l_box .btns {
+_padding:20px 0 5px 100px;
+padding:10px 0 5px 100px;
+}
+
+.l_box .renrenbtns {
+_margin:10px 0 0 0;
+margin:40px 0 0;
+padding:0 0 0 100px;
+}
+
+.login .help {
+width:356px;
+color:#9b9b9b;
+text-align:right;
+_padding:0;
+margin:0 auto;
+padding:10px 0 0;
+}
+
+.login .help a {
+color:#a30001;
+margin:0 5px;
+}
+
+.reg2 .r_form {
+width:346px;
+margin:0 auto;
+}
+
+.reg2 .fd {
+margin:0 0 10px;
+}
+
+.reg2 .fd label span {
+width:135px;
+}
+
+.reg2 .fd p {
+color:#9b9b9b;
+line-height:18px;
+height:auto;
+padding:0 0 0 135px;
+}
+
+.reg2 .verify p {
+padding:5px 0 0 224px;
+}
+
+.reg2 .btns {
+padding:20px 0 0 126px;
+}
+
+.bor {
+border-top:#fff 20px solid;
+}
+
+.marg {
+margin:0 0 0 220px;
+}
+
+.otherlogin {
+clear:both;
+background:url(../images/bg_f.gif) no-repeat 0 -138px;
+overflow:hidden;
+width:311px;
+color:#666;
+height:41px;
+padding:10px 0 0;
+}
+
+.otherlogin p {
+float:left;
+line-height:40px;
+}
+
+.otherlogin span {
+display:block;
+margin:0 0 0 120px;
+}
+
+.tempotherlogintail {
+background:url(../images/bg_f.gif) no-repeat 0 -234px;
+overflow:hidden;
+width:312px;
+height:5px;
+}
+
+.container {
+width:980px;
+overflow:hidden;
+margin:0 auto 15px;
+}
+
+.ript,.l_box label input {
+border-right:#bbc1d1 1px solid;
+border-top:#bbc1d1 1px solid;
+float:left;
+border-left:#bbc1d1 1px solid;
+width:200px;
+border-bottom:#bbc1d1 1px solid;
+height:17px;
+padding:3px 1px 1px;
+}
+
+.reg_box .btns label input,.reg_box .btns label span {
+float:left;
+line-height:16px;
+height:16px;
+}
+
+.l_box label.verify,.reg2 .verify {
+margin:20px 0 0;
+}
+
+.l_box .renreniframe,.otherlogin .renreniframe {
+width:107px;
+height:31px;
+}
+
+.otherlogin .renren,.otherlogin .zhifubao {
+width:250px;
+line-height:40px;
+height:40px;
+margin:0 auto;
+}
+
+.container:after,.content:after {
+display:block;
+content:".";
+clear:both;
+height:0;
+font-size:0;
+}

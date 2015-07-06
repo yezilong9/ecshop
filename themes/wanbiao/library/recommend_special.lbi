@@ -1,0 +1,58 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if $special_goods}
+	{if $cat_rec_sign neq 1}
+	<div class="box">
+		<div class="centerPadd ">
+			<div class="itemTit special tTit_hot" id="itemSpecial">
+				<div class="tNm">[特产]</div>
+				<div class="tGud">
+					{if $cat_rec[4]}
+	
+					{foreach from=$cat_rec[4] item=rec_data}
+					<h2 class="h2bg">
+						<a href="javascript:void(0)" onmouseover="change_tab_style('itemSpecial', 'h2', this);get_cat_recommend(4, {$rec_data.cat_id})">{$rec_data.cat_name}</a>
+					</h2>
+					{/foreach}
+					
+					{/if}
+				</div>
+				</div>
+
+		<div id="show_special_area" class="clearfix goodsBox">
+		{/if}
+
+
+		{foreach from=$special_goods item=goods}
+
+		<li style="float: left; width: 232px;" class="goodsItem_kuang goodsItem_kuang2"> 
+			<div class="goodsItem_new" onmouseover="this.className='goodsItem_new goodsItem_on'" onmouseout="this.className='goodsItem_new'">
+				<div class="fj">
+					<a href="{$goods.url}" target="_blank" class="fj_a1"><span class="biao pngfix"></span><span>详情介绍</span></a>
+					<a href="special_product.php" target="_blank" class="fj_a2"><span class="biao pngfix"></span><span>更多特产</span></a>
+				</div>
+				<a href="{$goods.url}" target="_blank"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg"></a><br>
+				<p class="lujin">
+					<strong><a class="lj1" href="{$goods.url}" target="_blank" title="{$goods.name|escape:html}">{$goods.name|escape:html}</a></strong>  - <a href="{$goods.url}" target="_blank" title="{$goods.name|escape:html}">{$goods.name|escape:html}</a>
+				</p>
+				<div class="clearfix">
+				<font class="f1" style="color:#B01330">  
+				{if $goods.promote_price neq ""}
+					{$goods.promote_price}
+				{else}
+					{$goods.shop_price}
+				{/if}
+				</font>
+				<font class="marketf1">{$goods.market_price}</font>
+				<!--<a target="_blank" href="{$goods.url}" class="pinlun">已售出({$goods.sales_volume})</a>-->
+				</div>
+			</div>
+		</li>
+		{/foreach}
+		{if $cat_rec_sign neq 1}
+	</div>
+	<div class="more_hot"><a href="special_product.php"  target="_blank">更多特产>></a></div>
+	</div>
+</div>
+<div class="blank5"></div>
+		{/if}
+	{/if}

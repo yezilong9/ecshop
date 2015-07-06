@@ -1,0 +1,79 @@
+<?php
+
+if(!function_exists("get_comments")){
+function get_comments($num)
+{
+   $sql = 'SELECT a.*,b.goods_id,b.goods_thumb,b.goods_name FROM '. $GLOBALS['ecs']->table('comment') .
+            ' AS a,'. $GLOBALS['ecs']->table('goods') .'AS b WHERE a.status = 1 AND a.parent_id = 0 and a.comment_type=0 and a.id_value=b.goods_id '.
+            ' ORDER BY a.add_time DESC';
+  if ($num > 0)
+  {
+   $sql .= ' LIMIT ' . $num;
+  }
+  //echo $sql;
+        
+  $res = $GLOBALS['db']->getAll($sql);
+  $comments = array();
+  foreach ($res AS $idx => $row)
+  {
+
+   $comments[$idx]['add_time']       = local_date($GLOBALS['_CFG']['time_format'], $row['add_time']);
+   $comments[$idx]['content']       = $row['content'];
+   $comments[$idx]['id_value']       = $row['id_value'];
+   $comments[$idx]['goods_thumb']  = get_image_path($row['goods_id'], $row['goods_thumb'], true);
+   $comments[$idx]['goods_name']       = $row['goods_name'];
+  }
+  return $comments;
+}
+}
+
+?>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  
+<?php
+   $this->assign('my_comments',get_comments(12));
+?>
+<div class="fkr_head"><h3>精选口碑报告</h3><a class="more" href="message.php">更多口碑报告</a></div>
+<div class="fk_main"  >
+<ul  >
+
+
+<!--{foreach from=$my_comments item=comments name=no}-->
+ <!-- {if $smarty.foreach.no.iteration>0 && $smarty.foreach.no.iteration<10}-->
+<li >
+
+
+<a class="pic f_l" href="goods.php?id={$comments.id_value}" title="{$comments.goods_name}" target="_blank">
+<img alt="{$comments.goods_name}" src="{$comments.goods_thumb}" class="lazy_img" >
+</a>
+
+<div class="f_l fkm_con ">
+<p class="tit">
+<a  href="goods.php?id={$comments.id_value}" title="{$comments.goods_name}" target="_blank">
+{$comments.goods_name|truncate:12:"..."}
+</a>
+</p>
+<div class="rat">
+<span>
+<img src="../images/stars5.gif"> 
+</span>
+</div>
+
+<p class="con">
+<a  style="color:#919191"href="goods.php?id={$comments.id_value}" title="{$comments.goods_name}" target="_blank">
+{$comments.content|truncate:76:""}</a>
+</p>
+</div>
+
+</li>
+  <!-- {/if} -->
+<!--{/foreach}-->
+
+
+</ul>
+</div>
+<div class="blank"></div>
+

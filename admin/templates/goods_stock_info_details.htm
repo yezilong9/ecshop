@@ -1,0 +1,170 @@
+<!-- $Id: article_list.htm 16783 2009-11-09 09:59:06Z liuhui $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="form-div">
+  <form action="javascript:searchArticle()" name="searchForm" >
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    {if $if_agency}
+	选择代理商
+	<select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</caption>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>
+	{else}
+	<input type="hidden" name="admin_agency_id"/>
+	{/if}
+	
+    开始日期&nbsp;
+    <input name="start_date" type="text" id="start_date" size="15" value='{$start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/>&nbsp;&nbsp;
+    结束日期&nbsp;
+    <input name="end_date" type="text" id="end_date" size="15" value='{$end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>&nbsp;&nbsp;
+    
+    {$lang.title} <input type="text" name="keyword" id="keyword" value="{$keyword}"/>
+    <input type="submit" value="{$lang.button_search}" class="button" />
+  </form>
+</div>
+
+<form method="POST" action="article.php?act=batch_remove" name="listForm">
+<!-- start cat list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellspacing='1' cellpadding='3' id='list-table'>
+  <tr>
+    <th>
+    <a href="javascript:listTable.sort('id'); ">编号</a>{$sort_article_id}</th>
+    <th>产品信息</th>
+    <th><a href="javascript:listTable.sort('costing_price'); ">成本价</a></th>
+    <th><a href="javascript:listTable.sort('costing_price'); ">数量</a></th>
+    <th><a href="javascript:listTable.sort('goods_number'); ">单号</a>{$sort_article_type}</th>
+    <th><a href="javascript:listTable.sort('stock_status'); ">库存状态/数量</a>{$sort_article_type}</th>
+    <th><a href="javascript:listTable.sort('log_time'); ">操作时间</a></th>
+    <th>IP地址</th>
+   
+  </tr>
+  {foreach from=$stock_control_log item=list}
+  <tr>
+    <td align="center"><span>{$list.id}</span></td>
+    <td class="first-cell" ><span >{$list.goods_name|escape:html}</span></td>
+    <td align="left"><span>{$list.costing_price|escape:html}</span></td>
+    <td align="left"><span>{$list.goods_number|escape:html}</span></td>
+    <td align="center"><span>{$list.stock_number}</span></td> 
+    <td align="center"><span>
+        { if $list.stock_status == 1 }入库/{$list.goods_number}
+        {elseif $list.stock_status == -1 }出库/{$list.goods_number} 
+        {elseif $list.stock_status == 2}库存不够
+        {elseif $list.stock_status == 10 }{$list.out_type_remarks}作废出库/{$list.goods_number} 
+        {else}退货
+        {/if}</span></td>
+    <td align="center"><span>{$list.date}</span></td>
+    <td align="center"><span>{$list.ip_address}</span></td>
+    
+   </tr>
+   {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_article}</td></tr>
+  {/foreach}
+  
+  <tr><td colspan="10">&nbsp;</td></tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right">成本合计：</td>
+    <td align="left">{$current_costing_price_amount}</td>
+    <td align="left">数量：{$current_goods_number_amount}</td>
+    <td colspan='4'>&nbsp;</td>
+  </tr>
+  
+  <tr>&nbsp;
+    <td align="right" nowrap="true" colspan="9">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+<!--<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>采购成本统计：{$current_costing_price_amount}</th>
+    <th>采购数量统计 ：{$current_goods_number_amount}</th>
+    <th></th>
+  <tr>
+
+</table>-->
+
+
+{if $full_page}
+</div>
+
+</form>
+<!-- end cat list -->
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+	/**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+  function confirmSubmit(frm, ext)
+  {
+      if (frm.elements['type'].value == 'button_remove')
+      {
+          return confirm(drop_confirm);
+      }
+      else if (frm.elements['type'].value == 'not_on_sale')
+      {
+          return confirm(batch_no_on_sale);
+      }
+      else if (frm.elements['type'].value == 'move_to')
+      {
+          ext = (ext == undefined) ? true : ext;
+          return ext && frm.elements['target_cat'].value != 0;
+      }
+      else if (frm.elements['type'].value == '')
+      {
+          return false;
+      }
+      else
+      {
+          return true;
+      }
+  }
+	 function changeAction()
+  {
+		
+      var frm = document.forms['listForm'];
+
+      // 切换分类列表的显示
+      frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
+
+      if (!document.getElementById('btnSubmit').disabled &&
+          confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+
+ /* 搜索文章 */
+ function searchArticle()
+ {
+    listTable.filter.keyword = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+    listTable.filter.admin_agency_id = Utils.trim(document.forms['searchForm'].elements['admin_agency_id'].value);
+    listTable.filter['start_date'] = Utils.trim(document.forms['searchForm'].elements['start_date'].value);
+    listTable.filter['end_date'] = Utils.trim(document.forms['searchForm'].elements['end_date'].value);
+    listTable.filter.page = 1;
+    listTable.loadList();
+ }
+
+ {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

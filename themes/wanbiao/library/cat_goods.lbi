@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="cat_slide" value="{$goods_cat.name}">
+  <div class="tShwPic">
+  {insert name='get_ad' cat_name=$goods_cat.name ad_name="左侧广告" num=1}
+ </div>
+  <div class="tBndSet">{insert name='get_ad' cat_name=$goods_cat.name ad_name="右侧广告" num=1}
+    <div class="tBndPdtLst">
+      <div class="tMnSet">
+        <ul>
+          <!--{foreach from=$cat_goods item=goods}-->
+          <li><a class="goods" target="_blank" href="{$goods.url}"><img alt="{$goods.name|escape:html}" src="{$goods.thumb}">
+            <div class="tMsk h" style="display:none;"><span>{$goods.short_name|escape:html}</span><i>查看详细</i></div>
+            </a></li>
+          <!--{/foreach}-->
+          
+        </ul>
+      </div>
+      <div class="bx-controls bx-has-pager bx-has-controls-direction ">
+        <ul class="bx-default-pager cat_goods_item">
+        </ul>
+        <div class="bx-controls-direction"><a href="javascript:void(0);" class="bx-prev"><span class="c__ls_pointer">&nbsp;</span></a><a href="javascript:void(0);" class="bx-next"><span class="c__rs_pointer">&nbsp;</span></a></div>
+      </div>
+    </div>
+  </div>
+</div>

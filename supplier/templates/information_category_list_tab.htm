@@ -1,0 +1,38 @@
+<table cellspacing="0" cellpadding="0">
+  <tr>
+	  <th class="w5">资讯ID</th>
+	  <th class="w5">资讯类别</th>
+	  <th class="w5">图片规格</th>
+	  <th class="w15">图片地址</th>
+	  <th class="w20">标题描述</th>
+	  <th class="w25">内容描述</th>
+	  <th class="w15">链接网址</th>
+	  <th class="w5">是否启用</th>
+	  <th class="w5">操作</th>
+  </tr>
+{foreach from=$info_cats_lists item=info_cat}  
+  <tr>
+	  <td class="w5">{$info_cat.info_id}</td>
+	  <td class="w5">{$info_cat.info_cat}</td>
+	  <td class="w5">{$info_cat.img_spec}</td>
+	  <td class="w15"><a href="../{$info_cat.img_file}" target="_blank">{$info_cat.img_file}</a></td>
+	  <td class="w20">{$info_cat.title_describe}</td>
+	  <td class="w25">{$info_cat.content_describe}</td>
+	  <td class="w15"><a href="{$info_cat.link_url}"  target="_blank">{$info_cat.link_url}</a></td>
+	  <td class="w5">{if $info_cat.is_start eq 1}是{else}否{/if}</td>
+	  <td class="w5">
+		<a href="information_category.php?act=edit&id={$info_cat.info_id}" title="编辑">
+			<img src="images/icon_edit.gif" border="0" height="16" width="16" />
+		</a>&nbsp;
+		<a href="javascript:;" onclick="listTable.remove({$info_cat.info_id}, '{$lang.drop_confirm}')" title="{$lang.remove}">
+			<img src="images/icon_drop.gif" border="0" height="16" width="16" />
+		</a>
+		</td>
+ 	</tr>
+{foreachelse}
+    <tr><td class="no-records" colspan="10">暂时没有资讯内容！</td></tr>
+{/foreach}
+	<tr>
+    	<td style="text-align:right; padding:5px;pa" nowrap="true" colspan="10">{include file="page.htm"}</td>
+	</tr>
+</table>

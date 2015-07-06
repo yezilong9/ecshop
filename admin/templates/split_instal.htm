@@ -1,0 +1,98 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+{insert_scripts files="validator.js"}
+<div id="separate">
+<div class="form-div">
+<form method="post" action="split_instal.php">
+            <table width="100%" border="0" cellspacing="0" cellpadding="4">   
+                <tr>
+                    <td align="right" class="label"> V2分润比例设置:</td>
+                    <td><input type="text" id="v2_percent" name="v2_percent" maxlength="10" size="4" value="{$split_instal.v2_percent}" />%
+                    </td>
+                </tr>              
+                <tr>
+      
+                <tr><td></td>
+                    <td><input type="hidden" name="act" value="updata" />
+                    <input type="submit" value="{$lang.button_submit}" class="button" onclick="return split_sub()" /></td>
+                </tr>
+                </tr>
+            </table>
+    </form>
+</div>
+<div class="list-div" id="listDiv">
+{/if}
+<table cellspacing='1' cellpadding='3'>
+	<tr>
+        <th name="level_money" >V2分润比例</th>
+	</tr>
+    <tr align="center">
+        <td>{$split_instal.v2_percent}%</td>
+    </tr>
+
+</table>
+{if $full_page}
+</div>
+</div>
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{if !$config.on || $config.on eq 0}
+actDiv('separate','none');
+{else}
+actDiv('btnon','none');
+{/if}
+{if $config.config.separate_by eq 1}
+actDiv('listDiv','none');
+{/if}
+
+var all_null = '{$lang.all_null}';
+{literal}
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+  cleanWhitespace(document.getElementById("listDiv"));
+  if (document.getElementById("listDiv").childNodes[0].rows.length<6)
+  {
+    listTable.addRow(check);
+  }
+  
+}
+function check(frm)
+{
+  if (frm['level_point'].value == "" && frm['level_money'].value == "")
+  {
+     frm['level_point'].focus();
+     alert(all_null);
+     return false;  
+  }
+  
+  return true;
+}
+function actDiv(divname, flag)
+{
+}
+
+function split_sub()
+{
+    var v2_percent = parseInt(document.getElementById("v2_percent").value);
+    if(!(/^\d+$/.test(v2_percent)))
+    {
+        alert("请输入正确的数值,只允许输入整数!"); 
+        document.getElementById("v2_percent").focus();
+        return false;
+    }
+   
+    if(v2_percent > 100) 
+    {
+        alert("请检查输入的比例,总的比例不能超过100%!"); 
+        return false;
+    }    
+
+}
+{/literal}
+//-->
+</script>
+{include file="pagefooter.htm"}
+{/if}

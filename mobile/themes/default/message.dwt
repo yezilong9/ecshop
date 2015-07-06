@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="android">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+{if $auto_redirect}
+<meta http-equiv="refresh" content="3;URL={$message.back_url}" />
+{/if}
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="#" class="back link">
+            <i class="icon icon-back"></i>
+          </a>
+        </div>
+        <div class="center">
+          <h1 class="navbar-tit">系统消息</h1>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="alert" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            
+
+            <!--系统提示(start)-->
+            <div id="popupbox" class="popupbox-wrap">
+              <div class="popupbox popupmsg-sys">
+                <!--模块首(start)-->
+                <div class="popupbox-hd none">
+                  <h1 class="tit">系统提示</h1>
+                </div>
+                <!--模块首(start)-->
+                <!--模块主体(start)-->
+                <div class="popupbox-bd" style="text-align:center;line-height: 30px;">
+                  <strong class="red">{$message.content}</strong><br />
+					<!-- {if $message.url_info} -->
+					  <!--{foreach from=$message.url_info key=info item=url}-->
+					   <strong class="red"><a href="{$url}">{$info}</a></strong><br />
+					  <!--{/foreach}-->
+					<!--{/if}-->
+                </div>
+                <!--模块主体(end)-->
+              </div>
+            </div>
+            <!--系统提示(end)-->
+            
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->         
+</div>
+<!-- Views(end) -->
+
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+
+</body>
+</html>

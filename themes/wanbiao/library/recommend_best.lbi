@@ -1,0 +1,31 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- {if $best_goods} -->
+<h2 class="proSmallTs"><span class="moreFloat"><a href="#" target="" >更多</a></span>超值赠品</h2>
+<!-- {if $cat_rec_sign neq 1} -->
+  <div id="show_best_R" class="clearfix goodsBox">
+  <!-- {/if} -->
+  <!--{foreach from=$best_goods item=goods}-->
+  <div class="goodsItem_R">
+           <a href="{$goods.url}"  class="goodsimg_R"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a>
+   
+           <div class="goods_conts">
+           <b><a href="{$goods.url}" title="{$goods.short_style_name}">{$goods.short_style_name}</a></b><br/>
+                        
+                  <span class="price">
+                   <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                  <!-- {else}-->
+                  {$goods.shop_price}
+                  <!--{/if}--></span>
+           </div>
+          
+        </div>
+  <!--{/foreach}-->
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+
+
+  <!-- {/if} -->
+<!-- {/if} -->
+<em></em>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="themes/default/scripts/jquery1.8.min.js"></script>
+  <script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+  <script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+  <script type="text/javascript">
+	{foreach from=$lang.account_js item=item key=key}
+		var {$key} = "{$item}";
+	{/foreach}
+  </script>
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="user.php" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">账戶管理</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="member-account" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section spacebetween">
+            <div class="item">
+              <div class="item-bd">
+                <table>
+                  <tr>
+                    <td>余额：<strong class="orange">￥0.00</strong></td>
+                    <td>积分：<strong class="orange">99</strong></td>
+                  </tr>
+                  <tr>
+                    <td>红包：<strong class="orange">共计1个</strong></td>
+                    <td>总价值：<strong class="orange">￥9.00</strong></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="item-ft">
+
+              </div>
+            </div>
+            <div class="details">
+              <div class="details-hd">
+                <h2 class="tit">账户明细</h2>
+              </div>
+              <div class="details-bd">
+                <ul class="list-block" id="order_list">
+				{foreach from=$account_log item=item}
+                  <li class="item-content">
+                    <div class="item-inner">
+					操作时间：{$item.change_time}<br />
+					类       型：{$item.type}<br />
+					金       额：{$item.amount}<br />
+					备注：{$item.short_change_desc}<br />
+                    </div>
+                  </li>
+				{/foreach}
+                </ul>
+              </div>
+            </div>
+            
+            
+            
+            
+            
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<input type="hidden" value="{$pager.page_next}" id="pager_url"/>  
+<script>
+var page = 1;
+$(document).ready(function(){
+  $(document).scroll(function(){
+	var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+	var tops = $(document).scrollTop();
+	var sctop = $(document).height() - $(window).height();
+	if (tops >= sctop){
+		var Url = $('#pager_url').val();
+		Url = Url.replace(/&page(.*?)&/,"&");
+		if(page < '{$pager.page_count}'*1){
+			page = ++page;
+			Url += '&json=1&page='+page;
+			$.get(Url, function (data) {
+				$("#order_list").append(data);
+			});
+		}
+	}
+  });
+});
+</script >
+</body>
+</html>

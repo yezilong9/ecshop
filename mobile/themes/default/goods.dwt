@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  {insert_scripts files='common.js'}
+  {insert_scripts files='transport.js,utils.js'}
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1);" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">详情</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="javascript:void(0);" class="link link-search  icon-only"><i class="icon icon-magnifier"></i></a>
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+	    <form class="searchbar none" id="search_exit" data-search-list=".list-block-search" data-search-in=".item-title" data-searchbar-found=".searchbar-found" data-searchbar-not-found=".searchbar-not-found" action="search.php">
+          <div class="searchbar-input">
+            <input type="search" name="keywords" placeholder="品牌/商品名" />
+            <a href="#" class="searchbar-clear"></a>
+          </div>
+          <button type="reset" id="search_button" class="btn-cancel">取 消</button>
+        </form>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="product" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            <!--单个商品展示(start)-->
+            <div class="product">
+              <!--模块首(start)-->
+              <div class="product-hd">
+                <!-- Slider(start) -->
+                <div class="product-focus slider-container">
+                  <!-- Slides wrapper -->
+                  <div class="slider-wrapper">
+				  
+				  {foreach from=$pictures item=item}
+                    <div class="slider-slide"><img src="{$item.img_url}" width="320" height="320" /></div>
+				  {/foreach}
+                  </div>
+                  <!-- Pagination(start) -->
+                  <div class="slider-pagination"></div>
+                </div> 
+                <!-- Slider(end) -->
+              </div>
+              <!--模块首(end)-->
+              <!--模块主体(start)-->
+              <div class="product-bd">
+                <div class="product-info">
+                  <div class="product-info-main">
+                    <div class="product-name">{$goods.goods_style_name}</div>
+                    <strong class="product-price1">{$goods.shop_price_formated}</strong>
+                    <del class="product-price2">市场价格：{$goods.market_price}</del>
+                  </div>
+                  <div class="product-info-side"><a class="link-addfavorites" href="javascript:collect({$goods.goods_id})"><i class="icon icon-star"></i>收藏</a></div>
+                </div>
+                <div class="row product-inventory">
+                   <!--<div>商品库存：<strong>{$goods.goods_number} 件</strong></div>-->
+                   <div>起购数量：<strong>{$goods.start_num} 件</strong></div>
+                </div>
+                <!--详情(start)-->
+                <div class="product-detail">
+                  <div class="product-detail-hd">
+                    <h2 class="tit">商品详情</h2>
+                  </div>
+                  <!--模块主体(start)-->
+                  <div class="product-detail-bd">
+                    {$goods.goods_desc}
+                  </div>
+                  <!--模块主体(end)-->
+                </div>
+                <!--详情(end)-->
+              </div>
+              <!--模块主体(end)-->
+            </div>
+            <!--单个商品展示(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+    <!--toolbar(start)-->
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <a class="button button-big button-fill color-orange" href="goods.php?id={$goods.goods_id}&state=add_cart">加入购物车</a>
+        <a class="button button-big button-fill color-red" href="goods.php?id={$goods.goods_id}&state=buy">立即购买</a>
+      </div>
+    </div>
+    <!--toolbar(end)-->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+
+</body>
+</html>

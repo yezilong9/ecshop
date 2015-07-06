@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="user.php" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">我的红包</h1>
+          </a>
+        </div>
+        <div class="right">
+          
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="member-reward" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section spacebetween" id="bonus_list">
+		  <!--{foreach from=$bonus item=item}-->
+            <div class="item">
+				红包序号：{$item.bonus_sn|default:N/A}<br />
+				红包名称：{$item.type_name}<br />
+				红包金额：{$item.type_money}<br />
+				最小订单金额：{$item.min_goods_amount}<br />
+				<strong class="orange">截止日期：{$item.use_enddate}</strong><br />
+				<strong class="orange">状态：{$item.status}</strong>
+            </div>
+		  <!--{/foreach}-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+<script type="text/javascript" src="themes/default/scripts/jquery1.8.min.js"></script>
+
+<input type="hidden" value="{$pager.page_next}" id="pager_url"/>  
+<script>
+var page = 1;
+$(document).ready(function(){
+  $(document).scroll(function(){
+	var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+	var tops = $(document).scrollTop();
+	var sctop = $(document).height() - $(window).height();
+	if (tops >= sctop){
+		var Url = $('#pager_url').val();
+		Url = Url.replace(/&page(.*?)&/,"&");
+		if(page < '{$pager.page_count}'*1){
+			page = ++page;
+			Url += '&json=1&page='+page;
+			$.get(Url, function (data) {
+				$("#bonus_list").append(data);
+			});
+		}
+	}
+  });
+});
+</script >
+</body>
+</html>

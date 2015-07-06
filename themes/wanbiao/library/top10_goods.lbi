@@ -1,0 +1,37 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class=" top_10_goods lshadow">
+  <h2 class="mall_leftTitle c333">同类热销排行</h2>
+  <div class="boxCenterList2"> 
+    <!-- {foreach name=no from=$top_goods item=goods name=no}--> 
+    
+    <ul
+  
+   <!-- {if !$smarty.foreach.no.last} --> 
+    style=" border-bottom:1px solid #F2F2F2; " 
+    <!-- {/if} --> 
+    
+    class="clearfix ul_list"  id=top1s{$smarty.foreach.no.iteration} onMouseOver="show_goodspic({$smarty.foreach.no.iteration},'top1')">
+    <div class="iteration2" > {$smarty.foreach.no.iteration} </div>
+    <li  {if $smarty.foreach.no.iteration<2} class="iteration1"{/if} > <a href="{$goods.url}" title="{$goods.name|escape:html}" style="float:left">{$goods.short_name}</a>
+    </li>
+    </ul>
+    <ul 
+  
+   <!-- {if !$smarty.foreach.no.last} --> 
+    style=" border-bottom:1px solid #F2F2F2; " 
+    <!-- {/if} --> 
+    
+    class="clearfix ul_box"  id=top1b{$smarty.foreach.no.iteration} >
+    <div class="iteration"> {$smarty.foreach.no.iteration} </div>
+    <div class="rank_txt"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a></div>
+    <div class="rank_img " > <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"  width="85" height="85" /></a> </div>
+    <li {if $smarty.foreach.no.iteration<2} class="iteration1" {/if} >
+    
+    <div class="rank_text left"  ><p class="rank_price">{$goods.price}</p> <p class="already_sold">已售出 922 件</p></div>
+    </li>
+    </ul>
+    
+    <!-- {/foreach} --> 
+    <SCRIPT type=text/javascript> window.onload = show_goodspic(1,'top1');</SCRIPT> 
+  </div>
+</div>

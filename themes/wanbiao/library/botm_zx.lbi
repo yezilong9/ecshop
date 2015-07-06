@@ -1,0 +1,64 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="slideTxtBox100 NewsSet">
+  <div class="hd newsTit" >
+    <ul>
+	  {foreach from = $info_cats key=key item=item}
+			<li>{$item}</li>
+	  {/foreach}
+    </ul>
+  </div>
+
+  <div class="bd tBdy NewsSetWall ">
+  
+{foreach from = $info_lists key=key item=info }  
+	<ul>
+      <div style="display: block;">
+        <div class="c1 mr10">
+          <div class="r1"> 
+          <a href="{$info.475x340.link_url}" target="_blank"><img src="{$info.475x340.img_file}" width="475" height="340" border="0"></a>
+		  
+          <div class="tInfo1 f24"><a href="{$info.475x340.link_url}"  target="_blank">{$info.475x340.title_describe|escape:html}</a></div>
+          <div class="tInfo2"><a href="{$info.475x340.link_url}"  target="_blank">{$info.475x340.content_describe|escape:html}</a></div>
+          </div>
+          
+          </div>
+        <div class="c2 mr10">
+          <div class="c2A mr10"> 
+             <div class="r1 mb10">
+                <a href="{$info.240x160[0].link_url}" target="_blank"><img src="{$info.240x160[0].img_file}" width="240" height="160" border="0"></a>
+                <div class="tInfo1"><a href="{$info.240x160[0].link_url}" target="_blank">{$info.240x160[0].title_describe}</a></div>
+              </div>
+              <div class="r2">
+                 <a href="{$info.240x160[1].link_url}" target="_blank"><img src="{$info.240x160[1].img_file}" width="240" height="160" border="0"></a>
+                <div class="tInfo1"> <a href="{$info.240x160[1].link_url}" target="_blank">{$info.240x160[1].title_describe|escape:html}</a></div>
+                </div>
+            </div>
+            
+          <div class="c2B">
+           <div class="r1">
+            <div class="tInfo1"> <a href="{$info.240x330.link_url}" target="_blank">{$info.240x330.title_describe|escape:html}</a></div>
+            <a href="{$info.240x330.link_url}" target="_blank"><img src="{$info.240x330.img_file}" width="240" height="330" border="0"></a>
+			<div class="tInfo2">{$info.240x330.content_describe|escape:html}</div>
+            </div></div>
+          <div class="c2C mt10">
+            <ul>
+               <li>{insert name='article' num=5 article="$info.info_article"}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="c3"> <div class="r1">
+          <div class="tInfo1"><a href="{$info.240x320.link_url}" target="_blank">{$info.240x320.title_describe|escape:html}</a></div>
+		  <a href="{$info.240x320.link_url}" target="_blank"><img src="{$info.240x320.img_file}" width="240" height="320" border="0"></a>
+          <div class="tInfo2"><a href="{$info.240x320.link_url}" target="_blank">{$info.240x320.content_describe|escape:html}</a></div>         
+           </div></div>
+      </div>
+    </ul>
+{/foreach}
+   
+    
+  </div>
+</div>
+<script type="text/javascript">
+jQuery(".slideTxtBox100").slide({autoPlay:true});
+
+</script>

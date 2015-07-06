@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+<script type="text/javascript" src="js/action.js"></script>
+<script type="text/javascript" src="js/scrollpic.js"></script>
+<script type="text/javascript" src="js/roll.js"></script>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="block clearfix">
+  <div id="pageLeft" class="fl">
+
+	<!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/brands.lbi" --><!-- #EndLibraryItem --> 
+    	<!-- TemplateBeginEditable name="左边区域广告2" -->
+<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+
+<div class="ads">
+{insert name='ads' id=$ads_id num=$ads_num}
+</div>
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+	<!-- #BeginLibraryItem "/library/promotion_info.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/invoice_query.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/order_query.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/vote_list.lbi" --><!-- #EndLibraryItem -->
+  <!-- TemplateBeginEditable name="左边区域广告1" -->
+<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+
+<div class="ads">
+{insert name='ads' id=$ads_id num=$ads_num}
+</div>
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+    <!---品牌专区--->
+
+	
+	</div>
+	<div id="pageRight" class="fr clearfix" >
+	 <div class="clearfix" >
+	 
+	  <div class="clearfix" >
+	  <div class="w574 fl" >
+	  <div class="blank">
+	  <!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+	  </div>
+	  </div>
+	  <div class="w200 fr" >
+			 <div class="mod1 blank" id="mod1"  >
+			   <span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+				 <h1 class="mod1tit">{$lang.shop_notice}</h1>
+				 <div class="mod1con shop_notice">
+					 <ul>
+                  <li>{$shop_notice}</li>
+                   </ul>
+				 </div>
+			 </div>
+			 <script type="text/javascript">divheight("mod1");</script>
+	 </div>
+     <div class="blank"></div>
+     <div class=" w200 fr">
+     <!-- TemplateBeginEditable name="商店公告下广告位" -->
+<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+
+<div class="ads">
+{insert name='ads' id=$ads_id num=$ads_num}
+</div>
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+</div>
+     
+     
+     
+     
+	 </div>
+	
+			<!-- {if $hot_goods} -->
+        <!-- #BeginLibraryItem "/library/recommend_hot.lbi" --><!-- #EndLibraryItem -->  
+			<!--{/if}--> 
+
+
+     <div>
+	 </div>
+	 <!--{if $best_goods} 精品推荐 START-->
+
+        <!-- #BeginLibraryItem "/library/recommend_best.lbi" --><!-- #EndLibraryItem -->     
+
+	 <!--{/if} 精品推荐 END-->
+        <!-- #BeginLibraryItem "/library/recommend_new.lbi" --><!-- #EndLibraryItem --> 
+        
+       
+
+</div>
+     
+	 </div>
+	 
+
+
+</div>
+
+<div class=" block " >
+	 <!--hot start-->
+	 <div class="clearfix ">
+			<div class="w980 " >
+			
+        <!-- TemplateBeginEditable name="商品右侧分类" -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+<div class="mod1 blank" id="CatGoods">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$goods_cat.name|escape:html}<a href="{$goods_cat.url}" class="more">更多</a></h1>
+	<div class="mod1con group">
+		<!--{foreach from=$cat_goods item=goods}-->
+	 <div class="goodsbox">
+	  <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a></div>
+   <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name|escape:html}</a><br />
+    <font class="goodspice market">{$goods.market_price}</font>
+			 <!-- {if $goods.promote_price neq ""} -->
+			 <b class="f1">{$goods.promote_price}</b><br />
+			 <!-- {else}-->
+			 <b class="f1">{$goods.shop_price}</b><br />
+			 <!--{/if}-->
+	</div>
+ <!--{/foreach}-->
+	</div>
+</div>
+<script type="text/javascript">divheight("CatGoods");</script>
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable --> 
+
+        <!-- TemplateBeginEditable name="商品右侧分类2" -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+<div class="mod1 blank" id="CatGoods">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$goods_cat.name|escape:html}<a href="{$goods_cat.url}" class="more">更多</a></h1>
+	<div class="mod1con group">
+		<!--{foreach from=$cat_goods item=goods}-->
+	 <div class="goodsbox">
+	  <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a></div>
+   <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name|escape:html}</a><br />
+    <font class="goodspice market">{$goods.market_price}</font>
+			 <!-- {if $goods.promote_price neq ""} -->
+			 <b class="f1">{$goods.promote_price}</b><br />
+			 <!-- {else}-->
+			 <b class="f1">{$goods.shop_price}</b><br />
+			 <!--{/if}-->
+	</div>
+ <!--{/foreach}-->
+	</div>
+</div>
+<script type="text/javascript">divheight("CatGoods");</script>
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable --> 
+	</div>
+
+
+
+</div>
+</div>
+
+    
+<!--鼠标切换js Star-->
+<script>
+<!--
+/*第一种形式 第二种形式 更换显示样式*/
+function setTab(name,cursel,n){
+for(i=1;i<=n;i++){
+var menu=document.getElementById(name+i);
+var con=document.getElementById("con_"+name+"_"+i);
+menu.className=i==cursel?"hover":"";
+con.style.display=i==cursel?"block":"none";
+}
+}
+//-->
+</script>
+
+<div class="blank"></div>
+
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!--{if $img_links  or $txt_links }-->
+
+
+
+<!--{/if}-->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

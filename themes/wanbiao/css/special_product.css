@@ -1,0 +1,48 @@
+.lay{background-color: #f2f2f2;padding-bottom: 30px;}
+.wrap-con{width:100%;max-width: 1225px;margin: 0 auto;}
+/*地域特产*/
+.tc-areas{width: 100%;border: 1px solid #d6d6d6;background-color: #fff;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.leftDiv{float: left;width: 79px;margin: 20px 10px 20px 5px;}
+.area-btn{background: url(../images/area.png) 0 0 no-repeat;width: 79px;height: 31px;text-align: center;
+line-height: 30px;font-size: 16px;color: #fff;vertical-align: middle;display: inline-block;}
+.rightDiv{float: right;width: 100%;max-width: 1125px;padding-top: 15px;}
+.area-city p{line-height: 30px;}
+.area-city a{color: #5f5f5f;margin-right: 30px; font-size:14px}
+.area-city a:hover{color: #ff0000; text-decoration:underline;}
+/*图片轮番效果*/
+#rongqi{width:100%;max-width:1224px; height:418px; position:relative; overflow:hidden; }
+.rongqiul{height:418px; position:absolute; left:0px; cursor:pointer;}
+.rongqiul li{width:100%;max-width: 1224px;height:418px; float:left;}
+.dianrongqi{height:15px; position:absolute; z-index:3; left:612px; top:380px;}
+.dianrongqi li{width:16px; height:15px; float:left; text-align:center; cursor:pointer;}
+
+/*广州和海南特产*/
+.tc-GZ{background-color: #fff;margin-top: 27px;}
+.box-count{width:100%;max-width: 1205px;margin: 0 auto;padding-top: 10px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.mt{margin-top: 10px;}
+.mod-hd{border-bottom: 3px solid #d8d8d8;position: relative;}
+.mod-hd h2{font-size: 24px;color: #ec5353;border-bottom: 3px solid #ec5353;width: 217px;margin-bottom: -3px;line-height: 36px;}
+.tc-more{position: absolute;right: 0;top:10px;color: #000;font-weight: bold;}
+.tc-list{width:100%;margin: 0 auto;padding-top: 14px;}
+.tc-item{border: 1px solid #e5e5e5;width:375px;padding: 15px 0 20px 10px;float: left;margin-right: 14px;margin-bottom: 20px;}
+.tc-list .mr{margin-right: 0;}
+.tc-item h2{font-size: 16px;color: #3a3939;}
+.pic-link{width: 360px;height: 360px;display: inline-block;margin-top: 10px;}
+.tc-info{width: 360px;position: relative;padding-top: 10px;}
+.tc-info em,.tc-info i{font-style:normal;}
+.tc-info em{font-size: 28px;font-weight: bold;color: #ff0000;}
+.tc-info i{font-size: 16px;font-weight: bold;text-decoration: line-through;color: #a1a1a1;}
+.tc-goto{background: url(../images/goto.png) 0 0 no-repeat;width: 150px;height: 45px;text-align: center;color: #fff;font-size: 25px;line-height: 45px;
+position: absolute;right: 0;top:10px;}
+
+.tc-HN{margin-top: 45px;background-color: #fff;}
+
+.pagination{width:100%; height:50px; border:1px solid #e5e5e5;background-color: #fff;margin-top: 20px;}
+.pagination ul{ float:right;width:auto;margin:15px 30px 15px 0px;}
+.page_li{ width:18px;line-height:18px;display:inline-block; border:1px solid #e5e5e5; padding:3px; font-size:14px; text-align:center; float:left; cursor:pointer;}
+.on_visited{ background-color:#FF7611; cursor:pointer;}
+.on_hover{ width:18px;line-height:18px;display:inline-block; border:1px solid #FF7611; padding:3px; font-size:14px; text-align:center;color:#FF7611; cursor:pointer;}
+
+
+
+

@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript">
+function $id(element) {
+  return document.getElementById(element);
+}
+//切屏--是按钮，_v是内容平台，_h是内容库
+function reg(str){
+  var bt=$id(str+"_b").getElementsByTagName("h2");
+  for(var i=0;i<bt.length;i++){
+    bt[i].subj=str;
+    bt[i].pai=i;
+    bt[i].style.cursor="pointer";
+    bt[i].onclick=function(){
+      $id(this.subj+"_v").innerHTML=$id(this.subj+"_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+      for(var j=0;j<$id(this.subj+"_b").getElementsByTagName("h2").length;j++){
+        var _bt=$id(this.subj+"_b").getElementsByTagName("h2")[j];
+        var ison=j==this.pai;
+        _bt.className=(ison?"":"h2bg");
+      }
+    }
+  }
+  $id(str+"_h").className="none";
+  $id(str+"_v").innerHTML=$id(str+"_h").getElementsByTagName("blockquote")[0].innerHTML;
+}
+
+</script>
+<SCRIPT type=text/javascript>
+window.pageConfig={
+	compatible:true,
+	navId:"home"
+};
+</SCRIPT>
+</head>
+<body>
+
+
+
+
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+ 
+<div class="block950 clearfix" style="width:1225px; margin:0 auto">
+  
+<div class="allcate_t">
+<div class="tit">更多特价产品，请进入以下二级频道页面</div>
+<div class="allcate_t_in clearfix" style="text-align:center">
+  <table border="0" cellpadding="10" cellspacing="10" align="center" style="text-align:center">
+  <tr>
+   <!--{foreach from=$categories item=cat name=no}-->
+   <!-- {if $smarty.foreach.no.iteration<11}-->
+<td  valign="middle" class="td"  onmouseover="this.className='td td_on'" onmouseout="this.className='td'" > <a  href="{$cat.url}" >{$cat.name|escape:html}</a> </td>
+ <!-- {/if} -->
+  <!--{/foreach}-->
+  </tr>
+</table>
+ </div>
+</div>
+  
+  
+  
+  
+  
+
+
+  
+  
+    <div class="blank"></div>
+  
+  
+      <div class="tab_box tab_box2" >
+        <div id="com_b" class="tab_title">
+        <h2>全部商品</h2>
+        <h2 class="h2bg">全部品牌</h2>
+        </div>
+      <div  id="com_v"></div>
+      <div id="com_h" class="padd_box">
+        <blockquote>
+        
+        <div class="allcate_box_in_w" style="float:left">
+            <!--{foreach from=$categories item=cat name=no}-->
+            <!-- {if $smarty.foreach.no.iteration<8}-->
+                <div class="allcate_box" onmouseover="this.className='allcate_box allcate_box_on'" onmouseout="this.className='allcate_box'">
+                <div class="tit"><a href="{$cat.url}" >{$cat.name|escape:html}</a></div>
+                <div class="allcate_box_in clearfix">
+                <!--{foreach from=$cat.cat_id item=child}-->
+                    <div class="line clearfix">
+                        <div class="f_l">
+                            <a href="{$child.url}">{$child.name|escape:html}</a> 
+                        </div> 
+                        <div class="f_r">
+                            <!--{foreach from=$child.cat_id item=childer}-->
+                            <a  href="{$childer.url}">{$childer.name|escape:html}</a>
+                            <!--{/foreach}-->
+                        </div> 
+                    </div>
+                <!--{/foreach}-->
+                </div>
+                </div>
+            <!-- {/if} -->	
+            <!--{/foreach}--> 
+        </div>
+        
+        
+         <div class="allcate_box_in_w" style="float:right">
+            <!--{foreach from=$categories item=cat name=no}-->
+            <!-- {if $smarty.foreach.no.iteration>7}-->
+                <div class="allcate_box" onmouseover="this.className='allcate_box allcate_box_on'" onmouseout="this.className='allcate_box'">
+                <div class="tit"><a href="{$cat.url}" >{$cat.name|escape:html}</a></div>
+                <div class="allcate_box_in clearfix">
+                <!--{foreach from=$cat.cat_id item=child}-->
+                    <div class="line clearfix">
+                        <div class="f_l">
+                            <a href="{$child.url}">{$child.name|escape:html}</a> 
+                        </div> 
+                        <div class="f_r">
+                            <!--{foreach from=$child.cat_id item=childer}-->
+                            <a  href="{$childer.url}">{$childer.name|escape:html}</a>
+                            <!--{/foreach}-->
+                        </div> 
+                    </div>
+                <!--{/foreach}-->
+                </div>
+                </div>
+              <!-- {/if} -->	    
+            <!--{/foreach}--> 
+        </div>
+        
+        
+        
+    
+        </blockquote>
+        <blockquote>
+        
+        <div class="allbrand clearfix"   >
+        
+       <div class="sName">推荐品牌</div>
+        
+        
+        
+        
+        <ul>
+   <!-- {foreach from=$brand_list item=brand name="brand_foreach"} --> 
+    <!-- {if $brand.brand_logo} -->
+	<li>
+    <div class="t">
+    <a href="{$brand.url}">
+    <img class="brand_img" src="../data/brandlogo/{$brand.brand_logo}" alt="{$brand.brand_name|escape:html} ({$brand.goods_num})" /></a>
+    </div>
+    <div class="b">
+    <a href="{$brand.url}">
+    {$brand.brand_name|escape:html}
+    </a>
+    </div>
+    </li>
+    <!-- {/if} -->
+    <!-- {/foreach} -->
+    <div class="blank"></div>
+    
+
+       </ul>  
+       
+       
+       
+          <div class="blank"></div>
+       
+       
+       
+           <div style=" text-align:left; width:100%; padding-top:10px; font-size:14px; float:left">
+    
+  更多品牌：  <!-- {foreach from=$brand_list item=brand name="brand_foreach"} --> 
+<!-- {if $brand.brand_logo} -->
+<!-- {else} -->
+<a style="font-size:14px;" href="{$brand.url}">{$brand.brand_name|escape:html}</a> 
+<!-- {/if} -->
+<!-- {/foreach} -->
+
+   </div> 
+       
+       
+       
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+     
+        </blockquote>  
+        
+     
+      </div>
+     </div>
+
+    <script type="text/javascript">
+    <!--
+    reg("com");
+    //-->
+    </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+ </div>
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+<!-- /container -->
+</body>
+</html>

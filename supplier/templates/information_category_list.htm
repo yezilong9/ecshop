@@ -1,0 +1,87 @@
+<!-- $Id: information_category_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!--资讯类别名称搜索-->
+<div class="form-div">
+  <form action="javascript:search_info_cat()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    <input type="text" name="info_cat_word" size="25" value="" placeholder="请输入资讯名称"/>
+    <input type="submit" value="搜索" class="button" />
+  </form>
+</div>
+
+<form method="post" action="" name="listForm">
+<!-- start ad position list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+  	<th><a href="javascript:listTable.sort('info_cat_id'); ">资讯类别ID</a>{$sort_info_cat_id}</th>
+    <th>资讯类别名称</th>
+    <th><a href="javascript:listTable.sort('show_order'); ">显示顺序</a>{$sort_show_order}</th>
+    <th>是否显示</th>
+    <th>操作</th>
+  </tr>
+  {foreach from=$info_cats_list item=list}
+  <tr>
+    <td class="first-cell" align="center">{$list.info_cat_id}</td>
+    <td align="center">{$list.info_cat_name|escape:html}</td>
+    <td align="center">{$list.show_order}</td>
+    <td align="center">{if $list.is_show}是{else}否{/if}</td>
+    <td align="center">
+      <a href="information_category.php?act=edit&info_cat_id={$list.info_cat_id}" title="{$lang.edit}">
+      <img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:;" onclick="listTable.remove({$list.info_cat_id}, '{$lang.drop_confirm}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+    </td>
+  </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="5">暂时还没有资讯分类</td></tr>
+  {/foreach}
+  <tr>
+    <td align="right" nowrap="true" colspan="5">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end ad_position list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+	listTable.recordCount = {$record_count};
+	listTable.pageCount = {$page_count};
+	
+	{foreach from=$filter item=item key=key}
+		listTable.filter.{$key} = '{$item}';
+		//console.log(listTable.filter);
+	{/foreach}
+  
+{literal}
+
+	onload = function()
+	{
+		// &#64138;&#53036;&#10870;鵥
+		startCheckOrder();
+	}
+
+	function search_info_cat()
+	{	
+		var info_cat_word=document.forms['searchForm'].elements['info_cat_word'].value;
+		alert(info_cat_word);
+		listTable.filter['info_cat_word'] = Utils.trim(info_cat_word);
+		pageSize = document.getElementById("pageSize");
+		//alert(pageSize.value);
+		listTable.filter['page_size'] = Utils.isInt(pageSize.value) ? pageSize.value : 15;
+		listTable.filter['page'] = 1;
+		listTable.loadList();
+	}
+  
+
+	
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

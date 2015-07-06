@@ -1,0 +1,43 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="imgInfo">
+  <div class="imgInfo_img">
+    <!-- {if $pictures}-->
+    <ul>
+      <!-- {foreach from=$pictures item=picture name=no}-->
+      <li> <a href="{if $picture.img_url}{$picture.img_url}{else}{$picture.thumb_url}{/if}" target="_blank" id="zoom" class="MagicZoom MagicThumb"  rel="hint-text:; zoom-width:400; zoom-height: 400; zoom-position: right; zoom-align: center;"><img src="{if $picture.img_url}{$picture.img_url}{else}{$picture.thumb_url}{/if}" alt="{$goods.goods_name}" style="width:350px; height:350px;" /></a></li>
+      <!--{/foreach}-->
+    </ul>
+    <!-- {/if}-->
+  </div>
+  <!-- {if $pictures}-->
+  <div class="picture" id="imglist">
+    <span id="goodsPicPrev" title="上一张" class="icon-slides icon-slides-prev" style="height: 16px;">上一张</span> 
+     <span id="goodsPicNext" title="下一张" class="icon-slides icon-slides-next" style="height: 16px;">下一张</span>
+    <!-- {foreach from=$pictures item=picture name=no}-->
+    <a href="javascript:void(0);" title="{$picture.img_desc|escape:html}"> <img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}"  /></a>
+    <!--{/foreach}-->
+  </div>
+  <!-- {/if}-->
+  <div class="add_fav">
+
+        <a rel="nofollow"  href="javascript:collect({$goods.goods_id})"  title="收藏此商品" class="g__add_to_fav"><i></i>收藏此商品&nbsp;</a>
+        <a id="goods_collection" rel="onfollow" href="/user/collection/collection" class="fancybox.iframe" style="display:none;"></a>
+
+        <div id="share_goods">
+            <span><i></i>分享</span>
+        </div>
+
+        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+            <span class="bds_more" id="bds_more">&nbsp;</span>
+        </div>
+
+		<div id="click_count">关注人气：<code class="red">{$goods.click_count}</code>人</div>
+
+    </div>
+  
+  
+ <!-- <div class="center_collect_btn"> <a href="javascript:collect({$goods.goods_id})">收藏该商品</a> </div>-->
+  
+  
+  </div>
+

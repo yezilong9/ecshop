@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="themes/default/scripts/jquery1.8.min.js"></script>
+  <script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+  <script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+{insert_scripts files='utils.js'}
+{insert_scripts files='transport.js,common.js,user.js'}
+<script type="text/javascript">
+{foreach from=$lang.merge_order_js item=item key=key}
+  var {$key} = "{$item}";
+{/foreach}
+</script>
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="user.php" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">我的订单</h1>
+          </a>
+        </div>
+        <div class="right">
+        
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="member-orders" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            <!--我的订单列表(start)-->
+            <div class="list-block media-list">
+              <ul id="order_list">
+			   <!--{foreach from=$orders item=item}-->
+                <li>
+                  <a href="user.php?act=order_detail&order_id={$item.order_id}" class="item-link item-content">
+                    <div class="item-media">
+                      <img src="/{$item.goods_thumb}" width="60" height="60" />
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">订单号：{$item.order_sn}</div>
+                      <div class="item-date">下单日期：{$item.order_time}</div>
+                      <div class="item-other">
+                        总价：<strong class="orange">{$item.total_fee}</strong> <br />
+						状态：<strong class="orange">{$item.order_status}</strong>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+			   <!--{/foreach}-->
+			   
+              </ul>
+            </div>          
+            <!--我的订单列表(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<input type="hidden" value="{$pager.page_next}" id="pager_url"/>  
+<script>
+var page = 1;
+$(document).ready(function(){
+  $(document).scroll(function(){
+	var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+	var tops = $(document).scrollTop();
+	var sctop = $(document).height() - $(window).height();
+	if (tops >= sctop){
+		var Url = $('#pager_url').val();
+		Url = Url.replace(/&page(.*?)&/,"&");
+		if(page < '{$pager.page_count}'*1){
+			page = ++page;
+			Url += '&json=1&page='+page;
+			$.get(Url, function (data) {
+				$("#order_list").append(data);
+			});
+		}
+	}
+  });
+});
+</script >
+</body>
+</html>

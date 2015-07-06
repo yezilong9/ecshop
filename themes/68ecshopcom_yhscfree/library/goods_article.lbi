@@ -1,0 +1,14 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $goods_article_list} -->
+<div class="mod1 mod2" id="articlesList">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod2tit">{$lang.article_releate}</h1>
+	<div class="mod2con">
+	<!-- {foreach from=$goods_article_list item=article} 相关文章 -->
+   <a href="{$article.url}" title="{$article.title|escape:html}" class="txtdot">{$article.short_title|truncate:15}</a><br />
+  <!--{/foreach}-->
+	</div>
+</div>
+<script type="text/javascript">divheight("articlesList");</script>
+<!-- {/if} -->
+<div class="blank"></div>

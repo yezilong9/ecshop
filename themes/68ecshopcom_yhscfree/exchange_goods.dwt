@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript" src="js/action.js"></script>
+<script type="text/javascript" src="themes/68ecshopcom_yhscfree/js/mzp-packed-me.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<div class="block clearfix">
+  <div id="pageLeft" class="fl">
+	 <!-- TemplateBeginEditable name="左边区域" -->
+	 <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem --> 
+	 <!-- #BeginLibraryItem "/library/goods_attrlinked.lbi" --><!-- #EndLibraryItem -->
+	 <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+	 <!-- #BeginLibraryItem "/library/goods_article.lbi" --><!-- #EndLibraryItem -->
+   <!-- TemplateEndEditable -->
+	</div>
+	<div id="pageRight" class="fr">
+	
+	 <div class="clearfix"> 
+	  <div class="goodsimgbox fl">
+		  <div id="focuscont">
+		 
+     <!-- {if $pictures}-->
+<a style="position:relative" href="{$goods.goods_img}" id="zoom1" class="MagicZoom MagicThumb" title="{$goods.goods_name|escape:html}">
+      <img src="{$goods.goods_img}" alt="{$goods.goods_name|escape:html}" width="298px" height="298px" style="border:1px solid #d2d0d0"/>
+      
+     </a>
+         <!-- {else} -->
+         <img src="{$goods.goods_img}" alt="{$goods.goods_name|escape:html}"/>
+         <!-- {/if}-->
+		 
+	   </div>
+
+<!-- {if $pictures}-->
+
+<div class="picture" id="imglist">
+		
+
+        <!-- {foreach from=$pictures item=picture name=picture}-->
+        <a  href="{$picture.img_url}" rel="zoom1" rev="{$picture.img_url}" title="">
+        <img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}" {if $smarty.foreach.picture.iteration==1 }class="onbg"{else}class="autobg"{/if} /></a>
+        <!--{/foreach}-->
+
+                        
+</div>  
+		  
+<script type="text/javascript">
+	mypicBg();
+</script>
+<!-- {/if}-->
+		</div>
+		<div class="goodstxtbox fr">
+		 <h4 class="goodName">
+		 {$goods.goods_style_name}
+		 <div class="prev">
+        {if $prev_good}
+        <a href="{$prev_good.url}"><img alt="上一个商品" src="images/up.gif"  /></a>
+        {/if}
+        {if $next_good}
+        <a href="{$next_good.url}"><img alt="下一个商品" src="images/down.gif" /></a>
+        {/if}
+     </div>
+		</h4>
+		 <form action="exchange.php?act=buy" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+        <!-- {if $cfg.show_goodssn} 显示商品货号-->
+        {$lang.goods_sn}{$goods.goods_sn}<br />
+        <!-- {/if} -->
+        <!-- {if $goods.goods_brand neq "" and $cfg.show_brand} 显示商品品牌-->
+        {$lang.goods_brand}<a href="{$goods.goods_brand_url}" >{$goods.goods_brand}</a><br />
+        <!--{/if}-->
+        <!-- {if $cfg.show_goodsweight} 商品重量-->
+        {$lang.goods_weight}{$goods.goods_weight}<br />
+        <!-- {/if} -->
+        {$lang.exchange_integral}<font class="shop">{$goods.exchange_integral}</font><br />
+        <!-- {* 开始循环所有可选属性 *} -->
+        <!-- {foreach from=$specification item=spec key=spec_key} 循环规格开始 -->
+        {$spec.name}:<br />
+        <!-- {if $cfg.goodsattr_style eq 1} 规格显示方式：单选按钮 -->
+        <!-- {foreach from=$spec.values item=value key=key} -->
+        <label for="spec_value_{$value.id}">
+        <input type="radio" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" {if $key eq 0}checked{/if} />
+        {$value.label} </label><br />
+        <!-- {/foreach} -->
+        <!-- {else} 规格显示方式：下拉列表 -->
+        <select name="spec_{$spec_key}" class="TextInput">
+          <!-- {foreach from=$spec.values item=value key=key} -->
+          <option label="{$value.label}" value="{$value.id}">{$value.label} </option>
+          <!-- {/foreach} -->
+        </select><br />
+        <!-- {/if} 规格显示方式 -->
+        <!-- {/foreach} 循环规格结束 -->
+        <!-- {* 结束循环可选属性 *} -->
+        <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
+        <input type="submit" value="{$lang.exchange_goods}" class="bnt_number4"/>
+    </form>
+		</div>
+	 </div> 
+	 
+	 	 <div class="infotit clearfix" id="com_b">
+		  <h2><span class="l"></span><span class="r"></span>{$lang.feed_goods_desc}</h2>
+		  <h2 class="h2bg"><span class="l"></span><span class="r"></span>{$lang.goods_attr}</h2>
+		  <h2 class="h2bg"><span class="l"></span><span class="r"></span>{$lang.goods_tag}</h2>
+		 </div>
+		 <div class="tagcontent" id="com_v"></div>
+	   <div id="com_h">
+		   <blockquote>
+        {$goods.goods_desc}
+       </blockquote>
+			 <blockquote>
+        <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+        <!-- {foreach from=$properties item=property_group key=key} -->
+        <tr>
+          <th colspan="2" bgcolor="#FFFFFF">{$key|escape}</th>
+        </tr>
+        <!-- {foreach from=$property_group item=property} -->
+        <tr>
+          <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[{$property.name|escape:html}]</td>
+          <td bgcolor="#FFFFFF" align="left" width="70%">{$property.value|escape:html}</td>
+        </tr>
+        <!-- {/foreach}-->
+        <!-- {/foreach}-->
+       </table>
+       </blockquote>
+			 <blockquote>
+        <!-- #BeginLibraryItem "/library/goods_tags.lbi" --><!-- #EndLibraryItem -->
+       </blockquote>
+		 </div>
+		 <script type="text/javascript">reg("com");</script>
+	 
+	<!-- TemplateBeginEditable name="右边区域" -->
+	<!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
+  <!-- TemplateEndEditable -->
+	</div>
+</div>
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+<script type="text/javascript">
+<!-- {literal} -->
+onload = function()
+{
+  fixpng();
+}
+<!-- {/literal} -->
+</script>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  {insert_scripts files='common.js'}
+  {insert_scripts files='transport.js,utils.js,jquery-1.9.1.min.js'}
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1);" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">选择商品属性</h1>
+          </a>
+        </div>
+        <div class="right">
+          <!-- <a href="javascript:void(0);" class="link link-search icon-only"><i class="icon icon-magnifier"></i></a> -->
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+	     <!-- <form class="searchbar none" id="search_exit" data-search-list=".list-block-search" data-search-in=".item-title" data-searchbar-found=".searchbar-found" data-searchbar-not-found=".searchbar-not-found" action="search.php">
+          <div class="searchbar-input">
+            <input type="search" name="keywords" placeholder="品牌/商品名" />
+            <a href="#" class="searchbar-clear"></a>
+          </div>
+          <button type="reset" id="search_button" class="btn-cancel">取 消</button>
+        </form> -->
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="product-choose-property" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+		  <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+            <!--商品信息(start)-->
+            <div class="product-info" style="position:relative;">
+			<p style="position:absolute;top:-3px;left:80px;white-space:nowrap;">{$goods_name}</p>
+              <div class="product-info-side">
+                <img src="{$pictures.0.img_url}" width="60" height="60" />
+              </div>
+              <div class="product-info-main" style="margin-top:15px;">
+                <strong class="price">{$goods.shop_price_formated}</strong>
+                <!--<span style="color:#999999;"> 库存{$goods.goods_number}</span>-->
+              </div>
+            </div>
+            <!--商品信息(end)-->
+            <!--商品属性(start)-->
+
+            <div class="product-property">
+			{foreach from=$specification item=spec key=spec_key}
+              <div class="item">
+                <div class="item-hd">
+                  <h2 class="item-tit">{$spec.name}</h2>
+                </div>
+                <div class="item-bd options">
+				<ul class="options ui-options-blue">
+					<!-- {* 判断属性是复选还是单选 S*} --> 
+					<!-- {if $spec.attr_type eq 1} --> 
+					<!-- {if $cfg.goodsattr_style eq 1} --> 
+					<!-- {foreach from=$spec.values item=value key=key} -->
+					<li>
+                      <a href="#">
+					<input data-img="" autocomplete="off" value="{$value.id}" name="spec_{$spec_key}" id="spec_value_{$value.id}" {if $key eq 0}checked{/if} type="radio">
+					<label for="spec_value_{$value.id}">{$value.label}[{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]</label>
+					  </a>
+                    </li>
+					<!-- {/foreach} -->
+					<input type="hidden" name="spec_list" value="{$key}" />
+					<!--{else}-->
+					<select name="spec_{$spec_key}" onchange="changePrice()">
+					  <!-- {foreach from=$spec.values item=value key=key} -->
+					  <option label="{$value.label}" value="{$value.id}">{$value.label} {if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if}{if $value.price neq 0}{$value.format_price}{/if}</option>
+					  <!-- {/foreach} -->
+					</select>
+					<input type="hidden" name="spec_list" value="{$key}" />
+					<!--{/if}--> 
+					<!-- {else} --> 
+					
+					<!--{/if}--> 
+					<!-- {* 判断属性是复选还是单选 E*} --> 
+					</ul>
+                </div>
+              </div>
+			{/foreach}
+			
+              <div class="item">
+                <div class="item-hd">
+                  <h2 class="item-tit">购买数量（限购5件）</h2>
+                </div>
+                <div class="item-bd amount">
+                  <a class="reduce" href="javascript:a();">-</a>
+                  <input type="number" id="number" value="1" />
+                  <a class="increase" href="javascript:b();">+</a>
+                </div>
+<script>
+function a()
+{
+	var number = $('#number').val()*1;
+	if(number > 1)
+	$('#number').val(number-1);
+}
+function b()
+{
+	var number = $('#number').val()*1;
+	$('#number').val(number+1);
+}
+</script>
+              </div>
+            </div>
+            <!--商品属性(end)-->
+          </div>
+		  </form>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+        <!--toolbar(start)-->
+        <div class="toolbar">
+          <div class="toolbar-inner">
+            <a class="button button-big button-fill color-orange" onclick="addToCart{$state}({$goods.goods_id});">确 定</a>
+          </div>
+        </div>
+        <!--toolbar(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+</body>
+</html>

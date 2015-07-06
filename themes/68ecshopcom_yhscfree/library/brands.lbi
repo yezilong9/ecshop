@@ -1,0 +1,31 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $brand_list} -->
+
+
+<h1 class="mod3tit" style=" position:relative">品牌专卖<a href="../brand.php" class="more">全部品牌</a></h1>
+<div class="mod1 mod2 blank brandboxs1">
+	<span class="lb"></span><span class="rb"></span>
+
+    
+	<div class="brandsL clearfix">
+		 <!-- {foreach from=$brand_list item=brand name="brand_foreach"} -->
+    {if $smarty.foreach.brand_foreach.index <= 8}
+      <!-- {if $brand.brand_logo} -->
+			<a href="{$brand.url}"><img src="data/brandlogo/{$brand.brand_logo}" alt="{$brand.brand_name|escape:html} ({$brand.goods_num})" /></a>
+            
+      <!-- {else} -->
+        <a href="{$brand.url}" class="brandtxt">{$brand.brand_name|escape:html} {if $brand.goods_num}({$brand.goods_num}){/if}</a>
+      <!-- {/if} -->
+    {/if}
+   <!-- {/foreach} -->
+		 
+	</div>
+    
+    
+</div>
+<!-- {/if} -->
+
+<!--<div class="brandboxs blank">
+	 
+</div>
+-->

@@ -1,0 +1,29 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $related_goods} -->
+
+ <ul class="pro_list">
+     
+      <!--{foreach from=$related_goods item=releated_goods_data}-->
+       
+          <li style="width:232px; margin-right:3px;">
+          <a href="{$releated_goods_data.url}" class="pic"><img src="{$releated_goods_data.goods_thumb}" alt="{$releated_goods_data.goods_name}"  width="230" height="230"/></a>
+ 
+        <a href="{$releated_goods_data.url}" title="{$releated_goods_data.goods_name}" class="pro_title">{$releated_goods_data.short_name}</a>
+        <p class="pro_price">
+        <a>
+        <!-- {if $releated_goods_data.promote_price neq 0} -->
+        <font >{$releated_goods_data.formated_promote_price}</font>
+        <!-- {else} -->
+       <font >{$releated_goods_data.shop_price}</font>
+        <!-- {/if} -->
+        </a>
+        </p>        
+        <p class="already_sold">已售出<b>9</b></p>
+
+          </li>
+       
+        <!--{/foreach}-->
+    </ul>
+
+<div class="blank5"></div>
+<!-- {/if} -->

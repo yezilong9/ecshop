@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<style type="text/css">
+p a{color:#006acd; text-decoration:underline;}
+</style>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="blank"></div>
+<div class="block">
+  <div class="box">
+   <div class="box_1">
+    <h3><span>{$lang.system_info}</span></h3>
+    <div class="boxCenterList RelaArticle" align="center">
+      <div style="margin:auto;margin:0px 20px 20px 20px;">
+        <div class="blank"></div>
+		<div style="width:800px;padding-top:5px;">
+			<p style="font-size: 14px; font-weight:bold; color: red;">{$message}</p>
+			
+			<style>
+			.res li{width:600px;margin-left:100px;}
+			</style>
+			<ul class="res" style="margin:10px 0 10px 0;height:30px;">
+				<!--{if $payArr['status'] == 1}--><li><span style="font-size:20px;">成功付款：{$payArr.payprice}元！</span></li><!--{/if}-->
+			</ul>
+			<ul class="res" style="margin:10px 0 10px 0;height:30px;">
+                <!--{if $payArr.order_id != ''}-->
+                <!--<a href="active/201412/draw.php?{$sign_message}&sign_message_md={$sign_message_md}" target="_blank">
+                <span style="font-size:20px; color:red;">点击抽奖活动(抽奖的订单不能退货退款)</span></a>-->
+                <!--{/if}-->
+            </ul>
+			
+          <!--{if $virtual_card}-->
+          <div style="text-align:center;overflow:hidden;border:1px solid #E2C822;background:#FFF9D7;margin:10px;padding:10px 50px 30px;">
+          <!--{foreach from=$virtual_card item=vgoods}-->
+            <h3 style="color:#2359B1; font-size:12px;text-align:center;">{$vgoods.goods_name}</h3>
+            <!--{foreach from=$vgoods.info item=card}-->
+			<style>
+			.pay_ul li{width:150px;}
+			</style>
+              <ul class="pay_ul" style="list-style:none;padding:0;margin:0;clear:both;height:19px;">
+              <!--{if $card.card_sn}-->
+              <li style="margin-right:50px;float:left;">
+              <strong>{$lang.card_sn}:</strong><span style="color:red;">{$card.card_sn}</span>
+              </li><!--{/if}-->
+              <!--{if $card.card_password}-->
+              <li style="margin-right:50px;float:left;">
+              <strong>{$lang.card_password}:</strong><span style="color:red;">{$card.card_password}</span>
+              </li><!--{/if}-->
+              <!--{if $card.end_date}-->
+              <li style="float:left;">
+              <strong>{$lang.end_date}:</strong>{$card.end_date}
+              </li><!--{/if}-->
+              </ul>
+            <!--{/foreach}-->
+          <!--{/foreach}-->
+          </div>
+          <!--{/if}-->
+		  
+		</div>
+		<!--{if $payArr['status'] == 1}--><a href="/">继续购物</a><!--{/if}-->
+		<!--{if $payArr['order_id']}--><a href="user.php?act=order_detail&order_id={$payArr.order_id}">订单详情</a><!--{/if}-->
+        <a href="/">{$lang.back_home}</a>
+      </div>
+    </div>
+   </div>
+  </div>
+</div>
+<div class="blank5"></div>
+<!--帮助-->
+<div class="block">
+  <div class="box">
+   <div class="helpTitBg clearfix">
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+   </div>
+  </div>
+</div>
+<div class="blank"></div>
+<!--帮助-->
+<!--友情链接 start-->
+<!--{if $img_links  or $txt_links }-->
+<div id="bottomNav" class="box">
+ <div class="box_1">
+  <div class="links clearfix">
+    <!--开始图片类型的友情链接{foreach from=$img_links item=link}-->
+    <a href="{$link.url}" target="_blank" title="{$link.name}"><img src="{$link.logo}" alt="{$link.name}" border="0" /></a>
+    <!--结束图片类型的友情链接{/foreach}-->
+    <!-- {if $txt_links} -->
+    <!--开始文字类型的友情链接{foreach from=$txt_links item=link}-->
+    [<a href="{$link.url}" target="_blank" title="{$link.name}">{$link.name}</a>]
+    <!--结束文字类型的友情链接{/foreach}-->
+    <!-- {/if} -->
+  </div>
+ </div>
+</div>
+<!--{/if}-->
+<!--友情链接 end-->
+<div class="blank"></div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

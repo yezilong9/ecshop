@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+         
+         <ul class="pro_list" >
+            <!--{foreach from=$brand_goods item=goods}-->
+            <li style="width:232px; margin-right:3px;"> 
+            <a href="{$goods.url}" class="pic"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name|escape:html}"  width="230" height="230" /></a>
+              <a href="{$goods.url}" title="{$goods.goods_name|escape:html}" class="pro_title">{$goods.short_name|escape:html}</a>
+              <p class="pro_price"> <a> 
+                <!-- {if $goods.promote_price neq ""} --> 
+                <font class="">{$goods.promote_price}</font> 
+                <!-- {else}--> 
+                <font class="">{$goods.shop_price}</font> 
+                <!--{/if}--> 
+                </a> </p>
+                <p class="already_sold">已售出<b>9</b></p>
+
+           </li>
+            <!--{/foreach}-->
+            </ul>
+        <div class="blank5"></div> 
+ 

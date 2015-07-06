@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<h1 class="cagegoryTit"><a href="catalog.php" class="more" style=" color:#666666;">{$lang.all_category}</a></h1>
+<div class="cagegoryCon clearfix">
+<!--{foreach from=$categories item=cat}-->
+ <dl>
+ <dt><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+ <!--{if $cat.cat_id}-->
+ <dd class="clearfix">
+ <!--{foreach name=childs from=$cat.cat_id item=child}-->
+     <p onMouseOver="this.className='itemsbg'" onMouseOut="this.className=''"><a href="{$child.url}" title="{$child.name|escape:html}" class="txtdot">{$child.name|escape:html}</a></p>
+ <!--{/foreach}-->
+ </dd>
+ <!--{/if}-->
+ </dl>
+ <!--{/foreach}-->
+</div>
+<div class="cagegoryBnt blank"></div>

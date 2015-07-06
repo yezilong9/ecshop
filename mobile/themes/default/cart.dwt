@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  {insert_scripts files='common.js,shopping_flow.js'}
+  {insert_scripts files='transport.js'}
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1);" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">购物车</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="index.php" class="link icon-only"><i class="icon icon-home"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="shoppingcart" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            <!--商品列表(start)-->
+            <div class="list-block media-list">
+              <ul>
+				{foreach from=$goods_list item=goods}
+                <li>
+                  <div class="item-content">
+                    <label class="label-checkbox">
+                      <div class="item-media">
+                        <img src="{$goods.goods_thumb}" width="60" height="60" />
+                      </div>
+                    </label>
+                    <div class="item-inner">
+                      <div>
+                        <div class="item-title"><a href="goods.php?id={$goods.goods_id}">{$goods.goods_name}</a></div>
+                        <del class="price2">{$goods.market_price} </del> <strong class="price1">{$goods.goods_price}</strong> X <input type="text" class="inputbox" name="goods_number[{$goods.rec_id}]" id="goods_number_{$goods.rec_id}" value="{$goods.goods_number}" onchange="changenum({$goods.rec_id})"/>
+                      </div>
+                      <div class="item-after"><a class="link icon-only" href="#"><i class="icon icon-trash" onclick="javascript:if (confirm('{$lang.drop_goods_confirm}')) location.href='flow.php?step=drop_goods&amp;id={$goods.rec_id}'; "></i></a></div>
+
+                    </div>
+                  </div>
+                </li>
+				{/foreach}
+
+               </ul>
+            </div>
+            <!--商品列表(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+    <!--toolbar(start)-->
+    <div class="toolbar toolbar-shoppingcart">
+      <div class="toolbar-inner totalbar-inner">
+        <div class="total">共<span id="_total_number">{$total.total_number}</span>件商品，总计：<strong class="price" id="goods_subtotal">{$total.goods_price}</strong></div>
+        <a class="button button-big button-fill color-red" href="flow.php?step=checkout">去结算(<em class="num" id="total_number">{$total.total_number}</em>)</a>
+      </div>
+    </div>
+    <!--toolbar(end)-->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<script>
+function changenum(rec_id) {
+
+var goods_number = parseInt(document.getElementById('goods_number_' + rec_id).value);
+change_goods_number(rec_id, goods_number);
+
+}
+function change_goods_number(rec_id, goods_number) {
+
+Ajax.call('flow.php?step=ajax_update_cart', 'rec_id=' + rec_id + '&goods_number=' + goods_number, change_goods_number_response, 'POST', 'JSON');
+}
+
+function change_goods_number_response(result) {
+if (result.error == 0) {
+	var rec_id = result.rec_id;
+	document.getElementById('total_number').innerHTML = result.total_number; //更新数量
+	document.getElementById('_total_number').innerHTML = result.total_number; //更新数量
+	document.getElementById('goods_subtotal').innerHTML = result.total_desc; //更新小计
+	if (document.getElementById('ECS_CARTINFO')) { //更新购物车数量
+		document.getElementById('ECS_CARTINFO').innerHTML = result.cart_info;
+	}
+} else if (result.message != '') {
+	document.getElementById('goods_number_' + result.rec_id).value = result.goods_number;
+	alert(result.message);
+}
+}
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1041 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.8.3.min.js,jquery-ui-1.10.4.custom.min.js'}
+</head>
+<body>
+{if $act != 'view_full'}
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+{/if}
+<link type="text/css" href="../css/print.css" rel="stylesheet" />
+<link type="text/css" href="../css/print_mod.css" rel="stylesheet" />
+<link type="text/css" href="../css/reset.css" rel="stylesheet" />
+<link type="text/css" href="../css/print_full.css" rel="stylesheet" />
+<style>
+ a:hover{ text-decoration:none; }
+</style>
+<!--{if $act == 'index'} -->
+<div class="main mc_bg" style="height:500px;">
+    <div class="w990">
+        <div class="print_bd">
+            <div class="pt_tb_hd">
+                <ul class="fn-clear">
+                    <li class="pt_tb_cur">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_01.png" alt=""/>
+                            选择快讯版面
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_02.png" alt=""/>
+                            选择产品
+                        </a>
+                    </li>
+                    <li class="lastitem">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_03.png" alt=""/>
+                            保存打印
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="printpic_bd fn-clear">
+                    <div class="pt_zm">
+                        <div class="print_pic">
+                            <img src="../../../images/print/printpic_01.png" alt=""/>
+                        </div>
+                        <div class="zm_btn">
+                            <a href="?act=var_normal">普通版</a>
+                        </div>
+                    </div>
+                    <div class="pt_bm">
+                        <div class="print_pic">
+                            <img src="../../../images/print/printpic_02.png" alt=""/>
+                        </div>
+                        <div class="bm_btn">
+                            <a href="?act=var_simple">精简A4版</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{elseif $act == 'var_normal'} 普通版-->
+<div class="main mc_bg">
+    <div class="w990">
+        <div class="print_bd">
+            <div class="pt_tb_hd">
+                <ul class="fn-clear">
+                    <li class="pt_tb_cur">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_01.png" alt=""/>
+                            选择快讯版面
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_02.png" alt=""/>
+                            选择产品
+                        </a>
+                    </li>
+                    <li class="lastitem">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_03.png" alt=""/>
+                            保存打印
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="pt_tb_bd fn-clear">
+                    <!-- 普通版 -->
+                    <div class="putong">
+                        <h2>普通版 <span>528mm×434mm</span></h2>
+                    </div>
+                    <!-- 普通版 end-->
+                    <div class="pt_zm">
+                        <div class="zm_pic">
+                            <img src="http://portal.txd168.com/assets/images/zhengmian.jpg" alt=""/>
+                        </div>
+                        <div class="zm_btn">
+                            <a href="?act=old&p=normal_a&m=var_normal">正面</a>
+                        </div>
+                    </div>
+                    <div class="pt_bm">
+                        <div class="bm_pic">
+                            <img src="http://portal.txd168.com/assets/images/beimian.jpg" alt=""/>
+                        </div>
+                        <div class="bm_btn">
+                            <a href="?act=old&p=normal_b&m=var_normal">背面</a>
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="sider_top"> <!-- 侧边按钮 -->
+                <a href="?act=index" class="green">返回上一步</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{elseif $act == 'var_simple'} 精简A4版-->
+<div class="main mc_bg">
+    <div class="w990">
+        <div class="print_bd">
+            <div class="pt_tb_hd">
+                <ul class="fn-clear">
+                    <li class="pt_tb_cur">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_01.png" alt=""/>
+                            选择快讯版面
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_02.png" alt=""/>
+                            选择产品
+                        </a>
+                    </li>
+                    <li class="lastitem">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_03.png" alt=""/>
+                            保存打印
+                        </a>
+                    </li>
+                </ul>
+            </div>
+                        <div class="pt_tb_bd">
+                        <!-- 精简A4版 -->
+                        <div class="jingxian">
+                            <h2>精简A4版 <span>210mm×297mm</span></h2>
+                        </div>
+                        <!-- 精简A4版 end-->
+                        <div class="printitem_bd fn-clear">
+                            <div class="pt_zm">
+                                <div class="printitem">
+                                    <img src="http://portal.txd168.com/assets/images/printitem_01.png" alt=""/>
+                                </div>
+                                <div class="zm_btn ptitem_btn">
+                                    <a href="?act=old&p=simple_a&m=var_simple">正面</a>
+                                </div>
+                            </div>
+                            <div class="pt_bm">
+                                <div class="printitem">
+                                    <img src="http://portal.txd168.com/assets/images/printitem_02.png" alt=""/>
+                                </div>
+                                <div class="bm_btn ptitem_btn">
+                                    <a href="?act=old&p=simple_b&m=var_simple">背面</a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="sider_top"> <!-- 侧边按钮 -->
+                <a href="?act=index" class="green">返回上一步</a>
+                </div>
+        </div>
+    </div>
+</div>
+<!--{elseif $act == 'old'}  挑选产品-->
+<div class="main mc_bg">
+    <div class="w990">
+        <div class="print_bd">
+            <div class="pt_tb_hd">
+                <ul class="fn-clear">
+                    <li>
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_011.png" alt=""/>
+                            选择快讯版面
+                        </a>
+                    </li>
+                    <li class="pt_tb_cur">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_021.png" alt=""/>
+                            选择产品
+                        </a>
+                    </li>
+                    <li class="lastitem">
+                        <a>
+                            <img src="http://portal.txd168.com/assets/images/pt_tb_03.png" alt=""/>
+                            保存打印
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+			<!--{if !$selected_list}-->
+            <div class="pt_tb_bd1 fn-clear">
+                <div class="pt_side pt_sideA mod"> 
+                    <span class="s_zm_a mod_a"><?=$tab_title?></span><!-- 这个是正面 之后可能会修改 -->
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            <div class="pt_banmian">
+                    <div class="pt_bm_count" style="display:block;">
+                    <p>
+                        您选择的快讯版面还没有挑选过产品哦！
+                        <a href="?act=choose&panel={$panel}" class="tiaoxuan" title="去挑选">去挑选</a>
+                        <!--script language="javascript">setTimeout("window.location.href='/print/choose?edit_var=<?=$edit_var?>'",5000);</script-->
+                    </p>
+                    <!--p>5秒后自动跳转...</p-->
+                    </div>
+            </div>
+            
+            <div class="sider_top">
+                    <a href="?act={$m}" class="green" >返回上一步</a>
+            </div>
+                
+            <!--{else}-->
+            <div class="pt_tb_bd1 fn-clear">
+                <div class="pt_side pt_sideA mod">
+                    <div class="side_rt">
+                        <span class="side_rt_tips">请勾选需要更换的商品</span>
+                        <span>全选</span>
+                        <input type="checkbox" id="sAll" name="sAll" class="quanxuan1" checked />
+                    </div>
+                    <span class="s_zm_a mod_a"><?=$tab_title?></span><!-- 这个是正面 之后可能会修改 -->
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            <!--{/if}-->
+        </div>
+                
+                <!--{if $selected_list}-->
+					// 有选择产品，显示产品列表
+					if(count($selected_list) > 0)
+                    // 显示横行
+                    // print_r( $arr_line_num );    // eg [0] => 4 [1] => 5 [2] => 5 [3] => 5
+                    $roll_line = 0;                 // 当前横分页,控制偏移用 第0页
+                    $roll_line_last = 0;            // 上一个横分页,显示div头尾用
+                            
+                    // $max_roll_line 总横分页
+                    
+                    //echo "<pre>";
+                    //print_r($selected_list);
+                    
+                    for($i = 0; $i < count($selected_list); $i++)
+                    {
+                        // 如果产品数超过 最大面板数，不处理溢出的产品
+                        if($i + 1 > $var_param['max_num'])
+                        {
+                            break;
+                        }
+                        
+                        $have_line_num = 0;     // 横分页已分配产品(所有)
+                        $is_line_first = true;  // 是否是横分页的第一个
+                        $is_line_last = true;   // 是否是横分页的最后一个
+                        
+                        // 控制当前分页
+                        for($j = 0; $j < count($arr_line_num); $j++)
+                        {
+                            if($i < $arr_line_num[$j] + $have_line_num) // curr_line_num
+                            {
+                                $roll_line_last = $roll_line;   // 记录上一个横分页
+                                $roll_line = $j;
+                                break;
+                            }
+                            else
+                            {
+                                $have_line_num += $arr_line_num[$j];
+                            }
+                        }
+                        
+                        $is_line_first = ($i == 0 || $roll_line != $roll_line_last) ? true : false;
+                        $is_line_last = ($i == count($selected_list) - 1 || $arr_line_num[$roll_line] - 1 == $i - $have_line_num) ? true : false;
+                        
+                        $first_style = $i == 0 ? ' style="margin-top:0;"' : ' style="margin-top:8px;"';
+                        $line_style = ($roll_line == 0) ?  'pt_product_list' : 'pt_product_listA';  // 第一行和其他行的区别
+                        
+                        // 如果是背面，是一样的
+                        if($edit_var == 'normal_b' || $edit_var == 'simple_b')
+                            $line_style = 'pt_product_listA'; // 这个是小图
+                        
+                        if($is_line_first)  // 横分页，第一个产品
+                        {
+                            
+                            echo   '<div class="pt_side mod sideReset"'.$first_style.'>
+                                    <div class="side_rt">
+                                    <span>本排全选</span>
+                                    <input type="checkbox" name="sLine" class="quanxuan1" checked>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    </div>';
+                            echo '<div class="'.$line_style.' w990">';
+                            
+                            $have_line_num_curr = 1; // 当前横分页已分配产品(当前页)
+                        }
+                        else
+                        {
+                            $have_line_num_curr++;
+                        }
+                        
+                        $is_click = $selected_list[$i]['is_click'];
+                        
+                        if($is_click) // 是否已勾选
+                        {
+                            $css_click = 'gouxuan';        // 勾选的勾
+                            $css_dl = ' hui';
+                        }
+                        else
+                        {
+                            $css_click = 'no_gouxuan';
+                            $css_dl = '';
+                        }
+
+                        $last_css = $is_line_last ? ' last' : '';
+                        $zhekou_css = ($roll_line == 0) ?  'p_zhekou' : 'p_zhekou1';    // 第一行和其他行的区别
+                        
+                        echo '<dl class="'.trim($last_css.$css_dl).'"><dt>';
+                        echo $selected_list[$i]['name'];
+                        echo '</dt><dd class="p_img"><a href="javascript:void(0);" onClick="return false;"><img src="';
+                        echo $selected_list[$i]['url'];
+                        echo '" alt="" title="" /></a></dd><dd class="p_bianhao">商品编号：';
+                        echo $selected_list[$i]['code'];
+                        echo '</dd><dd class="'.$zhekou_css.'">';
+                        echo $selected_list[$i]['price'];
+                        
+                        $item_id = $selected_list[$i]['item_id'];
+
+                        
+                        $pick_data = $i.'|'.$item_id;
+                        echo '</dd><a href="javascript:;" id="a_'.$item_id.'" data="'.$pick_data.'" title="'.((!$is_click) ? '点击勾选' : '点击不勾选').'" class="'.$css_click.'"></a><dd class="p_chkbox"></dd></dl>';
+                    
+                        if($is_line_last) // 横分页，最后一个产品
+                        {
+                            echo '</div>'; 
+                        }
+                    }
+                
+
+                <div class="sider_top">
+                    <a href="?act={$m}" class="green" >返回上一步</a>
+                    <a href="/print/choose?edit_var=<?=$edit_var?>" class="blue" >挑选商品</a>
+                 <!--{if $is_full}-->
+                    <a href="/print/save?edit_var=<?=$edit_var?>" class="orange">完成保存</a>
+                 <!--{else}-->  
+                    <a href="javascript:void(0);" onClick="alert('还没有挑选完毕');return false;" class="gray">完成保存</a>
+                <!--{/if}-->
+                </div>
+            <!--{else}-->  
+			
+            <!--{/if}-->
+        </div>
+    </div>
+    <script language="javascript">
+    $(document).ready(function() {
+         $("dl a").each(function(i){
+            var title = $(this).attr('title');
+            if(typeof(title) != 'undefined')
+            {
+                var check = $("#sAll").attr('checked');
+                if(title == '点击勾选' && check == 'checked')
+                {
+                    $(this).click();
+                }
+            }
+        });
+        
+    });
+
+    // 本排全选
+    $(".quanxuan1").click(function(){
+        var check = $(this).attr('checked');
+        var name = $(this).attr('name');
+        
+        if(check == 'checked')
+        {
+            if(name == 'sLine')
+            {
+                // 联动sAll
+                
+                //alert("处理1行勾选");
+                var show = $(this).parent().parent().next().find("dl a").each(function(i){
+                    var title = $(this).attr('title');
+                    if(typeof(title) != 'undefined')
+                    {
+                        if(title == '点击勾选')
+                            $(this).click();
+                    }
+                });
+            }
+            else if(name == 'sAll')
+            {
+                //alert("处理全部行勾选");
+                
+                // 联动其他的sLine
+                $(".quanxuan1").each(function(i){
+                    var sub_check = $(this).attr('checked');
+                    if(sub_check != 'checked')
+                    {
+                        $(this).click();
+                    }
+                });
+                
+                $("dl a").each(function(i){
+                    var title = $(this).attr('title');
+                    if(typeof(title) != 'undefined')
+                    {
+                        if(title == '点击勾选')
+                            $(this).click();
+                    }
+                });
+                
+            }
+        }
+        else
+        {
+            if(name == 'sLine')
+            {
+                // 联动sAll
+                
+                var show = $(this).parent().parent().next().find("dl a").each(function(i){
+                    var title = $(this).attr('title');
+                    if(typeof(title) != 'undefined')
+                    {
+                        if(title == '点击不勾选')
+                            $(this).click();
+                    }
+                });
+                
+            }
+            else if(name == 'sAll')
+            {
+                // 联动其他的sLine
+                $(".quanxuan1").each(function(i){
+                    var sub_check = $(this).attr('checked');
+                    if(sub_check == 'checked')
+                    {
+                        $(this).click();
+                    }
+                });
+                
+                //alert("处理全部行勾选");
+                $("dl a").each(function(i){
+                    var title = $(this).attr('title');
+                    if(typeof(title) != 'undefined')
+                    {
+                        if(title == '点击不勾选')
+                            $(this).click();
+                    }
+                });
+            }
+        }
+    });
+    
+    // 鼠标经过要变红
+    $(".pt_product_listA dl,.pt_product_list dl").hover(function() {
+        $(this).find("a").each(function(i){
+            var a_id = $(this).attr("id");
+            if(typeof(a_id) != 'undefined')
+            {
+                $(this).css("border-color","#d31d17");
+            }
+        });
+        
+    }, function() {
+        $(this).find("a").each(function(i){
+            var a_id = $(this).attr("id");
+            if(typeof(a_id) != 'undefined')
+            {
+                $(this).css("border-color","#f0832b");
+            }
+        });
+    });
+
+    
+    // 单个勾选点击
+    $("dl a").click(function(){
+        var title = $(this).attr('title');
+        if(typeof(title) != 'undefined')
+        {
+            var opt = (title == '点击勾选') ? 'add' : 'del'; 
+            var pick_data = $(this).attr('data');
+            var edit_var = '<?=$edit_var?>';
+            var a_id = $(this).attr('id');
+            
+            var str_parameter = 'opt='+opt+'&data='+escape(pick_data)+'&edit_var='+edit_var;
+            $.post('/print/set_no_product', str_parameter , function(data)
+            {
+                if(data.success)
+                {
+                    if(opt == 'add')
+                    {
+                        $("#"+a_id).addClass("gouxuan");
+                        $("#"+a_id).removeClass("no_gouxuan");
+                        
+                        $("#"+a_id).parent().addClass("hui");
+                        $("#"+a_id).attr('title','点击不勾选');
+                    }
+                    else
+                    {
+                        $("#"+a_id).addClass("no_gouxuan");
+                        $("#"+a_id).removeClass("gouxuan");
+                        
+                        $("#"+a_id).parent().removeClass("hui");
+                        $("#"+a_id).attr('title','点击勾选');
+                    }
+                    //
+                    //alert("done you mother");
+                    /*
+                    set_content_page(roll_line, opt);
+                    */
+                }
+                else
+                {
+                    alert(data.message);
+                }
+            }, 'json');
+        }
+        else
+        {
+            // 其他的a标签，可以不处理
+        }
+    });
+    
+    </script>
+<!--{elseif $act == 'choose'}-->
+		<div class="main mc_bg">
+			<div class="w990">
+				<div class="print_bd">
+					<div class="pt_tb_hd">
+						<ul class="fn-clear">
+							<li>
+								<a href="javascript:;">
+									<img src="../../images/print/pt_tb_011.png" alt=""/>
+									选择快讯版面
+								</a>
+							</li>
+							<li  class="pt_tb_cur">
+
+								<a href="javascript:;">
+									<img src="../../images/print/pt_tb_021.png" alt=""/>
+									选择产品
+								</a>
+							</li>
+							<li class="lastitem">
+
+								<a href="javascript:;">
+									<img src="../../images/print/pt_tb_03.png" alt=""/>
+									保存打印
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="pt_tb_bd1">
+						<div class="tiaoxuanchanpin mod  fn-clear">
+							<div class="wenzitxt">
+								<p>
+									共需挑选 <em>{$html.num_limit}</em>
+									个产品，已选 <em>{$html.num}</em>
+									个，还剩
+									<em class="em1">{$html.num_surplus}</em>
+									个
+								</p>
+							</div>
+
+							<!-- 产品切换列表 -->
+							<div class="chanpinliebiao">
+								<!-- 切换按钮 -->
+								<div class="change_btn">
+									<a href="javascript:;">
+										<img src="../../images/print/{if $html.num >= 6}toleft5{else}toleft4{/if}.png" class="back_btn" />
+									</a>
+									<a href="javascript:;">
+										<img src="../../images/print/{if $html.num <= 6}toright4{else}toright5{/if}.png" class="goto_btn" />
+									</a>
+								</div>
+								<!-- 切换按钮 end-->
+								<div class="chanpinwrapper">
+									<div class="chanpin_box" id="chanpin_box" style="left:-{$html.andMarginLeft}px;">
+										{$html.html}
+									</div>
+								</div>
+							</div>
+							<!-- 产品切换列表 end-->
+						</div>
+						<!-- 产品分类和展示 -->
+						<div class="chanpinmain fn-clear">
+							<div class="chanpinfenlei">
+								<div class="fenlei_hd">
+									<h2>请选择以下分类</h2>
+								</div>
+								<div class="fenlei_bd">
+									<ul>
+									 <!--{foreach from=$category item=cat}-->
+										<li>
+											<a href="?act=choose&cat_id={$cat.id}&panel={$panel}">
+											<h2 style="color:{if $cat_id eq $cat.id}red{/if};">
+												<img src="../../images/print/fuhaoico1.png" alt="{$cat_id}" class="cpico"/>
+												{$cat.name}
+											</h2>
+											</a>
+											<p>
+											 <!--{foreach from=$cat.cat_id item=child name=cats}-->
+												<a href="?act=choose&cat_id={$child.id}&panel={$panel}" style="color:{if $cat_id eq $child.id}red;{/if}">{$child.name}</a>丨
+												 {if $smarty.foreach.cats.index%2}
+												 <br />
+												 {/if}
+											<!--{/foreach}-->
+											</p>
+										</li>
+									<!--{/foreach}-->
+									</ul>
+								</div>
+								
+							</div>
+							<div class="chanpinzhanshi">
+								<div class="cpzs_hd mod_b fn-clear">
+									<div class="chanpinrexiao">
+										<a href="javascript:;" class="rexiao_cp cp_tab_cur" title="产品列表">产品列表</a>
+									</div>
+									<div class="chanpinsearch">
+										<input type="text" value="{$search}" style="width:183px;" id="search" placeholder="请输入产品关键字" name="" class="cpsearchTxt"/>
+										<a href="javascript:search();" title="搜索" class="cp_searchbtn">搜索</a>
+									</div>
+								</div>
+								<div class="cpzs_bd">
+									<div class="cp_tab_count" style="display:block;">
+										<ul class="chanpinlist fn-clear">
+										 <!--{foreach from=$goods_list item=goods name=num}-->
+											<li class="{if !($smarty.foreach.num.iteration%4)}mr_item{/if}{if $goods.panel eq 1} cplink_cur{/if}" id="g_{$goods.goods_id}">
+												<a href="goods.php?id={$goods.goods_id}"><img src="{$goods.goods_thumb}" alt="" style="widht:174px;height:152px;" class="chanpinpic"/></a>
+												<p class="cpjieshou">{$goods.goods_name}<br/></p>
+												<p class="cpprice">
+													<i class="cpi1">¥{$goods.market_price}</i>
+													<span>售价：<em>¥{$goods.shop_price}</em></span>
+												</p>
+												<div class="chanpinbianhao">
+													<a href="javascript:choose('{$goods.goods_id}');" id="id_{$goods.goods_id}" title="" class="tx_bianhao{if $goods.panel eq 1} gouxuan{/if}"></a>
+													<p>商品编号：{$goods.goods_id}</p>
+												</div>
+											</li>
+										<!--{/foreach}-->
+										</ul>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- 产品分类和展示 end-->
+						<!-- 分页 -->
+
+						<div class="page chanpinpage fn-clear" style="margin: 0 auto;width:900px;height:26px;">
+							<div class="pageNum">
+								{$page_html}
+							</div>
+						</div>
+						<!-- 分页 end-->
+				</div>
+			</div>
+			<input type="hidden" value="{$html.andMarginLeft}" id="MarginLeft">
+			<input type="hidden" value="{$panel}" id="panel">
+				<!---siderbar----->
+			<div class="sider_top">
+					<a href="#" onClick="javascript:pre_step();return false;" class="green">返回上一步</a>
+					<a {if $html.num_limit neq $html.num}href="javascript:void(0)" class="non-cyan"{else}href="?act=preview&p={$panel}" class="orange"{/if} >完成预览</a>
+			</div>
+		</div>
+	</div>
+<div class="mengceng" style="width:100%;height:200%;background-color:#000000;left:0;opacity:0.3;position:absolute;top:0;z-index:5;display:none;"></div>
+<div class="tx_pop" style="position:absolute;top:500px; display:none;">
+<a class="tx_closeBtn" href="javascript:;"></a>
+<p class="tiaoxuantxt">
+<span id="pop_msg" name="pop_msg">您勾选的产品已达到本版面最大值{$html.num_limit}</span>
+</p>
+<a class="backto" title="确定" onclick="javascript:$('.tx_pop').hide();$('.mengceng').hide();return false;" href="#">确定</a>
+</div>
+<script type="text/javascript">
+function pre_step()
+{
+    if(confirm("点击返回将清空本次选择记录，\n确定要清空吗？ "))
+    {
+        window.location.href = "?act=old&p={$panel}&del=1";
+    }
+    else
+    {
+        window.location.href = "?act=old&p={$panel}";
+    }
+}
+
+$('.tx_closeBtn').click(function(){
+	$('.mengceng').hide();
+	$('.tx_pop').hide();
+})
+//  挑选产品切换事件
+$('.goto_btn').click(function(){
+	var Mleft = /[0-9]{1,}/.exec($('#chanpin_box').css('left'))*1+900;
+	var MarginLeft = $('#MarginLeft').attr('value')
+	if(!$("#chanpin_box").is(":animated") && Mleft <= MarginLeft){
+		$("#chanpin_box").animate({left:-Mleft+"px"},500,function(){
+			if(Mleft == MarginLeft)
+				$('.goto_btn').attr("src","../../images/print/toright5.png");
+			$('.back_btn').attr("src","../../images/print/toleft5.png");				
+		});
+	};
+});
+$('.back_btn').click(function(){
+	var Mleft = /[0-9]{1,}/.exec($('#chanpin_box').css('left'))*1-900;
+	if(!$("#chanpin_box").is(":animated") && Mleft >= 0){
+		$("#chanpin_box").animate({left:-Mleft+"px"},500,function(){
+		   $('.goto_btn').attr("src","../../images/print/toright4.png");
+		   if(Mleft == 0)
+				$('.back_btn').attr("src","../../images/print/toleft4.png");					
+		});
+	};
+});
+$('.pageNum a').click(function(){
+	var index=$(this).index();
+	if($('.pageNum a').eq(index).attr('href') != 'javascript:void(0)')
+		$('.pageNum a').removeClass('pg_cur').eq(index).addClass('pg_cur');
+});
+// 热销产品和全部产品
+$('.chanpinrexiao a').click(function(){
+	var cpxuliehao=$(this).index();
+	$('.chanpinrexiao a').removeClass('cp_tab_cur' ).eq(cpxuliehao).addClass('cp_tab_cur');
+	$('.cp_tab_count').hide().eq(cpxuliehao).show();
+});
+function choose(id)
+{
+	var panel = $('#panel').attr('value');
+	var clas = $('#id_'+id).attr("class");
+	$.post("print.php?act=choose_add", {goods_id:id,panel:panel},
+		function (data){
+			if(data.msg == '2')
+			{
+				var windowHeight = $('body').height();
+				$('.mengceng').css('height',windowHeight+'px');
+				$('.mengceng').show();
+				var divName = $('.tx_pop'); 
+				var top = ($(window).height() - $(divName).height())/2;   
+				var left = ($(window).width() - $(divName).width())/2;   
+				var scrollTop = $(document).scrollTop();   
+				$(divName).css( { position : 'absolute', 'top' : top + scrollTop,} ).show();
+			}else if(data.msg == '3' || data.msg == '1')
+			{
+ 
+				if(data.msg == '1')
+				{
+					$('#id_'+id).removeClass('gouxuan');
+					$('#g_'+id).removeClass(' cplink_cur');
+				}else if(data.msg == '3'){
+					$('#id_'+id).addClass('gouxuan');
+					$('#g_'+id).addClass('cplink_cur');
+				}
+				$('.wenzitxt p em').eq(0).html(data.html.num_limit);
+				$('.wenzitxt p em').eq(1).html(data.html.num);
+				$('.wenzitxt p em').eq(2).html(data.html.num_surplus);
+				$('#chanpin_box').html(data.html.html);
+				$('#MarginLeft').val(data.html.andMarginLeft);
+				$("#chanpin_box").animate({left:-data.html.andMarginLeft+"px"},500,function(){
+					$('.goto_btn').attr("src","../../images/print/toright5.png");
+					if(data.html.num >= 6)
+						$('.back_btn').attr("src","../../images/print/toleft5.png");
+					if(data.html.num_limit == data.html.num)
+					{
+						$('.sider_top a').eq(1).removeClass('non-cyan').addClass('orange');
+						$('.sider_top a').eq(1).attr('href','?act=preview&p={$panel}');
+					}
+				});
+
+			}
+	}, "json");
+}
+function search()
+{
+	var search = $('#search').attr('value');
+	window.location.href = '?act=choose&panel={$panel}&search='+search;
+}
+</script>
+<!-- {elseif $act == 'preview'} -->
+<div class="main mc_bg">
+    <div class="w990">
+        <div class="print_bd">
+            <div class="pt_tb_hd">
+                <ul class="fn-clear">
+                    <li>
+                        <a>
+                            <img src="../../images/print/pt_tb_011.png" alt=""/>
+                            选择快讯版面
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="../../images/print/pt_tb_02.png" alt=""/>
+                            选择产品
+                        </a>
+                    </li>
+                    <li class="pt_tb_cur lastitem">
+                        <a>
+                            <img src="../../images/print/pt_tb_031.png" alt=""/>
+                            保存打印
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="pt_tb_bd1 fn-clear">
+                <div class="pt_side mod">
+                    <a href="javascript:;" title="" class="handleico">操作提示
+                    </a>
+                    <!-- 提示窗口 -->
+                    <div class="tishichuang">
+                    <a href="javascript:;" title="" class="tip_close">
+                    </a></div>
+                    <!-- 提示窗口 end -->
+                    <span class="s_zm_a mod_a"><?=$tab_title?></span>
+                    
+                </div>
+                <div class="pt_showpic">
+                    <ul class="printshow_list fn-clear" id="show_stack" style="position:relative;">
+						{$preview_html}
+                    </ul>
+                </div>
+            </div>
+            
+        <div class="sider_top">
+            <a href="?act=choose&panel={$panel}" class="green" >返回上一步</a>
+            <a href="?act=view_full&panel={$panel}" target="_blank" class="blue" >预览大图</a>
+            <a href="javascript:void(0)" onclick="print_save();" id="p_save" class="orange">保存打印</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- 弹窗1 -->
+<div class="mengceng" style="width:100%;height:200%;background-color:#000000;left:0;opacity:0.3;position:absolute;top:0;z-index:5;display:none;"></div>
+<div class="tx_pop" style="position:absolute;top:500px; display:;none">
+<a class="tx_closeBtn" href="javascript:;"></a>
+<p class="tiaoxuantxt">
+<span id="pop_msg" name="pop_msg">请填写店铺地址和抢购热线</span>
+</p>
+<a class="backto" title="确定" onclick="javascript:$('.tx_pop').hide();$('.mengceng').hide();return false;" href="#">确定</a>
+</div>
+
+<!-- 弹窗1 end-->
+<script language="javascript">
+
+function print_save()
+{
+	if($('#p_save').html() == '处理中,请稍后') return false;
+	var panel = '{$panel}';
+	var address = $('#shop_address').attr('value');
+	var phone   = $('#hot_line').attr('value');
+	if(!address || !phone)
+	{		var windowHeight = $('body').height();
+		$('.mengceng').css('height',windowHeight+'px');
+		$('.mengceng').show();
+		var divName = $('.tx_pop'); 
+		var top = ($(window).height() - $(divName).height())/2;   
+		var left = ($(window).width() - $(divName).width())/2;   
+		var scrollTop = $(document).scrollTop();   
+		$(divName).css( { position : 'absolute', 'top' : top + scrollTop,} ).show();
+	}
+	else
+	{
+		$('#p_save').html('处理中,请稍后');
+		$.post('?act=print_save',{panel:panel}, function(data)
+		{
+			if(data.msg == '1')
+			{
+				window.location.href="print.php?act=print_ok&xia="+data.url; 
+			}
+		}, 'json');
+	}
+
+}
+function set_address_phone()
+{
+	var address = $('#shop_address').attr('value');
+	var phone   = $('#hot_line').attr('value');
+    $.post('?act=shop_message',{address:address,phone:phone}, function(data)
+    {
+		
+    }, 'json');
+}
+function set_product_sort(from_id,to_id,panel)
+{
+	
+    $.post('?act=peint_sort',{panel:panel,from_id:from_id,to_id:to_id}, function(data)
+    {
+	
+    }, 'json');
+}
+set_div_move();
+// 层拖动
+function set_div_move()
+{
+    var from_div;
+    var from_id;
+    // 层拖动
+    $(function() {
+        $('.pt_showpic').find('div').draggable({
+            start: function(event,ui){
+                //$(this).html(":-S");
+                from_div = $(this).html();
+                var clone_css = $(this).attr('class');
+                
+                // 取item_id
+                var arr_css = clone_css.split(/\s+/);
+                var arr_item = arr_css[0].split('_');
+                from_id = arr_item[1];
+            },
+            
+            stop: function(event,ui){
+                //$(this).html(":-|");
+                // alert($(this).id);
+            },
+            
+            drag: function() {
+            },
+
+            helper: "clone",
+            //stack: ".pt_showpic div", 
+            //helper: function( event ) {
+            //     return $( "<div class='ui-widget-header'>I'm a custom helper</div>" );
+            //},
+            opacity: 0.7,
+            //snap: true,
+            revert: "invalid",
+            cursor: "move", 
+            cursorAt: { },
+            zIndex: 99 
+        });
+        
+        //var helper1 = $('.pt_showpic').find('div').draggable( "option", "helper" );
+        
+        $( ".pt_showpic" ).find('div').droppable({
+            activate: function(event,ui){
+                //$(this).html( "Drop here !" );
+            },
+            over: function(event,ui){
+                //$( this ).html( "Oh, Yeah!" );
+            },
+            out: function(event,ui){
+                //$( this ).html( "Don't leave me!" );
+            },
+            drop: function( event, ui ){
+                // 取item_id
+                var clone_css = $(this).attr('class');
+                var arr_css = clone_css.split(/\s+/);
+                var arr_item = arr_css[0].split('_');
+                var to_id = arr_item[1];
+                var to_div = $(this).html();
+                $(this).html(from_div);
+				var panel = '{$panel}';
+                // 修改ID的内容
+               $(".itemshow_"+from_id+'_'+panel).html(to_div);
+			   //修改session排序
+               set_product_sort(from_id, to_id,panel);
+            },
+            activeClass: "ui-state-hover",
+            hoverClass: "ui-state-active"
+        });
+    });
+}
+$('.tip_close').click(function(){
+	 		$('.tishichuang').hide();
+	 	});
+$('.handleico').click(function(){
+	 		$('.tishichuang').show();
+	 	});
+	 	$('.tip_close').click(function(){
+	 		$('.tishichuang').hide();
+	 	});
+</script>
+<!-- {elseif $act == 'view_full'} -->
+{$big_html}
+<!-- {elseif $act == 'print_ok'} -->
+        <div class="main mc_bg">
+            <div class="w990">
+                <div class="print_bd">
+                    <div class="pt_tb_hd">
+                        <ul class="fn-clear">
+                            <li>
+                                <a>
+                                    <img src="../../images/print/pt_tb_011.png" alt=""/>
+                                    选择快讯版面
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <img src="../../images/print/pt_tb_02.png" alt=""/>
+                                    选择产品
+                                </a>
+                            </li>
+                            <li class="pt_tb_cur lastitem">
+                                <a>
+                                    <img src="../../images/print/pt_tb_031.png" alt=""/>
+                                    保存打印
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt_tb_bd fn-clear">
+                        <div class="pt_lujing">
+                            <p>
+                                <span class="s_success"></span>
+                                <b>{$name}</b> 已成功保存，请自行下载打印。
+                            </p>
+                        </div>
+                        <div class="pt_onbtn">
+                            <a href="print/{$zip}" target="_blank" class="pt_link_01">去下载</a>
+                            <a href="?act=index" target="_blank" class="pt_link_02">编辑其它版面</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- {/if} -->
+{if $act != 'view_full'}
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+{/if}
+</body>
+</html>

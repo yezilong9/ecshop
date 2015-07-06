@@ -1,0 +1,6 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div> <span style="text-align:left;font-size:12px;float:left;">
+  <input type="button" onclick="location.href='flow.php?step=clear'" class="bnt_blue_q" value="">
+  </span>
+  <div style="padding:0;border:none;float:right;"> 商品总价：<b>{$goods_price}</b> </div>
+</div>

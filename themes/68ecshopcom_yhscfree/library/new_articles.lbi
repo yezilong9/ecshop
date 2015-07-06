@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $new_articles} -->
+<div class="mod1" id="mod2">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$lang.new_article}</h1>
+	<div class="mod1con newArticles">
+		<!-- {foreach name=new_articles from=$new_articles item=article} -->
+		<!-- {if $smarty.foreach.new_articles.index lt 8} 限制文章显示数量 -->
+		<a href="{$article.url}" title="{$article.title|escape:html}" class="txtdot">{$article.short_title|truncate:12}</a><br />
+		<!-- {/if} -->	
+		<!--{/foreach}-->
+	</div>
+</div>
+<script type="text/javascript">divheight("mod2");</script>
+<!-- {/if} -->

@@ -1,0 +1,63 @@
+<!-- $Id: ads_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="main-div">
+<form action="app_version.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return version_from()">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+        版本号：</td>
+      <td>
+        <input type="text" name="version" id="version" value="{$version_arr.version|escape:html}" size="35" />
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td  class="label">版本更新说明：</td>
+      <td>
+       <textarea name="content" id="content" style="width:250px;">{$version_arr.content|escape:html}</textarea>
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">更新日期：</td>
+      <td>
+    <input name="start_date" type="text" id="start_date" size="15" value='{$start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/>
+      </td>
+    </tr>
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$version_arr.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+function version_from()
+{
+	var version = $('#version').val();
+	var content = $('#content').val();
+	var error = '';
+	if(!version){
+		error = '版本号不能为空';
+	}else if(!content){
+		error = '更新内容不能为空';
+	}
+	if(error)
+	{
+		alert(error);
+		return false;
+	}else{
+		return true;
+	}
+}
+</script>
+{include file="pagefooter.htm"}

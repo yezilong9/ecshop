@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $fittings} -->
+<!--{foreach from=$fittings item=goods}-->
+  <div class="goodsbox">
+	 <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}" /></a></div>
+   <a href="{$goods.url}" target="_blank" title="{$goods.goods_name|escape:html}">{$goods.short_name|escape:html}</a><br />
+   {$lang.fittings_price}<b class="f1">{$goods.fittings_price}</b>
+  </div>
+	<!--{/foreach}-->
+<!-- {/if} -->

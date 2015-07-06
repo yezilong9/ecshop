@@ -1,0 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $top_goods}-->
+	
+<h1 class="mod3tit">{$lang.top10}</h1>
+<div class="mod1 mod2 blank" id="topbox">
+	<span class="lb"></span><span class="rb"></span>
+
+	 <ul id="top10">
+		 <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+		  <li>
+			 <div class="first">
+			  <div class="fl">
+				<font style="color:#424242; font-weight:bold">{$smarty.foreach.top_goods.iteration}.</font> <a href="{$goods.url}" title="{$goods.name|escape:html}" style="color:#424242">{$goods.short_name}</a>
+				</div>
+				<div class="fr"><b style="color:#c00;">{$goods.price}</b></div>
+			 </div>
+			 <div class="last">
+			  <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" align="left" /></a>
+				<b class="f1">{$smarty.foreach.top_goods.iteration}。</b> <a href="{$goods.url}" title="{$goods.name|escape:html}"><b>{$goods.short_name}</b></a><br />
+				{$lang.shop_price}<b class="f1">{$goods.price}</b><br /> 
+			 </div>
+			</li>
+		 <!-- {/foreach} -->	
+		 </ul>
+</div>
+<script type="text/javascript">
+top10("top10","cur");
+divheight("topbox");
+</script>
+<!--{/if}-->

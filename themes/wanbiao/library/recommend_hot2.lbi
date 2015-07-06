@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="xm-box">
+<h4 class="title"><div class="h_tit">热销排行榜</div></h4>
+<div class="blank"></div>
+<div id="show_hot_area" class="clearfix">
+  <!-- {/if} -->
+  <!--{foreach from=$hot_goods item=goods}-->
+  <div class="goodsItem_h">
+       
+           <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsItem_h" /></a>
+           
+           <div class="goods_conts"><a href="{$goods.url}" title="{$goods.name|escape:html}"  class="tits">{$goods.short_style_name}</a>
+         
+ <p class="market">{$goods.shop_price}</p>
+      
+            <p style="color:#666; text-decoration:line-through">
+           <!-- {if $goods.promote_price neq ""} -->
+          {$goods.promote_price}
+          <!-- {else}-->
+          {$goods.market_price}
+          <!--{/if}--></p>
+           </div>
+		    
+        </div>
+  <!--{/foreach}-->
+ 
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+
+</div>
+<div class="blank"></div>
+  <!-- {/if} -->
+<!-- {/if} -->

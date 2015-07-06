@@ -1,0 +1,161 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="searchRight_title clearfix">
+  <div class="rightTitle_left"> <a name='goods_list'></a>
+    <form method="GET" class="sort" name="listform">
+    <div class="paixu f_l">排序：</div>
+      <div class="f_l"> <a href="javascript:;" style="display:none;" onClick="javascript:display_mode('list')"><img src="images/display_mode_list<!-- {if $pager.display == 'list'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.list}"></a> <a href="javascript:;" style="display:none;" onClick="javascript:display_mode('grid')"><img src="images/display_mode_grid<!-- {if $pager.display == 'grid'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.grid}"></a> <a href="javascript:;" style="display:none;" onClick="javascript:display_mode('text')"><img src="images/display_mode_text<!-- {if $pager.display == 'text'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.text}"></a> 
+         
+        <!--价格--><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list"><img src="images/shop_price_<!-- {if $pager.sort == 'shop_price'} -->{$pager.order}<!-- {else} -->default<!-- {/if} -->.gif" alt="{$lang.sort.shop_price}"></a> 
+            
+      <!--销量--><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=sales_volume&order=<!-- {if $pager.sort == 'sales_volume' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list"><img src="images/sales_volume_<!-- {if $pager.sort == 'sales_volume'} -->{$pager.order}<!-- {else} -->default<!-- {/if} -->.gif" alt="按销量排序"></a> 
+      <!--最新--><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=last_update&order=<!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list"><img src="images/last_update_<!-- {if $pager.sort == 'last_update'} -->{$pager.order}<!-- {else} -->default<!-- {/if} -->.gif" alt="{$lang.sort.last_update}"></a> </div>
+     
+      <input type="hidden" name="category" value="{$category}" />
+      <input type="hidden" name="display" value="{$pager.display}" id="display" />
+      <input type="hidden" name="brand" value="{$brand_id}" />
+      <input type="hidden" name="price_min" value="{$price_min}" />
+      <input type="hidden" name="price_max" value="{$price_max}" />
+      <input type="hidden" name="filter_attr" value="{$filter_attr}" />
+      <input type="hidden" name="page" value="{$pager.page}" />
+      <input type="hidden" name="sort" value="{$pager.sort}" />
+      <input type="hidden" name="order" value="{$pager.order}" />
+    </form>
+  </div>
+  
+</div>
+
+
+<!-- {if $category > 0} -->
+<form name="compareForm" action="compare.php" method="post" onSubmit="return compareGoods(this);">
+  <!-- {/if} --> 
+  <!-- {if $pager.display == 'list'} -->
+  <div class="goodsList"> 
+    <!--{foreach name=goods_list from=$goods_list item=goods}--> 
+    <ul class="clearfix bgcolor"<!--{if $smarty.foreach.goods_list.index mod 2 eq 0}-->id=""<!--{else}-->id="bgcolor"<!--{/if}-->>
+    <li> <br>
+      </li>
+    <li class="thumb"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" /></a></li>
+    <li class="goodsName"> <a href="{$goods.url}" class="f6"> 
+      <!-- {if $goods.goods_style_name} --> 
+      {$goods.goods_style_name}<br />
+      <!-- {else} --> 
+      {$goods.goods_name}<br />
+      <!-- {/if} --> 
+      </a> 
+      <!-- {if $goods.goods_brief} --> 
+      {$lang.goods_brief}{$goods.goods_brief}<br />
+      <!-- {/if} --> 
+    </li>
+    <li> 
+      <!-- {if $show_marketprice} --> 
+      {$lang.market_price}<font class="market">{$goods.market_price}</font><br />
+      <!-- {/if} --> 
+      <!--{if $goods.promote_price neq "" } --> 
+      {$lang.promote_price}<font class="shop">{$goods.promote_price}</font><br />
+      <!--{else}--> 
+      {$lang.shop_price}<font class="shop">{$goods.shop_price}</font><br />
+      <!--{/if}--> 
+     
+    </li>
+    <li class="action"> <a href="javascript:collect({$goods.goods_id});" class="abg f6">{$lang.favourable_goods}</a> <a href="javascript:addToCart({$goods.goods_id})"><img src="../images/bnt_buy_1.gif"></a> </li>
+    </ul>
+    <!--{/foreach}--> 
+  </div>
+  <!-- {elseif $pager.display == 'grid'} -->
+  <div class=" searchRight_body">
+    <ul class="y_searchList clearfix" >
+      <!--{foreach from=$goods_list item=goods name=goods_list}--> 
+      <!-- {if $goods.goods_id} --> 
+      <li  class="li" <!--{if $smarty.foreach.goods_list.iteration mod 4 eq 0}--> 
+      style='margin: 20px 0px 0px 0;' 
+      <!-- {/if} --> >
+      <div class="item clearfix">
+        <Div class="p_img"> <a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}"  width="220" height="220"/></a> </Div>
+        <div class="sale_goods">销量<b>{$goods.sales_volume}</b></div> 
+        <p class="y_proName"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.goods_name}</a></p>
+        <div class="y_price" > 
+          <p>
+          <!--{if $goods.promote_price neq "" } --> 
+          <font class="">{$goods.promote_price}</font> 
+          <!--{else}--> 
+          <font class="">{$goods.shop_price}</font> 
+          <!--{/if}--> 
+          <!-- {if $show_marketprice} --> 
+          <font class="market_s">{$goods.market_price}</font> 
+          <!-- {/if} --></p> 
+          <div class="bijiaos"><span >比较</span> <input class="compare-on" type="checkbox"  id="compareLink"  title="勾选加入表款对比" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name|escape:"html"}','{$goods.type}')"></div>
+        </div>
+         
+        
+      </div>
+      </li>
+      
+      <!--{/if}--> 
+      <!--{/foreach}-->
+    </ul>
+  </div>
+  <!-- {elseif $pager.display == 'text'} -->
+  <div class="goodsList"> 
+    <!--{foreach from=$goods_list item=goods}--> 
+    <ul class="clearfix bgcolor"<!--{if $smarty.foreach.goods_list.index mod 2 eq 0}-->id=""<!--{else}-->id="bgcolor"<!--{/if}-->>
+    <li style="margin-right:15px;"> <a href="javascript:;" id="compareLink" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name|escape:"html"}','{$goods.type}')" class="f6">{$lang.compare}</a> </li>
+    <li class="goodsName"> <a href="{$goods.url}" class="f6 f5"> 
+      <!-- {if $goods.goods_style_name} --> 
+      {$goods.goods_style_name}<br />
+      <!-- {else} --> 
+      {$goods.goods_name}<br />
+      <!-- {/if} --> 
+      </a> 
+      <!-- {if $goods.goods_brief} --> 
+      {$lang.goods_brief}{$goods.goods_brief}<br />
+      <!-- {/if} --> 
+    </li>
+    <li> 
+      <!-- {if $show_marketprice} --> 
+      {$lang.market_price}<font class="market">{$goods.market_price}</font><br />
+      <!-- {/if} --> 
+      <!--{if $goods.promote_price neq "" } --> 
+      {$lang.promote_price}<font class="shop">{$goods.promote_price}</font><br />
+      <!--{else}--> 
+      {$lang.shop_price}<font class="shop">{$goods.shop_price}</font><br />
+      <!--{/if}--> 
+    </li>
+    <li class="action"> <a href="javascript:collect({$goods.goods_id});" class="abg f6">{$lang.favourable_goods}</a> <a href="javascript:addToCart({$goods.goods_id})"><img src="../images/bnt_buy_1.gif"></a> </li>
+    </ul>
+    <!--{/foreach}--> 
+  </div>
+  <!-- {/if} --> 
+  <!-- {if $category > 0} -->
+</form>
+<!-- {/if} -->
+
+<div class="blank5"></div>
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script> 
+<script type="text/javascript">
+window.onload = function()
+{
+  Compare.init();
+  fixpng();
+}
+{foreach from=$lang.compare_js item=item key=key}
+{if $key neq 'button_compare'}
+var {$key} = "{$item}";
+{else}
+var button_compare = '';
+{/if}
+{/foreach}
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>

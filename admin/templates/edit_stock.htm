@@ -1,0 +1,68 @@
+<!-- $Id: articlecat_info.htm 16752 2009-10-20 09:59:38Z wangleisvn $ -->
+{include file="pageheader.htm"}
+<div class="main-div">
+<form method="post" action="stock_control.php" name="theForm"  onsubmit="return validate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">商品名称:</td>
+    <td>{$stock_list.goods_name|escape}</td>
+  </tr>
+  <tr>
+    <td class="label">成本:</td>
+    <td>{$stock_list.costing_price|escape}</td>
+  </tr>
+  <tr>
+    <td class="label">现有库存数量:</td>
+    <td>{$stock_list.goods_number|escape}</td>
+  </tr>
+    <tr>
+    <td class="label">作废库存数量:</td>
+    <td>
+    <input type="text" name="cancel_number" id="cancel_number" maxlength="10" size="10" value="0" />
+    </td>
+  </tr>
+  <tr>
+    <td class="label">&nbsp;</td>
+    <td>
+      <input type="submit" class="button"       value="{$lang.button_submit}" />
+      <input type="reset" class="button"        value="{$lang.button_reset}" />
+      <input type="hidden" name="act"           value="{$form_action}" />
+      <input type="hidden" name="id"            value="{$stock_list.id}" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+   var cancel_number = document.getElementById('cancel_number').value;
+   
+   if(/^\d+(\.\d+)?$/.test(cancel_number) && /^[1-9]+[0-9]*/.test(cancel_number) && /^\d+$/.test(cancel_number))
+   {
+    return true;
+   }
+   else 
+   {
+    alert("请输入正确的数量");
+    document.getElementById("cancel_number").focus();
+    return false;
+   }
+}
+
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

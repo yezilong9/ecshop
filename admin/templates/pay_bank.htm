@@ -1,0 +1,203 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>支付商银行管理--系统管理</title>
+<link href="styles/pay/admin.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/css.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/style.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="styles/pay/jquery-1.js"></script>
+<script language="javascript" src="styles/pay/functions_002.js"></script>
+<script language="javascript" src="styles/pay/ajax.js"></script>
+<script src="styles/pay/functions.js" language="javascript"></script>
+<script language="javascript" src="styles/pay/batch_delete.js"></script>
+{if $full_page}
+
+{insert_scripts files="../js/transport.js,common.js"}
+<script language="JavaScript">
+<!--
+// 这里把JS用到的所有语言都赋值到这里
+{foreach from=$lang.js_languages key=key item=item}
+var {$key} = "{$item}";
+{/foreach}
+//-->
+</script>
+{insert_scripts files="../js/utils.js,listtable.js"}
+{/if}
+<script language="javascript" type="text/javascript">
+function onsub(){
+	var sub = check_cp_frm();
+	if(sub == true){
+		document.getElementById('cp_frm').submit();
+	}
+}
+
+function check_cp_frm(){
+  /**/
+  var str_pay_way_id         = document.getElementById('pay_way_id').value;
+  var pay_bank_name      = document.getElementById('pay_bank_name').value;
+  var str_pay_num            = document.getElementById('pay_num').value;
+  var bank_pay_num            = document.getElementById('bank_pay_num').value;
+  var str_status             = document.getElementById('status').value;
+  var pay_mode             = document.getElementById('pay_mode').value;
+
+  if(str_pay_way_id == ''){
+    alert('请选择支付商');
+    return false;
+  }
+  if(pay_bank_name == ''){
+    alert('银行名称不能为空');
+    return false;
+  }
+  if(str_pay_num == ''){
+    alert('本地代码不能为空');
+    return false;
+  }
+  if(bank_pay_num == ''){
+    alert('银行代码不能为空');
+    return false;
+  }
+  if(pay_mode == ''){
+    alert('支付方式不能为空');
+    return false;
+  }
+  if(str_status == ''){
+    alert('支付商银行状态不能为空');
+    return false;
+  }
+
+  return true;
+} 
+</script>
+</head>
+
+<body>
+<div  id="listDiv">
+<hr  style="margin-top:8px;margin-bottom:8px;">
+<table class="functionBar" cellspacing="0" border="0" width="100%">
+  <tbody><tr class="bTitle">
+    <td class="top-font01" height="25">&nbsp;
+      <a href="pay.php?act=payment">支付商管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_type">支付方式管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=bank">支付商银行管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_set">支付通道设置</a>&nbsp;|&nbsp;
+      <a href="pay_message.php?act=message">支付商银行查询</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=show_bank">银行设置</a>&nbsp;|&nbsp;
+    </td>   
+  </tr>
+</tbody></table>
+<hr size="1">
+<form name="cp_frm" method="POST" action="pay.php" id="cp_frm">
+<fieldset>
+<legend class="" top-font01"=""> 支付商银行管理 </legend>
+<!--新增 开始-->
+<table cellspacing="1" bgcolor="#D8D8D8" border="0" width="100%">
+	
+    <input name="act" value="bank_add" type="hidden"/>
+    <input name="" value="" type="hidden"/>
+	   <tbody>
+	   <tr>
+		 <td align="right" bgcolor="#C2E0E2" height="30" width="15%">支付商：</td>
+		 <td align="left" bgcolor="#FFFFFF" width="35%">
+			<select id="pay_way_id" name="pay_way_id">
+				<option selected="selected" value="">请选择</option>
+				{foreach from=$payment_list item=payment}
+				<option value="{$payment.pay_id}">{$payment.pay_name}</option>
+				{/foreach}
+			</select>
+		   </td>
+		 <td align="right" bgcolor="#C2E0E2" width="15%">银行名称：</td>
+		 <td align="left" bgcolor="#FFFFFF" width="35%">
+		   <input name="pay_bank_name" id="pay_bank_name" type="text"> <span class="comment">[例如：工商银行]</span>     </td>
+	   </tr>
+	   <tr>
+		<td align="right" bgcolor="#C2E0E2" height="30">本地代码：</td>
+		<td align="left" bgcolor="#FFFFFF">
+		  <input name="pay_num" id="pay_num" type="text"><span class="comment">[例如：1001]</span>    </td>
+		<td align="right" bgcolor="#C2E0E2">银行代码：</td>
+		<td align="left" bgcolor="#FFFFFF">
+		<input name="bank_pay_num" id="bank_pay_num" type="text"><span class="comment">[例如：支付宝的招商银行：CMB-DEBIT]</span>
+		   </td>
+		   
+	   </tr>
+
+	   <tr>
+		<td align="right" bgcolor="#C2E0E2" height="30">支付方式：</td>
+		<td align="left" bgcolor="#FFFFFF">
+			<select id="pay_mode" name="pay_mode">
+				<option selected="selected" value="">请选择</option>
+				{foreach from=$typ_list item=typ}
+				<option value="{$typ.paytype_id}">{$typ.type_name}</option>
+				{/foreach}
+			</select>
+		</td>
+		<td align="right" bgcolor="#C2E0E2">状态：</td>
+		<td align="left" bgcolor="#FFFFFF">
+		   <input id="status" name="status" value="1" checked="checked" type="radio">开启	 
+			 <input id="status" name="status" value="0" type="radio">关闭
+		</td>
+	  </tr>
+	  <tr bgcolor="#FFFFFF">
+		  <td align="right" bgcolor="#C2E0E2" height="30"></td>
+		   <td colspan="4" align="left" height="30">
+		  <input value="添 加" class="right-button07" type="button" onclick="onsub()">
+		  <input value="重 置" class="right-button07" type="reset">
+			<input value="返 回" class="right-button07" onclick="javascript:history.go(-1)" type="button">
+		  </td>	   
+	  </tr>
+	</tbody>
+	
+</table>
+</fieldset>
+</form> 
+<!--新增 结束-->
+<hr size="1">
+<br>
+
+
+<table cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" border="0" width="100%"> 
+  <tbody><tr>
+    <th align="center" bgcolor="#C2E0E2" height="30" width="263">支付商名称</th>
+    <th align="center" bgcolor="#C2E0E2" width="244">银行名称</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">本地代码</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">银行代码</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">支付方式</th>
+	  <th align="center" bgcolor="#C2E0E2" width="194">当前状态</th>
+	  <th align="center" bgcolor="#C2E0E2" width="218">操作</th>
+  </tr>
+  
+	{foreach from=$bank_list item=bank key=k}
+	{$k++;}
+     <tr  bgcolor="{if ($k)%2}#f2f2f2{else}#ffffff{/if}">
+    <td align="center" height="25">{$bank.pay_name}</td>
+    <td align="center">{$bank.bank_name}</td>
+    <td align="center">{$bank.bank_code}</td>
+    <td align="center">{$bank.bank_pay_num}</td>
+	  <td align="center">{$bank.type_name}</td>
+	  <td align="center">
+	     {if $bank.enabled eq 1}开通{else}<font color="red">关闭</font>{/if} 
+	  </td>
+	  <td align="center">
+	   <a href="pay.php?act=bank_edit&paybank_id={$bank.paybank_id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <a href="javascript:void(0)" onclick="if(window.confirm('您确定要删除此条记录吗？')) this.href='pay.php?act=bank_del&paybank_id={$bank.paybank_id}'">删除</a>
+    </td>
+  </tr>
+	{/foreach}
+    </tbody></table>
+
+ <hr size="1">
+<table border="0" width="100%">
+	<tbody><tr><td align="right" bgcolor="#FFFFFF">
+		{include file="page.htm"}</td>
+	</tr>
+</tbody></table>
+</div>
+
+ <script>
+//分页js赋值
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+</script>
+
+</body></html>

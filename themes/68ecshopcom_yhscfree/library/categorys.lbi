@@ -1,0 +1,16 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $cat_list} -->
+<div class="mod1 mod2 blank" id="historybox">
+<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+<h1 class="mod2tit"><a href="catalog.php">产品目录</a></h1>
+
+
+
+<div class="cagegoryCon clearfix">
+	 <!-- {foreach from=$cat_list item=cat} -->
+    <a href="{$cat.url}"><b>{$cat.cat_name|escape:html}</b> {if $cat.goods_num}({$cat.goods_num}){/if}</a><br />
+   <!--{/foreach}-->
+</div>
+<div class=" blank"></div>
+</div>
+<!-- {/if} -->

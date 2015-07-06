@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  {insert_scripts files='common.js,shopping_flow.js'}
+  {insert_scripts files='transport.js,utils.js'}
+  {insert_scripts files='showdiv.js'}
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1);" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">提交订单</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="index.php" class="link icon-only"><i class="icon icon-home"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="order" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            <!--发货单(start)-->
+            <div class="shopping-order">
+			        <script type="text/javascript">
+					var flow_no_payment = "{$lang.flow_no_payment}";
+					var flow_no_shipping = "{$lang.flow_no_shipping}";
+					</script>
+			  <form class="list-block" action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">
+                <!--收货人信息(start)-->
+                <fieldset>
+                  <div class="legend">
+                    <h2 class="tit">收货人信息</h2><span class="hint"><a href="flow.php?step=consignee">修改</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title label">收货人</div>
+                          <div class="item-input">
+                            <input type="text" name="name" value="{$consignee.consignee|escape}" disabled="disabled" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title label">联系电话</div>
+                          <div class="item-input">
+                            <input type="number" name="number" value="{$consignee.tel}" disabled="disabled" placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title label">E-mail</div>
+                          <div class="item-input">
+                            <input type="email" value="{$consignee.email|escape}" disabled="disabled"  name="email">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title label">详细地址</div>
+                          <div class="item-input">
+                            <input type="text" value="{$consignee.address|escape}" disabled="disabled"  name="name">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </fieldset>
+                <!--收货人信息(end)-->
+                <!--选择配送方式(start)-->
+                <fieldset>
+                  <div class="legend">
+                    <h2 class="tit">选择配送方式</h2><span class="hint">使用红包获得优惠</span>
+                  </div>
+                  <ul>
+				  <!-- {foreach from=$shipping_list item=shipping} 循环配送方式 -->
+                    <li>
+                      <label class="label-radio item-content">
+                       <input  name="shipping" type="radio" value="{$shipping.shipping_id}" {if $order.shipping_id eq $shipping.shipping_id}checked="true"{/if} supportCod="{$shipping.support_cod}" insure="{$shipping.insure}" onclick="selectShipping(this)" />
+                        <div class="item-inner">
+                          <div class="item-title">{$shipping.shipping_name}</div>
+                        </div>
+                      </label>
+                    </li>
+				  <!-- {/foreach} 循环配送方式 -->
+                  </ul>
+                </fieldset>
+                <!--选择配送方式(end)-->
+                <!--选择支付方式(start)-->
+                <fieldset>
+                  <div class="legend">
+                    <h2 class="tit">选择支付方式</h2>
+                  </div>
+                  <ul>
+				  
+                    <li>
+                      <label class="label-radio item-content">
+                       <input style="margin-top:2px;" type="radio" value="1" name="payment">
+                        <div class="item-inner">
+                          <div class="item-title">使用余额支付（￥{$your_surplus|default:0}）</div>
+                        </div>
+                      </label>
+                    </li>
+			<!--{foreach from=$payment_list item=payment} -->
+            <!-- 循环支付方式 -->
+                    <li>
+                      <label class="label-radio item-content">
+                       <input style="margin-top:2px;" type="radio" value="{$payment.pay_code}" name="payment">
+                       <!-- WAP支付 -->
+                       <!--{if $payment.pay_code neq 'cod'} -->
+                       <input  type="hidden" value="{$payment.pay_id}" name="pay_id_{$payment.pay_code}">
+                       <input  type="hidden" value="{$payment.is_wap}" name="is_wap_{$payment.pay_code}">
+                       <!--{/if} -->
+                        <div class="item-inner">
+                        <!--{if $payment.pay_code neq 'cod'} -->
+                        <div class="item-title">{$payment.pay_name}</div>
+                         <!--div class="item-title"><img src="../../{$payment.bank_img}" ></div-->
+                        <!--{else} -->
+                        <div class="item-title">{$payment.pay_name}</div>
+                        <!--{/if} -->  
+                        </div>
+                      </label>
+                    </li>
+
+            <!-- {/foreach} 循环支付方式 -->
+                  </ul>
+                </fieldset>
+                <!--选择支付方式(end)-->
+                <!--商品清单(start)-->
+                <fieldset>
+                  <div class="legend">
+                    <h2 class="tit">商品清单</h2><span class="hint"><a href="#">修改</a></span>
+                  </div>
+                  <table class="shopping-list">
+                    <thead>
+                      <tr>
+                        <th>商品名称</th>
+                        <th>购买数量</th>
+                        <th>小计</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+					<!-- {foreach from=$goods_list item=goods} -->
+                      <tr>
+                        <td>{$goods.goods_name}</td>
+                        <td>{$goods.goods_number}</td>
+                        <td>{$goods.formated_subtotal}</td>
+                      </tr>
+					<!-- {/foreach} -->
+                    </tbody>
+                  </table>
+                </fieldset>
+                <!--商品清单(end)-->
+               <!--其他信息(start)-->
+                <fieldset>
+                  <div class="legend">
+                  <!--红包使用情况-->
+                    <h2 class="tit">{$lang.select_bonus}</h2>
+                  </div>
+				 
+                <select name="bonus" onchange="changeBonus(this.value)" id="ECS_BONUS" style="border:1px solid #ccc;">
+                  <option value="0" {if $order.bonus_id eq 0}selected{/if}>{$lang.please_select}</option>
+                  <!-- {foreach from=$bonus_list item=bonus} -->
+                  <option value="{$bonus.bonus_id}" {if $order.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.type_name}[{$bonus.bonus_money_formated}]</option>
+                  <!-- {/foreach} -->
+                </select>
+                </fieldset>
+                <!--其他信息(end)-->
+                <!--总计(start)-->
+                <fieldset>
+                  <div class="legend">
+                    <h2 class="tit">总计</h2>
+                  </div>
+				  <!-- #BeginLibraryItem "/Library/order_total.lbi" --><!-- #EndLibraryItem -->
+                </fieldset>
+                <!--总计(end)-->
+				<input type="submit" name="submit" value="提交订单" class="button button-big button-round button-fill color-red button-submit" style="border:none;" />
+				<input type="hidden" name="step" value="done" />
+				<input type="hidden" name="postscript" value="{$message_url}" />
+              </form>
+			  <script>
+			  function js_submit()
+			  {
+				document.getElementById('theForm').submit();
+			  }
+			  </script>
+            </div>
+            <!--发货单(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+</body>
+</html>

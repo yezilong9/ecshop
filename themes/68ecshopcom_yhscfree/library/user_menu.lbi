@@ -1,0 +1,31 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="mod1 mod2 blank" >
+<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+<h1 class="mod2tit">{$lang.user_center}</h1>
+
+<div class="cagegoryCon clearfix">
+	 <ul class="userMenu">
+	  <li><a href="user.php" {if $action eq 'default'}class="curs"{/if}> {$lang.label_welcome}</a></li>
+		<li><a href="user.php?act=profile"{if $action eq 'profile'}class="curs"{/if}> {$lang.label_profile}</a></li>
+		<li><a href="user.php?act=order_list"{if $action eq 'order_list'|| $action eq 'order_detail'}class="curs"{/if}> {$lang.label_order}</a></li>
+		<li><a href="user.php?act=address_list"{if $action eq 'address_list'}class="curs"{/if}> {$lang.label_address}</a></li>
+		<li><a href="user.php?act=collection_list"{if $action eq 'collection_list'}class="curs"{/if}> {$lang.label_collection}</a></li>
+		<li><a href="user.php?act=message_list"{if $action eq 'message_list'}class="curs"{/if}> {$lang.label_message}</a></li>
+		<li><a href="user.php?act=tag_list"{if $action eq 'tag_list'}class="curs"{/if}> {$lang.label_tag}</a></li>
+		<li><a href="user.php?act=booking_list"{if $action eq 'booking_list' || $action eq 'add_booking'}class="curs"{/if}> {$lang.label_booking}</a></li>
+		<li><a href="user.php?act=bonus"{if $action eq 'bonus'}class="curs"{/if}> {$lang.label_bonus}</a></li>
+		<!-- {if $affiliate.on eq 1} -->
+		<li><a href="user.php?act=affiliate"{if $action eq 'affiliate'}class="curs"{/if}> {$lang.label_affiliate}</a></li>
+		<!-- {/if} -->
+		<li><a href="user.php?act=comment_list"{if $action eq 'comment_list'}class="curs"{/if}> {$lang.label_comment}</a></li>
+		<!--<li><a href="user.php?act=group_buy">{$lang.label_group_buy}</a></li>-->
+		<li><a href="user.php?act=track_packages"{if $action eq 'track_packages'}class="curs"{/if}> {$lang.label_track_packages}</a></li>
+		<li><a href="user.php?act=account_log"{if $action eq 'account_log'}class="curs"{/if}> {$lang.label_user_surplus}</a></li>
+		<!--{if $show_transform_points}-->
+		<li><a href="user.php?act=transform_points"{if $action eq 'transform_points'}class="curs"{/if}> {$lang.label_transform_points}</a></li>
+		<!--{/if}-->
+	 </ul>	
+</div>
+</div>
+<div class="blank"></div>

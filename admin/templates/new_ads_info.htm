@@ -1,0 +1,125 @@
+<!-- $Id: ads_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="main-div">
+<form action="new_ads.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return new_ad_from()">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+        广告名称(ad_name)：</td>
+      <td>
+        <input type="text" name="ad_name" id="ad_name" value="{$ads.ad_name}" size="35" />
+        <br />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">广告链接(url)：</td>
+      <td>
+        <input type="text" name="url" id="url" value="{if $ads.url}{$ads.url}{else}#{/if}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">广告图片(img)：</td>
+      <td>
+        <input type='file' name='img' id="img" size='35' />{if $ads.img}<a target="_blank" href="{$ads.outer_img}">查看图片</a>{/if}<br />
+        <input type='text' name='outer_img' id="outer_img" value="{$ads.img}" size='35' /><br />
+		<span style="color:#666666;">可直接填写图片地址链接或者图片路径</span>
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">启用(start)：</td>
+      <td>
+        <input type="radio" name="start" value="1" {if $ads.start eq 1} checked="true" {/if} />是
+        <input type="radio" name="start" value="0" {if $ads.start eq 0} checked="true" {/if} />否
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">宽(width)：</td>
+      <td>
+        <input type="text" name="width" value="{$ads.width}" size="35" /> 像素
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">高(height)：</td>
+      <td>
+        <input type="text" name="height" value="{$ads.height}" size="35" /> 像素
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">广告关键字(keyword)：</td>
+      <td>
+        <input type="text" name="keyword" value="{$ads.keyword}" size="35" /><span></span>
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">广告详情描述(particulars)：</td>
+      <td>
+       <textarea name="particulars" style="width:250px;">{$ads.keyword}</textarea>
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">使用页面(file)：</td>
+      <td>
+        <input type="text" name="file" id="file"value="{$ads.file}" size="35" /><br /><span style="color:#666666;">如填写index,那么此广告则只显示在index页面，如果多个页面使用，请都逗号分隔：index,goods</span>
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">广告位(position)：</td>
+      <td>
+		<select name="position_id">
+		  <option value="0">广告位</caption>
+		  {html_options options=$position_list selected=$position_id}
+		</select>
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">使用广告说明：</td>
+      <td>
+        <span style="color:red;">如使用广告位ID为17的广告图片地址show_ad.17.img,链接地址就是show_ad.17.url</span>
+      </td>
+    </tr>
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="admin_agency_id" value="{$admin_agency_id}" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+function new_ad_from()
+{
+	var ad_name = $('#ad_name').val();
+	var url = $('#url').val();
+	var img = $('#img').val();
+	var outer_img = $('#outer_img').val();
+	var file = $('#file').val();
+	var error = '';
+	if(!ad_name){
+		error = '广告名称不能为空';
+	}else if(!url){
+		error = '广告链接';
+	}else if(!img && !outer_img){
+		error = '广告图片不能为空';
+	}else if(!file){
+		error = '使用页面不能为空';
+	}
+	if(error)
+	{
+		alert(error);
+		return false;
+	}else{
+		return true;
+	}
+}
+</script>
+{include file="pagefooter.htm"}

@@ -1,0 +1,124 @@
+<!-- $Id: ads_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<script type="text/javascript">
+
+</script>
+<!--广告名称搜索-->
+<div class="form-div">
+  <form action="javascript:search_ads()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    广告名称<input type="text" name="ad_name" size="25" placeholder="请输入广告名称" value="" />
+	{if $all}
+	选择代理商
+	<select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</caption>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>
+	{/if}
+    <input type="submit" value="{$lang.button_search}" class="button" />
+	<input type="button" value="一键生成代理商广告" onclick="window.location.href='new_ads.php?act=copy_ad'" class="button" />
+  </form>
+</div>
+
+
+
+<form method="post" action="" name="listForm">
+<!-- start ads list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+	<th><a href="javascript:listTable.sort('id'); ">ID</a>{$sort_id}</th>
+    <th><a href="javascript:listTable.sort('ad_name'); ">广告名称</a>{$sort_ad_name}</th>
+    <th><a href="javascript:listTable.sort('width'); ">宽</a>{$sort_width}</th>
+    <th><a href="javascript:listTable.sort('height'); ">高</a>{$sort_height}</th>
+    <th><a href="javascript:listTable.sort('img'); ">图片地址</a>{$sort_img}</th>
+    <th><a href="javascript:listTable.sort('url'); ">链接</a>{$sort_url}</th>
+    <th><a href="javascript:listTable.sort('url'); ">广告位</a>{$sort_url}</th>
+    <th><a href="javascript:listTable.sort('file'); ">广告归属文件</a>{$sort_file}</th>
+    <th>{$lang.handler}</th>
+  </tr>
+  {foreach from=$ads_list item=list}
+  <tr>
+    <td align="left"><span>{$list.id}</span>
+    </td>
+    <td class="first-cell">
+    <span onclick="javascript:listTable.edit(this, 'edit_ad_name', {$list.id})">{$list.ad_name|escape:html}</span>
+    </td>
+    <td align="left"><span>{$list.width}</span>
+    </td>
+    <td align="left"><span>{$list.height}</span></td>
+    <td align="left"><span>{if $list.img}{$list.img}<a href="{$list.img}" target="_blank" style="margin-left:10px;color:red;">查看</a>{/if}</span></td>
+    <td align="left"><span>{$list.url}{if $list.url neq '#'}<a href="{$list.url}" target="_blank" style="margin-left:10px;color:red;">查看</a>{/if}</span></td>
+    <td align="left"><span>{$list.position_name}{if $list.position_id}（id：{$list.position_id}）{/if}</span></td>
+    <td align="left"><span>{$list.file}</span></td>
+    <td align="left"><span>
+      <a href="new_ads.php?act=edit&id={$list.id}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:;" onclick="listTable.remove({$list.id}, '{$lang.drop_confirm}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a></span>
+    </td>
+  </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_ads}</td></tr>
+  {/foreach}
+  <tr>
+    <td align="right" nowrap="true" colspan="10">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end ad_position list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+	listTable.recordCount = {$record_count};
+	listTable.pageCount = {$page_count};
+	
+	{foreach from=$filter item=item key=key}
+		listTable.filter.{$key} = '{$item}';
+	{/foreach}
+	
+{literal}
+  
+	onload = function()
+	{
+		// 开始检查订单
+		startCheckOrder();
+		getAdd();
+	}
+
+
+
+	function search_ads()
+	{	
+		listTable.filter['ad_name'] = Utils.trim(document.forms['searchForm'].elements['ad_name'].value);
+		listTable.filter['admin_agency_id'] = Utils.trim( document.forms['searchForm'].elements['admin_agency_id'].value);
+		pageSize = document.getElementById("pageSize");
+		//alert(pageSize.value);
+		listTable.filter['page_size'] = Utils.isInt(pageSize.value) ? pageSize.value : 15;
+		listTable.filter['page'] = 1;
+		listTable.loadList();
+		getAdd();
+	}
+
+	function getAdd()
+	{
+	  var aTags = document.getElementsByTagName('A');
+	  for (var i = 0; i < aTags.length; i++)
+	  { 
+		if (aTags[i].href.indexOf('add') >= 0)
+		{
+		  aTags[i].href = "new_ads.php?act=add&admin_agency_id="+listTable.filter['admin_agency_id'];
+		}
+	  }
+	}
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

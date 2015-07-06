@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单查询</title>
+	<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="{$css_path}css/reset.css">
+	<link rel="stylesheet" type="text/css" href="{$css_path}css/check-order.css">
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+	<div class="lay">
+		<div class="ch-box ch-pbA">
+		<div class="ch-here">
+			<p>当前位置： <a href="index.html">首页</a> &gt;<a href="#">天下店订单快速查询系统</a></p>
+		</div>
+		<div class="ch-bd">
+			<!-- 快速查询 -->
+			<div class="ch-check">
+				<div class="ck-txt-a">
+					<p>
+					天下店订单快速查询系统可以查询订单状态，非注册会员可以快速查询。已注册会员请 
+					<a href="http://www.txd168.com/user.php?act=login" class="ck-register">登录</a>
+					后点击<a href="http://www.txd168.com/user.php?act=order_list" class="ck-here">这里</a>查询订单状态。
+				    </p>
+				</div>
+				<div class="ck-txt-b">
+					<div class="ck-tip fn-clear">
+					<b>使用提示：</b>
+					<ul>
+						<li>1、收货人姓名、收货人电话、订单号、E-mail至少有两项检测无误才能查询。</li>
+						<li>2、若您确实忘记以上相关信息，请联系天下店业务咨询
+						{if $qq}
+						<img height="16" border="0" alt="QQ" src="http://wpa.qq.com/pa?p=1:{$qq.0}:4">
+						<a href="http://wpa.qq.com/msgrd?v=3&uin={$qq.0}&site=qq&menu=yes" target="_blank">{$qq.0}</a>
+						{/if}
+						</li>
+					</ul>
+					</div>
+				</div>
+				<div class="ck-txt-c">
+					<table cellpadding="0" cellspacing="0" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<span>收货人姓名：</span>
+									<input type="text" id="consignee" name="consignee" value="" class="ck-inputTxt"/>
+								</td>
+								<td>
+									<span>订单号：</span>
+									<input type="text" id="order_sn" name="order_sn" value="" class="ck-inputTxt"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>收货人电话：</span>
+									<input type="text" id="tel" name="tel" value="" class="ck-inputTxt"/>
+								</td>
+								<td>
+									<span>E-mail：</span>
+									<input type="text" id="email" name="email" value="" class="ck-inputTxt"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="ck-btn" style="position:relative;">
+					
+					<a href="javascript:;">快速查询</a>
+					<div id="check_hint" style="width:127px;color:red;position:relative;top:-70px;left:-10px;display:black;"></div>
+				</div>
+			</div>
+			<!-- 快速查询 end-->
+			<!-- 错误提示 -->
+			<div class="error mod" style="display:none;">
+				<div class="error-hd mod-hd">
+					<img src="images/error.png" width="51" height="49"/>查询结果
+				</div>
+				<div class="error-bd">
+					<p>查询结果有误，请重新输入正确信息!!!</p>
+				</div>
+			</div>
+			<!-- 错误提示 end-->
+			<div id="js_html"></div>
+			
+		</div>
+	</div>
+	</div>
+<script type="text/javascript">
+	$('.ck-btn a').click(function(){
+		$('#js_html').html('');
+		$('.error').hide();
+		var consignee = $('#consignee').val();
+		var order_sn  = $('#order_sn').val();
+		var tel		  = $('#tel').val();
+		var email     = $('#email').val();
+		var num =0;
+		if(!consignee)
+			num++;
+		if(!order_sn)
+			num++;
+		if(!tel)
+			num++;
+		if(!email)
+			num++;
+		
+		if(num <= 2){
+			$('#check_hint').html('');
+			$.get("check_order.php", {consignee:consignee,order_sn:order_sn,tel:tel,email:email},function(data){
+				if(data == 1){
+					$('.error').show();
+				}else{
+					$('#js_html').html(data);
+				}
+			}, "json");	
+		}else{
+			$('#check_hint').html('*至少输入两个查询条件');
+		}
+	});
+</script>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+</body>
+</html>

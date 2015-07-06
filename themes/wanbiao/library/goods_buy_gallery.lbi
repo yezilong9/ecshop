@@ -1,0 +1,29 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="imgInfo">
+  <div class="imgInfo_img">
+    <!-- {if $pictures}-->
+    <ul>
+      <!-- {foreach from=$pictures item=picture name=no}-->
+      <li> <a href="{if $picture.img_url}{$picture.img_url}{else}{$picture.thumb_url}{/if}" target="_blank" id="zoom" class="MagicZoom MagicThumb"  rel="hint-text:; zoom-width:400; zoom-height: 400; zoom-position: right; zoom-align: center;"><img src="{if $picture.img_url}{$picture.img_url}{else}{$picture.thumb_url}{/if}" alt="{$goods.goods_name}" style="width:400px; height:400px;border: 1px solid #d3d3d3;" /></a></li>
+      <!--{/foreach}-->
+    </ul>
+    <!-- {/if}-->
+  </div>
+  <!-- {if $pictures}-->
+  <div class="picture" id="imglist" style="height:350px;margin-left:18px;width:150px;position: absolute;top:-10px;right:-160px;">
+
+    <!-- {foreach from=$pictures item=picture name=no}-->
+	{if $smarty.foreach.no.index < 3}
+    <a href="javascript:void(0);" title="{$picture.img_desc|escape:html}" > <img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" style="width:124px;height:124px;margin-bottom:7px;" alt="{$goods.goods_name}"  /></a>
+	{/if}
+    <!--{/foreach}-->
+  </div>
+  <!-- {/if}-->
+
+  
+  
+ <!-- <div class="center_collect_btn"> <a href="javascript:collect({$goods.goods_id})">收藏该商品</a> </div>-->
+  
+  
+  </div>
+

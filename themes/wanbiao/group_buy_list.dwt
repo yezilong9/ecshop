@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="{$css_path}css/reset.css">
+	<link rel="stylesheet" type="text/css" href="{$css_path}css/tg-list.css">
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+  <script>
+$(function(){
+	var datename = new Date();
+	var Offset = datename.getTimezoneOffset() * 28800;
+	setInterval(function(){
+	  {foreach from=$gb_list item=group_buy_js}
+	  var end_date = 'end_date'+{$group_buy_js.group_buy_id};
+	  group_buy_js(Offset,end_date);
+	  {/foreach}	
+	}, 100);
+})
+function group_buy_js(Offset,end_date)
+{
+	$("."+end_date).each(function(){
+		var obj = $(this);
+		var endTime = new Date(parseInt(obj.attr('value')) * 1000 - Offset) ;
+		var show_day =  obj.attr('showday');
+		var nowTime = new Date();
+		var nMS=endTime.getTime() - nowTime.getTime();
+		var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+		var myH_show=Math.floor(nMS/(1000*60*60) % 24);
+		var myH=Math.floor(nMS/(1000*60*60));
+		var myM=Math.floor(nMS/(1000*60)) % 60;
+		var myS=Math.floor(nMS/1000) % 60;
+		var myMS=Math.floor(nMS/100) % 10;
+		var myHZero = '';
+		var myMZero = '';
+		var mySZero = '';
+		if (myH < 10)
+		{
+			var myHZero = '0';
+		}
+		if (myM < 10)
+		{
+			var myMZero = '0';
+		}
+		if (myS < 10)
+		{
+			var mySZero = '0';
+		}
+		if(myH>=0){
+			if(show_day == 'show')
+			{
+				var str = '还剩<strong class="tcd-d">'+myD+'</strong>天<strong class="tcd-h">'+myH_show+'</strong>小时<strong class="tcd-m">'+myM+'</strong>分<strong class="tcd-s">'+myS+'</strong>秒';
+			}
+			else
+			{
+				var str = '距离团购结束还有<span class="times">'+myHZero+myH+'</span><em>时</em><span class="times">'+myMZero+myM+'</span><em>分</em><span class="times">'+mySZero+myS+'</span><em>秒</em>';
+			
+			}
+		}else{
+			var str = "已结束！";	
+		}
+		obj.html(str);
+	  });
+}
+</script>
+<style>
+.times {color:red;}
+.pic-time em{color:black;}
+</style>
+	<div class="lay">
+		<div class="tg-con tg-pb">
+		<div class="tg-here">
+			<p>当前位置： <a href="#">首页 </a>&gt; 团购商品</p>
+		</div>
+		<div class="tg-hd">
+			<div class="paixu-box fn-clear">
+				<ol>
+					<li {if (!$cur_amount) && (!$price) && (!$end_time)}class="px-cur"{/if}><a href="group_buy.php">默认排序</a></li>
+					<li{if $cur_amount} class="px-cur"{/if}><a href="group_buy.php?order_name=cur_amount&oder={if $cur_amount}{$cur_amount}{else}desc{/if}">人气<img src="images/{if $cur_amount eq 'desc'}sx{else}jx{/if}.png" width="14" height="14"/></a></li>
+					<li{if $price} class="px-cur"{/if}><a href="group_buy.php?order_name=price&oder={if $price}{$price}{else}desc{/if}">价格<img src="images/{if $price eq 'desc'}sx{else}jx{/if}.png" width="14" height="14"/></a></li>
+					<li{if $end_time} class="px-cur"{/if}><a href="group_buy.php?order_name=end_time&oder={if $end_time}{$end_time}{else}desc{/if}">时间<img src="images/{if $end_time eq 'desc'}sx{else}jx{/if}.png" width="14" height="14"/></a></li>
+				</ol>
+			</div>
+		</div>
+
+		<div class="tg-bd">
+			<ul class="tg-list fn-clear">
+			{foreach from=$gb_list item=group_buy name=foo}
+				<li {if !($smarty.foreach.foo.iteration % 3)}class="last-item"{/if}>
+					<a href="{$group_buy.url}" class="pic-link"><img src="{$group_buy.original_img|escape:html}" width="360" height="360"/></a>
+					<div class="tg-pic">
+						<p class="pic-name" style="white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow: hidden;">【限时特卖】{$group_buy.goods_name}</p>
+						<p class="pic-price">
+							<span>￥{$group_buy.price_ladder.0.price}</span>
+							<a href="{$group_buy.url}" class="goto">立即购买</a>
+						</p>
+						<p class="pic-num">
+							<span>已售<em>{$group_buy.cur_amount}</em></span>
+							<span class="pic-time end_date{$group_buy.group_buy_id}" value="{$group_buy.end_time}">距离团购结束还有<em>75</em>时<em>34</em>分<em>08</em>秒</span>              
+						</p>
+					</div>
+				</li>
+			{/foreach}
+			</ul>
+		</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+	$('.paixu-box li').click(function(){
+		var xlh=$(this).index();
+		$('.paixu-box li').removeClass('px-cur').eq(xlh).addClass('px-cur');
+	});
+	</script>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+</body>
+</html>

@@ -1,0 +1,50 @@
+/*公共代码*/
+.lay{background-color: #f2f2f2;}
+.ch-box{width: 100%;max-width: 1225px;margin: 0 auto;margin-top: 10px;}
+.ch-here{width: 100%;}
+.ch-bd{width: 100%;border: 3px solid #c4c4c4;background-color: #fff;padding-bottom: 97px;}
+.ch-here{color: #3e3e3e;}
+.ch-here p{padding:10px 0 10px 12px;}
+.ch-here a{color: #3e3e3e;}
+.ch-pb{padding-bottom: 147px;padding-top: 10px;}
+.ch-pbA{padding-bottom: 146px;}
+.mod{width: 100%;max-width: 1120px;margin: 0 auto;border: 1px solid #c4c4c4;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';margin-top: 10px;display: ;}
+.mod-hd{height: 37px;background-color: #efefef;color: #ac0e2b;font-weight: bold;font-size:18px;line-height: 24px;}
+.mod-hd h2{padding: 5px 0 0 15px;}
+.mod-hd img{vertical-align: middle;padding-right: 10px;}
+.mod-a{padding: 20px 0 20px 45px;}
+.mod-a li{color: #2a2a2a;font-size: 16px;line-height: 28px;padding-bottom: 10px;}
+/*订单查询代码样式*/
+.ch-check{font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';margin-bottom:10px;}
+.ck-txt-a{padding-top: 30px;text-align: center;}
+.ck-txt-a p{color: #3a3a3a;font-size: 14px;}
+.ck-txt-a p a{text-decoration: underline;font-weight: bold;}
+.ck-register{color: #ff0000;}
+.ck-here{color: #000cff;}
+.ck-txt-b{width: 925px;height: 70px;border: 1px dashed #ffe6cb;background-color: #fffdf5;margin: 0 auto;margin-top: 15px;}
+.ck-tip{width: 625px;margin: 0 auto;}
+.ck-txt-b b{color: #ff0000;font-size: 16px;float: left;line-height: 70px;}
+.ck-txt-b ul{font-size: 14px;color: #4d4d4d;float: left;margin-top: 16px;color: #4d4d4d;font-weight:bold;}
+.ch-count{margin-bottom:40px;border: 2px solid #AF1935;}
+.ck-txt-c{text-align: center;width: 890px;margin: 0 auto;margin-top: 28px;}
+.ck-txt-c td{font-size: 18px;}
+.ck-txt-c td span{font-size: 18px;line-height: 55px;color: #4d4d4d;}
+.ck-inputTxt{width: 334px;height: 34px;border: 1px solid #7f7f7f;line-height: 34px;}
+
+.ck-btn{text-align: center;padding-top: 47px;}
+.ck-btn a{text-align: center;color: #fff;font-size: 24px;background-color: #b01330;width: 188px;height: 45px;line-height: 45px;border-radius: 3px;display: inline-block;}
+/*订单状态*/
+.ch-state{margin-top:10px;}
+/*商品以及支付信息*/
+.zfu-bd{width: 100%;max-width: 1003px;margin: 0 auto;padding-bottom: 10px;}
+.data-name{font-size: 16px;color: #2a2a2a;line-height: 48px;}
+.data-name td{text-align: center;border-bottom: 1px solid #c4c4c4;}
+.zfu-link{color: #2a2a2a;}
+.data-price{float: right;overflow: hidden;}
+.data-price li{font-size: 16px;line-height: 28px;color: #ff3101;}
+.data-price span{display: inline-block;width: 200px;text-align: right;color: #2a2a2a;}
+
+/*查询结果*/
+.error-hd{line-height:49px;height: 49px;}
+.error-hd img{padding-right: 0;}
+.error-bd p{padding: 10px 0 10px 10px;font-weight: bold;}

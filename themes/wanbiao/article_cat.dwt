@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="content">
+<div class="contentBody">
+<div class="block_s">
+<!--当前位置 start-->
+ <div id="ur_here"  style="padding: 10px 0 0 0;border-bottom: 1px solid #DDD;
+padding-bottom: 10px;
+margin: 10px 0 15px;">
+  <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+ </div>
+<!--当前位置 end-->
+  <div class="help_left">
+  <!-- #BeginLibraryItem "/library/left_help.lbi" --><!-- #EndLibraryItem -->
+   
+  </div>
+  <!--left end-->
+  <!--right start-->
+  <div class="help_right_out">
+   <div class="help_right">
+   <div class="help_right_title " >
+  <p style="float:none; font-size:16px;">{$lang.article_list}</p>
+    </div>
+    <div class="blank"></div>
+     <div class="blank"></div>
+      
+    <div class="boxCenterList" style="padding:0 10px">
+          <form action="{$search_url}" name="search_form" method="post" class="article_search">
+        <input name="keywords" type="text" id="requirement" value="{$search_value}" class="inputBg" />
+        <input name="id" type="hidden" value="{$cat_id}" />
+        <input name="cur_url" id="cur_url" type="hidden" value="" />
+        <input type="submit" value="{$lang.button_search}" class="bnt_blue_1" />
+      </form>
+      <div class="blank"></div>
+      <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+      <tr>
+        <th bgcolor="#ffffff">{$lang.article_title}</th>
+          <th bgcolor="#ffffff">{$lang.article_author}</th>
+          <th bgcolor="#ffffff">{$lang.article_add_time}</th>
+        </tr>
+      <!-- {foreach from=$artciles_list item=article} -->
+      <tr>
+        <td bgcolor="#ffffff"><a href="{$article.url}" title="{$article.title|escape:html}" class="f6">{$article.short_title}</a></td>
+          <td bgcolor="#ffffff">{$article.author}</td>
+          <td bgcolor="#ffffff" align="center">{$article.add_time}</td>
+        </tr>
+      <!-- {/foreach} -->
+    </table>
+    </div>
+    <div class="blank5"></div>
+    <div class="article">
+  <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+  </div>
+  
+  </div>
+  
+  </div>  
+  <!--right end-->
+
+</div>
+</div>
+</div>
+<div class="blank5"></div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+</body>
+<script type="text/javascript">
+document.getElementById('cur_url').value = window.location.href;
+</script>
+</html>

@@ -1,0 +1,108 @@
+<!-- $Id: information_category_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!--资讯信息搜索-->
+<div class="form-div">
+  <form action="javascript:search_info()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+	<select name="info_cat" class="info_cat" onchange="javascript:search_info()">
+			<option value="0">资讯类别</option>
+			{html_options options=$info_type selected=$info.info_cat}
+	</select>
+	<select name="img_spec" class="info_spec"  onchange="javascript:search_info()">
+			<option value="0">图片规格</option>
+			{html_options options=$info_specs selected=$info.img_spec}
+	</select>
+    输入关键字：<input type="text" name="info_words" size="50" placeholder="可以输入 标题描述、内容描述等中的内容" value="" />
+    <input type="submit" value="搜索" class="button" />
+  </form>
+</div>
+
+<form method="post" action="" name="listForm">
+<style type="text/css">
+.list-div .w5{width:5%;}
+.list-div .w15{width:10%;}
+.list-div .w20{width:20%;}
+.list-div .w25{width:25%;}
+.list-div .no-records{width:100%;}
+</style>
+
+<!-- start information list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+  	<th>资讯ID</a></th>
+    <th>资讯类别</th>
+    <th>图片规格</th>
+    <th>图片地址</th>
+	<th>资讯标题</th>
+	<th>资讯内容</th>
+	<th>链接网址</th>
+	<th>是否启用</th>
+    <th>操作</th>
+  </tr>
+{foreach from=$info_lists item=info}
+  <tr>
+    <td class="first-cell w5" align="center">{$info.info_id}</td>
+    <td class="w5" align="center">{$info.info_cat|escape:html}</td>
+    <td class="w5" align="center">{$info.img_spec}</td>
+    <td class="w15" align="center"><a href="../{$info_cat.img_file}" target="_blank">{$info.img_file}</a></td>
+    <td class="w20" align="left" style="padding-left:5px;">{$info.title_describe}</td>
+    <td class="w25" align="left" style="padding-left:5px;">{$info.content_describe}</td>
+	<td class="w15" align="left" style="padding-left:5px;"><a href="{$info.link_url}" target="_blank">{$info.link_url}</a></td>
+    <td class="w5" align="center">{if $info.is_start eq 1}是{else}否{/if}</td>
+	
+	<td class="w5" align="center">
+      <a href="information.php?act=edit&info_id={$info.info_id}" title="{$lang.edit}">
+      <img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:;" onclick="listTable.remove({$info.info_id}, '{$lang.drop_confirm}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+    </td>
+  </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="9">暂时还没有资讯分类</td></tr>
+  {/foreach}
+  <tr>
+    <td align="right" nowrap="true" colspan="9">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end information list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+	listTable.recordCount = {$record_count};
+	listTable.pageCount = {$page_count};
+	
+	{foreach from=$filter item=item key=key}
+		listTable.filter.{$key} = '{$item}';
+	{/foreach}
+	//console.log(listTable.filter);
+{literal}
+
+	function search_info()
+	{	
+		var info_cat = document.forms['searchForm'].elements['info_cat'].value;
+		var img_spec = document.forms['searchForm'].elements['img_spec'].value;
+		var info_words = document.forms['searchForm'].elements['info_words'].value;
+		listTable.filter['info_cat'] = Utils.trim(info_cat);
+		listTable.filter['img_spec'] = Utils.trim(img_spec);
+		listTable.filter['info_words'] = Utils.trim(info_words);
+		//listTable.filter['admin_agency_id'] = Utils.trim( document.forms['searchForm'].elements['admin_agency_id'].value);
+		pageSize = document.getElementById("pageSize");
+		//alert(pageSize.value);
+		listTable.filter['page_size'] = Utils.isInt(pageSize.value) ? pageSize.value : 15;
+		listTable.filter['page'] = 1;
+		//listTable.filter['query'] = 'list';
+		listTable.loadList();
+	}
+	
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

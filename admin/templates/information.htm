@@ -1,0 +1,129 @@
+<!-- $Id: ad_position_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="jquery-1.8.3.min.js"}
+<div class="main-div">
+  <form action="information.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+    <table width="100%">
+      <tr>
+        <td class="label">请选择资讯类别：</td>
+        <td>
+		<select name="info_cat" class="info_cat">
+			<option value="0">资讯类别</option>
+			{html_options options=$info_type selected=$info.info_cat_id}
+		</select>
+		</td>
+      </tr>
+      <tr>
+        <td class="label">请选择上传图片的规格：</td>
+        <td>
+		<select name="img_spec" class="info_spec">
+			<option value="0">图片规格</option>
+			{html_options options=$info_specs selected=$info.img_spec}
+		</select>
+		</td>
+      </tr>
+	  <tr>
+        <td class="label">请上传资讯图片(允许格式 jpg、jpeg、gif、png)：</td>
+        <td>
+		<input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+		<input type="file" name="img_file"  class="img_file" />
+		{if $edit eq 1}
+		<input type="hidden" name="img_url"  class="img_file" value="{$info.img_file}" size="45"/><a href="{$info.img_file}" target="_blank">查看原图</a>
+  	{/if}
+		</td>
+      </tr>
+	  <tr>
+        <td class="label">资讯标题：</td>
+        <td>
+		<input type="text" name="title_describe"  class="title_describe" size="45" value="{$info.title_describe}" />
+		</td>
+      </tr>
+	  <tr>
+        <td class="label">资讯内容：</td>
+        <td>
+		<textarea name="content_describe" class="content_describe" cols="43" rows="8" >{$info.content_describe}</textarea>
+		</td>
+      </tr>
+
+<tr>
+        <td class="label">要链接到资讯页面的网址：</td>
+        <td>
+		<input type="text" name="link_url" class="link_url" size="45" value="{$info.link_url}" />
+		</td>
+      </tr>
+      <tr>
+        <td class="label">是否启用该资讯信息：</td>
+        <td>
+          <input type="radio" name="is_start" {if $info.is_start eq 1 }checked="checked"{/if} value="1" />是
+		<input type="radio" name="is_start" {if $info.is_start eq 0}checked="checked"{/if} value="0" />否
+        </td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+		  <input type="hidden" name="act" value="{$form_act}" />
+		  <input type="hidden" name="info_id" value="{$info.info_id}" />
+          <input type="hidden" name="admin_agency_id" value="{$admin_agency_id}" />
+          <input type="submit" value="保存" class="button" />
+          <input type="reset" value="取消" class="button" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+<!--
+{literal}
+
+
+/**
+ * 检查表单输入的数据
+ */
+function check_info(){
+		var info_cat,img_spec,img_file,img_url,title_describe,content_describe,link_url;
+		info_cat=$("select[name='info_cat']").val();
+		img_spec=$("select[name='img_spec']").val();
+		img_file=$("input[name='img_file']").val();
+		img_url=$("input[name='img_url']").val();
+		title_describe=$("input[name='title_describe']").val();
+		//content_describe=$("textarea[name='content_describe']").val();
+		link_url = $("input[name='link_url']").val();
+		if(info_cat == 0){
+			alert('资讯类别没有选择！');
+			return false;
+		}
+	
+		if(img_spec == 0){
+			alert('图片规格没有选择！');
+			return false;
+		}
+		//alert(img_url);
+		if(img_file == 0 && (typeof(img_url) == 'undefined' || img_url == 0)){
+			alert('没有上传图片！');
+			return false;
+		}
+	
+		if(title_describe == 0){
+			alert('没有填写标题描述！');
+			return false;
+		}
+	
+		//if(content_describe == 0){
+			//alert('没有填写内容描述！');
+			//return false;
+		//}
+	
+		if(link_url == 0){
+			alert('没有填写链接网址！');
+			return false;
+		}
+		
+}
+
+
+//-->
+{/literal}
+</script>
+
+{include file="pagefooter.htm"}

@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="navBar">
+
+  <div id="cate">
+  <!--{foreach from=$categories_pro item=cat name=categories_pro}-->
+
+		<h1  class="h1">
+		<dt > <a href="javascript:;" >{$cat.name|escape:html}</a> </dt>
+    <dd class="searchLeft_btn"><span class="searchLeft_up "></span></dd>
+		</h1>
+		<ul {if $cat.id  eq $parent_id_show}style="display:block"{/if}>
+		 <!--{foreach from=$cat.cat_id item=child}-->
+          <!--{foreach from=$child.cat_id item=childer}-->
+		<li><a href="{$childer.url}" {if $childer.id eq $category}class="current"{/if}>{$childer.name|escape:html}</a></li>
+         <!--{/foreach}-->
+		<!--{/foreach}-->
+		</ul>
+		<div style="clear:both"></div>
+	
+
+	<!--{/foreach}--> 
+</div>
+
+</div>
+<div class="blank"></div>
+<div class="blank"></div>

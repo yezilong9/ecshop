@@ -1,0 +1,178 @@
+<!-- $Id: article_list.htm 16783 2009-11-09 09:59:06Z liuhui $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<div class="form-div">
+  <form action="javascript:searchArticle()" name="searchForm" >
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    {if $if_agency}
+    选择代理商
+    <select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</option>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>&nbsp;&nbsp;
+    {else}
+    <input type="hidden" name="admin_agency_id"/>
+    {/if}
+    作废单状态：
+    <select name="status" id="status">
+      <option value="">{$lang.select_please}</option>
+      <option value="0">待审核</option>
+      <option value="1">审核未作废</option>
+      <option value="2">审核已作废</option>
+      <option value="3">采购失效</option>
+    </select>&nbsp;&nbsp;    
+    {$lang.title} <input type="text" name="keyword" id="keyword" />
+    <input type="submit" value="{$lang.button_search}" class="button" />
+  </form>
+</div>
+
+<form method="POST" action="goods_stock_info.php?act=insert" name="listForm" onsubmit="return confirmSubmit(this)">
+<!-- start cat list -->
+<div class="list-div" id="listDiv">  
+{/if}
+
+<table cellspacing='1' cellpadding='3' id='list-table'>
+  <tr>
+    <th>
+    <a href="javascript:listTable.sort('id'); ">编号</a>{$sort_article_id}</th>
+    <th>作废单号</th>
+    <th align="left">作废金额</th>
+    <th>状态</th>
+    <th>操作</th>
+  </tr>
+  {foreach from=$get_goods_stock_info item=list}
+  <tr>
+    <td align="center"><span>{$list.id}</span></td>
+    <td align="center" width="300px"><span>
+    {if $list.stock_status ==2}
+    <a href="goods_stock_info_details.php?act=list&keyword={$list.stock_info_sn}">{$list.stock_info_sn|escape:html}</a>
+    {elseif $list.stock_status == 3 || $list.stock_status == 1 ||  $list.stock_status == 0}
+    <a href="goods_stock_list_out.php?act=list&keyword={$list.stock_info_sn}{if $list.stock_status == 3}&delete=1{/if}">{$list.stock_info_sn|escape:html}</a>
+    {/if}
+    </span></td>
+    <td>￥{$list.goods_amount}</td> 
+    
+    <td align="center">
+       {if $list.stock_status ==0}待审核
+       {elseif $list.stock_status ==1}审核未作废
+       {elseif $list.stock_status ==2}作废成功
+       {elseif $list.stock_status ==3}作废单失效
+       {/if}
+    </td> 
+       
+
+    <td align="center">
+    {if $list.stock_status ==0 }
+        {if $if_agency}
+            {if $admin_id == 57 || $admin_id ==1 } 
+            <a href="goods_stock_info_out.php?act=handle&id={$list.id}&stock_status=1" onclick=" return edit_statu(1)" title="通过审核">审核</a> &nbsp;&nbsp;
+            {/if}
+            {else}
+            <a href="goods_stock_info_out.php?act=handle&id={$list.id}&stock_status=1" onclick=" return edit_statu(1)" title="通过审核">审核</a> &nbsp;&nbsp;
+        {/if}
+        
+        <a href="goods_stock_info_out.php?act=handle&id={$list.id}&stock_status=3" onclick=" return edit_statu(3)" title="作废单失效">作废单失效</a>  &nbsp;&nbsp;
+        {elseif $list.stock_status ==1}
+            <a href="goods_stock_info_out.php?act=handle&id={$list.id}&stock_status=2" onclick=" return edit_statu(2)" title="审核作废出库">审核作废出库</a>  &nbsp;&nbsp;
+            <a href="goods_stock_info_out.php?act=handle&id={$list.id}&stock_status=3" onclick=" return edit_statu(3)" title="作废单失效">作废单失效</a>  &nbsp;&nbsp;
+        {elseif $list.stock_status ==2}
+        作废成功
+        {elseif $list.stock_status ==3}
+        作废单失效
+    {/if}
+    </td>
+   </tr>
+   {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_article}</td></tr>
+  {/foreach}
+  <tr><td colspan="10">&nbsp;</td></tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right">当页成本合计：</td>
+    <td align="left">{$current_costing_price_amount}</td>
+    <td align="left">总的成本：{$costing_price_amount}</td>
+    <td>&nbsp;</td>
+  </tr>  
+  
+  <tr>&nbsp;
+    <td align="right" nowrap="true" colspan="9">{include file="page.htm"}</td>
+  </tr>
+</table> 
+
+{if $full_page}
+</div>
+
+</form>
+<!-- end cat list -->
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+	/**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+  function confirmSubmit(frm, ext)
+  {
+
+      return confirm("是否确定要把这里的商品进行采购并且生成采购单操作");
+    
+  }
+	 function changeAction()
+  {
+		
+      var frm = document.forms['listForm'];
+
+      // 切换分类列表的显示
+      frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
+
+      if (!document.getElementById('btnSubmit').disabled &&
+          confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+  
+  function edit_statu(status_edit)
+  {
+    if(status_edit ==1 )
+    {
+        return confirm("确定要对这个作废订单审核")
+    }
+    if(status_edit ==2 )
+    {
+      return confirm("确定要对这个作废订单的商品进行出库处理")
+    }
+    if(status_edit ==3 )
+    {
+      return confirm("确定要对这个作废订单进行失效处理")
+    }
+    
+  }
+
+ /* 搜索 */
+ function searchArticle()
+ {
+    listTable.filter.keyword = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+    listTable.filter.admin_agency_id = Utils.trim(document.forms['searchForm'].elements['admin_agency_id'].value);
+    listTable.filter.status = Utils.trim(document.forms['searchForm'].elements['status'].value);
+
+    listTable.filter.page = 1;
+    listTable.loadList();
+ }
+
+ {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

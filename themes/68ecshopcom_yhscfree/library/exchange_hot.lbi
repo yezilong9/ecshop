@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods}-->
+<div class="mod1 blank" id="exchange">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$lang.hot_goods}</h1>
+	<div class="mod1con grid">
+		<!--{foreach from=$hot_goods item=goods}-->
+		<div class="goodsbox">
+			<div class="imgbox"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a></div>
+			<a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a><br />
+			{$lang.exchange_integral}<font class="price">{$goods.exchange_integral}</font>
+		</div>
+	 <!--{/foreach}-->
+	 </div>
+</div>
+<script type="text/javascript">divheight("exchange");</script>
+<!-- {/if} -->

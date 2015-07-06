@@ -1,0 +1,171 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="themes/ecmoban_lefeng/qq/images/qq.css" rel="stylesheet" type="text/css" />
+<script language='javascript' src='themes/ecmoban_lefeng/qq/ServiceQQ.js' type='text/javascript' charset='utf-8'></script>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+<script src="themes/<?php echo $GLOBALS['_CFG']['template']; ?>/js/jquery.js"></script>
+
+<script type="text/javascript">
+var action=0;
+$(document).ready(function(){                
+$(".btn1 a").each(function(i){
+$(this).mouseover(function(){                
+if(action == 1)
+action = 0;
+else{
+$("#slide_block").stop();                                
+}
+$("#slide_block").animate({left:205+i*90+'px'},600,function(){
+action = 1;
+});
+});
+});
+});
+</script>
+
+<div class="topNav" style=" background:#ffffff">
+
+      <div class="block " style=" position:relative">
+      
+        	{if !$print}
+			{insert_scripts files='transport.js,utils.js'}
+			{/if}
+             欢迎来本网站，请<font id="ECS_MEMBERZONE">{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} </font>
+             <!--{if $navigator_list.top}-->
+                <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+                
+                   | 
+         
+           <a style="color:#666" href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a>
+                <!-- {/foreach} -->        
+             <!-- {/if} -->
+
+             <a class="a1" href="user.php" style="color:#666666;">会员中心</a> | <a href="user.php?act=order_list">我的订单</a> | <a target="_blank" href="user.php"  style="color:#666666">快速导航</a> | <a style="cursor: pointer;"  onClick="window.external.AddFavorite(location.href,document.title);">收藏</a>
+   
+      </div>
+
+</div>
+
+<div style=" background:#ffffff; width:100%; height:100px">
+
+<div class="header_bg" style=" background:#ffffff">
+
+       
+       
+             <div class="f_l"><a href="../index.php" name="top"><img src="../images/logo.gif" /></a></div>
+             
+             
+
+       
+
+       <div class="f_l" >
+
+             <script type="text/javascript">
+    {literal}
+    <!--
+    function checkSearchForm()
+    {
+        if(document.getElementById('keyword').value)
+        {
+            return true;
+        }
+        else
+        {
+             alert("{$lang.no_keywords}");
+            return false;
+        }
+    }
+    -->
+    {/literal}
+    </script>
+    
+             <form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()" class="f_l"  >
+
+                    <div style="float:left;">
+                    
+                            <input name="keywords" type="text" id="keyword"  value="输入商品名称或商品货号..." onclick="javascript:this.value='';"   class="B_input" />
+ 
+                    </div> 
+
+                    <input name="imageField" type="submit" value="搜索" class="go" style="cursor:pointer;" />
+                    
+             </form>
+   
+             
+    
+      </div>
+      
+      <a href="flow.php"><div class="cart">
+                    
+		  <div class="f_l" style="margin:20px 0px 0px 80px;" id="ECS_CARTINFO">
+		  	   购物车
+		  </div> 
+
+      </div></a>
+
+</div>
+
+</div>
+
+
+<div class="mainNav">
+
+<div class="block"> 
+
+    	<div class="nav_list f_l" >
+        
+        
+             <div style="color:#ffffff;display:block; background:#963c00; width:205px;font:bold 14px/38px '宋体'; float:left;">
+             
+             
+             <span style=" width:180px; padding-left:15px;float:left; color:#ffffff; background:url(images/down_bg.gif) no-repeat right; cursor:pointer">所有商品分类</span>
+             
+             </div>
+        
+        	<ul style=" float:left;">
+            	
+                  <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+                  
+                   <li style=" z-index:999999;width:100px;" class="btn1" >
+                   
+                   <a id="a1" href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1} class="curr" {/if} >
+                   
+                   
+               <!-- {if $nav.cat_list}--><!-- {/if}-->
+                  
+                   
+                   {$nav.name}
+                   
+                       
+               <!-- {if $nav.cat_list}--><!-- {/if}-->
+                    
+                 
+                   
+                   </a>
+                   
+                  
+                  
+                   </li>
+                   
+                 <!-- {/foreach} --> 
+			{if $user_id}
+			<li style=" z-index:999999;width:100px;" class="btn1" >
+             <a id="a1" href="print.php?act=index" target="_blank"  class="curr"  >快讯打印</a>
+			 </li>
+			 {/if}
+             <div id="slide_block"></div>
+                 
+            </ul>
+            
+            
+                
+        </div>
+      
+</div>
+
+    </div>
+             
+
+
+

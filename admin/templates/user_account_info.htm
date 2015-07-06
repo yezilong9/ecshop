@@ -1,0 +1,186 @@
+<!-- $Id: user_account_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js"}
+<div class="main-div">
+  <form action="user_account.php" method="post" name="theForm" onsubmit="return validate()">
+    <table width="100%">
+      <tr>
+        <td class="label">{$lang.user_id}：</td>
+        <td>
+          <input type="text" name="user_id" value="{$user_name}" size="20"
+          {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"} readonly="true" {/if}/>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.surplus_amount}：</td>
+        <td>
+          <input type="text" name="amount" value="{$user_surplus.amount}" size="20"
+          {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"} readonly="true" {/if}/>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.pay_mothed}：</td>
+        <td>
+          <select name="payment" {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3}disabled="true" {/if}>
+          <option value="">{$lang.please_select}</option>
+          {html_options options=$payment_list selected=$user_surplus.payment}
+          </select>
+        </td>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.process_type}：</td>
+        <td>
+          <input type="radio" name="process_type" value="0"
+          {if $user_surplus.process_type eq 0} checked="true" onclick="select_pay(0)" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"}disabled="true" {/if} />{$lang.surplus_type_0}
+          <input type="radio" name="process_type" value="1" onclick="select_pay(1)" 
+          {if $user_surplus.process_type eq 1} checked="true" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3|| $action eq "edit"}disabled="true" {/if} />{$lang.surplus_type_1}
+          {if $action eq "edit" && ($user_surplus.process_type eq 2 || $user_surplus.process_type eq 3)}
+          <input type="radio" name="process_type" value="2"
+          {if $user_surplus.process_type eq 2|| $action eq "edit"} checked="true"{/if}{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} disabled="true"{/if} />{$lang.surplus_type_2}
+          <input type="radio" name="process_type" value="3"
+          {if $user_surplus.process_type eq 3|| $action eq "edit"} checked="true"{/if}{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} disabled="true"{/if} />{$lang.surplus_type_3}
+          {/if}
+        </td>
+      </tr>
+      <!--新增tr标签 开始-->
+      <tr id="show_account_name" style="display:{if $user_surplus.process_type eq 0}none{/if}">
+        <td class="label">开户人：</td>
+        <td >
+        <input type="text" name="account_name" id="account_name" value="{$tx_bank.account_name|escape}" size="30" 
+        {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"} readonly="true" {/if}/>
+        </td>
+      </tr>
+      <tr id="show_bank" style="display:{if $user_surplus.process_type eq 0}none{/if}">
+        <td class="label">开户银行：</td>
+        <td >
+        <input type="text" name="bank" id="bank" value="{$tx_bank.bank|escape}" size="30" 
+        {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"} readonly="true" {/if}/>
+        </td>
+      </tr>
+      <tr id="show_bank_number" style="display:{if $user_surplus.process_type eq 0}none{/if}">
+        <td class="label">开户账号：</td>
+        <td >
+        <input type="text" name="bank_number" id="bank_number" value="{$tx_bank.bank_number|escape}" size="30" 
+        {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 || $action eq "edit"} readonly="true" {/if}/>
+        </td>
+      </tr>     
+      <!--新增tr标签 结束-->
+      <tr>
+        <td class="label">{$lang.surplus_notic}：</td>
+        <td>
+          <textarea name="admin_note" cols="55" rows="3"{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} readonly="true" {/if}>{$user_surplus.admin_note}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.surplus_desc}：</td>
+        <td>
+          <textarea name="user_note" cols="55" rows="3"{if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3} readonly="true" {/if}>{$user_surplus.user_note}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">{$lang.status}：</td>
+        <td>
+          <input type="radio" name="is_paid" value="0"
+          {if $user_surplus.is_paid eq 0} checked="true"{/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 ||$action eq "edit"} disabled="true"{/if}/>{$lang.unconfirm}
+          <input type="radio" name="is_paid" value="1"
+          {if $user_surplus.is_paid eq 1} checked="true" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 ||$action eq "edit"} disabled="true"{/if}/>{$lang.confirm}
+          <input type="radio" name="is_paid" value="2"
+          {if $user_surplus.is_paid eq 2} checked="true" {/if} {if $user_surplus.process_type eq 2 || $user_surplus.process_type eq 3 ||$action eq "edit"} disabled="true"{/if}/>{$lang.cancel}
+        </td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+          <input type="hidden" name="id" value="{$user_surplus.id}" />
+          <input type="hidden" name="act" value="{$form_act}" />
+          {if $user_surplus.process_type eq 0 || $user_surplus.process_type eq 1}
+          <input type="submit" value="{$lang.button_submit}" class="button" />
+          <input type="reset" value="{$lang.button_reset}" class="button" />
+          {/if}
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<script language="JavaScript">
+<!--
+{literal}
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+
+    validator.required("user_id",   user_id_empty);
+    validator.required("amount",    deposit_amount_empty);
+    validator.isNumber("amount",    deposit_amount_error, true);
+
+    var deposit_amount = document['theForm'].elements['amount'].value;
+    if (deposit_amount.length > 0)
+    {
+        if (deposit_amount == 0 || deposit_amount < 0)
+        {
+            alert(deposit_amount_error);
+            return false;
+        }
+    }
+
+    var account_name = document['theForm'].elements['account_name'].value;
+    var bank         = document['theForm'].elements['bank'].value;
+    var bank_number  = document['theForm'].elements['bank_number'].value;
+    var process_type = document['theForm'].elements['process_type'].value;
+    if(process_type == 1) // 如果选择了
+    {
+        if(account_name =="")
+        {
+            alert("请输入开户人信息");
+            return false;
+        }
+        if(bank =="")
+        {
+            alert("请输入开户银行信息");
+            return false;
+        }
+        if(bank_number =="")
+        {
+            alert("请输入开户账号信息");
+            return false;
+        }
+    }
+    
+    return validator.passed();
+}
+
+function select_pay(select_value)
+{
+    //alert(select_value); 
+    var tr1 = document.getElementById("show_account_name");
+    var tr2 = document.getElementById("show_bank");
+    var tr3 = document.getElementById("show_bank_number"); 
+    if (select_value == 1)  
+    {  
+        tr1.style.display = '';  
+        tr2.style.display = '';  
+        tr3.style.display = '';  
+    }  
+    if(select_value == 0)
+    {
+        tr1.style.display = 'none';  
+        tr2.style.display = 'none';  
+        tr3.style.display = 'none';  
+    }
+}
+
+//-->
+{/literal}
+</script>
+{include file="pagefooter.htm"}

@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--{foreach from=$history_goods item=goods}-->
+
+<li>
+  <div class="white_img"> <a href="{$goods.url}"> <img src="{$goods.goods_thumb}" border="0" width="170" height="170"> </a> </div>
+  <div class="white_txt"> <b><a href="{$goods.url}">{$goods.short_name}</a></b>
+    <p>{$goods.shop_price}<font>{$goods.market_price}</font></p>
+  </div>
+</li>
+
+<!--{/foreach}--> 
+

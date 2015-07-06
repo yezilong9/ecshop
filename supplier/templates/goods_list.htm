@@ -1,0 +1,141 @@
+<!-- $Id: goods_list.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!-- 商品搜索 -->
+{include file="goods_search.htm"}
+<!-- 商品列表 -->
+<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+  <div class="list-div" id="listDiv">
+{/if}
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+      <a href="javascript:listTable.sort('goods_id'); ">{$lang.record_id}</a>{$sort_goods_id}
+    </th>
+    <th><a href="javascript:listTable.sort('goods_name'); ">{$lang.goods_name}</a>{$sort_goods_name}</th>
+    <th>{$lang.lab_goods_cat}</th>
+    <th><a href="javascript:listTable.sort('shop_price'); ">{$lang.market_price}</a>{$sort_shop_price}</th>
+    <th><a href="javascript:listTable.sort('shop_price'); ">{$lang.supplier_price}</a>{$sort_shop_price}</th>
+
+    {if $use_storage}
+    <th><a href="javascript:listTable.sort('goods_number'); ">{$lang.goods_number}</a>{$sort_goods_number}</th>
+    {/if}
+    <th>{$lang.is_purchase}</th>
+    <th>{$lang.handler}</th>
+  <tr>
+  {foreach from=$goods_list item=goods}
+  <tr>
+    <td {if !$goods.cat_id}style="color:#C0C0C0;" {/if}><input type="checkbox" name="checkboxes[]" value="{$goods.goods_id}" />{$goods.goods_id}</td>
+    <td class="first-cell" style="{if $goods.is_promote}color:red;{/if}"><span {if !$goods.cat_id}style="color:#C0C0C0;" {/if} onclick="listTable.edit(this, 'edit_goods_name', {$goods.goods_id})">{$goods.goods_name|escape:html}</span></td>
+    <td align="center"><span onclick="listTable.edit(this, 'edit_goods_sn', {$goods.goods_id})">{$goods.cat_name}</span></td>
+	
+    <td align="center"><span onclick="listTable.edit(this, 'edit_market_price', {$goods.goods_id})" id="new_shop_price{$goods.goods_id}" value="1">{$goods.market_price}
+    </span></td><input type="hidden" name="new_shop_price[{$goods.goods_id}]" value="">	
+	
+    <td align="center"><span onclick="listTable.edit(this, 'edit_agency_price', {$goods.goods_id})" id="new_agency_price{$goods.goods_id}" value="1">{$goods.shop_price}
+    </span></td><input type="hidden" name="new_agency_price[{$goods.goods_id}]" value="">
+    {if $use_storage}
+    <td align="center"><span onclick="listTable.edit(this, 'edit_goods_number', {$goods.goods_id})">{$goods.goods_number}</span></td>
+    {/if}
+    <td align="center"><img src="images/{if $goods.is_purchase}yes{else}no{/if}.gif" /></td>
+    <td align="center">
+      <a href="goods.php?act=edit&goods_id={$goods.goods_id}{if $goods.agency_goods}&add={$goods.agency_goods}{/if}{if $code neq 'real_goods'}&extension_code={$code}{/if}" title="{$lang.edit}"><img src="images/icon_edit.gif" width="16" height="16" border="0" /></a>
+      <a href="javascript:;" onclick="listTable.remove({$goods.goods_id}, '{$lang.trash_goods_confirm}')" title="{$lang.trash}"><img src="images/icon_trash.gif" width="16" height="16" border="0" /></a>
+      {if $specifications[$goods.goods_type] neq ''}<a href="goods.php?act=product_list&goods_id={$goods.goods_id}" title="{$lang.item_list}"><img src="images/icon_docs.gif" width="16" height="16" border="0" /></a>{else}<img src="images/empty.gif" width="16" height="16" border="0" />{/if}
+      {if $add_handler}
+        |
+        {foreach from=$add_handler item=handler}
+        <a href="{$handler.url}&goods_id={$goods.goods_id}" title="{$handler.title}"><img src="images/{$handler.img}" width="16" height="16" border="0" /></a>
+        {/foreach}
+      {/if}
+    </td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+<!-- end goods list -->
+
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+
+</form>
+
+<script type="text/javascript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+    startCheckOrder(); // 开始检查订单
+    document.forms['listForm'].reset();
+  }
+
+  /**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+  function confirmSubmit(frm, ext)
+  {
+      if (frm.elements['type'].value == 'trash')
+      {
+          return confirm(batch_trash_confirm);
+      }
+      else if (frm.elements['type'].value == 'not_on_sale')
+      {
+          return confirm(batch_no_on_sale);
+      }
+      else if (frm.elements['type'].value == 'move_to')
+      {
+          ext = (ext == undefined) ? true : ext;
+          return ext && frm.elements['target_cat'].value != 0;
+      }
+      else if (frm.elements['type'].value == '')
+      {
+          return false;
+      }
+      else
+      {
+          return true;
+      }
+  }
+
+  function changeAction()
+  {
+      var frm = document.forms['listForm'];
+
+      // 切换分类列表的显示
+      frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
+			
+			{if $suppliers_list > 0}
+      frm.elements['suppliers_id'].style.display = frm.elements['type'].value == 'suppliers_move_to' ? '' : 'none';
+			{/if}
+
+      if (!document.getElementById('btnSubmit').disabled &&
+          confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

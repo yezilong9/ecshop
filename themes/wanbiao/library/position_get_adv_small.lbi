@@ -1,0 +1,16 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="hd">
+      <ul>
+      {foreach from=$ad_child item=child}
+        <li></li>
+        {/foreach}  
+      </ul>
+    </div>
+    <div class="bd">
+     <ul>
+		{foreach from=$ad_child item=child}
+            <li><a href="{$child.ad_link}" target="_blank"><img src="data/afficheimg/{$child.ad_code}" alt="" class="goodsimg" /></a></li>
+        {/foreach}                             	
+    </ul>
+    </div>
+  </div>

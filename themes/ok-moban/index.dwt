@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="blank"></div>
+
+<div class="blank"></div>
+
+
+<div class="block clearfix">
+  <!--left start-->
+  <div class="AreaL">
+  <!-- #BeginLibraryItem "/library/new_articles.lbi" --><!-- #EndLibraryItem -->
+  <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+
+  <!-- TemplateBeginEditable name="首页分类底部" -->
+<!-- TemplateEndEditable -->
+  
+  <!-- TemplateBeginEditable name="左边区域" -->
+<!-- TemplateEndEditable -->
+
+  </div>
+  <!--left end-->
+  <!--right start-->
+  <div class="AreaR">
+   <!--焦点图和站内快讯 START-->
+    <div class="box clearfix">
+       <!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+        </div>
+    <div class="blank"></div>
+	<div style="background:url(images/sales.jpg) ; line-height:44px; height:44px; width:100%; float:left;">
+	<span class="f_r"><a href="search.php?intro=promotion" style="color:#FFFFFF">更多>></a>&nbsp;&nbsp;</span>
+	</div>
+	<div class="f_l" style="width:100%;">
+	<!-- #BeginLibraryItem "/library/recommend_promotion.lbi" --><!-- #EndLibraryItem --></div>
+	
+	
+   <!-- TemplateBeginEditable name="右边主区域" -->
+<!-- TemplateEndEditable -->
+  </div>
+  <!--right end-->
+
+</div>
+<div class="block clearfix">
+	<div style="background:url(images/new.jpg) ; line-height:44px; height:44px; width:100%; float:left;">
+	<span class="f_r"><a href="search.php?intro=new" style="color:#FFFFFF">更多>></a>&nbsp;&nbsp;</span>
+	</div>
+	
+	  <!-- TemplateBeginEditable name="新品下广告" -->
+<!-- TemplateEndEditable -->
+	
+	<div class="f_l" style="width:100%;">
+	<!-- #BeginLibraryItem "/library/recommend_new.lbi" --><!-- #EndLibraryItem --></div>
+	<div style="background:url(images/hot.jpg) ; line-height:44px; height:44px; width:100%; float:left;">
+	<span class="f_r"><a href="search.php?intro=hot" style="color:#FFFFFF">更多>></a>&nbsp;&nbsp;</span>
+	</div>
+	
+	  <!-- TemplateBeginEditable name="热卖下广告" -->
+<!-- TemplateEndEditable -->
+	
+	<div class="f_l" style="width:100%;">
+	<!-- #BeginLibraryItem "/library/recommend_hot.lbi" --><!-- #EndLibraryItem --></div>
+	<div style="background:url(images/best.jpg) ; line-height:44px; height:44px; width:100%; float:left;">
+	<span class="f_r"><a href="search.php?intro=best" style="color:#FFFFFF">更多>></a>&nbsp;&nbsp;</span>
+	</div>
+
+	  <!-- TemplateBeginEditable name="精品下广告" -->
+<!-- TemplateEndEditable -->
+
+	<div class="f_l" style="width:100%;">
+	<!-- #BeginLibraryItem "/library/recommend_best.lbi" --><!-- #EndLibraryItem --></div>
+</div>
+
+
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+ 
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

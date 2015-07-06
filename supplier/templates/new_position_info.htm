@@ -1,0 +1,38 @@
+<!-- $Id: ads_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="main-div">
+<form action="new_position.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return new_position()">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+        广告位名称：</td>
+      <td>
+        <input type="text" name="position" id="position" value="{$ads.position}" size="35" />
+        <br />
+      </td>
+    </tr>
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+function new_position()
+{
+	var position = $('#position').val();
+	if(!position)
+		return false;
+}
+</script>
+{include file="pagefooter.htm"}

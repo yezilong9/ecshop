@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>平安之夜 会说话的苹果|天下店圣诞节活动</title>
+  <meta name="Keywords" content="平安之夜,苹果6相伴,天下店圣诞节活动" />
+  <meta name="Description" content="平安夜送苹果，表达着人们希望亲朋好友能平平安安，吉祥如意的美好祝愿。对于在外求学的学子来说，在平安夜收到一份简单的祝福是件温馨的事。活动期间，在天下店预定苹果一份，就可以把您的祝福送到您的好基友手上。" />
+  <link href="{$css_path}styles/master.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="{$css_path}scripts/check.js"></script>
+  {insert_scripts files='transport.js,utils.js'}
+</head>
+<body>
+<!--页首(start)-->
+<div class="header">
+  <!--模块主体(start)-->
+  <div class="header__bd">
+    <h1><a title="官网首页" class="txtoverflow header__logo" href="http://www.txd168.com" target="_blank">天下店</a></h1>
+    <div class="header-nav">
+      <ul>
+        <li><a href="http://dxc.txd168.com" target="_blank">首页(大学城站)</a></li>
+        <li><a href="http://dxc.txd168.com/category.php?id=726" target="_blank">圣诞专区</a></li>
+      </ul>
+    </div>
+  </div>
+  <!--模块主体(end)-->
+</div>
+<!--页首(end)-->
+<div class="container">
+  <!--中间部份(start)-->
+  <div class="section gift">
+    <a title="返回" class="txtoverflow go-back" href="christmas_activity.php">返回</a>
+    <form id="gift1_submit" name="gift1_submit" class="fm gift-submit" onSubmit="return subtocar(1)" method="post" >
+      <div class="form-item">
+        <h2>这个平安果是要送给你女神的。对于你的女神，你想要说点什么呢？</h2>
+        <p><a href="christmas_activity.php">不好意思，一时激动选错人，我换个对象</a></p>    
+        <ul>         
+          <li>
+              <label>
+                <input name="radio_group1" type="radio" value="10722" onchange ="selectShipping(10722)" /> 平安果一个+音频：汪峰 - 当我想你的时候
+              </label>
+              <a href="http://y.qq.com/#type=song&mid=002Fei9x43B7Fq&from=smartbox" target="_blank">试听</a>
+            </li>
+            
+            <li>
+              <label>
+                <input name="radio_group1" type="radio" value="10723" onchange ="selectShipping(10723)" />平安果一个+文字：“青梅已枯，竹马老去，从此我爱的人都像你”
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group1" type="radio" value="10721" onchange ="selectShipping(10721)" /> 平安果一个+其他自定义视频、音频、图片
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group1" type="radio" value="10783"    onchange="selectShipping(10783)"/> 平安果一个+金莎花+其他自定义视频、音频、图片
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group1" type="radio" value="10784" onchange ="selectShipping(10784)" /> 平安果一个+金莎花+Hello kitty+其他自定义视频、音频、图片
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group1" type="radio" value="10785" onchange ="selectShipping(10785)" /> 平安果一个+圣诞礼品盒+金莎花+德芙+其他自定义视频、音频、图片
+              </label>
+            </li>
+            <li>
+              <input type="text" class="inp inp-custom" placeholder="请把链接复制到此处" id="lianjie" name="lianjie" disabled="disabled" />
+              <div class="tips">
+友情提示：自定义的视频、音频请自行录制，然后上传到优酷，然后复制链接黏贴到上方即可；图片同理，上传到某个图库并获取链接。<br />
+不懂如何操作请<!--a class="service-online" href="http://wpa.qq.com/msgrd?v=3&uin=2777154563&site=qq&menu=yes"><img src="{$css_path}images/qq.gif" alt="qq在线" /></a--> 联系客服QQ:2777154563。
+              </div>
+            </li>
+          
+        </ul>
+      </div>
+      <div class="form-item">
+        <h2>是自己亲手送，还是假手于人，选择吧……</h2>
+        <h3>亲手送，请于12月20日下午2点到5点到以下地址自提：</h3>
+        <ul>
+        
+          <li>
+              <label>
+                <input name="radio_group2" type="radio" value="1"  onchange ="selectaddr(1)" /> 地址1：大学城广大菊苑饭堂斜对面（报亭隔壁），12月22-24日每日16:00-18:00
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group2" type="radio" value="2" onchange ="selectaddr(2)" /> 地址2：大学城广美天桥，12月22-24日每日17:00-18:00
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group2" type="radio" value="3" onchange ="selectaddr(3)" /> 地址3：大学城中大3饭广场，12月22-23日每日20:00-21:00
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group2" type="radio" value="4" onchange ="selectaddr(4)" /> 地址4：大学城广外学生活动中心一楼（自助圈存机旁），12月22-23日每日20:00-21:00
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group2" type="radio" value="5" onchange ="selectaddr(5)" /> 地址5：大学城广东药学院2饭，12月22-24日每日17:00-18:00
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group2" type="radio" value="6" onchange ="selectaddr(6)" /> 地址6：大学城广工3饭保安亭，12月23日20:00-21:00
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group2" type="radio" value="8" onchange ="selectaddr(8)" /> 地址7：大学城（华师+星海）地点星海宿舍C栋，12月22-23日18:00-20:00,24日15:00-17:00
+              </label>
+            </li>
+            <li>
+              <label>
+                <input name="radio_group2" type="radio" value="9" onchange ="selectaddr(9)" /> 地址8：大学城广工3饭堂保安亭，12月22日12月24日18:00-19:30,23日包送货
+              </label>
+            </li>
+          
+          <li>
+              <label>
+                <input name="radio_group2" type="radio"  value="7" onchange ="selectaddr(7)"/> 还是让其他人送，那就留下你女神的联系方式：<span class="red">（苹果统一在12月23日送出）</span>
+              </label>
+              <div class="logistics" style="display:none" id="show_div" >
+                <ul>
+                  <li><label>女神姓名：</label><input class="inp" type="text" id="user_name" /></li>
+                  <li><label>手机号码：</label><input class="inp" type="text" id="phone" /></li>
+                  <li><label>具体地址：</label><input class="inp" type="text" id="address" /></li>
+                </ul>
+              </div>
+          </li>
+          
+          
+        </ul>
+      </div>
+      <div class="form-item form-item-count" id="count_money" >
+        <p class="count">
+        苹果费用：<strong>￥0.00</strong><br />
+        </p>
+        <p class="total">合计：￥0.00 </p>
+      </div>
+      <div class="form-apply">
+        <button title="提交" type="submit" class="txtoverflow btn-submit">提交</button>
+        <span class="red">支付完成请不要关闭页面，还有100%得奖的抽奖活动哟~</span>
+      </div>
+    </form>
+  </div>
+  <!--中间部份(end)-->
+  <!--页尾(start)-->
+  <div class="footer">
+    <div class="footer__bd">
+      <p>
+        &copy; 2014-2015 天下店 版权所有，并保留所有权利。<br />
+        ICP备案证书号:粤ICP备08036645号-11<br />
+        广州市新泛联数码科技有限公司
+        <br />
+        <br />
+      </p>
+    </div>
+  </div>
+  <!--页尾(end)-->
+</div>
+<div class="container-bg">
+  <div class="container-bg-11"></div>
+  <div class="container-bg-12"></div>
+  <div class="container-bg-13"></div>
+  <div class="container-bg-14"></div>
+  <div class="container-bg-15"></div>
+  <div class="container-bg-16"></div>
+  <div class="container-bg-17"></div>
+  <div class="container-bg-18"></div>
+  <div class="container-bg-19"></div>
+  <div class="container-bg-20"></div>
+  <div class="container-bg-21"></div>
+  <div class="container-bg-22"></div>
+  <div class="container-bg-23"></div>
+  <div class="container-bg-24"></div>
+  <div class="container-bg-25"></div>
+  <div class="container-bg-26"></div>
+  <div class="container-bg-27"></div>
+</div>
+</body>
+</html>

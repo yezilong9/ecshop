@@ -1,0 +1,90 @@
+﻿
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+<TITLE>支付商管理--系统管理</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="styles/pay/admin.css"><LINK 
+rel=stylesheet type=text/css href="styles/pay/css.css"><LINK rel=stylesheet 
+type=text/css href="styles/pay/style.css">
+<SCRIPT language=javascript src="styles/pay/functions.js"></SCRIPT>
+
+<SCRIPT language=javascript src="styles/pay/ajax.js"></SCRIPT>
+
+<SCRIPT language=javascript src="styles/pay/functions(1).js"></SCRIPT>
+
+<SCRIPT language=javascript src="styles/pay/batch_delete.js"></SCRIPT>
+
+<SCRIPT language=javascript type=text/javascript>
+function check_cp_frm(){
+  var str_pay_mode_name      = document.getElementById('pay_mode_name').value;
+  var str_status             = document.getElementById('status').value;
+
+  if(str_pay_mode_name == ''){
+    alert('支付方式名称不能为空');
+    return false;
+  }
+  if(str_status == ''){
+    alert('支付方式状态不能为空');
+    return false;
+  }
+  return true;
+}  
+</SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.7601.17514"></HEAD>
+<BODY>
+
+<HR>
+
+<TABLE class=functionBar border=0 cellSpacing=0 width="100%">
+  <TBODY>
+  <TR class=bTitle>
+    <td class="top-font01" height="25">&nbsp;
+      <a href="pay.php?act=payment">支付商管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_type">支付方式管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=bank">支付商银行管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_set">支付通道设置</a>&nbsp;|&nbsp;
+      <a href="pay_message.php?act=message">支付商银行查询</a>&nbsp;|&nbsp;
+    </td> 
+	</TR></TBODY></TABLE>
+<HR SIZE=1>
+
+<fieldset>
+
+<legend class="" top-font01"=""> 支付方式管理 </legend><!--新增/修改 开始-->
+<TABLE border=0 cellSpacing=1 width="100%" bgColor=#d8d8d8>
+  <FORM onsubmit=return(check_cp_frm()) method=post name=cp_frm 
+  action=pay.php><INPUT value=type_edit_and type=hidden name=act> 
+  <INPUT type=hidden name=paytype_id value="{$type.paytype_id}"> 
+  <TBODY>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 align=right>支付方式名称：</TD>
+    <TD bgColor=#ffffff align=left><INPUT id=pay_mode_name name=pay_mode_name value="{$type.type_name}"> 
+      [例如：网银] </TD></TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>支付方式状态：</TD>
+    <TD bgColor=#ffffff align=left><INPUT id=status value=1 {if $type.enabled eq 1}CHECKED=''{/if} type=radio 
+      name=status>开启 <INPUT id=status value=0 type=radio {if $type.enabled eq 0}CHECKED=''{/if}name=status>关闭 </TD></TR>
+  <TR bgColor=#ffffff>
+    <TD bgColor=#c2e0e2 height=25 align=right></TD>
+    <TD height=30 colSpan=2 align=left><INPUT class=right-button07 value="修 改" type=submit> <INPUT class=right-button07 value="重 置" type=reset> <INPUT class=right-button07 onclick=javascript:history.go(-1) value="返 回" type=button> 
+    </TD></TR></FORM></TBODY></TABLE></fieldset><!--新增 结束-->
+<HR SIZE=1>
+<BR>
+<TABLE border=0 cellSpacing=1 cellPadding=3 width="100%" bgColor=#cccccc>
+  <TBODY>
+  <TR>
+    <TH bgColor=#c2e0e2 height=30 width=263 align=middle>支付方式名称</TH>
+    <TH bgColor=#c2e0e2 width=194 align=middle>支付方式当前状态</TH>
+    <TH bgColor=#c2e0e2 width=218 align=middle>操作</TH></TR>
+  <TR onmouseover="hightlightOnEvent(this, 'OVER', '#FFFFFF')" 
+  onmouseout="hightlightOnEvent(this, 'OUT', '#FFFFFF')" 
+  onclick="hightlightOnEvent(this, 'CLICK', '#F2F2F2')" bgColor={if ($k)%2}#f2f2f2{else}#ffffff{/if}>
+    <TD height=25 align=middle>{$type.type_name}</TD>
+    <TD align=middle>{if $type.enabled eq 0}<font color="red">关闭</font>{elseif $type.enabled eq 1}开启{/if}</TD>
+    <TD align=middle><A 
+      href="#">修改</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      <A 
+      onclick="if(window.confirm('您确定要删除此条记录吗？')) this.href='pay.php?act=pay_type_del&paytype_id={$type.paytype_id}'" 
+      href="javascript:void(0)">删除</A> </TD></TR>
+
+</TBODY></TABLE></BODY></HTML>

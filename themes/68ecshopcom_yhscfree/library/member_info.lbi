@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+{if $user_info}
+{$lang.hello}，<b class="username">{$user_info.username}</b>，{$lang.welcome_return}！
+<a href="user.php">{$lang.user_center}</a>
+<a href="user.php?act=logout">{$lang.user_logout}</a>
+{else}
+{$lang.hello}，{$lang.welcome}！ <a style="color:#22447b" href="user.php">[登录]</a>  
+<a style="color:#22447b" href="user.php?act=register">[免费注册]&nbsp;&nbsp;</a>
+{/if}

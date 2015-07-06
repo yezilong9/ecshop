@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $helps} -->
+<div class="block blank">
+  <div class="mod1 mod2" id="helpbox">
+	 <span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	  <div class="helpbox">
+		  <!-- {foreach from=$helps item=help_cat} -->
+			<div class="goodsbox">
+			 <div class="helpTit">{$help_cat.cat_name}</div>
+			 <div class="helpList tl">
+				<!-- {foreach from=$help_cat.article item=item} -->
+				·<a href="{$item.url}" title="{$item.title|escape:html}">{$item.short_title}</a><br />
+				<!-- {/foreach} -->
+			 </div>
+			</div>
+		 <!-- {/foreach} -->	
+		</div>
+  </div>
+<script type="text/javascript">divheight("helpbox");</script>	
+</div> 
+<!-- {/if} -->

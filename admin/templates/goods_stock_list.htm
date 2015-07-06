@@ -1,0 +1,124 @@
+<!-- $Id: article_list.htm 16783 2009-11-09 09:59:06Z liuhui $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<div class="form-div">
+  <form action="javascript:searchArticle()" name="searchForm" >
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    {$lang.title} <input type="text" name="keyword" id="keyword" />
+    <input type="submit" value="{$lang.button_search}" class="button" />
+  </form>
+</div>
+
+<form method="POST" action="goods_stock_list.php?act=insert" name="listForm" onsubmit="return confirmSubmit(this)">
+<!-- start cat list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellspacing='1' cellpadding='3' id='list-table'>
+  <tr>
+    <th>
+    <a href="javascript:listTable.sort('id'); ">编号</a>{$sort_article_id}</th>
+    <th><a href="javascript:listTable.sort('goods_name'); ">商品名称</a></th>
+    <th><a href="javascript:listTable.sort('costing_price'); ">采购价格</a>{$sort_article_type}</th>
+    <th><a href="javascript:listTable.sort('goods_number'); ">采购数量</a>{$sort_article_type}</th>
+    <th>操作</th>
+  </tr>
+  {foreach from=$stock_control_log item=list}
+  <tr>
+    <td align="center"><span>{$list.id}</span></td>
+    <td class="first-cell" ><span >{$list.goods_name|escape:html}</span></td>
+    <td align="center"><span onclick="listTable.edit(this, 'edit_costing_price', {$list.id})">{$list.costing_price}</span></td> 
+    <td align="center"><span onclick="listTable.edit(this, 'edit_goods_number', {$list.id})">{$list.goods_number}</span></td>
+    <td align="center">
+    {if $list.stock_status ==0 && $list.stock_info_id ==0 }
+    <a href="javascript:;" onclick="listTable.remove({$list.id}, '{$lang.drop_confirm}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16"></a>
+    {elseif $list.stock_status ==0 && $list.stock_info_id > 0}
+    已生成采购单号
+    {elseif $list.stock_status ==1}
+    已审核待入库
+    {elseif $list.stock_status ==3}
+    改单号采购的商品作废
+    {/if}
+    </td>
+   </tr>
+   {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_article}</td></tr>
+  {/foreach}
+    
+      <tr><td colspan="10">&nbsp;</td></tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td align="right">成本合计：</td>
+        <td align="center">{$costing_price_amount}</td>
+        <td align="center">数量：{$goods_number_amount}</td>
+        <td>&nbsp;</td>
+    </tr>
+  
+  <tr>&nbsp;
+    <td align="right" nowrap="true" colspan="9">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+
+<div>
+  {if $goods_count > 0}  
+  <input type="submit" value="生成采购订单" id="btnSubmit" name="btnSubmit" class="button"  />
+  {/if}
+</div>
+
+</form>
+<!-- end cat list -->
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+	/**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+  function confirmSubmit(frm, ext)
+  {
+
+      return confirm("是否确定要把这里的商品进行采购并且生成采购单操作");
+    
+  }
+	 function changeAction()
+  {
+		
+      var frm = document.forms['listForm'];
+
+      // 切换分类列表的显示
+      frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
+
+      if (!document.getElementById('btnSubmit').disabled &&
+          confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+
+ /* 搜索文章 */
+ function searchArticle()
+ {
+    listTable.filter.keyword = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+    listTable.filter.page = 1;
+    listTable.loadList();
+ }
+
+ {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

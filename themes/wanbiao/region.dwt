@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link href="{$choosecities_css_path}" rel="stylesheet" type="text/css" />
+<link href="{$reset_css_path}" rel="stylesheet" type="text/css" />
+<title>地方选择</title>
+
+	{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.8.3.min.js,region_city.js,JCookie.js}
+
+<script type="text/javascript">
+save_accessed_cookie({$city_id});
+
+</script>
+
+</head>
+<body>
+	<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+	
+	<div class="lay">
+		<div class="main">
+			<div class="wrap">
+				<div class="choosecities">
+					<div class="city-province">
+						<b>按省份选择：</b>
+						<select name="province" id="province"  class="select_region">
+							<option value="0">--选择省份--</option>
+						</select>
+						<select name="city" id="city"  class="select_region">
+							<option value="0">--选择城市--</option>
+						</select>
+						<select name="area" id="area"  class="select_region">
+							<option value="0">--选择区县--</option>
+						</select>
+						<a href="javascript:void(0)" class="choose-submit" id="select_search">确定</a>
+						<b class="choose-search">直接搜索：</b>
+						<input type="text" name="directly_search" placeholder="请输入城市中文或拼音" class="choose-txt" id="directly_search" value=""/>
+					<div id="show_hint"></div>
+					</div>
+					
+					
+					<div class="city-list">
+						<h3>常用城市：</h3>
+						<p id='common_city'>
+							
+						</p>
+					</div>
+					<div class="city-list">
+						<h3>最近访问：</h3>
+						<p id="lately_visit"></p>
+					</div>
+					<div class="citieslist">
+						<h2>按拼音首字母选择<span class="arrow">»</span></h2>
+						<ol class="hasallcity" id="hasallcity">
+
+						</ol>
+					</div>
+			</div>
+		</div>
+	</div>	
+</div>	
+<script type="text/javascript">
+	$(".label-city .divbox").click(function(){
+		var xuliehao = $(".label-city .divbox").index($(this));
+		$(this).siblings(".divbox").find(".city-area").hide();
+		$(this).find(".city-area").show();
+		$(this).parent().parent().parent().parent().find("li").css("height",44+"px");
+		$(this).parent().parent().parent().css("height",74+"px");
+	  }
+	);
+	
+	$(".hasallcity li").hover(function(){},function(){
+		$(this).css("height",44+"px")
+		$(this).find(".city-area").hide()
+	});
+</script>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+</body>
+</html>

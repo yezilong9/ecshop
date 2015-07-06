@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+		<!-- 头部-->
+		<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="member-center" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!--Header(start)-->
+			<!--导航栏-->
+			<!-- #BeginLibraryItem "/library/meun.lbi" --><!-- #EndLibraryItem -->
+          <!--Header(end)-->
+          <!-- section(start) -->
+          <div class="section">
+            <!--摘要(start)-->
+            <div class="member-summary">
+              <div class="member-summary-bd">
+                <div class="face">
+                  <a title="頭像" href="#"><img width="64" height="64" src="themes/default/images/face.jpg" /></a>
+                </div>
+                <div class="info">
+                  <h2 class="tit">
+                    <span class="name">{$info.username}</span> <span>欢迎回到天下店！</span>
+                  </h2>
+                  <a title="点击退出" class="button button-round button-fill link-logout" href="user.php?act=logout">点击退出</a>
+                  <p class="account">
+余额：{$info.surplus}         积分：{$info.integral}<br />
+红包：{$info.bonus}             
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--摘要(end)-->
+            <!--可折叠菜单(start)-->
+            <div class="list-block">
+              <ul>
+                <li>
+                  <a href="user.php?act=profile" class="item-link item-content">
+                    <div class="item-media"><i class="icon icon-member"></i></div>
+                    <div class="item-inner"><span class="item-title">用户信息</span></div>
+                  </a> 
+                </li>
+                <li>
+                  <a href="user.php?act=order_list" class="item-link item-content">
+                    <div class="item-media"><i class="icon icon-list"></i></div>
+                    <div class="item-inner"><span class="item-title">我的订单</span></div>
+                  </a> 
+                </li>
+                <li>
+                  <a href="user.php?act=address_list" class="item-link item-content">
+                    <div class="item-media"><i class="icon icon-lorry"></i></div>
+                    <div class="item-inner"><span class="item-title">收货地址</span></div>
+                  </a> 
+                </li>
+                <li>
+                  <a href="user.php?act=collection_list" class="item-link item-content">
+                    <div class="item-media"><i class="icon icon-star"></i></div>
+                    <div class="item-inner"><span class="item-title">我的收藏</span></div>
+                  </a> 
+                </li>
+                <li>
+                  <a href="user.php?act=bonus" class="item-link item-content">
+                    <div class="item-media"><i class="icon icon-rmb"></i></div>
+                    <div class="item-inner"><span class="item-title">我的红包</span></div>
+                  </a> 
+                </li>
+                              
+				<li>
+                  <a href="user.php?act=account_detail" class="item-link item-content">
+                    <div class="item-media"><i class="icon icon-usd"></i></div>
+                    <div class="item-inner"><span class="item-title">资金管理</span></div>
+                  </a> 
+                </li>                              
+			</ul>
+            </div>
+            <!--可折叠菜单(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+</body>
+</html>

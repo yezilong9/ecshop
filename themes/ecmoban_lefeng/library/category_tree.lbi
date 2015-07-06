@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <div id="category_tree">
+  
+    <!--{foreach from=$categories item=cat}-->
+     <dl>
+     <dt><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+     <dd><!--{foreach from=$cat.cat_id item=child}-->
+     <a href="{$child.url}">{$child.name|escape:html}</a>
+      
+     <!--{/foreach}-->
+       </dd>
+       </dl>
+    <!--{/foreach}--> 
+  </div>
+
+<div class="blank"></div>

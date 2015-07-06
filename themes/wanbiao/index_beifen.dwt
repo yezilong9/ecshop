@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+</head>
+
+<body>
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
+<div class="idxBnr" id="idxBnr1">
+<!-- #BeginLibraryItem "/library/index_ad.lbi" --> <!-- #EndLibraryItem -->
+</div>
+<div class="idxBnd" id="idxBnd2">
+<!-- #BeginLibraryItem "/library/index_ad_b.lbi" --> <!-- #EndLibraryItem -->
+</div>
+<!--根据屏幕调整宽度-->
+<script>
+if(document.body.clientWidth < 1225){
+	$('#idxBnr1').css('width',1225);
+	$('#idxBnd2').css('width',1225);
+	$('.header').css('width',1225);
+}
+</script>
+
+<!--//  特产商品开始    -->
+<div class="block special_product">
+<!-- #BeginLibraryItem "/library/recommend_special.lbi" --><!-- #EndLibraryItem -->
+</div>
+<!--//  特产商品结束  -->
+
+
+<!--//  新品开始    -->
+
+<div id="new_classicSet" class="idxSet classicSet"> 
+<!-- #BeginLibraryItem "/library/recommend_new_cat.lbi" --><!-- #EndLibraryItem -->
+<div class="tBdy w1225" id="new_clsiCon">
+<!-- TemplateBeginEditable name="新品上市" -->
+<!-- TemplateEndEditable --> </div>
+</div>
+</div>
+<!--//  新品结束    -->
+
+
+<!--//  热销商品开始    -->
+<div class="block recommend_hot">
+<!-- #BeginLibraryItem "/library/recommend_hot.lbi" --><!-- #EndLibraryItem -->
+<div class="idxSet">
+<!-- #BeginLibraryItem "/library/pinpai_ad.lbi" --> <!-- #EndLibraryItem -->
+</div>
+</div>
+<!--//  热销商品结束    -->
+
+<!--//  精品开始    -->
+<div id="best_classicSet" class="idxSet classicSet"> 
+<!-- #BeginLibraryItem "/library/recommend_best_cat.lbi" --><!-- #EndLibraryItem -->
+<div class="tBdy w1225" id="best_clsiCon">
+<!-- TemplateBeginEditable name="精品" -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+<div class="cat_slide" value="{$goods_cat.name}">
+  <div class="tShwPic">
+  {insert name='get_ad' cat_name=$goods_cat.name ad_name="左侧广告" num=1}
+ </div>
+  <div class="tBndSet">{insert name='get_ad' cat_name=$goods_cat.name ad_name="右侧广告" num=1}
+    <div class="tBndPdtLst">
+      <div class="tMnSet">
+        <ul>
+          <!--{foreach from=$cat_goods item=goods}-->
+          <li><a class="goods" target="_blank" href="{$goods.url}"><img alt="{$goods.name|escape:html}" src="{$goods.thumb}">
+            <div class="tMsk h" style="display:none;"><span>{$goods.short_name|escape:html}</span><i>查看详细</i></div>
+            </a></li>
+          <!--{/foreach}-->
+          
+        </ul>
+      </div>
+      <div class="bx-controls bx-has-pager bx-has-controls-direction ">
+        <ul class="bx-default-pager cat_goods_item">
+        </ul>
+        <div class="bx-controls-direction"><a href="javascript:void(0);" class="bx-prev"><span class="c__ls_pointer">&nbsp;</span></a><a href="javascript:void(0);" class="bx-next"><span class="c__rs_pointer">&nbsp;</span></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+<div class="cat_slide" value="{$goods_cat.name}">
+  <div class="tShwPic">
+  {insert name='get_ad' cat_name=$goods_cat.name ad_name="左侧广告" num=1}
+ </div>
+  <div class="tBndSet">{insert name='get_ad' cat_name=$goods_cat.name ad_name="右侧广告" num=1}
+    <div class="tBndPdtLst">
+      <div class="tMnSet">
+        <ul>
+          <!--{foreach from=$cat_goods item=goods}-->
+          <li><a class="goods" target="_blank" href="{$goods.url}"><img alt="{$goods.name|escape:html}" src="{$goods.thumb}">
+            <div class="tMsk h" style="display:none;"><span>{$goods.short_name|escape:html}</span><i>查看详细</i></div>
+            </a></li>
+          <!--{/foreach}-->
+          
+        </ul>
+      </div>
+      <div class="bx-controls bx-has-pager bx-has-controls-direction ">
+        <ul class="bx-default-pager cat_goods_item">
+        </ul>
+        <div class="bx-controls-direction"><a href="javascript:void(0);" class="bx-prev"><span class="c__ls_pointer">&nbsp;</span></a><a href="javascript:void(0);" class="bx-next"><span class="c__rs_pointer">&nbsp;</span></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+<div class="cat_slide" value="{$goods_cat.name}">
+  <div class="tShwPic">
+  {insert name='get_ad' cat_name=$goods_cat.name ad_name="左侧广告" num=1}
+ </div>
+  <div class="tBndSet">{insert name='get_ad' cat_name=$goods_cat.name ad_name="右侧广告" num=1}
+    <div class="tBndPdtLst">
+      <div class="tMnSet">
+        <ul>
+          <!--{foreach from=$cat_goods item=goods}-->
+          <li><a class="goods" target="_blank" href="{$goods.url}"><img alt="{$goods.name|escape:html}" src="{$goods.thumb}">
+            <div class="tMsk h" style="display:none;"><span>{$goods.short_name|escape:html}</span><i>查看详细</i></div>
+            </a></li>
+          <!--{/foreach}-->
+          
+        </ul>
+      </div>
+      <div class="bx-controls bx-has-pager bx-has-controls-direction ">
+        <ul class="bx-default-pager cat_goods_item">
+        </ul>
+        <div class="bx-controls-direction"><a href="javascript:void(0);" class="bx-prev"><span class="c__ls_pointer">&nbsp;</span></a><a href="javascript:void(0);" class="bx-next"><span class="c__rs_pointer">&nbsp;</span></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+</div>
+</div>
+<!--//  精品结束    -->
+
+</div>
+
+<script type="text/javascript">
+
+$("#new_classicSet .cat_slide").slide({titCell:".cat_goods_item",mainCell:".tMnSet ul",vis:4,scroll:4,autoPage:true,prevCell:".bx-prev",nextCell:".bx-next",effect:"leftLoop",startFun:function(){
+			$(".cat_slide li").mouseenter(function(){
+	
+				$(this).find(".tMsk").show();	
+			})
+			
+			$(".cat_slide li").mouseleave(function(){
+				$(this).find(".tMsk").hide();
+			})
+			
+			
+		}	
+	});
+
+	/* 外层tab切换 */
+	//$("#new_classicSet").slide({titCell:"#new_clsiTit li",mainCell:"#new_clsiCon",titOnClassName:"curr"});
+
+
+
+$("#best_classicSet .cat_slide").slide({titCell:".cat_goods_item",mainCell:".tMnSet ul",vis:4,scroll:4,autoPage:true,prevCell:".bx-prev",nextCell:".bx-next",effect:"leftLoop",startFun:function(){
+			$(".cat_slide li").mouseenter(function(){
+	
+				$(this).find(".tMsk").show();	
+			})
+			
+			$(".cat_slide li").mouseleave(function(){
+				$(this).find(".tMsk").hide();
+			})
+			
+			
+		}	
+	});
+
+	/* 外层tab切换 */
+	//$("#best_classicSet").slide({titCell:"#clsiTit li",mainCell:"#best_clsiCon",titOnClassName:"curr"});
+
+
+/*
+*外层tab切换 改为以函数的方式
+*/
+function change_show_cat(obj,o_class){
+	var o_i = $(obj).parent().index();//.siblings().size();//length;
+	//console.log(o_i);
+	//alert(o_len);
+	var o_slide ='.cat_slide';
+	$('#'+o_class+' '+o_slide).hide();
+	$('#'+o_class).find(o_slide).eq(o_i).show();
+}	
+	
+	/* 外层tab切换 */
+	//$("#classicSet").slide({titCell:"#new_clsiTit li",mainCell:"#new_clsiCon",titOnClassName:"curr"});
+
+//change_show_cat(this);
+	//onmouseover="change_tab_style('itemNew', 'li', this);"
+
+</script>
+
+
+<div class="blank5"></div>
+<!-- #BeginLibraryItem "/library/botm_zx.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/pinpai_sq.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+<script type="text/javascript">
+$(function(){
+	
+	$(".wbPt").find("dl").hover(function() {
+        $(this).animate({
+            top: "-150px"
+        },
+        500, "swing")
+    },
+    function() {
+        $(this).stop(!0, !1).animate({
+            top: "0px"
+        },
+        500, "swing")
+    })
+	
+
+    $(".c__dimension, .i__weixin").mouseenter(function() {
+        $(this).after('<div class="qrcode"><img src="images/qrcode.png" style="width:250px;height:250px;"></div>')
+    }).mouseleave(function() {
+        $(".qrcode").remove()
+    })
+
+	
+})
+{foreach from=$lang.compare_js item=item key=key}
+{if $key neq 'button_compare'}
+var {$key} = "{$item}";
+{else}
+var button_compare = '';
+{/if}
+{/foreach}
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>
+
+</body>
+</html>

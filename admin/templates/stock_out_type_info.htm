@@ -1,0 +1,52 @@
+<!-- $Id: articlecat_info.htm 16752 2009-10-20 09:59:38Z wangleisvn $ -->
+{include file="pageheader.htm"}
+<div class="main-div">
+<form method="post" action="stock_out_type.php" name="theForm"  onsubmit="return validate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+    <tr>
+    <td class="label">出库类型(原因):</td>
+    <td>
+    <input type="text" name="remarks" id="remarks" maxlength="50" size="50" value="" />
+    </td>
+  </tr>
+  <tr>
+    <td class="label">&nbsp;</td>
+    <td>
+      <input type="submit" class="button"       value="{$lang.button_submit}" />
+      <input type="reset" class="button"        value="{$lang.button_reset}" />
+      <input type="hidden" name="act"           value="{$form_action}" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+   var remarks = document.getElementById('remarks').value;
+   
+   if(remarks == "")
+   {
+    alert("请输入文字");
+    document.getElementById("remarks").focus();
+    return false;
+   }
+   
+}
+
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

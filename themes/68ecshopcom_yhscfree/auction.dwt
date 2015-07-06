@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,lefttime.js'}
+<script type="text/javascript">
+  {foreach from=$lang.js_languages item=item key=key}
+    var {$key} = "{$item}";
+  {/foreach}
+</script>
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<div class="block clearfix">
+  <div id="pageLeft" class="fl">
+	 <!-- TemplateBeginEditable name="左边区域" -->
+	 <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem --> 
+	 <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+	 <!-- #BeginLibraryItem "/library/promotion_info.lbi" --><!-- #EndLibraryItem -->
+   <!-- TemplateEndEditable -->
+	</div>
+	<div id="pageRight" class="fr">
+	
+  <div class="mod1 blank" id="auction_goods_info">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$lang.auction_goods_info}</h1>
+	<div class="mod1con">
+		<div class="grouplist clearfix">
+					<div class="group_buy_list clearfix" style="border-bottom:none;">
+						<div class="fl groupImg">
+							<a href="{$auction_goods.url}"><img src="{$auction_goods.goods_thumb}" alt="{$auction_goods.goods_name|escape:html}" /></a>
+						</div>
+						<div class="fl">
+							<form name="theForm" action="auction.php" method="post">
+							{$lang.goods_name}：<font class="f14b">{$auction.goods_name|escape:html}</font><br>
+							{$lang.au_current_price}：<font class="price">{$auction.formated_current_price}</font><br>
+							起止时间：<font class="f1">{$auction.start_time} -- {$auction.end_time}</font><br>
+							{$lang.au_start_price}：<font class="price">{$auction.formated_start_price}</font><br>
+							{$lang.au_amplitude}：<font class="price">{$auction.formated_amplitude}</font><br>
+							<!-- {if $auction.end_price gt 0} -->
+							{$lang.au_end_price}：{$auction.formated_end_price}<br>
+							<!-- {/if} -->
+							<!-- {if $auction.deposit gt 0} -->
+							{$lang.au_deposit}：<font class="price">{$auction.formated_deposit}</font><br>
+							<!-- {/if} -->
+							<!-- {if $auction.status_no eq 0} 未开始 -->
+							{$lang.au_pre_start}
+							<!-- {elseif $auction.status_no eq 1} 进行中 -->
+							<font class="f1">{$lang.au_under_way}<font id="leftTime">{$lang.please_waiting}</font></font><br />
+							{$lang.au_i_want_bid}：
+							<input name="price" type="text" class="InputBorder" id="price" size="8" />
+							<input name="bid" type="submit" class="bnt_number2" id="bid" value="{$lang.button_bid}" />
+							<input name="act" type="hidden" value="bid" />
+							<input name="id" type="hidden" value="{$auction.act_id}" /><br />
+							<!-- {else} 已结束 -->
+							<!-- {if $auction.is_winner} -->
+							<font class="f1">{$lang.au_is_winner}</font><br />
+							<input name="buy" type="submit" class="bnt_number2" value="{$lang.button_buy}" />
+							<input name="act" type="hidden" value="buy" />
+							<input name="id" type="hidden" value="{$auction.act_id}" />
+							<!-- {else} -->
+							{$lang.au_finished}
+							<!-- {/if} -->
+							<!-- {/if} -->
+							</form>
+						</div>
+					</div>
+	  </div>
+	</div>
+	</div>
+	<script type="text/javascript">divheight("auction_goods_info");</script>
+
+  <div class="goodsTitle blank">{$lang.activity_intro}</div>
+	<div class="mod2con">
+	{$auction.act_desc|escape:html|nl2br}
+	</div>
+	
+	<div class="goodsTitle blank">{$lang.bid_record}</div>
+	<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+      <tr>
+        <th align="center" bgcolor="#ffffff">{$lang.au_bid_user}</th>
+        <th align="center" bgcolor="#ffffff">{$lang.au_bid_price}</th>
+        <th align="center" bgcolor="#ffffff">{$lang.au_bid_time}</th>
+        <th align="center" bgcolor="#ffffff">{$lang.au_bid_status}</th>
+      </tr>
+<!-- {foreach from=$auction_log item=log name=fe_bid_log} -->
+      <tr>
+        <td align="center" bgcolor="#ffffff">{$log.user_name}</td>
+        <td align="center" bgcolor="#ffffff">{$log.formated_bid_price}</td>
+        <td align="center" bgcolor="#ffffff">{$log.bid_time}</td>
+        <td align="center" bgcolor="#ffffff">{if $smarty.foreach.fe_bid_log.first} {$lang.au_bid_ok}{else}&nbsp;{/if}</td>
+      </tr>
+    <!-- {foreachelse} -->
+    <tr>
+      <td colspan="4" align="center" bgcolor="#ffffff">{$lang.no_bid_log}</td>
+    </tr>
+    <!-- {/foreach} -->
+ </table>
+
+
+	</div>
+</div>
+
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+<script type="text/javascript">
+var gmt_end_time = "{$auction.gmt_end_time|default:0}";
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+var now_time = {$now_time};
+{/foreach}
+<!-- {literal} -->
+
+onload = function()
+{
+  try
+  {
+    onload_leftTime(now_time);
+  }
+  catch (e)
+  {}
+}
+<!-- {/literal} -->
+</script>
+</html>

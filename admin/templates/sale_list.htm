@@ -1,0 +1,137 @@
+{if $full_page}
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+  <form name="TimeInterval"  action="javascript:getList()" style="margin:0px">
+  	<img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+	{$lang.start_date}&nbsp;
+    <input name="start_date" type="text" id="start_date" size="15" value='{$start_date}' readonly="readonly" /><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="button"/>&nbsp;&nbsp;
+    {$lang.end_date}&nbsp;
+    <input name="end_date" type="text" id="end_date" size="15" value='{$end_date}' readonly="readonly" /><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="button"/>&nbsp;&nbsp;
+	{if $all == 'all'}
+	选择代理商
+	<select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</caption>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>
+	{else}
+	<input type="hidden" name="admin_agency_id" value=""/>
+	{/if}&nbsp;&nbsp;
+    支付类型:
+    <select name="payment_method" style="width:100px">
+      <option value="">{$lang.select_please}</caption>
+      <option value="">所有类型</caption>
+      <option value="1">余额支付</caption>
+      <option value="2">货到付款</caption>
+      <option value="3">在线支付</caption>    
+    </select>    
+    
+    <input type="submit" name="submit" value="{$lang.query}" class="button" />
+  </form>
+</div>
+<form method="POST" action="" name="listForm">
+<div class="list-div" id="listDiv">
+{/if}
+  <table width="100%" cellspacing="1" cellpadding="3" border="0">
+     <tr>
+      <th>{$lang.order_sn}</th>
+      <th>{$lang.goods_name}</th>
+      <th>{$lang.amount}</th>
+      <th>{$lang.sell_unit_price}</th>
+      <th>{$lang.order_total_price}</th>
+	  <th>{$lang.costing_price}</th>
+	  <th>{$lang.profit_total}</th>
+      <th>{$lang.sell_date}</th>
+    </tr>
+  {foreach from=$goods_sales_list item=list}
+    <tr align="center">
+      <td><a href="order.php?act=info&order_id={$list.order_id}">{$list.order_sn}</a></td>
+      <td align="left" title="{$list.goods_name}"><a href="../goods.php?id={$list.goods_id}" target="_blank">{$list.goods_name}</a></td>
+      <td>{$list.goods_num}</td>
+      <td align="right">{$list.unit_sales_price}</td>
+      <td align="right">{$list.goods_amount}</td>
+      <td align="right">{$list.order_costing_price}</td>
+      <td align="right">{$list.profit_total}</td>
+      <td>{$list.sales_time}</td>
+    </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="11">{$lang.no_records}</td></tr>
+  {/foreach}
+  	<tr><td colspan="11">&nbsp;</td></tr>
+  	<tr>
+  		<td colspan="3">&nbsp;</td>
+  		<td>&nbsp;</td>
+  		<td align="right">{$lang.total_sales_price}:{$sales_price}</td>
+  		<td align="right">{$lang.total_costing_price}:{$costing_price}</td>
+		<td align="right">{$lang.total_profit_total}:{$profit_total}</td>
+		<td>&nbsp;</td>
+  	</tr>
+  </table>
+ 
+  <table id="page-table" cellspacing="0">
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+  </table>
+{if $full_page}
+</div>
+</form>
+
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+<!--
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+  getDownUrl();
+}
+
+function getList()
+{
+    var frm =  document.forms['TimeInterval'];
+    listTable.filter['start_date'] = frm.elements['start_date'].value;
+    listTable.filter['end_date'] = frm.elements['end_date'].value;
+    listTable.filter['admin_agency_id'] = frm.elements['admin_agency_id'].value;
+	listTable.filter['payment_method'] = frm.elements['payment_method'].value;   
+    listTable.filter['page'] = 1;
+    //alert(listTable.filter['admin_agency_id']);
+    listTable.loadList();
+    getDownUrl();
+}
+
+function getDownUrl()
+{
+  var aTags = document.getElementsByTagName('A');
+  for (var i = 0; i < aTags.length; i++)
+  { 
+    if (aTags[i].href.indexOf('download') >= 0)
+    {
+      if (listTable.filter['start_date'] == "")
+      {
+        var frm =  document.forms['TimeInterval'];
+        listTable.filter['start_date'] = frm.elements['start_date'].value;
+        listTable.filter['end_date'] = frm.elements['end_date'].value;
+        listTable.filter['admin_agency_id'] = frm.elements['admin_agency_id'].value;
+        listTable.filter['payment_method'] = frm.elements['payment_method'].value;
+      }
+      aTags[i].href = "sale_list.php?act=download&start_date=" + listTable.filter['start_date'] + "&end_date=" + listTable.filter['end_date']+ "&admin_agency_id=" + listTable.filter['admin_agency_id']+ "&payment_method=" + listTable.filter['payment_method'];
+    }
+  }
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

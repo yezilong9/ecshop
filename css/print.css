@@ -1,0 +1,270 @@
+/*快讯打印代码*/
+.print_bd{margin-top: 20px;background-color: #fff;padding-top: 10px;}
+.pt_tb_hd{height: 46px;background-color: #f8f8f8;width: 970px;margin: 0 auto;}
+.pt_tb_bd{padding-top: 55px;}
+.pt_tb_hd li{float: left;display: inline;width: 270px;padding-right: 80px;line-height: 46px;}
+.pt_tb_hd .lastitem{padding-right: 0;}
+.pt_tb_hd li img{vertical-align: middle;}
+.pt_tb_hd li a{float: left;display: inline;width: 270px;text-align: center;font-size: 18px;color: #8a949e;line-height: 46px;font-family: "黑体";}
+.pt_tb_hd .pt_tb_cur{background: url(http://portal.txd168.com/assets/images/pt_tb_cur.png) 0 0 no-repeat;width: 270px;height: 55px;margin-bottom: -9px;line-height: 55px;position: relative;}
+.pt_tb_hd .pt_tb_cur a{color: #fff;}
+.pt_tb_bd{width: 934px;margin: 0 auto;}
+.pt_zm{float: left;display: inline;text-align: center;}
+.pt_bm{float: right;display: inline;text-align: center;}
+
+/*正面和背面按钮*/
+.zm_pic,.bm_pic{width: 446px;border: 2px solid #f3f3f3;text-align: center;}
+.zm_pic img,.bm_pic img{width: 440px;height: 326px;padding-top: 2px;}
+.zm_btn,.bm_btn{padding: 20px 0 20px 180px;}
+.zm_btn a,.bm_btn a{display: block;width: 98px;height: 37px;text-align: center;line-height: 36px;font-size: 16px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.zm_btn a{background: url(http://portal.txd168.com/assets/images/bm_btn.png) 0 0 no-repeat;color: #838383;}
+.bm_btn a{background: url(http://portal.txd168.com/assets/images/bm_btn.png) 0 0 no-repeat;color: #838383;}
+.zm_btn a:hover{background: url(http://portal.txd168.com/assets/images/zm_btn.png) 0 0 no-repeat;color: #fff;}
+.bm_btn a:hover{background: url(http://portal.txd168.com/assets/images/zm_btn.png) 0 0 no-repeat;color: #fff;}
+/*选择样品内容*/
+/*公共样式*/
+.mod_a{border-bottom:3px solid #5d7895;color: #5d7895;font-weight: bold;padding-bottom: 10px;}
+.mod_b{border-bottom:2px solid #f2f2f2;color: #5d7895;padding-bottom:5px;}
+.mod{width: 970px;margin: 0 auto;padding-top: 40px;}
+/*正面内容*/
+.pt_tb_bd1{}
+.pt_sideA{}
+.s_zm_a{}
+.side_rt{float: right;display: inline;}
+.side_rt .side_rt_tips{color:#479ee9;}
+/*背面内容*/
+.productcount{display: none;}
+.wenzitxt{float: right;display: inline;padding-bottom: 12px;padding-top: 48px;}
+.wenzitxt p{}
+.wenzitxt p em{font-style: normal;font-size: 16px;font-weight: bold;color: #818181;}
+.wenzitxt p .em1{color: #ff6306;}
+.chanpinliebiao{background-color: #f8f8f8;border: 1px solid #f0f0f0;height: 190px;position: relative;clear: both;}
+.chanpinwrapper{overflow: hidden;position: absolute;left: 32px;top:12px;width: 900px;height: 165px;}
+.chanpin_box{width: 1800px;height: 165px;position: absolute;left: 0;top:0;}
+.chanpin_con{width: 900px;height: 165px;padding: 0;margin: 0;position: absolute;}
+.chanpin_con ul li{float: left;display: inline;width: 146px;height: 165px;background-color: #f0832b;margin-right: 4px;overflow: hidden;}
+
+.cpitem{width: 138px;height: 89px;background-color: #fff;text-align: center;margin: 0 auto;margin-top: 3px;}
+.s_zhekou{background: url(http://portal.txd168.com/assets/images/s_zhekou.png) 0 0 no-repeat;width: 46px;height: 46px;position: absolute;right: 5px;top:35px;text-align: center;line-height: 50px;font-size: 18px;color: #f4e829;}
+.chanpin_con ul .mr_lastitem{margin-right: 0;}
+.chanpin_con ul li{position: relative;}
+.chanpininfo{}
+.chanpininfo p{font-weight: bold;font-family: "黑体";}
+.chanpininfo .cpxinxi{color: #fff;padding-top: 5px;padding-left: 5px;} /* before is padding-top: 10px; */
+.chanpininfo .cpbianhao{color: #040000;background-color: #f5e828;height: 12px;width: 100px;line-height: 12px;margin-left: 5px;margin-top: 10px;}
+.cpitemclose{background: url(http://portal.txd168.com/assets/images/cpitemclose.png) 0 0 no-repeat;width: 20px;height: 20px;position: absolute;right: 0;top:0;}
+/*切换按钮*/
+.chanpinliebiao .change_btn a{cursor:pointer;width: 14px;height: 30px;}
+.chanpinliebiao .back_btn{position: absolute;left: 10px;top:80px;}
+.chanpinliebiao .goto_btn{position: absolute;right:15px;top:80px;}
+/*切换按钮 end*/
+
+/*产品分类和展示*/
+.chanpinmain{padding-top: 30px;width: 950px;margin: 0 auto;position: relative;}
+.chanpinfenlei{float: left;display: inline;width: 180px;}
+.chanpinzhanshi{float: right;display: inline;width: 750px;}
+.fenlei_hd{height: 38px;background: url(http://portal.txd168.com/assets/images/fenlei_hd.png) 0 0 repeat-x;}
+.fenlei_hd h2{color: #fff;line-height: 38px;text-align: center;font-size: 14px;}
+.fenlei_bd{background-color: #f8f8f8;height: 820px;overflow: hidden;}
+.fenlei_bd ul li h2{color: #333;font-size: 14px;line-height: 24px;padding-top: 10px;padding-left: 10px;}
+.fenlei_bd ul li h2 .cpico{vertical-align: middle;}
+.fenlei_bd ul li{border-bottom: 1px dashed #e3e3e3;border-top: 1px dashed #fff;padding-bottom: 10px;}
+.fenlei_bd ul li p{color: #777;padding-top: 5px;padding-left: 20px;line-height: 24px;}
+.fenlei_bd ul li p a{color: #777;}
+.fenlei_bd ul li p a:hover{text-decoration: underline;color: #d31d17;}
+.fenlei_bd ul .bm_item{border: 0;}
+/*产品分类和展示end*/
+/*产品页分页*/
+.chanpinpage{border-top:0;padding-top: 40px;padding-bottom: 54px;}
+/*产品页分页end*/
+.pageNum {
+	clear: both;
+	display: inline;
+	float: right;
+	height: 26px;
+	padding-right: 20px;
+	text-align: center;
+}
+.pageNum .pg_cur {
+	background-color: #6DB3EF;
+	color: #FFFFFF;
+}
+.pageNum a {
+	background-color: #FFFFFF;
+	border: 1px solid #F7F7F7;
+	color: #9B9B9B;
+	cursor: pointer;
+	line-height: 26px;
+	padding: 5px 8px;
+}
+
+/*背面A内容*/
+.pt_side{position: relative;border-bottom:2px solid #f2f2f2;padding-bottom: 10px;font-size:14px;}
+.pt_side a{color: #333;}
+.pt_side .s_bm_cur{color: #5d7895;font-weight: bold;padding-bottom: 10px;border-bottom:3px solid #5d7895;}
+.sideReset{border:none;padding:15px 10px;background:#fff;width:970px;margin-top:20px;}
+.s_bm_b{margin-left: 10px;}
+.s_bm_a{}
+/*.s_liangmian{position: absolute;left: 50px;top:-35px;background: url(http://portal.txd168.com/assets/images/s_liangmian.png) 0 0 no-repeat;width: 78px;height: 32px;text-align: center;color: #fff;font-size: 12px;line-height: 24px;}*/
+.pt_banmian{padding-top: 160px;padding-bottom: 272px;}
+.pt_bm_count p{text-align: center;color: #7a7a7a;font-size: 20px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.pt_bm_count p .tiaoxuan{text-align: center;background: url(http://portal.txd168.com/assets/images/tiaoxuan.png) 0 0 no-repeat;height: 38px;width: 112px;display: inline-block;color: #fff;line-height: 36px;}
+.pt_bm_count{display: none;}
+
+/*产品列表seeking*/
+.pt_product_list{padding-top:10px;}
+.pt_product_list dl{width:230px;height:270px;display:inline-block;*display:inline;zoom:1;background:#f0832b;padding:4px;position:relative;margin-right:12px;overflow: hidden;}
+.pt_product_list dl:hover{background:#d31d17;}
+.pt_product_list dl.last{margin-right:0;}
+.pt_product_list dt{font: 18px/20px "黑体";color:#fff;position:absolute;top:185px;padding:5px;}
+.pt_product_list .p_img{width:230px;height:180px;background:#fff;position:absolute;top:4px;left:4px;text-align:center;}
+.pt_product_list .p_bianhao{width:144px;height:20px;background:#f5e828;position:absolute;left:10px;bottom:10px;font:bold 18px/20px "黑体";line-height: 20px;_line-height: 24px;}
+.pt_product_list .p_zhekou{background:url(http://portal.txd168.com/assets/images/p_zhekou.png) no-repeat;width:102px;height:102px;position:absolute;right:15px;top:80px;color:#f4e829;font:bold 42px/115px "黑体";text-align:center;}
+.pt_product_list .p_zhekou1{background:url(http://portal.txd168.com/assets/images/p_zhekou11.png) no-repeat;width:82px;height:81px;position:absolute;right:15px;top:80px;color:#f4e829;font:32px/115px "黑体";text-align:center;}
+
+.pt_product_list .gouxuan{background: url(http://portal.txd168.com/assets/images/gouxuan.png) 0 0 no-repeat;width:32px; height:32px;;position: absolute;top:0px;left:0px;padding:0px;}
+.pt_product_list .no_gouxuan{border-color: #f0832b;border-style: solid; border-width: 4px;position: absolute;top:0px; left:0px;padding:0px;background-color: #c1c1c1;width: 26px;height: 26px;line-height: 26px;}
+.pt_product_list .hui{background:#d31d17;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;z-index:999;}
+
+
+.pt_product_listA{padding-top:10px;}
+.pt_product_listA dl{width:180px;height:217px;display:inline-block;*display:inline;zoom:1;background:#f0832b;padding:4px;position:relative;margin-right:12px;overflow: hidden;}
+.pt_product_listA dl:hover{background:#d31d17;}
+.pt_product_listA dl.last{margin-right:0;}
+.pt_product_listA dt{font: 14px/16px "黑体";color:#fff;position:absolute;top:140px;padding:5px;}
+.pt_product_listA .p_img{width:180px;height:135px;background:#fff;position:absolute;top:4px;left:4px;text-align:center;}
+.pt_product_listA .p_img img{max-height:135px;_height:expression(this.height > 135 ? "135px" : this.height);}  /* 不变形 */
+.pt_product_listA .p_bianhao{width:144px;height:20px;background:#f5e828;position:absolute;left:10px;bottom:10px;font:bold 15px/20px "黑体";line-height: 20px;_line-height: 24px;}
+.pt_product_listA .p_zhekou{background:url(http://portal.txd168.com/assets/images/p_zhekou.png) no-repeat;width:102px;height:102px;position:absolute;right:15px;top:80px;color:#f4e829;font:bold 42px/115px "黑体";text-align:center;}
+.pt_product_listA .p_zhekou1{background:url(http://portal.txd168.com/assets/images/p_zhekou11.png) no-repeat;width:82px;height:81px;position:absolute;right:15px;top:65px;color:#f4e829;font:32px/100px "黑体";text-align:center;}
+
+.pt_product_listA .gouxuan{background: url(http://portal.txd168.com/assets/images/gouxuan.png) 0 0 no-repeat;width:32px; height:32px;;position: absolute;top:0px;left:0px;padding:0px;}
+.pt_product_listA .no_gouxuan{border-color: #f0832b;border-style: solid; border-width: 4px;position: absolute;top:0px; left:0px;padding:0px;background-color: #c1c1c1;width: 26px;height: 26px;line-height: 26px;}
+.pt_product_listA .hui{background:#d31d17;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;z-index:999;}
+
+/*侧边栏按钮seeking*/
+.sider_top{width:124px;position:fixed;right:30px;top:150px;_position: absolute;_right:-182px;}
+.sider_top a{display:block;width:120px;height:35px;text-align:center;margin-top:8px;font-size: 16px;line-height: 35px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.sider_top .green:hover{color:#fff;background:#8abf2d;background-image:linear-gradient(#b4d85a,#a2cf4d,#7cb32c);}
+.sider_top .green{color:#fff;background:#639518;background-image:linear-gradient(#b4d85a,#b3d859,#b0d657);}
+/*.sider_top .blue:hover{color:#fff;background:#e3e3e3;background-image:linear-gradient(#e3e3e3,#e2e2e2,#c5c5c5);border:1px solid #ddd;}
+.sider_top .blue{color:#fff;background:#73b7f0;background-image:linear-gradient(#73b7f0,#91c4ef,#6ab1ef);}
+.sider_top .orange:hover{color:#fff;background:#e3e3e3;background-image:linear-gradient(#e3e3e3,#e2e2e2,#c5c5c5);border:1px solid #ddd;}
+.sider_top .orange{color:#fff;background:#fba30e;background-image:linear-gradient(#fba30e,#fc920d,#f08408);}
+*/
+.sider_top .blue:hover{color:#fff;background:#91c4ef;background-image:linear-gradient(#86c1f4,#5baaee,#3497ee);border:0px solid #ddd;}
+.sider_top .blue{color:#fff;background:#73b7f0;}
+.sider_top .orange:hover{color:#fff;background:#fc920d;background-image:linear-gradient(#f9c25d,#fc920d,#f08408);border:0px solid #ddd;}
+.sider_top .orange{color:#fff;background:#fba30e;}
+
+.sider_top .gray:hover{color:#fff;background:#e3e3e3;background-image:linear-gradient(#e3e3e3,#e2e2e2,#c5c5c5);border:0px solid #ddd;}
+.sider_top .gray{color:#fff;background:#e3e3e3;background-image:linear-gradient(#e3e3e3,#e2e2e2,#c5c5c5);}
+
+
+/*挑选弹窗*/
+.tx_pop{background: url(http://portal.txd168.com/assets/images/tx_pop.jpg) 0 0 no-repeat;position: absolute;left: 50%;margin-left: -200px;width: 400px;height: 242px;display: none;}
+.tx_closeBtn{background: url(http://portal.txd168.com/assets/images/tx_closeBtn.png) 0 0 no-repeat;position: absolute;right: 0;top:0;width: 46px;height: 42px;}
+.tiaoxuantxt{text-align: center; margin-top: 5px;position: relative; top:90px;font-size: 18px;color: #505050;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.tiaoxuantxt span{color: #50a1e9;}
+.tx_yes,.tx_goto{width: 76px;height: 32px;line-height: 32px;text-align: center;color: #fff;font-weight: bold;position: absolute;}
+.tx_yes{left: 100px;top:160px;background: url(http://portal.txd168.com/assets/images/tx_yes.png) 0 0 no-repeat;}
+.tx_goto{left: 220px;top:160px;background: url(http://portal.txd168.com/assets/images/tx_goto.png) 0 0 no-repeat;}
+/*挑选弹窗end*/
+/*保存打印内容*/
+.pt_lujing{padding-top: 70px;}
+.pt_lujing p{color: #7a7a7a;font-size: 20px;text-align: center;}
+.pt_lujing p a{font-size: 12px;color: #3891dd;}
+.s_success{background: url(http://portal.txd168.com/assets/images/pre_success.png) 0 0 no-repeat;width: 45px;height: 35px;vertical-align: middle;display: inline-block;}
+
+.pt_onbtn{text-align: center;padding-top: 120px;padding-bottom: 272px;}
+.pt_onbtn a{text-align: center;color: #fff;font-size: 16px;width: 118px;height: 34px;display: inline-block;line-height: 34px;font-family: "黑体";}
+.pt_link_01{background-color: #fb9a0e;border: 1px solid #ea8a10;}
+.pt_link_02{background-color: #b0d656;border: 1px solid #aec671;margin-left: 50px;}
+
+/*操作提示按钮*/
+.pt_side .handleico{width: 83px;height: 25px;line-height: 25px;background: url(http://portal.txd168.com/assets/images/handleico.png) 0 0 no-repeat;position: absolute;right: 0;top:27px;font-size: 12px;color: #fff;padding-left: 10px;}
+.pt_showpic{padding-top: 30px;}
+/*.pt_showpic img{width: 100%;height: 737px;}*/
+
+/*提示窗*/
+.tishichuang{z-index: 2;background:url(http://portal.txd168.com/assets/images/tishichuang.png) 0 0 no-repeat;width: 196px;height: 238px;position: absolute;right: 0;top:52px;display: block;}
+.tip_close{position: absolute;right: 8px;top:14px;width: 30px;height: 24px;}
+
+
+/*热销产品和全部产品*/
+.cpzs_hd{}
+.chanpinrexiao{float: left;display: inline;}
+.chanpinsearch{line-height: 24px;position: absolute;right: 238px;top:22px;}
+.cpsearchTxt{height: 28px;width: 176px;border: 1px solid #d6d6d6;color: #909090;padding-left: 10px;position: absolute;}
+.cp_searchbtn{border: 1px solid #4f6985;height: 28px;width: 50px;background-color: #5b89b0;color: #fff;text-align: center;position: absolute;z-index: 1;margin-left: 185px;line-height: 28px;}
+.chanpinrexiao{font-size: 14px;line-height: 24px;}
+.chanpinrexiao a{color: #333;padding-bottom: 10px;font-weight: normal;}
+.chanpinrexiao .quanbu_cp{}
+.chanpinrexiao .rexiao_cp{margin-right: 10px;}
+.chanpinrexiao .cp_tab_cur{border-bottom: 2px solid #5d7895;color: #5d7895;font-weight: bold;}
+.cp_tab_count{display: none;}
+.cpzs_bd{padding-top: 10px;height: auto;overflow: hidden;}
+.cp_tab_count .chanpinlist li{float: left;display: inline;width: 176px;height: 268px;border: 1px solid #e4e4e4;margin-right: 10px;margin-bottom: 10px;overflow: hidden;}
+.cp_tab_count .chanpinlist .mr_item{margin-right: 0;}
+.cp_tab_count .chanpinlist .mb_item{margin-bottom: 0;}
+.chanpinlist li .chanpinpic{width: 174px;height: 152px;padding-top: 1px;padding-left: 1px;overflow: hidden;}
+.chanpinlist li .chanpinpic img{max-width:174px;_width:expression(this.width > 174 ? "174px" : this.width);}  /* 不变形 */
+
+/*不同状态样式*/
+.cp_tab_count .chanpinlist .cplink_cur{border: 1px solid #d31f19;}
+.chanpinbianhao .gouxuan{background: url(http://portal.txd168.com/assets/images/gouxuan.png) 0 0 no-repeat;width: 30px;height: 28px;position: absolute;right: 0;bottom: 0;}
+
+
+.cpjieshou{padding-left: 10px;color: #6a6a6a;line-height: 16px; word-wrap: break-word;overflow: hidden; height: 48px;}
+.cpprice{padding-left: 10px;line-height: 16px;padding-top: 7px;}
+.cpprice i,.cpprice em{font-style: normal;}
+.cpprice .cpi1{color: #a8a8a8;text-decoration:line-through;}
+.cpprice .cpi2{color: #777;font-weight: bold;}
+.cpprice span{color: #898989;}
+.cpprice span em{line-height: 16px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';color: #e60012;font-weight: bold;}
+
+.chanpinbianhao{height: 30px;background-color: #fff2cc;margin-top: 13px;position: relative;}
+.chanpinbianhao p{padding-left: 10px;line-height: 30px;color: #525252;}
+.chanpinbianhao .tx_bianhao{position: absolute;right: 0;top:0;background-color: #c1c1c1;width: 30px;height: 30px;line-height: 30px;}
+
+/*图片轮番*/
+.focusbg{background-color: #fff;}
+.focuscount{width:990px; height:650px;margin: 0 auto;padding-bottom: 30px;}
+.focuspic{}
+.focuspic{width:990px; height:580px; position:absolute; overflow:hidden;}
+.rongqiul{width:3960px; height:650px; position:absolute; left:0px; cursor:pointer;}
+.rongqiul li{width:990px; height:650px; float:left;}
+#leftbtn{width:48px; height:48px; position:absolute; left:-100px; top:380px; z-index:2; cursor:pointer;}
+#rightbtn{width:48px; height:48px; position:absolute; right:-100px; top:380px; z-index:2; cursor:pointer;}
+/*#leftbtn img:hover{background: url(http://portal.txd168.com/assets/images/focustoleft1.png) 0 0 no-repeat;width: 48px;height: 48px;display: inline-block;}
+#rightbtn img:hover{background: url(http://portal.txd168.com/assets/images/focustoright1.png) 0 0 no-repeat;width: 48px;height: 48px;display: inline-block;}*/
+.dianrongqi{width:116px; height:14px; position:absolute; z-index:3; left:450px; bottom:0px;}
+.dianrongqi li{width:20px; height:14px; float:left; text-align:center; cursor:pointer;margin-right: 5px;}
+
+.H{color: red;}
+
+.tx_pop{z-index: 9;}
+
+/*啊徽624修改*/
+/**/
+.goto_print{
+ height:48px;
+ padding-bottom:10px; border-bottom:1px solid #f6f6f6; 
+ background:url(http://portal.txd168.com/assets/images/goto_print_bg.png) no-repeat;
+}
+
+.goto_print a{
+ display:block;
+ width:177px; height:48px;
+ margin-left:700px; background:url(http://portal.txd168.com/assets/images/goto_print_link.png) no-repeat;
+ line-height:400px;
+ overflow-y:hidden;
+ margin-top: 20px;
+
+}
+.non-cyan:hover {
+background: linear-gradient(#E2E2E2, #E1E1E1, #CCCCCC) repeat scroll 0 0 #CCCCCC;
+border: 0 solid #DDDDDD;
+color: #FFFFFF;
+}
+.non-cyan{ background-color: #E2E2E2;color: #FFFFFF;}

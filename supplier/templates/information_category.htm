@@ -1,0 +1,61 @@
+<!-- $Id: ad_position_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<div class="main-div">
+  <form action="information_category.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+    <table width="100%">
+      <tr>
+        <td class="label">资讯类别名称：</td>
+        <td><input type="text" name="info_cat_name" value="{$info_cats.info_cat_name}" size="30" /><br/>(在这里添加资讯分类名称后，请在 文章列表 中添加相关的文章内容，在 资讯列表 中添加相关的资讯信息。)</td>
+      </tr>
+      <tr>
+        <td class="label">显示顺序：</td>
+        <td><input type="text" name="show_order" value="{$info_cats.show_order}" size="30" /> (资讯名称按数字从小到大的顺序显示到首页资讯信息位置。首页只显示6个资讯大分类，因此想要显示的分类名称就要排在前6个。)</td>
+      </tr>
+      <tr>
+        <td class="label">是否显示(该类别名称)：</td>
+        <td>
+          <input type="radio" name="is_show" {if $info_cats.is_show eq 1 }checked="checked"{/if} value="1" />是
+		<input type="radio" name="is_show" {if $info_cats.is_show eq 0}checked="checked"{/if} value="0" />否
+        </td>
+      </tr>
+      <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+		  <input type="hidden" name="act" value="{$form_act}" />
+		  <input type="hidden" name="info_cat_id" value="{$info_cats.info_cat_id}" />
+          <input type="hidden" name="article_cat_id" value="{$info_cats.article_cat_id}" />
+		  <input type="hidden" name="admin_agency_id" value="{$admin_agency_id}" />
+          <input type="submit" value="保存" class="button" />
+          <input type="reset" value="取消" class="button" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+<!--
+{literal}
+document.forms['theForm'].elements['info_cat_name'].focus();
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("info_cat_name",   '资讯分类名称不能为空！');
+    validator.isNumber("show_order", '显示顺序必须为一个整数！', true);
+    return validator.passed();
+}
+//-->
+{/literal}
+</script>
+
+{include file="pagefooter.htm"}

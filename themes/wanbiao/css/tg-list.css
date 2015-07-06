@@ -1,0 +1,76 @@
+/*公共代码*/
+.lay{background-color: #f2f2f2;}
+.tg-con{width: 100%;max-width: 1225px;margin: 0 auto;margin-top: 10px;}
+.tg-here{width: 100%;}
+.tg-hd{width: 100%;}
+.tg-bd{width: 100%;}
+.tg-here{color: #3e3e3e;}
+.tg-here p{padding:10px 0 10px 12px;}
+.tg-here a{color: #3e3e3e;}
+.tg-pb{padding-bottom: 147px;padding-top: 10px;}
+.tg-pbA{padding-bottom: 146px;}
+/*团购列表代码样式*/
+
+/*排序*/
+.paixu-box{height:28px;width: 1225px;margin-bottom: 10px;}
+.paixu-box ol{width: 1100px;border: 1px solid #d3d3d3;background-color: #fff;height:28px;margin-top: 5px;}
+.paixu-box li{float: left;width: 75px;}
+.paixu-box a{display: inline-block;width: 75px;border-right: 1px solid #ccc;height: 28px;text-align: center;line-height: 28px;color: #333;}
+.paixu-box .px-cur{border-top: 2px solid #b01330;}
+.paixu-box .px-cur a{height: 27px;}
+.px-cur a{color: #b01330;}
+/*排序 end*/
+
+.tg-list li{float: left;width: 386px;height: 532px;border: 1px solid #eaeaea;margin-right: 23px;margin-bottom: 23px;background-color: #fff;}
+.tg-list .last-item{margin-right: 0;margin-bottom:0;}
+.pic-link{width: 360px;height: 360px;display: inline-block;margin: 12px;}
+.tg-pic{font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.pic-name{font-size: 18px;color: #3a3939;}
+.pic-price{position: relative;padding-top: 15px;}
+.pic-price span{font-size: 40px;color: #ff0000;font-weight: bold;}
+.goto{background:url(../images/goto.png) 0 0 no-repeat;width: 169px;height: 51px;text-align: center;position: absolute;right:10px;top:15px;line-height: 51px;color: #fffdf5;font-size: 25px;}
+.pic-num{border-top: 1px solid #eee;width: 356px;margin: 0 auto;margin-top: 15px;padding-top: 15px;color: #3a3939;}
+.pic-num em{font-style:normal;color: #ff0000;}
+.pic-time{padding-left: 120px;}
+
+/*团购详情页面代码样式*/
+.pro-box{width: 1216px;background-color: #fff;padding: 40px 0 52px 0px;}
+.pro-pic{float: left;margin-left:35px;}
+.pro-info{float:left;}
+
+.pic-big{float: left;}
+.pic-small{float: left;margin-left:10px;}
+.pic-small a{display: block;}
+.link-B,.link-C{margin-top: 5px;}
+
+.pro-info h2{font-size: 30px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';margin-left: 10px;}
+.info-cx{width: 514px;height: 70px;border: 1px dashed #ffe6cb;background-color: #fffdf5;margin-top: 15px;margin-left: 20px;}
+.info-cx p{font-size: 14px;color: #4d4d4d;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';padding-left: 12px;line-height: 24px;padding-top: 12px;}
+.info-price{background:url(../images/pro-price.png) 0 0 no-repeat;width: 535px;height: 76px;position: relative;top:16px;left: 0px;}
+.info-price a{left:365px;top:18px;color: #97110d;font-size: 24px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+
+.info-zhekou{padding-top: 20px;padding-left:85px;}
+.info-zhekou span{border-right: 1px dashed #dedede;height: 65px;display: block;float: left;width: 114px;text-align: center;line-height:24px;}
+.info-zhekou i,.info-zhekou em{font-style: normal;}
+.info-zhekou i{font-size: 16px;color: #202020;}
+.info-zhekou em{font-size: 18px;color: #ed145b;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+
+
+.pro-time{clear: both;width: 515px;border-top: 1px dashed #dedede;border-bottom: 1px dashed #dedede;text-align: center;padding: 20px 0;position: relative;left: 10px;top:10px;}
+.pro-time img{vertical-align: middle;}
+.pro-time span{font-size: 18px;color: #3a3a3a;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';}
+.pro-time em{font-style: normal;font-size: 24px;color: #ed145b;}
+.pro-time b{font-weight: normal;color: #3e3e3e;}
+
+.pro-people{padding-top:24px;text-align: center;line-height: 24px;color: #3a3a3a;font-size: 14px;}
+.pro-people span{font-size: 24px;font-family:'\5FAE\8F6F\96C5\9ED1', '\5b8b\4f53';color: #3a3a3a;}
+.pro-people em{font-style: normal;font-size: 24px;color: #ed145b;}
+
+
+
+/*详情内容*/
+.pro-xq{margin-top: 20px;width: 100%;border: 1px solid #ddd;background-color: #fff;}
+.xq-hd{height: 35px;border-bottom: 1px solid #ddd;}
+.xq-hd a{font-size: 14px;width: 120px;display: inline-block;height: 100%;text-align: center;line-height: 35px;border-right: 1px solid #ddd;color: #4c4c4c;font-weight: bold;}
+.xq-hd .xq-cur{color: #cd135d;border-top: 2px solid #b01330;}
+.xq-count{display: none;}

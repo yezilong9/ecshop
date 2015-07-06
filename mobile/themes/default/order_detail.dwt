@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="user.php?act=order_list" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">订单详情</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="javascript:void(0);" class="link link-search  icon-only"><i class="icon icon-magnifier"></i></a>
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+	    <form class="searchbar none" id="search_exit" data-search-list=".list-block-search" data-search-in=".item-title" data-searchbar-found=".searchbar-found" data-searchbar-not-found=".searchbar-not-found" action="search.php">
+          <div class="searchbar-input">
+            <input type="search" name="keywords" placeholder="品牌/商品名" />
+            <a href="#" class="searchbar-clear"></a>
+          </div>
+          <button type="reset" class="btn-cancel">取 消</button>
+        </form>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="member-order-detail" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section spacebetween">
+            <!--订单状态(start)-->
+            <div class="item">
+              <div class="item-hd">
+                <h2 class="tit">订单状态</h2>
+              </div>
+              <div class="item-bd">
+                <p>
+订单号：{$order.order_sn}  
+<br />
+订单状态：{$order.order_status}&nbsp;&nbsp;&nbsp;&nbsp;{$order.confirm_time}<br />
+付款状态：{$order.pay_status}&nbsp;&nbsp;&nbsp;&nbsp;{if $order.order_amount gt 0}{$order.pay_online}{/if}{$order.pay_time}<br />
+
+配送状态：{$order.shipping_status}&nbsp;&nbsp;&nbsp;&nbsp;{$order.shipping_time}<br />
+发货单：{if $order.invoice_no}$order.invoice_no{else}/{/if}                  
+                </p>
+              </div>
+            </div>
+            <!--订单状态(end)-->
+            <!--收货人信息(start)-->
+            <div class="item">
+              <div class="item-hd">
+                <h2 class="tit">收货人信息</h2>
+              </div>
+              <div class="item-bd">
+                <p>
+收货人姓名：{$order.consignee}<br />
+联系电话：{$order.tel}<br />
+E-mail：{$order.email}<br />
+详细地址：{$order.address}
+                </p>
+              </div>
+            </div>
+            <!--收货人信息(end)-->
+            <!--商品支付信息(start)-->
+            <div class="item">
+              <div class="item-hd">
+                <h2 class="tit">商品支付信息</h2>
+              </div>
+              <div class="item-bd">
+                <table class="shopping-list">
+                  <thead>
+                    <tr>
+                      <th>商品名称</th>
+                      <th>购买数量</th>
+                      <th>小计</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+				{foreach from=$goods_list item=goods}
+                    <tr>
+                      <td><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name}</a></td>
+                      <td>{$goods.goods_number}</td>
+                      <td>{$goods.subtotal}</td>
+                    </tr>
+				{/foreach}
+                  </tbody>
+                </table>
+                <p class="pay-info">
+                {$lang.goods_all_price}<!-- {if $order.extension_code eq "group_buy"} -->{$lang.gb_deposit}<!-- {/if} -->: 
+				<strong>{$order.formated_goods_amount}</strong><br />
+              <!-- {if $order.discount gt 0} 折扣 -->
+              - {$lang.discount}: <strong>{$order.formated_discount}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.tax gt 0} -->
+              + {$lang.tax}: <strong>{$order.formated_tax}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.shipping_fee > 0} -->
+              + 运费: <strong>{$order.formated_shipping_fee}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.insure_fee > 0} -->
+              + {$lang.insure_fee}: <strong>{$order.formated_insure_fee}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.pay_fee > 0} -->
+              + {$lang.pay_fee}: <strong>{$order.formated_pay_fee}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.pack_fee > 0} -->
+              + {$lang.pack_fee}: <strong>{$order.formated_pack_fee}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.card_fee > 0} -->
+              + {$lang.card_fee}: <strong>{$order.formated_card_fee}</strong><br />
+              <!-- {/if} -->
+			  
+              <!-- {if $order.money_paid > 0} -->
+              - {$lang.order_money_paid}: <strong>{$order.formated_money_paid}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.surplus > 0} -->
+              - {$lang.use_surplus}: <strong>{$order.formated_surplus}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.integral_money > 0} -->
+              - {$lang.use_integral}: <strong>{$order.formated_integral_money}</strong><br />
+              <!-- {/if} -->
+              <!-- {if $order.bonus > 0} -->
+              - {$lang.use_bonus}: <strong>{$order.formated_bonus}</strong><br />
+              <!-- {/if} -->
+				{if $order.order_amount > 0}应付金额: <strong>￥{$order.order_amount}元</strong><br />{/if}
+                </p>
+              </div>
+            </div>
+            <!--商品支付信息(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+</body>
+</html>

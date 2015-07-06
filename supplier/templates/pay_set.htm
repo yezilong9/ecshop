@@ -1,0 +1,186 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>支付通道设置--系统管理</title>
+<link href="styles/pay/admin.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/css.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/style.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="styles/pay/jquery-1.js"></script>
+<script language="javascript" src="styles/pay/functions_002.js"></script>
+<script language="javascript" src="styles/pay/ajax.js"></script>
+<script src="styles/pay/functions.js" language="javascript"></script>
+<script language="javascript" src="styles/pay/batch_delete.js"></script>
+<script language="javascript" type="text/javascript">
+
+
+function check_cp_frm(){
+  /**/
+  var str_pay_way_id      = $('#pay_way_id').val();
+  var str_p_way_set_type  = $('#p_way_set_type').val();
+  var str_p_way_set_name  = $('#p_way_set_name').val();
+  var str_status          = $('#status').val();
+  var str_pay_bank_id     = $('#pay_bank_id').val();
+
+  if(str_p_way_set_type == ''){
+    alert('类型不能为空');
+    return false;
+  }
+  if(str_p_way_set_name == ''){
+    alert('名称不能为空');
+    return false;
+  }
+  if(str_pay_way_id == ''){
+    alert('请选择支付商');
+    return false;
+  }
+  if(str_status == ''){
+    alert('状态不能为空');
+    return false;
+  }
+  if(str_pay_bank_id){
+  	$("#pay_bank_id_value").val(str_pay_bank_id);
+  	}
+  return true;
+}
+
+function get_bank_option(){
+	var str_p_way_set_type  = $('#p_way_set_type').val();
+	if(str_p_way_set_type == ''){
+		alert("请先填写类型");
+		$('#p_way_set_type').focus();
+		$("#pay_way_id").attr("value","0");
+	}
+	
+	return false;
+}
+ 
+function pay_p(){
+	var select_va = $('#pay_way_id').val();
+	var p_way_set_type = $('#p_way_set_type').val();
+	$.getJSON("pay.php", { pay_id:select_va,pay_rul:"pay_bank_name"}, function(json){
+	var a="";
+	if(json != '' && p_way_set_type == 3)
+	{
+		$('#pay_id').css('display','');
+		$('#pay_id_yin').css('display','');
+		 for(i=0;i<json.length;i++){
+			a+='<option value='+json[i].paybank_id+'>'+json[i].bank_name+'</option>';
+		 }
+	}else{
+		if(p_way_set_type != 3)
+		{
+			$('#pay_id').css('display','none');
+			$('#pay_id_yin').css('display','none');
+		}
+		a+='<option value="">无关联银行</option>';
+	}
+		$('#pay_id').html(a);
+	});
+}
+</script>
+</head>
+
+<body>
+
+<hr>
+<table class="functionBar" cellspacing="0" border="0" width="100%">
+  <tbody><tr class="bTitle">
+    <td class="top-font01" height="25">&nbsp;
+      <a href="pay.php?act=payment">支付商管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_type">支付方式管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=bank">支付商银行管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_set">支付通道设置</a>&nbsp;|&nbsp;
+      <a href="pay_message.php?act=message">支付商银行查询</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=show_bank">银行设置</a>&nbsp;|&nbsp;
+    </td>    
+  </tr>
+</tbody></table><hr size="1">
+<fieldset>
+<legend class="" top-font01"=""> ·支付通道设置· </legend>
+<hr size="1">
+<form name="cp_frm" method="POST" action="pay.php" onsubmit="return(check_cp_frm())">
+
+<!--新增 开始-->
+<table cellspacing="1" bgcolor="#D8D8D8" border="0" width="100%">
+  <input name="act" value="set_add" type="hidden">
+  <input name="p_id" value="" type="hidden">
+  <tbody><tr>
+    <td align="right" bgcolor="#C2E0E2" height="25">类型：</td>
+    <td align="left" bgcolor="#FFFFFF">
+    				<input name="p_way_set_type" id="p_way_set_type" type="text"> 
+      [例如：1]
+      	  </td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#C2E0E2" height="25" width="150">名称：</td>
+    <td align="left" bgcolor="#FFFFFF">
+      	<input name="p_way_set_name" id="p_way_set_name" type="text"> [例如：金额]
+    </td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#C2E0E2" height="25">数值：</td>
+    <td align="left" bgcolor="#FFFFFF">
+    <input name="p_way_set_value" id="p_way_set_value" type="text"> [例如：&gt;3000 或者：1]</td>
+  </tr>
+  <tr>
+     <td align="right" bgcolor="#C2E0E2" height="25">支付商：</td>
+     <td align="left" bgcolor="#FFFFFF">
+      	<select onclick="javascript:get_bank_option(this)" id="pay_way_id" name="pay_way_id"  onchange="javascript:pay_p(this)">
+          <option selected="selected" value="">请选择</option>
+		  {foreach from=$payment_list item=payment}
+          <option value="{$payment.pay_id}">{$payment.pay_name}</option>
+			{/foreach}
+		 </select>
+		 
+        <span id="pay_id_yin" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支付银行：</span><select id="pay_id" name="pay_id">
+          <option selected="selected" value="">请先选择支付商</option>
+		 </select>
+         <span id="show_bank_option"></span>
+      </td>
+   </tr>
+   <tr>
+    <td align="right" bgcolor="#C2E0E2" height="25" width="150">状态：</td>
+    <td align="left" bgcolor="#FFFFFF">
+     <input id="status" name="status" value="1" checked="checked" type="radio">开启	 
+	   <input id="status" name="status" value="0" type="radio">关闭
+	  </td>
+  </tr>
+	<tr bgcolor="#FFFFFF">
+	  <td align="right" bgcolor="#C2E0E2" height="25"></td>
+	   <td colspan="2" align="left" height="30">
+      <input value="添 加" class="right-button07" type="submit">
+      <input value="重 置" class="right-button07" type="reset">
+	  <input value="返 回" class="right-button07" onclick="javascript:history.go(-1)" type="button">	   </td>	   
+	</tr>
+</tbody></table>
+</fieldset>
+</form> 
+<!--新增 结束-->
+<hr size="1">
+<br>
+<table cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" border="0" width="100%"> 
+  <tbody><tr>
+    <th align="center" bgcolor="#C2E0E2" height="30" width="263">类型</th>
+    <th align="center" bgcolor="#C2E0E2" width="244">名称</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">数值</th>
+    <th align="center" bgcolor="#C2E0E2" width="160">支付商/支付银行</th>
+	  <th align="center" bgcolor="#C2E0E2" width="194">当前状态</th>
+	  <th align="center" bgcolor="#C2E0E2" width="218">操作</th>
+  </tr>
+   {foreach from=$set_list item=set}
+     <tr onmouseover="hightlightOnEvent(this, 'OVER', '#FFFFFF')" onmouseout="hightlightOnEvent(this, 'OUT', '#FFFFFF')" onclick="hightlightOnEvent(this, 'CLICK', '#F2F2F2')" bgcolor="#FFFFFF">
+    <td align="center" height="25">{$set.type}</td>
+    <td align="center">{$set.name}</td>
+    <td align="center">{$set.value}</td>
+    <td align="center">{$set.pay_name}</td>
+	  <td align="center">
+	     {if $set.enabled eq 1}开启{elseif $set.enabled eq 0}<font color="red">关闭</font>{/if}
+	  </td>
+	  <td align="center">
+	   <a href="pay.php?act=set_edit&paytset_id={$set.paytset_id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <a href="javascript:void(0)" onclick="if(window.confirm('您确定要删除此条记录吗？')) this.href='pay.php?act=set_del&paytset_id={$set.paytset_id}'">删除</a>
+    </td>
+  </tr>
+  {/foreach}
+ </tbody></table>
+
+</body></html>

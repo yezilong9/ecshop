@@ -1,0 +1,234 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--用户评论 START-->
+     
+      
+      <div class=" clearfix" style="height:1%;">
+       
+       <!-- {if $comments} -->
+       <!-- {foreach from=$comments item=comment} -->
+       <div class="comment_list">
+           <div class="comment_list_left"><img width="58px" height="58px" title="" alt="" src="../images/user_head_default.jpg"/></div>
+            <div onmouseout="this.className='comment_list_right'" onmouseover="this.className='comment_list_pink'" class="comment_list_right">
+            <Div class="comment_list_body">
+            <div class="comment_list_arrow"> </div>
+            <div class="comment_list_box">
+        <p>
+       <strong> <!-- {if $comment.username} -->{$comment.username|escape:html}<!-- {else} -->{$lang.anonymous}<!-- {/if} --></strong><span>
+                                                                        												            												                                                            	<img src="../images/ASVIP.gif" border="0">
+                                                                                                                    </span>：
+        {$comment.content}
+        </p> 
+       
+				<!-- {if $comment.re_content} -->
+        <p><font class="f1">{$lang.admin_username}</font>{$comment.re_content} ( {$comment.add_time} )  <img src="../images/stars{$comment.rank}.gif" alt="{$comment.comment_rank}" /></p>
+				<!-- {/if} -->
+                </div>
+                </Div>
+        </div>
+        </div>
+        <!-- {/foreach} -->
+        <!--{else}-->
+        <li>{$lang.no_comments}</li>
+        <!--{/if}-->
+       <div class="blank"></div>
+       <!--翻页 start-->
+       <div id="pagebar" class="f_r">
+        <form name="selectPageForm" action="{$smarty.server.PHP_SELF}" method="get">
+        <!-- {if $pager.styleid eq 0 } -->
+        <div id="pager">
+          {$lang.pager_1}{$pager.record_count}{$lang.pager_2}{$lang.pager_3}{$pager.page_count}{$lang.pager_4} <span> <a href="{$pager.page_first}">{$lang.page_first}</a> <a href="{$pager.page_prev}">{$lang.page_prev}</a> <a href="{$pager.page_next}">{$lang.page_next}</a> <a href="{$pager.page_last}">{$lang.page_last}</a> </span>
+            <!--{foreach from=$pager.search key=key item=item}-->
+            <input type="hidden" name="{$key}" value="{$item}" />
+            <!--{/foreach}-->
+        </div>
+        <!--{else}-->
+
+        <!--翻页 start-->
+         <div id="pager" class="pagebar">
+          <span class="f_l f6" style="margin-right:10px;">{$lang.total} <b>{$pager.record_count}</b> {$lang.user_comment_num}</span>
+          <!-- {if $pager.page_first} --><a href="{$pager.page_first}">1 ...</a><!-- {/if} -->
+          <!-- {if $pager.page_prev} --><a class="prev" href="{$pager.page_prev}">{$lang.page_prev}</a><!-- {/if} -->
+          <!--{foreach from=$pager.page_number key=key item=item}-->
+                <!-- {if $pager.page eq $key} -->
+                <span class="page_now">{$key}</span>
+                <!-- {else} -->
+                <a href="{$item}">[{$key}]</a>
+                <!-- {/if} -->
+            <!--{/foreach}-->
+
+          <!-- {if $pager.page_next} --><a class="next" href="{$pager.page_next}">{$lang.page_next}</a><!-- {/if} -->
+          <!-- {if $pager.page_last} --><a class="last" href="{$pager.page_last}">...{$pager.page_count}</a><!-- {/if} -->
+          <!-- {if $pager.page_kbd} -->
+            <!--{foreach from=$pager.search key=key item=item}-->
+            <input type="hidden" name="{$key}" value="{$item}" />
+            <!--{/foreach}-->
+            <kbd style="float:left; margin-left:8px; position:relative; bottom:3px;"><input type="text" name="page" onkeydown="if(event.keyCode==13)selectPage(this)" size="3" class="B_blue" /></kbd>
+            <!-- {/if} -->
+        </div>
+        <!--翻页 END-->
+
+        <!-- {/if} -->
+        </form>
+        <script type="Text/Javascript" language="JavaScript">
+        <!--
+        {literal}
+        function selectPage(sel)
+        {
+          sel.form.submit();
+        }
+        {/literal}
+        //-->
+        </script>
+      </div>
+      <!--翻页 END-->
+      <div class="blank5"></div>
+<!-- 黑色半透明遮罩层 -->
+<div id="boxOverlay"></div>
+<!-- 黑色半透明遮罩层 -->
+      <!--评论表单 start-->
+      <div class="i-zixun" id="commentform">
+              <h3><p>发表评论</p><span class="close"></span></h3>
+             <form id="commentForm" name="commentForm" method="post" onsubmit="submitComment(this)" action="javascript:;">
+                <table cellspacing="0" cellpadding="0" border="0">
+                  <tbody><tr class="tr1">
+                    <td class="td1">商品满意度：</td>
+                    <td>
+                      <div class="cmtRank">
+                        <span onclick="showrank(this,'1','#Rank','#commentrank')" onmouseover="showrank(this,'1','#Rank')" onmouseout="hiddenrank(this,'#Rank','#commentrank')"></span>
+                        <span onclick="showrank(this,'2','#Rank','#commentrank')" onmouseover="showrank(this,'2','#Rank')" onmouseout="hiddenrank(this,'#Rank','#commentrank')"></span>
+                        <span onclick="showrank(this,'3','#Rank','#commentrank')" onmouseover="showrank(this,'3','#Rank')" onmouseout="hiddenrank(this,'#Rank','#commentrank')"></span>
+                        <span onclick="showrank(this,'4','#Rank','#commentrank')" onmouseover="showrank(this,'4','#Rank')" onmouseout="hiddenrank(this,'#Rank','#commentrank')"></span>
+                        <span onclick="showrank(this,'5','#Rank','#commentrank')" onmouseover="showrank(this,'5','#Rank')" onmouseout="hiddenrank(this,'#Rank','#commentrank')"></span>
+                      </div>
+                      <span id="Rank"></span>
+                      <span>点击星星就可以评分</span>
+                    </td>
+                    <input type="hidden" value="" name="comment_rank" id="commentrank">
+					<input type="hidden" name="cmt_type" value="{$comment_type}" />
+					<input type="hidden" name="id" value="{$id}" />
+					
+                  </tr>
+                  <tr><td class="td1">E-mail：</td><td><input type="text" class="inputBorder text2" value="{$smarty.session.email|escape}" maxlength="100" id="email" name="email"></td></tr>
+                  <tr><td class="td1">商品评论：</td><td><textarea onblur="if(this.value=='') this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue) this.value='';" name="content">{if $factor eq 0}所有用户都可以对该商品发表评论{elseif $factor eq 1}只有登陆的用户才可以对该商品发表评论{elseif $factor eq 2}在本站购买过一次其他商品的用户才可以对该商品发表评论{elseif $factor eq 3}购买过此{$goods_name}的顾客，在收到商品才可以对该商品发表评论{/if}</textarea></td></tr>
+                  
+                 
+                  <tr>
+                    <td class="td2"></td>
+                    <td>
+                      <table>
+                        <tbody><tr>
+                          <td>验证码：</td>
+                          <td><input type="text" tabindex="0" name="captcha" value="" onfocus="if(this.value==this.defaultValue) this.value='';" onblur="if(this.value=='') this.value=this.defaultValue;" class="text1"></td>
+                          <td><img src="captcha.php?{$rand}" alt="captcha" onClick="this.src='captcha.php?'+Math.random()" class="captcha"></td>
+                          <td><input type="submit" value="" class="sub"></td>
+                        </tr>
+                      </tbody></table>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </form>
+            </div>
+      <!--评论表单 end-->
+      </div>
+    
+    <div class="blank5"></div>
+  <!--用户评论 END-->
+<script type="text/javascript">
+//<![CDATA[
+{foreach from=$lang.cmt_lang item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+{literal}
+/**
+ * 提交评论信息
+*/
+function submitComment(frm)
+{
+  var cmt = new Object;
+
+  //cmt.username        = frm.elements['username'].value;
+  cmt.email           = frm.elements['email'].value;
+  cmt.content         = frm.elements['content'].value;
+  cmt.type            = frm.elements['cmt_type'].value;
+  cmt.id              = frm.elements['id'].value;
+  cmt.enabled_captcha = frm.elements['enabled_captcha'] ? frm.elements['enabled_captcha'].value : '0';
+  cmt.captcha         = frm.elements['captcha'] ? frm.elements['captcha'].value : '';
+  /*zhou edit start*/
+  cmt.rank            = frm.elements['comment_rank'].value ? frm.elements['comment_rank'].value : 0 ;
+
+  if(cmt.rank <= 0)
+  {
+		alert('请选择评分等级');
+		return false;  
+  }
+  /*zhou edit end*/
+/*
+  for (i = 0; i < frm.elements['comment_rank'].length; i++)
+  {
+    if (frm.elements['comment_rank'][i].checked)
+    {
+       cmt.rank = frm.elements['comment_rank'][i].value;
+     }
+  }
+  */
+  
+
+//  if (cmt.username.length == 0)
+//  {
+//     alert(cmt_empty_username);
+//     return false;
+//  }
+
+  if (cmt.email.length > 0)
+  {
+     if (!(Utils.isEmail(cmt.email)))
+     {
+        alert(cmt_error_email);
+        return false;
+      }
+   }
+   else
+   {
+        alert(cmt_empty_email);
+        return false;
+   }
+
+   if (cmt.content.length == 0)
+   {
+      alert(cmt_empty_content);
+      return false;
+   }
+
+   if (cmt.enabled_captcha > 0 && cmt.captcha.length == 0 )
+   {
+      alert(captcha_not_null);
+      return false;
+   }
+
+   Ajax.call('comment.php', 'cmt=' + $.toJSON(cmt), commentResponse, 'POST', 'JSON');
+   return false;
+}
+
+/**
+ * 处理提交评论的反馈信息
+*/
+  function commentResponse(result)
+  {
+    if (result.message)
+    {
+      alert(result.message);
+    }
+
+    if (result.error == 0)
+    {
+      var layer = document.getElementById('ECS_COMMENT');
+
+      if (layer)
+      {
+        layer.innerHTML = result.content;
+      }
+    }
+  }
+{/literal}
+//]]>
+</script>

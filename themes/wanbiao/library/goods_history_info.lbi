@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--{foreach from=$history_goods item=goods}-->
+
+
+<li><a href="{$goods.url}" target="_blank"><img src="{$goods.goods_thumb}" style="display: inline;" width="80" height="80"><span class="as"><u>{$goods.short_name}</u><i>{$goods.shop_price}</i></span></a></li>
+
+<!--{/foreach}--> 
+
+<ul id="clear_history"><a onclick="clear_history()">清除浏览历史记录</a></ul>

@@ -1,0 +1,32 @@
+.w980{width: 980px;margin: 0 auto;position: relative;}
+
+.new_bar{height: 25px;background-color: #eee;line-height: 25px;}
+.new_bar p{width: 980px;margin: 0 auto;text-align: right;color: #656565;}
+.new_bar p a{color: #656565;}
+.new_bar .link_cur{color: #f30c1c;}
+.new_head{height:92px;}
+.new_logo{float: left;display: inline;width: 169px;}
+.search_count{float: right;display: inline;width: 580px;}
+#searchForm{position: absolute;right:-52px;top:35px;width: 580px;}
+.sh_btn{background: url(../img/sh_btn.png) 0 0 no-repeat;width: 115px;height: 30px;position: absolute;right:45px;top:0;text-align:center;color: #fff;line-height: 30px;padding-left: 10px;}
+.sh_input{/*padding-right: 0px;width: 454px;height: 30px;line-height: 30px;color: #999;*/}
+.sh_input{height: 30px;width: 457px;color: #999;position:absolute;right: 180px;top:0;border: 1px solid #b80000;}
+
+
+.sh_input .b1{background: url(../img/sousuo_btn.png) 0 0 no-repeat;width: 49px;height:30px;position: absolute;right:0px;top:0;border: 0;}
+
+.new_menu{background: url(../img/menu.gif) 0 0 no-repeat;height: 40px;}
+.new_menu ul{padding-top:3px;font-size: 14px;}
+.new_menu li{float: left;display: inline;line-height: 38px;padding: 0px 20px;background: url(../img/i2.gif) right center no-repeat;}
+.new_menu ul li.cur { background: url(../images/menuli.gif) no-repeat right center; font-weight:bold;color:#821E1E;}
+.new_menu ul li.cur a{color:#821E1E;}
+.new_menu ul a{color: #fff;}
+.new_gwc{width: 236px;height: 24px;line-height: 24px;position: absolute;top:11px;right: 14px;text-align: right;}
+.new_gwc span{padding: 0 15px 0 50px;}
+.new_gwc a{color: #000;}
+.new_gwc a:hover{text-decoration: underline;cursor: auto;}
+.clear{height: 0;overflow: hidden;clear: both;font-size: 0;}
+.sh_input{box-shadow:2px 2px 2px #999;}
+.sh_input select{color: #999;height: 30px;line-height: 30px;border: none;position: absolute;left: 0;top:0;padding: 6px 0 7px 0;}
+.sh_input #keyword{width: 300px;border: 0;color: #999;line-height: 30px;height: 30px;position: absolute;left: 153px;top:0;}
+.sh_input #keyword{border-left: 1px solid #ccc;padding-left: 5px;}

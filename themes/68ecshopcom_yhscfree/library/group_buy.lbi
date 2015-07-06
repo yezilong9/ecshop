@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $group_buy_goods} -->
+<div class="mod1 blank" id="groups">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$lang.group_buy_goods}<a href="group_buy.php" class="more">更多</a></h1>
+	<div class="mod1con group">
+	<!--{foreach from=$group_buy_goods item=goods}-->
+	<div class="goodsbox">
+	 <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.goods_name|escape:html}" /></a></div>
+	 <a href="{$goods.url}" title="{$goods.goods_name|escape:html}">{$goods.short_style_name|escape:html}</a><br />
+   {$lang.last_price}<b class="f1">{$goods.last_price}</b>
+	</div>
+ <!--{/foreach}-->
+	</div>
+</div>
+<script type="text/javascript">divheight("groups");</script>
+<!-- {/if} -->

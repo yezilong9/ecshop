@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="content">
+<div class="contentBody">
+<div class="block_s">
+<!--当前位置 start-->
+ <div id="ur_here" style="padding: 10px 0 0 0;border-bottom: 1px solid #DDD;
+padding-bottom: 10px;
+margin: 10px 0 15px;">
+  <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+ </div>
+<!--当前位置 end-->
+<div class="blank"></div>
+
+  <!--left start-->
+  <div class="help_left">
+
+  <!-- #BeginLibraryItem "/library/left_help.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateBeginEditable name="左边区域" -->
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="左边广告区域（宽200px）" -->
+<!-- TemplateEndEditable -->
+    <!--AD end-->
+  </div>
+  <!--left end-->
+  <!--right start-->
+  <div class="help_right_out">
+    <div class="help_right">
+     
+     
+         <div class="help_right_title " >
+         <p>{$article.title|escape:html}</p> <b>{$article.author|escape:html} / {$article.add_time}</b>
+         </div>
+         <div class="blank"></div>
+         <div class="content_right">
+         <!-- {if $article.content } -->
+          {$article.content}
+         <!-- {/if} -->
+         {if $article.open_type eq 2 or $article.open_type eq 1}<br />
+         <div><a href="{$article.file_url}" target="_blank">{$lang.relative_file}</a></div>
+          {/if}
+          </div>
+           <div class="blank"></div>
+         <div style="padding:8px; margin-top:15px; text-align:left; border-top:1px solid #e6e6e6 ;">
+         <!-- 上一篇文章 -->
+          {if $next_article}
+            {$lang.next_article}:<a href="{$next_article.url}" class="f6">{$next_article.title}</a><br />
+          {/if}
+          <!-- 下一篇文章 -->
+          {if $prev_article}
+            {$lang.prev_article}:<a href="{$prev_article.url}" class="f6">{$prev_article.title}</a>
+          {/if}
+         </div>
+     
+   
+  
+  <div class="blank"></div>
+  
+</div>
+  </div>
+  <!--right end-->
+
+</div>
+</div>
+</div>
+<div class="blank5"></div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="picScroll-left2">
+			<div class="bd">
+				<ul class="picList">
+					<li>
+						<div class="pic">
+							<a target="_blank" href="{$show_ad.11.url}">
+								<img width="200" height="400" border="0" src="{$show_ad.11.img}">
+							</a>
+						</div>
+					</li>
+					<!--<li>
+						<div class="pic">
+							<a target="_blank" href="#">
+								<img width="200" height="400" border="0" src="data/afficheimg/1410487837968573622.jpg">
+							</a>
+						</div>
+					</li>
+					<li>
+						<div class="pic">
+							<a target="_blank" href="#">
+								<img width="200" height="400" border="0" src="data/afficheimg/1410487837968573622.jpg">
+							</a>
+						</div>
+					</li>-->
+					
+					
+					
+				</ul>
+			</div>
+             <div class="hds">
+				<!--<ul><li class="on"></li><li></li></ul>-->
+				
+			</div>
+            
+            <script type="text/javascript">
+		jQuery(".picScroll-left2").slide({titCell:".hds ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true});
+		</script>
+		</div>

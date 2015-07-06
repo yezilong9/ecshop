@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $invoice_list}-->
+<style type="text/css">
+.vote{
+border-bottom:1px dashed #ccc;
+margin-bottom:8px;
+padding-bottom:5px;
+color:#424242;
+}
+.vote form{display:inline;}
+.vote form a{ text-decoration:underline;}
+</style>
+<h1 class="mod2tit">{$lang.shipping_query}</h1>
+<div class="mod1 mod2 blank" id="invoice">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	
+		<div class="mod2con">
+	 <!-- 发货单查询{foreach name=invoice from=$invoice_list item=invoice} -->
+	 <div class="vote">
+   <font style="color:#424242">{$lang.order_number}</font> {$invoice.order_sn}<br />
+   <font style="color:#424242">{$lang.consignment}</font> {$invoice.invoice_no}<br />
+	 </div>
+   <!-- 结束发货单查询{/foreach}-->
+	</div>
+</div>
+<script type="text/javascript">divheight("invoice");</script>
+<!-- {/if} -->

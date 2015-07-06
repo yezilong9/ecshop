@@ -1,0 +1,77 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+	<link rel="stylesheet" href="{$css_path}css/new_style.css" />
+	<link rel="stylesheet" href="{$css_path}css/reset.css" />
+	{if !$print}
+  {insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jquery.SuperSlide.js'}
+          {insert_scripts files='transport.js,utils.js,ecmoban_common.js'} 
+	{/if}
+	<div class="new_bar">
+		<p style="position: relative;">
+		<a href="javascript:void(0);" onMouseOver="document.getElementById('erw').style.display='';" onMouseOut="document.getElementById('erw').style.display='none';"style="position:absolute;top:0px;left:20px;display:block;text-decoration:none;" ><img src="{$css_path}img/code.png" style="width:25px;height:25px;"><img src="{$css_path}img/sao.png" style="width:70px;height:25px;"></a>
+		<a href="javascript:void(0);" id="erw" style="position:absolute;top:40px;left:20px;display:block;text-decoration:none;width:111px;height:111px;z-index:9999;border:1px solid #000;display:none;">
+		<img src="{$code_url}" style="width:111px;height:111px;">
+		</a>
+		
+	   {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} 
+	   <!--{if $navigator_list.top}-->
+		<!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+				<a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a>
+				<!-- {if !$smarty.foreach.nav_top_list.last} -->
+				 |
+				<!-- {/if} -->
+		<!-- {/foreach} -->  
+		 <!-- {/if} -->
+		</p>
+	</div>
+	<div class="new_head">
+		<div class="w980">
+			<div class="new_logo" id="logoimg">
+				<a href="index.php">
+					<img src="{$loogo}" width="169" height="92"></a>
+			</div>
+			<div class="search_count">
+				<form id="searchForm" name="searchForm" method="get" action="search.php" onsubmit="return checkSearchForm()" style="padding:0px; margin:0px;">
+					<div class="">
+						<div class="sh_input">
+							<select name="category" id="category">
+							     <option value="0">{$lang.all_category}</option>
+								{$category_list}
+							</select>
+							<input id="keyword" name="keywords" value="{$search_keywords}" placeholder="请输入关键字..." type="text" style="width:250px;">
+							<a href="javascript:document.getElementById('searchForm').submit()" class="b1"></a>
+						</div>
+						<a href="search.php?act=advanced_search" class="sh_btn">高级搜索</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="">
+		<div class="w980">
+		<div class="new_menu" id="headli">
+			<ul id="IndexType" class="fn-clear">
+				<li>
+					<a class="home" href="index.php">{$lang.home}</a>
+				</li>
+				<!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav } -->
+				<li {if $nav.active eq 1} class="cur"{/if}>
+					<a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} >{$nav.name}</a>
+				</li>
+				<!-- {/foreach} -->
+				{if $user.user_id}
+				<li {if $print}class="cur"{/if}><a href="print.php?act=index" target="_blank"  >快讯打印</a> </li>
+				{/if}
+			</ul>
+			<div class="new_gwc">
+				<a href="flow.php">我的购物车</a>
+				<span>
+					<a href="flow.php">去结算»</a>
+				</span>
+			</div>
+		</div>
+	</div>
+	</div>
+

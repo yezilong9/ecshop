@@ -1,0 +1,272 @@
+2014-12-18 23-21-48抽奖参数Array
+(
+    [order_id] => 1156
+    [payprice] => 76.00
+    [email] => chen_6@qq.com
+    [user_id] => 231
+    [datetime] => 1418887302
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 7e6979a0a71510ecdc6c1eff07c5561c
+    [rndval] => 1418916108249
+)
+\n{"int_lottery_result":2,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8620\u5143\u7684\u7ea2\u5305"}2014-12-18 23-32-41抽奖参数Array
+(
+    [rndval] => 1418916761224
+)
+\n2014-12-19 16-06-17抽奖参数Array
+(
+    [order_id] => 1163
+    [payprice] => 146.00
+    [email] => daxuecheng@qq.com
+    [user_id] => 301
+    [datetime] => 1418947573
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 8e70f1cca0f862b3bef5a62ec167e384
+    [rndval] => 1418976377189
+)
+\n{"int_lottery_result":2,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8620\u5143\u7684\u7ea2\u5305"}2014-12-19 16-25-54抽奖参数Array
+(
+    [order_id] => 1165
+    [payprice] => 23.00
+    [email] => daxuecheng@qq.com
+    [user_id] => 228
+    [datetime] => 1418948554
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 27910395bd3ccf3da1ed891b68abbbdc
+    [rndval] => 1418977553821
+)
+\n{"int_lottery_result":2,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8620\u5143\u7684\u7ea2\u5305"}2014-12-19 16-29-34抽奖参数Array
+(
+    [rndval] => 1418977774201
+)
+\n2014-12-20 21-28-55抽奖参数Array
+(
+    [order_id] => 1169
+    [payprice] => 33.00
+    [email] => 1125218687@qq.com
+    [user_id] => 319
+    [datetime] => 1419053300
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => ec7909d6b1c854b8fd1580619d185898
+    [rndval] => 1419082135733
+)
+\n{"int_lottery_result":2,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8620\u5143\u7684\u7ea2\u5305"}2014-12-20 21-50-57抽奖参数Array
+(
+    [order_id] => 1173
+    [payprice] => 0
+    [email] => 0
+    [user_id] => 319
+    [datetime] => 1419054598
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 243173b799d9e90cc04827d0cc47a7e0
+    [rndval] => 1419083457107
+)
+\n{"int_lottery_result":1,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8610\u5143\u7684\u7ea2\u5305"}2014-12-22 15-33-27抽奖参数Array
+(
+    [order_id] => 1193
+    [payprice] => 15.00
+    [email] => daxuecheng@qq.com
+    [user_id] => 335
+    [datetime] => 1419204800
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 4dda4c59def57e3b54d302648fec7baa
+    [rndval] => 1419233607382
+)
+\n{"int_lottery_result":1,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8610\u5143\u7684\u7ea2\u5305"}2014-12-22 15-57-10抽奖参数Array
+(
+    [order_id] => 1194
+    [payprice] => 158.00
+    [email] => daxuecheng@qq.com
+    [user_id] => 339
+    [datetime] => 1419206222
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => c6ae7dc5172c1787b6896491c14bcf87
+    [rndval] => 1419235029863
+)
+\n{"int_lottery_result":1,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8610\u5143\u7684\u7ea2\u5305"}2014-12-22 15-57-21抽奖参数Array
+(
+    [order_id] => 1194
+    [payprice] => 158.00
+    [email] => daxuecheng@qq.com
+    [user_id] => 339
+    [datetime] => 1419206222
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => c6ae7dc5172c1787b6896491c14bcf87
+    [rndval] => 1419235040959
+)
+\n2014-12-23 10-04-46抽奖参数Array
+(
+    [order_id] => 1198
+    [payprice] => 4777.60
+    [email] => 1125216807@qq.com
+    [user_id] => 335
+    [datetime] => 1419271480
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 2f5070254b3772d1c07f2fa872d9c807
+    [rndval] => 1419300285958
+)
+\n{"int_lottery_result":3,"int_lottery_stat":1,"int_lottery_win":1,"award":"","msg":"\u606d\u559c\u4f60,\u8fd9\u6b21\u62bd\u5956\u6d3b\u52a8\u4f60\u83b7\u5f97\u4e8630\u5143\u7684\u7ea2\u5305"}2014-12-26 15-54-59抽奖参数Array
+(
+    [rndval] => 1419580499084
+)
+\n2014-12-26 15-55-08抽奖参数Array
+(
+    [rndval] => 1419580508668
+)
+\n2014-12-26 15-55-49抽奖参数Array
+(
+    [rndval] => 1419580549707
+)
+\n2014-12-26 15-56-17抽奖参数Array
+(
+    [rndval] => 1419580577218
+)
+\n2014-12-26 15-56-29抽奖参数Array
+(
+    [rndval] => 1419580589178
+)
+\n2014-12-26 15-57-18抽奖参数Array
+(
+    [rndval] => 1419580637939
+)
+\n2014-12-26 17-34-11抽奖参数Array
+(
+    [rndval] => 1419586450805
+)
+\n2014-12-29 09-10-39抽奖参数Array
+(
+)
+\n2014-12-29 09-15-12抽奖参数Array
+(
+    [rndval] => 1419815712393
+)
+\n2014-12-29 09-15-14抽奖参数Array
+(
+    [rndval] => 1419815711227
+)
+\n2014-12-29 11-53-59抽奖参数Array
+(
+    [rndval] => 1419825239474
+)
+\n2015-03-05 14-47-46抽奖参数Array
+(
+    [order_id] => 1773
+    [payprice] => 162.50
+    [email] => 1125216807@qq.com
+    [user_id] => 384
+    [datetime] => 1425509248
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => d1fce866702c0deff8b73a5c9ad0ea7e
+    [rndval] => 1425538066095
+)
+\n2015-03-05 14-48-09抽奖参数Array
+(
+    [order_id] => 1773
+    [payprice] => 162.50
+    [email] => 1125216807@qq.com
+    [user_id] => 384
+    [datetime] => 1425509248
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => d1fce866702c0deff8b73a5c9ad0ea7e
+    [rndval] => 1425538089007
+)
+\n2015-03-06 14-30-10抽奖参数Array
+(
+    [order_id] => 1802
+    [payprice] => 125.00
+    [email] => 1125216807@qq.com
+    [user_id] => 300
+    [datetime] => 1425594605
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => f89973d6f16671cab9c789f5ecae94fb
+    [rndval] => 1425623410297
+)
+\n2015-03-06 17-48-06抽奖参数Array
+(
+    [order_id] => 1806
+    [payprice] => 0
+    [email] => 0
+    [user_id] => 385
+    [datetime] => 1425606479
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 91dd306a105705b80f3d95212d5858a0
+    [rndval] => 1425635286107
+)
+\n2015-03-09 10-22-59抽奖参数Array
+(
+    [order_id] => 1808
+    [payprice] => 125.00
+    [email] => 1125216807@qq.com
+    [user_id] => 385
+    [datetime] => 1425838973
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 9b89c571be66f625778a3becfb56abb1
+    [rndval] => 1425867778829
+)
+\n2015-03-09 15-01-53抽奖参数Array
+(
+    [order_id] => 1811
+    [payprice] => 162.50
+    [email] => 1125216807@qq.com
+    [user_id] => 388
+    [datetime] => 1425855693
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 8616d2752e81f154ce6def0e8ae36e81
+    [rndval] => 1425884513136
+)
+\n2015-03-09 15-09-47抽奖参数Array
+(
+    [order_id] => 1812
+    [payprice] => 250.00
+    [email] => 1125216807@qq.com
+    [user_id] => 388
+    [datetime] => 1425856182
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => f74ccb985b523d30f65c6c64fb375952
+    [rndval] => 1425884987629
+)
+\n2015-03-09 15-46-35抽奖参数Array
+(
+    [order_id] => 1814
+    [payprice] => 162.50
+    [email] => 1125216807@qq.com
+    [user_id] => 388
+    [datetime] => 1425858390
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => 7cd14f29ce0ad9668ebb5a07a5a197f2
+    [rndval] => 1425887195745
+)
+\n2015-03-09 15-56-41抽奖参数Array
+(
+    [order_id] => 1815
+    [payprice] => 1025.00
+    [email] => 1125216807@qq.com
+    [user_id] => 388
+    [datetime] => 1425858993
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => e7e67167ecd0c6ea542581dfd523b164
+    [rndval] => 1425887801547
+)
+\n2015-03-09 16-26-53抽奖参数Array
+(
+    [order_id] => 1817
+    [payprice] => 192.50
+    [email] => 1125216807@qq.com
+    [user_id] => 388
+    [datetime] => 1425860809
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => cc566cb870f9e25c40a98ef465e2d95f
+    [rndval] => 1425889613619
+)
+\n2015-03-11 10-45-05抽奖参数Array
+(
+    [order_id] => 1839
+    [payprice] => 0.10
+    [email] => 1125216807@qq.com
+    [user_id] => 388
+    [datetime] => 1426013101
+    [ip_addr] => 127.0.0.1
+    [sign_message_md] => b886589f3c19450a3425930d2879400a
+    [rndval] => 1426041905762
+)
+\n

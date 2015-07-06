@@ -1,0 +1,52 @@
+.STYLE1 {color: #FF0000}
+.STYLE3 {font-size: 14px}
+
+body {padding-right: 3px; padding-left: 3px; padding-bottom: 2px; margin: 1px 3px 2px; padding-top: 1px}
+td {font-size: 12px}
+form {padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; padding-top: 0px}
+a:link {font-size: 12px; color: #0033CC; text-decoration: underline}
+a:visited {font-size: 12px; color: #0033CC; text-decoration: none}
+a:active {font-size: 12px; color: #FF0000; text-decoration: underline}
+a:hover {font-size: 12px; color: #F37021; text-decoration: underline}
+.positionBar {border-top: #1084D0 3px solid; padding-left: 5px; background: #0A54B3; border-bottom: #000080 3px solid; height: 30px;color:#7bcbff; font-weight:bold;}
+.positionBar a:link {font-weight: bolder; font-size: 12px; color: #7BCBFF; text-decoration: none}
+.positionBar a:visited {font-weight: bolder; font-size: 12px; color: #7BCBFF; TEXT-DECORATION: none}
+.positionBar a:active {font-weight: bolder; font-size: 12px; color: #7BCBFF; text-decoration: none}
+.positionBar A:hover {font-weight: bolder; font-size: 12px; color: #FFFFFF; border-bottom: #FFFFFF 1px dashed; text-decoration: none}
+.functionBar {font-weight: bold; font-size: 12px; color: #A3B5EB; line-height: 20px; border-bottom: #A3B5EB 2px solid; background-color: #C2E0E2; margin-bottom: 5px;}
+.bTitle {font-weight: bolder; font-size: 14px; color: #0A54B3; font-family: ËÎÌו}
+.ffName {font-size: 12px; background-color: #F2F2F2}
+.ffValue {font-size: 12px; background-color: #FFFFFF}
+.comment {font-size: 12px; color: #888888;}
+.fInput {border: 1px solid #999999;height: 18px;line-height: 15px;}
+.fButton {line-height: 18px;}
+
+.tHead {border-top: #064aa7 4px solid;font-weight: bold;font-size: 12px;color: #414141;line-height: 24px;background-color: #ebeaea;text-align: center;}
+.tOdd {padding-left: 5px; margin-left: 5px; line-height: 22px; background-color: #ffffff}
+.tOdd td {padding-left: 5px; padding-right:5px;}
+.tEven {padding-left: 5px; margin-left: 5px; line-height: 22px; background-color: #f0f0f0}
+.tEven td {padding-left: 5px; padding-right:5px;}
+
+.changePages {font-size: 12px; line-height: 20px; }    
+.redText {font-size: 12px; color: #ff3300; line-height: 20px;}
+.grid{border:1px #000080 solid;border-collapse:collapse;}
+.inputdate{
+ border:1px solid #7287c6;
+ text-align: center;
+ font-size: 12px;
+ font-style: normal;
+ height: 16px;
+}
+
+
+legend span {width:210px;display:block;}
+
+.redText {font-size: 12px; color: #ff3300; line-height: 20px;}
+.grid{border:1px #000080 solid;border-collapse:collapse;}
+.inputdate{
+ border:1px solid #7287c6;
+ text-align: center;
+ font-size: 12px;
+ font-style: normal;
+ height: 16px;
+}

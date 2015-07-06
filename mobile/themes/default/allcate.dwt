@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head><body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+		<!-- 头部-->
+		<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="category" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!--Header(start)-->
+				<!--导航栏-->
+				<!-- #BeginLibraryItem "/library/meun.lbi" --><!-- #EndLibraryItem -->          <!--Header(end)-->
+          <!-- section(start) -->
+          <div class="section">
+            <!--可折叠菜单(start)-->
+            <div class="list-block accordion-list">
+              <ul>
+				{foreach from=$categories item=cat name=no }
+                <li class="accordion-item">
+                  <a href="{if !$cat.cat_id}{$cat.url}{else}javascript:void(0);{/if}" class="item-link item-content">
+                    <div class="item-inner">
+                      <div class="item-title"><i class="icon 
+					  {if $smarty.foreach.no.index eq 0}icon-unnamed1
+					  {elseif $smarty.foreach.no.index eq 1}icon-tablelamp
+					  {elseif $smarty.foreach.no.index eq 2}icon-lipstick
+					  {elseif $smarty.foreach.no.index eq 3}icon-camera
+					  {elseif $smarty.foreach.no.index eq 4}icon-sweet
+					  {elseif $smarty.foreach.no.index eq 5}icon-skirt
+					  {elseif $smarty.foreach.no.index eq 6}icon-monitor
+					  {elseif $smarty.foreach.no.index eq 7}icon-babybottle
+					  {/if}
+					  "></i><span>{$cat.name|escape:html}</span></div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content">
+				  {foreach from=$cat.cat_id item=child name=no1 }
+                    <a href="{$child.url}">{$child.name|escape:html}</a>
+				  {/foreach}
+                  </div>
+                </li>
+				{/foreach}
+              </ul>
+            </div>
+            <!--可折叠菜单(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+</body>
+</html>

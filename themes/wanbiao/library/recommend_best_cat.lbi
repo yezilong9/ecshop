@@ -1,0 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="tTit w1225" id="itemBest">
+	<span class="tNm">[精品]</span>
+    <ul class="tGud" id="best_clsiTit">
+    <!--345表示大学城代理商的 agency_user_id-->
+    {if $link != 345 }
+	 {if $best_cat_name}
+	  {foreach from=$best_cat_name key=key item=best}
+	  
+	  <li class="curr h2bg"><a onmouseover="change_tab_style('itemBest', 'li', this);change_show_cat(this,'best_classicSet');">{$best.cat_name}</a></li>
+      
+	  {/foreach}
+	  
+      {/if}
+	{else}
+     <li class="curr h2bg"><a href="http://dxc.txd168.com/category.php?id=728">男士专用</a></li>
+    {/if}  
+    </ul>
+  </div>

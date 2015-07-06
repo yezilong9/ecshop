@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,user.js,transport.js'}
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1);" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">会员登录</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="index.php" class="link icon-only"><i class="icon icon-home"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="member-login" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            <form class="list-block inset" id="J_Login"  name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
+              <fieldset class="field">
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-media"><i class="icon icon-member"></i></div>
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="text" name="username" id="J_UserNameTxt" placeholder="会员名" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-media"><i class="icon icon-lock"></i></div>
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="password" name="password" id="J_PassWordTxt" placeholder="密码" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+				 <!-- 判断是否启用验证码{if $enabled_captcha} -->
+                  <li>
+                    <div class="item-content">
+                      <div class="item-media"><i class="icon icon-key"></i></div>
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="test"  name="captcha"  id="J_AuthCodeTxt" id="J_PassWordTxt" placeholder="验证码" style="border:none;"/>
+                        </div>
+                        <div class="item-after">
+                          <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+				  <!--{/if}-->
+				  
+                </ul>
+              </fieldset>
+              <fieldset class="field">
+			  <input type="hidden" name="act" value="act_login" />
+			  <input type="hidden" name="back_act" value="{$back_act}" />
+			  <input type="submit" class="button button-big button-fill color-red button-submit" value="登 录">
+
+                <div class="row links">
+                  <a href="user.php?act=register">极速免费注册</a>
+                  
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+{foreach from=$lang.passport_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var username_exist = "{$lang.username_exist}";
+</script>
+</body>
+</html>

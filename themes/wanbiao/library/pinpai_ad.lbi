@@ -1,0 +1,101 @@
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="tTit w1225">
+<span class="tNm">[特色专区]</span>
+<div class="tLnk">
+   <a href="#" target="_blank">百达翡丽</a>
+   <a href="#" target="_blank">卡地亚</a>
+   <a href="#" target="_blank">CYS</a>
+   <a href="#" target="_blank">爱宝时</a>
+   <a href="#" target="_blank">迪沃斯</a>
+   <a href="#" target="_blank">摩纹</a>
+</div>
+</div>
+
+<div class="tBdy BndSetWall w1225">
+    <div class="c1">
+    
+         <div  class="r1" onmouseover="this.className='pin1 pin1_on'" onmouseout="this.className='pin1'">
+         
+              <span class="lazy" style="display: inline; ">
+                {insert name='ads' id=69 num=1}
+              </span>
+              <div class="cont8" >
+           <div class="f22" >
+            瑞士库尔沃（CYS） </br><i>查看CYS腕表</i>
+           </div></div>
+         </div>
+        
+       <div  class="r2 mr10 f_l" onmouseover="this.className='pin2 pin2_on'" onmouseout="this.className='pin2'" > 
+         <span class="lazy" style="display: inline; ">
+            {insert name='ads' id=20 num=1}
+          </span>
+             <div class="cont2" >
+             <div class="f22" >法国赫柏林 </br><i>查看赫柏林腕表</i></div>
+             </div>
+        </div>
+
+        <div  class="r2 f_r" onmouseover="this.className='pin3 pin3_on'" onmouseout="this.className='pin3'"  >
+     
+          <span class="lazy" style="display: inline; ">
+            {insert name='ads' id=21 num=1}
+          </span>
+    
+        <div class="cont3">
+        <div class="f22">浪琴Longines</br><i>查看浪琴腕表</i></div>
+        </div>
+        
+        </div>
+
+</div>
+
+<div class="c2" style="margin-right:9px;" onmouseover="this.className='pin4 pin4_on'" onmouseout="this.className='pin4'" >
+         <span class="lazy" style="display: inline; ">
+             {insert name='ads' id=22 num=1}
+          </span>
+       
+        <div class="cont4" >
+        <div class="f22" style="margin-top:90px; padding-top: 50px;">劳力士ROLEX<br><i>查看劳力士腕表</i></div>
+        </div>
+</div>
+    
+<div class="c3">
+  <div style="height:235px;">
+    <div class="r1 mr10"  onmouseover="this.className='pin5 pin5_on'" onmouseout="this.className='pin5'" >
+    <span class="lazy" style="display: inline; ">
+             {insert name='ads' id=23 num=1}
+          </span>
+   
+    <div class="cont5" >
+    <div class="f22" >欧米茄OMEGA</br><i>查看欧米茄腕表</i></div>
+    </div>
+    
+    </div>
+    
+    <div  class="r2">
+    <img class="lazy" src="images/morepin.jpg" alt="." style="display: inline; ">
+    </div>
+    </div>
+    
+    <div class="r3" style="margin-top:10px;" onmouseover="this.className='pin6 pin6_on'" onmouseout="this.className='pin6'" >
+     <span class="lazy" style="display: inline; ">
+             {insert name='ads' id=24 num=1}
+          </span>
+    <div class="cont6">
+    <div class="f22" >瑞士爱宝时（EPOS）</br> <i>查看爱宝时腕表</i></div>
+   </div>
+    
+    </div>
+    
+ </div>
+ 
+ 
+ </div>-->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

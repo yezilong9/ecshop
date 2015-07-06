@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  {insert_scripts files='utils.js'}
+  {insert_scripts files='transport.js,common.js,user.js'}
+  <script type="text/javascript">
+  {foreach from=$lang.profile_js item=item key=key}
+	var {$key} = "{$item}";
+  {/foreach}
+</script>
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="user.php" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">会员资料</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="index.php" class="link icon-only"><i class="icon icon-home"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="member-profile" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section spacebetween">
+            <!--会员资料(start)-->
+            <form name="formEdit" action="user.php" class="list-block" method="post" id="profile" onSubmit="return userEdit()">
+              <fieldset class="field">
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">出生日期</div>
+                        <div class="item-input">
+{html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=+1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">性别</div>
+                        <div class="item-input">
+                          <label><input type="radio" name="sex" value="0" {if $profile.sex==0}checked="checked"{/if} />保密</label>&nbsp;
+                          <label><input type="radio" name="sex" value="1" {if $profile.sex==1}checked="checked"{/if} />男</label>&nbsp;
+                          <label><input type="radio" name="sex" value="2" {if $profile.sex==2}checked="checked"{/if}/>女</label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">email</div>
+                        <div class="item-input">
+                          <input name="email" type="text" value="{$profile.email}" size="25" class="inputBg" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+		{foreach from=$extend_info_list item=field}
+		<!-- {if $field.id eq 6} -->
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label"></div>
+                        <div class="item-input">
+						<select name='sel_question'>
+						<option value='0'>{$lang.sel_question}</option>
+						{html_options options=$passwd_questions selected=$profile.passwd_question}
+						</select>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label"></div>
+                        <div class="item-input">
+						<input  placeholder="{$lang.passwd_answer}"   name="passwd_answer" type="text" size="25" class="inputBg" maxlengt='20' value=""/>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+		<!-- {else} -->
+		  <li>
+			<div class="item-content">
+			  <div class="item-inner">
+				<div class="item-title label">{$field.reg_field_name}</div>
+				<div class="item-input">
+				<input placeholder="{$field.reg_field_name}"  name="extend_field{$field.id}" type="text" class="inputBg" value="{$field.content}"/>
+				</div>
+			  </div>
+			</div>
+		  </li>
+		<!-- {/if} -->
+		{/foreach}
+                </ul>
+              </fieldset>
+			  <input name="act" type="hidden" value="act_edit_profile" />
+              <a class="button button-big button-fill color-red button-submit" onclick="$('#profile').submit();">确认修改</a>
+            </form>
+            <!--会员资料(start)-->
+          
+            <!--密码(start)-->
+            <form class="list-block" name="formPassword" id="profile_psd" action="user.php" method="post" onSubmit="return editPassword()" >
+              <fieldset class="field">
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">原密码</div>
+                        <div class="item-input">
+                          <input  name="old_password" type="password"/>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">新密码</div>
+                        <div class="item-input">
+                          <input name="new_password" type="password"/>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">确认新密码</div>
+                        <div class="item-input">
+                          <input  name="comfirm_password" type="password"/>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </fieldset>
+			  <input name="act" type="hidden" value="act_edit_password" />
+              <a class="button button-big button-fill color-red button-submit" onclick="$('#profile_psd').submit();">确认修改</a>
+            </form>
+            <!--密码(start)-->
+          
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+<script type="text/javascript" src="themes/default/scripts/jquery1.8.min.js"></script>
+
+</body>
+</html>

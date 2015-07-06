@@ -1,0 +1,48 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?php
+
+if(!function_exists("get_comments")){
+function get_comments($num)
+{
+   $sql = 'SELECT a.*,b.goods_id,b.goods_thumb,b.goods_name FROM '. $GLOBALS['ecs']->table('comment') .
+            ' AS a,'. $GLOBALS['ecs']->table('goods') .'AS b WHERE a.status = 1 AND a.parent_id = 0 and a.comment_type=0 and a.id_value=b.goods_id '.
+            ' ORDER BY a.add_time DESC';
+  if ($num > 0)
+  {
+   $sql .= ' LIMIT ' . $num;
+  }
+  //echo $sql;
+        
+  $res = $GLOBALS['db']->getAll($sql);
+  $comments = array();
+  foreach ($res AS $idx => $row)
+  {
+
+   $comments[$idx]['add_time']       = local_date($GLOBALS['_CFG']['time_format'], $row['add_time']);
+   $comments[$idx]['content']       = $row['content'];
+   $comments[$idx]['id_value']       = $row['id_value'];
+   $comments[$idx]['goods_thumb']  = get_image_path($row['goods_id'], $row['goods_thumb'], true);
+   $comments[$idx]['goods_name']       = $row['goods_name'];
+  }
+  return $comments;
+}
+}
+
+?>
+
+
+<!--数据调用-最新评论开始 -->       
+<?php
+   $this->assign('my_comments',get_comments(6)); // 数据条数
+?>
+
+	<div class="mod2con" style="padding:10px;">
+
+    <!--{foreach from=$my_comments item=comments}-->
+	<a href="goods.php?id={$comments.id_value}" target="_blank" style="float:left;">{$comments.content|truncate:30:""}</a>
+    <font style="margin-left:20px; color:#CCC; float:right;">{$comments.add_time}</font><br>
+
+    <!--{/foreach}-->	
+    
+  	</div>
+

@@ -1,0 +1,11 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{foreach from=$ad_res item=ads}-->
+<!--{if $ads.media_type eq 0}-->
+<!--{if $media_type eq 'li'}-->
+<li><a href="affiche.php?ad_id={$ads.ad_id}&amp;uri={$ads.link}" target="_blank"><img src="{$ads.src}" width="{$ads.ad_width}" height="{$ads.ad_height}" border="0" /></a></li>
+<!--{else}-->
+<a href="affiche.php?ad_id={$ads.ad_id}&amp;uri={$ads.link}" target="_blank"><img src="{$ads.src}" width="{$ads.ad_width}" height="{$ads.ad_height}" border="0" /></a>
+<!--{/if}-->
+
+<!--{/if}-->
+<!-- {/foreach}-->

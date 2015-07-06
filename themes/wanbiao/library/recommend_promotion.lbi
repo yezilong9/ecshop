@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $promotion_goods} -->
+<dt>
+  <div class="hot_img"> <span class="hot"></span> 
+    <!--{foreach from=$promotion_goods item=goods name="promotion_foreach"}-->
+    <div class="text">
+      <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name|escape:html}</a></p>
+      <p class="brife"> {$goods.brief}</p>
+      <p class="price" > <font class="aa"> {$goods.promote_price}</font> <font class="bb">{$goods.market_price}</font> </p>
+    </div>
+    <div class="pic"> <a href="{$goods.url}"><img src="{$goods.thumb}" border="0" alt="{$goods.name|escape:html}"/></a></div>
+    
+  <div class="hot_btn"><a href="javascript:addToCartShowDiv({$goods.id},1,'promotion')"  ></a> </div>
+  <div class="hot_line" > </div>
+  <div class="sucess_joinCart" id="addtocartdialog_retui_{$goods.id}_promotion">
+</div>
+<!--{/foreach}-->
+  
+  
+</div>
+</dt>
+ 
+<!-- {/if} -->

@@ -1,0 +1,166 @@
+<!-- $Id: category_list.htm 17019 2010-01-29 10:10:34Z liuhui $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+{if $all}
+<div class="form-div">
+  <form method="post" name="listForm_1" action="javascript:searchcategory()">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+	选择代理商
+	<select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</caption>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>
+    <input type="submit" value="{$lang.button_search}" class="button" />
+  </form>
+</div>
+{/if}
+
+<form method="post" action="" name="listForm">
+<!-- start ad position list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+  <tr>
+    <th>{$lang.cat_name}</th>
+    <th>{$lang.goods_number}</th>
+    <th>{$lang.is_show}</th>
+    <th>{$lang.sort_order}</th>
+    <th>{$lang.handler}(打钩表示已引用)</th>
+  </tr>
+  {foreach from=$cat_info item=cat}
+  <tr align="center" class="{$cat.level}" id="{$cat.level}_{$cat.cat_id}">
+    <td align="left" class="first-cell" >
+      {if $cat.is_leaf neq 1}
+      <img src="images/menu_minus.gif" id="icon_{$cat.level}_{$cat.cat_id}" width="9" height="9" border="0" style="margin-left:{$cat.level}em" onclick="rowClicked(this)" />
+      {else}
+      <img src="images/menu_arrow.gif" width="9" height="9" border="0" style="margin-left:{$cat.level}em" />
+      {/if}
+      <span><a href="goods.php?act=list&cat_id={$cat.cat_id}">{$cat.cat_name}</a></span>
+    {if $cat.cat_image}
+      <img src="../{$cat.cat_image}" border="0" style="vertical-align:middle;" width="60px" height="21px">
+    {/if}
+    </td>
+    <td width="10%">{$cat.goods_num}</td>
+    <td width="10%"><img src="images/{if $cat.is_show eq '1'}yes{else}no{/if}.gif" /></td>
+    <td width="10%" align="right"><span >{$cat.sort_order}</span></td>
+    <td width="24%" align="center">
+      <!--</><a href="category.php?act=copy_host_category&cat_id={$cat.cat_id}">引用该分类</a>-->
+      <img src="images/{if $cat.is_lead eq '1'}yes{else}no{/if}.gif" onclick="add_host_category(this,{$cat.cat_id})" />
+    </td>
+  </tr>
+  {/foreach}
+</table>
+{if $full_page}
+</div>
+</form>
+
+{literal}
+<script language="JavaScript">
+<!--
+
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+
+ /* 搜索代理商 */
+ function searchcategory()
+ {
+    listTable.filter.admin_agency_id = Utils.trim(document.forms['listForm_1'].elements['admin_agency_id'].value);
+    listTable.filter.page = 1;
+    listTable.loadList();
+ }
+
+var imgPlus = new Image();
+imgPlus.src = "images/menu_plus.gif";
+
+/**
+ * 折叠分类列表
+ */
+function rowClicked(obj)
+{
+  // 当前图像
+  img = obj;
+  // 取得上二级tr>td>img对象
+  obj = obj.parentNode.parentNode;
+  // 整个分类列表表格
+  var tbl = document.getElementById("list-table");
+  // 当前分类级别
+  var lvl = parseInt(obj.className);
+  // 是否找到元素
+  var fnd = false;
+  var sub_display = img.src.indexOf('menu_minus.gif') > 0 ? 'none' : (Browser.isIE) ? 'block' : 'table-row' ;
+  // 遍历所有的分类
+  for (i = 0; i < tbl.rows.length; i++)
+  {
+      var row = tbl.rows[i];
+      if (row == obj)
+      {
+          // 找到当前行
+          fnd = true;
+          //document.getElementById('result').innerHTML += 'Find row at ' + i +"<br/>";
+      }
+      else
+      {
+          if (fnd == true)
+          {
+              var cur = parseInt(row.className);
+              var icon = 'icon_' + row.id;
+              if (cur > lvl)
+              {
+                  row.style.display = sub_display;
+                  if (sub_display != 'none')
+                  {
+                      var iconimg = document.getElementById(icon);
+                      iconimg.src = iconimg.src.replace('plus.gif', 'minus.gif');
+                  }
+              }
+              else
+              {
+                  fnd = false;
+                  break;
+              }
+          }
+      }
+  }
+
+  for (i = 0; i < obj.cells[0].childNodes.length; i++)
+  {
+      var imgObj = obj.cells[0].childNodes[i];
+      if (imgObj.tagName == "IMG" && imgObj.src != 'images/menu_arrow.gif')
+      {
+          imgObj.src = (imgObj.src == imgPlus.src) ? 'images/menu_minus.gif' : imgPlus.src;
+      }
+  }
+}
+//-->
+
+//ccx 2015-03-23 
+function add_host_category(obj,cat_id)
+{
+    //alert(cat_id);
+    var val = (obj.src.match(/yes.gif/i)) ? 0 : 1;
+    //alert(val);
+    var cat_value = 'cat_id=' + cat_id + '&val=' + val;
+    var result = Ajax.call('category.php?is_ajax=1&act=host_category_copy', cat_value, null, 'GET', 'JSON',false);
+    if (result.error == '1' && result.message != '')
+    {
+        alert(result.message);
+        return;
+    }
+    if (result.error == 0)
+    {
+        obj.src = (result.content > 0) ? 'images/yes.gif' : 'images/no.gif';
+        //alert("该分类引用成功");
+    }
+}
+
+</script>
+{/literal}
+
+{include file="pagefooter.htm"}
+{/if}

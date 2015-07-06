@@ -1,0 +1,92 @@
+<div id="ECS_ORDERTOTAL">
+	<ul>
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title"></div>
+		  <div class="item-after">总计：{$total.goods_price_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {if $total.discount gt 0} 折扣 -->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">-{$lang.discount}</div>
+		  <div class="item-after">{$total.discount_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {/if} -->
+      <!-- {if $total.tax gt 0} 税 -->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">+ {$lang.tax}</div>
+		  <div class="item-after">{$total.tax_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {/if} -->
+      <!-- {if $total.shipping_fee > 0} 配送费用 -->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">+ {$lang.shipping_fee}</div>
+		  <div class="item-after">{$total.shipping_fee_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {/if} -->
+      <!-- {if $total.shipping_insure > 0} 保价费用 -->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">+ {$lang.insure_fee}</div>
+		  <div class="item-after">{$total.shipping_insure_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {/if} -->
+      <!-- {if $total.pay_fee > 0} 支付费用 -->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">+ {$lang.pay_fee}</div>
+		  <div class="item-after">{$total.pay_fee_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {/if} -->
+      <!-- {if $total.pack_fee > 0} 包装费用-->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">+ {$lang.pack_fee}</div>
+		  <div class="item-after">{$total.pack_fee_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {/if} -->
+      <!-- {if $total.card_fee > 0} 贺卡费用-->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">+ {$lang.card_fee}</div>
+		  <div class="item-after">{$total.card_fee_formated}</div>
+		</div>
+	  </div>
+	</li>
+      <!-- {/if} -->
+	<li>
+	  <div class="item-content">
+		<div class="item-inner">
+		  <div class="item-title">{$lang.total_fee}</div>
+		  <div class="item-after">{$total.amount_formated}</div>
+		</div>
+	  </div>
+	</li>
+  {if $is_group_buy}<br />
+  {$lang.notice_gb_order_amount}{/if}
+	</ul>
+</div>

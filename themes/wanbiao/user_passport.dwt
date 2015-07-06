@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,user.js,transport.js'}
+
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+
+<div class="contentLogin clearfix">
+<div class="content_login">
+
+
+<!--#登录界面 start-->
+<!-- {if $action eq 'login'} -->
+<div class="login_lefts">
+<a target="_blank" href="{$show_ad.13.url}">
+	<img width="520" height="380" border="0" src="{$show_ad.13.img}">
+</a>
+</div>
+
+<div class="coLoginBody">
+<div class="coLogin_title" style="margin-bottom:10px">
+                        <p><span></span><p class="prightSide"> 还不是天下店用户？<a class="regis" href="user.php?act=register">立即注册</a></p></p>
+</div>
+<div class="coLogin_box"  style="width:400px;">
+   <form name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
+       
+          <div class="coLogin_one">
+            <p>{$lang.label_username}：</p>
+            <div class="coLoginTxt" style="width:195px;">
+            <div class="coLogin_txt_all" style="width:195px;">
+            <input name="username" type="text" size="17" class="coLogin_txt"  style="width:195px;"/>
+            </div>
+            </div>
+          </div>
+        <div class="coLogin_one">
+           <p>{$lang.label_password}：</p>
+            <div class="coLoginTxt" style="width:195px;">
+            <div class="coLogin_txt_all" style="width:195px;">
+            <input name="password" type="password" size="17" class="coLogin_txt"  style="width:195px;"/>
+            </div>
+            </div>
+          </div>
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <div class="coLogin_one">
+            <p>{$lang.comment_captcha}：</p>
+            <div class="coLoginTxt_2">
+				<div class="coLogin_txt_2_all">
+				 <input type="text" size="17" name="captcha" class="coLogin_txt_2"  />
+				</div>
+			    <div class="coLoginTxt_2_img"> <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" />
+			    </div>
+           </div>
+          </div>
+          <!--{/if}-->
+          <div class="coLogin_two">
+          <p></p>
+          <input type="checkbox" value="1" name="remember" id="remember" class="checkbox_txt" /><label for="remember">{$lang.remember}</label>
+          </div>
+          <div class="coLogin_three">
+           
+            <input type="hidden" name="act" value="act_login" />
+            <input type="hidden" name="back_act" value="{$back_act}" />
+            <input type="submit" name="submit" value="登录" class="smLogin_btn" />
+            <a href="user.php?act=get_password" style="width:80px; text-align:center; height:30px; line-height:30px;">{$lang.get_password_by_mail}</a>
+          </div>
+   
+    </form>
+		
+		 <div class="coLogin_bottom">
+		 <p></p>
+			<!--<p>使用合作网站登录：</p>-->
+			<div style="float:left; padding-left:10px;">
+				<span>使用合作网站登录：</span>
+				<!--<a class="alipay" title="用支付宝帐号登录" href="user.php?act=oath&type=alipay">支付宝</a> 
+				<span>|</span> 
+				<a class="taobao" title="用淘宝帐号登录" href="user.php?act=oath&type=taobao">淘宝</a> 
+				<span>|</span>-->
+				
+				{if $oath_login eq 1 }
+					<a class="qq" title="用QQ帐号登录" href="user.php?act=oath&type=qq" target="_top">QQ登录</a>
+				<span>|</span>
+				{/if}
+				
+				<a class="sina" title="用新浪微博帐号登录" href="user.php?act=oath&type=weibo">新浪微博</a> 
+				
+				<!--<span>|</span>
+				<a class="weixin" title="用微信帐号登录" href="user.php?act=oath&type=weixin">微信</a> 
+				<span>|</span>-->
+                
+				
+           </div>
+		</div>
+		
+		
+	</div>
+  
+</div>
+<!--{/if}-->
+<!--#登录界面 end-->
+
+<!--*会员注册界面 start-->
+    <!--{if $action eq 'register'}-->
+    <!-- {if $shop_reg_closed eq 1} -->
+    <div class="coLoginBody">
+      <div class="usBox_2 clearfix">
+        <div class="f1 f5" align="center">{$lang.shop_register_closed}</div>
+      </div>
+    </div>
+    <!-- {else} -->
+    {insert_scripts files='utils.js'}
+<div class="coLoginBody_zc clearfix">
+ <div class="t">
+      <div class="leftSide">
+        <div class="logos"></div>
+      </div>
+      <div class="rightSide"><a href="article_cat.php?id=10" target="_blank">帮助中心</a></div>
+    </div>
+                    <div class="coLogin_box" style="width:900px;margin: 20px 0 20px 90px;">
+    <form action="user.php" method="post" name="formUser" onsubmit="return register();">
+     
+        <div class="coLogin_one" style=" width:900px">
+          <p>手机号：</p>
+          <div class="coLoginTxt" style="width:290px;">
+         <div class="coLogin_txt_all" style="width:290px;">
+          <input name="username" type="text" size="17" id="username" onblur="is_registered(this.value);" class="coLogin_txt"  style="width:290px;"/>
+          </div>
+          </div>
+            <span id="username_notice" style="color:#FF0000"> *</span>
+        </div>
+        <div class="coLogin_one" style=" width:900px">
+          <p>验证码：</p>
+          <div class="coLoginTxt" style="width:290px;">
+         <div class="coLogin_txt_all" style="width:290px;">
+          <input name="txd_user_code" type="text" size="17" id="txd_user_code" class="coLogin_txt" placeholder="验证码"  style="width:80px; padding-left:30px; margin-right:12px; "/>
+          <a href="#" id="send_verify_code" name="send_verify_code" type="button"  style="border:1px solid #ccc ; height:28; padding:8px 10px 6px 30px; text-align:center; background-color:#f5f5f5" onclick="send_message()">免费获取验证码</a>
+          </div>
+          </div>
+            <span id="username_notice" style="color:#FF0000"> *</span>
+        </div>
+        <div class="coLogin_one" style=" width:900px">
+          <p>{$lang.label_email}：</p>
+          <div class="coLoginTxt" style="width:290px;">
+           <div class="coLogin_txt_all" style="width:290px;">
+           <!--onblur="checkEmail(this.value);"去掉邮箱-->
+          <input name="email" type="text" size="17" id="email" class="coLogin_txt"  style="width:290px;"/>
+           </div>
+          </div>
+           <!--span id="email_notice" style="color:#FF0000"> *</span-->
+        </div>
+         <div class="coLogin_one" style=" width:900px">
+          <p>{$lang.label_password}：</p>
+           <div class="coLoginTxt" style="width:290px;">
+           <div class="coLogin_txt_all" style="width:290px;">
+          <input name="password" type="password" id="password1" onblur="check_password(this.value);" onkeyup="checkIntensity(this.value)" class="coLogin_txt"  style="width:290px;" />
+           
+          </div>
+            </div>
+             <span style="color:#FF0000" id="password_notice"> *</span>
+        </div>
+       <div class="coLogin_one" style=" width:900px">
+          <p>{$lang.label_password_intensity}：</p>
+
+                <span id="pwd_lower" style="padding:0 30px;">{$lang.pwd_lower}</span>
+                <span id="pwd_middle" style="padding:0 30px;" >{$lang.pwd_middle}</span>
+                <span id="pwd_high" style="padding:0 30px;">{$lang.pwd_high}</span>
+             
+        </div>
+        <div class="coLogin_one" style=" width:900px">
+          <p>{$lang.label_confirm_password}：</p>
+          <div class="coLoginTxt" style="width:290px;">
+           <div class="coLogin_txt_all" style="width:290px;">
+          <input name="confirm_password" type="password" id="conform_password" onblur="check_conform_password(this.value);"  class="coLogin_txt"  style="width:290px;"/>
+           
+          </div>
+          </div>
+           <span style="color:#FF0000" id="conform_password_notice"> *</span>
+        </div>
+        <!-- {foreach from=$extend_info_list item=field} -->
+	<!-- {if $field.id eq 6} -->
+       <div class="coLogin_one" style=" width:900px">
+          <p>{$lang.passwd_question}</p>
+         <div class="coLoginTxt" style="width:235px;">
+          <select name='sel_question'>
+	  <option value='0'>{$lang.sel_question}</option>
+	  {html_options options=$passwd_questions}
+	  </select>
+          </div>
+        </div>
+        <div class="coLogin_one" style=" width:900px">
+          <p <!-- {if $field.is_need} -->id="passwd_quesetion"<!--{/if}-->>{$lang.passwd_answer}</p>
+          <div class="coLoginTxt" style="width:235px;">
+           <div class="coLogin_txt_all" style="width:235px;">
+	  <input name="passwd_answer" type="text" size="17"  class="coLogin_txt"  style="width:235px;" maxlengt='20'/>
+          </div>
+          </div>
+          <!-- {if $field.is_need} --><span style="color:#FF0000"> *</span><!-- {/if} -->
+        </div>
+	<!-- {else} -->
+       <div class="coLogin_one" style=" width:900px">
+          <p <!-- {if $field.is_need} -->id="extend_field{$field.id}i"<!--{/if}-->>{$field.reg_field_name} </p>
+           <div class="coLoginTxt" style="width:235px;">
+           <div class="coLogin_txt_all" style="width:235px; background:url(images/coLogin_txt_bg.gif) no-repeat;">
+          <input name="extend_field{$field.id}" type="text"size="17"  class="coLogin_txt"  style="width:235px;" />
+          
+          </div>
+          </div>
+          <!-- {if $field.is_need} --><span style="color:#FF0000"> *</span><!-- {/if} -->
+        </div>
+	<!-- {/if} -->
+	<!-- {/foreach} -->
+      <!-- 判断是否启用验证码{if $enabled_captcha} -->
+      <div class="coLogin_one" style=" width:900px">
+      <p>{$lang.comment_captcha}：</p>
+      <div class="coLoginTxt_2">
+            <div class="coLogin_txt_2_all">
+            <input type="text" size="8" name="captcha" class="coLogin_txt_2" />
+            </div>
+            <div class="coLoginTxt_2_img"> <img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" /> </div>
+            </div>
+
+      </div>
+      <!--{/if}-->
+      
+        <div class="coLogin_two" style="width:900px; display:block">
+          <p></p>
+        
+         
+            <input name="agreement" type="checkbox" value="1" checked="checked"  class="checkbox_txt" />
+            <b>{$lang.agreement}</b>
+        </div>
+         <div class="coLogin_one" style=" display:block; width:900px; margin:20px 0 20px 0px;">
+          <p></p>
+          <input name="act" type="hidden" value="act_register" >
+          <input type="hidden" name="back_act" value="{$back_act}" />
+          <input name="Submit" type="submit" value="注册" class="biLogin_btn" style="width:162px;">
+         
+        </div>
+      
+    </form>
+    </div>
+ 
+</div>
+
+<!--{/if}-->
+<!--{/if}-->
+<!--#会员注册界面 end-->
+
+<!--*找回密码界面 -->
+    <!--{if $action eq 'get_password'} -->
+    {insert_scripts files='utils.js'}
+    <script type="text/javascript">
+    {foreach from=$lang.password_js item=item key=key}
+      var {$key} = "{$item}";
+    {/foreach}
+    </script>
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post" name="getPassword" onsubmit="return submitPwdInfo();">
+        <br />
+        <table width="70%" border="0" align="center">
+          <tr>
+            <td colspan="2" align="center"><strong>{$lang.username_and_email}</strong></td>
+          </tr>
+          <tr>
+            <td width="29%" align="right">{$lang.username}</td>
+            <td width="61%"><input name="user_name" type="text" size="30" class="inputBg" /></td>
+          </tr>
+          <tr>
+            <td align="right">{$lang.email}</td>
+            <td><input name="email" type="text" size="30" class="inputBg" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="send_pwd_email" />
+              <input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
+              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />
+	    </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+  </div>
+</div>
+<!--{/if}-->
+
+<!--*通过问题找回密码的确认找回账号界面 -->
+    <!--{if $action eq 'qpassword_name'} -->
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post">
+        <br />
+        <table width="70%" border="0" align="center">
+          <tr>
+            <td colspan="2" align="center"><strong>{$lang.get_question_username}</strong></td>
+          </tr>
+          <tr>
+            <td width="29%" align="right">{$lang.username}</td>
+            <td width="61%"><input name="user_name" type="text" size="30" class="inputBg" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="get_passwd_question" />
+              <input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
+              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />
+	    </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+  </div>
+</div>
+<!--{/if}-->
+
+<!--*根据输入账号显示密码问题界面 -->
+    <!--{if $action eq 'get_passwd_question'} -->
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post">
+        <br />
+        <table width="70%" border="0" align="center">
+          <tr>
+            <td colspan="2" align="center"><strong>{$lang.input_answer}</strong></td>
+          </tr>
+          <tr>
+            <td width="29%" align="right">{$lang.passwd_question}：</td>
+            <td width="61%">{$passwd_question}</td>
+          </tr>
+          <tr>
+            <td align="right">{$lang.passwd_answer}：</td>
+            <td><input name="passwd_answer" type="text" size="20" class="inputBg" /></td>
+          </tr>
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <tr>
+            <td align="right">{$lang.comment_captcha}</td>
+            <td><input type="text" size="8" name="captcha" class="inputBg" />
+            <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
+          </tr>
+          <!--{/if}-->
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="check_answer" />
+              <input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
+              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />
+	    </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+  </div>
+</div>
+<!--{/if}-->
+
+<!-- {if $action eq 'reset_password'} -->
+    <script type="text/javascript">
+    {foreach from=$lang.password_js item=item key=key}
+      var {$key} = "{$item}";
+    {/foreach}
+    </script>
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post" name="getPassword2" onSubmit="return submitPwd()">
+      <br />
+      <table width="80%" border="0" align="center">
+        <tr>
+          <td>{$lang.new_password}</td>
+          <td><input name="new_password" type="password" size="25" class="inputBg" /></td>
+        </tr>
+        <tr>
+          <td>{$lang.confirm_password}:</td>
+          <td><input name="confirm_password" type="password" size="25"  class="inputBg"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <input type="hidden" name="act" value="act_edit_password" />
+            <input type="hidden" name="uid" value="{$uid}" />
+            <input type="hidden" name="code" value="{$code}" />
+            <input type="submit" name="submit" value="{$lang.confirm_submit}" />
+          </td>
+        </tr>
+      </table>
+      <br />
+    </form>
+  </div>
+</div>
+<!--{/if}-->
+<!--#找回密码界面 end-->
+</div>
+</div>
+
+<div class="blank5"></div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+
+
+</body>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+{foreach from=$lang.passport_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var username_exist = "{$lang.username_exist}";
+
+</script>
+</html>

@@ -1,0 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $helps}-->
+<div class="sideMenu" style="margin:0 auto">
+
+<!-- {foreach from=$helps item=help_cat} -->
+<div class="clearfix" style="margin-bottom:10px;">
+			<h2><a  href='{$help_cat.cat_id}' title="{$help_cat.cat_name}">{$help_cat.cat_name}</a></h2>
+			<ul>
+            <!-- {foreach from=$help_cat.article item=item} -->
+				<li><a {if $id eq $item.article_id} class="sell" {/if} href="{$item.url}" title="{$item.title|escape:html}"> {$item.short_title}</a></li>
+                <!-- {/foreach} -->
+			</ul></div>
+<!-- {/foreach} -->
+		
+
+		</div>
+<!--{/if}-->
+		
+        

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="themes/default/scripts/jquery1.8.min.js"></script>
+  {insert_scripts files='common.js'}
+  {insert_scripts files='transport.js,utils.js'}
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1);" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">返回首页</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="javascript:void(0);" class="link link-search  icon-only"><i class="icon icon-magnifier"></i></a>
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+	    <form class="searchbar none" id="search_exit" data-search-list=".list-block-search" data-search-in=".item-title" data-searchbar-found=".searchbar-found" data-searchbar-not-found=".searchbar-not-found" action="search.php">
+          <div class="searchbar-input">
+            <input type="search" name="keywords" placeholder="品牌/商品名" />
+            <a href="#" class="searchbar-clear"></a>
+          </div>
+          <button type="reset"id="search_button"class="btn-cancel">取 消</button>
+        </form>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="products-template" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!--排序(start)-->
+          <div class="products-sorting">
+
+          </div>
+          <!--排序(end)-->
+          <!-- section(start) -->
+          <div class="section">
+            <!--新品上市(start)-->
+            <div class="products">
+              <!--模块主体(start)-->
+              <div class="products-bd">
+                <div class="items" id="goods_list">
+				{if $goods_list}
+				{foreach name=goods_list from=$goods_list item=goods}
+                  <div class="item">
+                    <a href="{$goods.url}">
+                      <div class="pic"><img src="{$goods.goods_thumb}" width="145" /></div>
+                      <p class="item-info">
+                        <span class="item-name">{$goods.goods_name}</span>
+                        <strong class="item-price">{$goods.shop_price}</strong>
+                      </p>
+                    </a>
+                  </div>
+				{/foreach}
+				{else}
+				没有结果
+				{/if}
+                  </div>
+              </div>
+              <!--模块主体(end)-->
+            </div>
+            <!--新品上市(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+<input type="hidden" value="{$pager.page_next}" id="pager_url"/>  
+</div>
+<!-- Views(end) -->
+<script>
+var page = 1;
+$(document).ready(function(){
+  $(document).scroll(function(){
+	var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+	var tops = $(document).scrollTop();
+	var sctop = $(document).height() - $(window).height();
+	if (tops >= sctop){
+		var Url = $('#pager_url').val();
+		Url = Url.replace(/&page(.*?)&/,"&");
+		if(page < '{$pager.page_count}'*1){
+			page = ++page;
+			Url += '&json=1&page='+page;
+			$.get(Url, function (data) {
+				$("#goods_list").append(data);
+			});
+		}
+	}
+  });
+});
+</script >
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+
+</body>
+</html>

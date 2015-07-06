@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<!--主体内容 start-->
+<div class="block clearfix">
+  <div class="goodsTitle blank">{$lang.all_tags}</div>
+	<div class="mod2con">
+		<p>&nbsp;&nbsp; {$lang.tag_cloud_desc} &nbsp;&nbsp;</p>
+    <!-- {if $tags} -->
+          <!-- 标签云开始 {foreach from=$tags item=tag}-->
+          <span style="font-size:{$tag.size}; line-height:36px;"> <a href="{$tag.url}" style="color:{$tag.color}">
+          {if $tag.bold}
+          <b>{$tag.tag_words|escape:html}</b>
+          {else}
+          {$tag.tag_words|escape:html}
+          {/if}
+          </a>
+          <!-- {if $tags_from eq 'user'} -->
+          <a href="user.php?act=act_del_tag&amp;tag_words={$tag.tag_words|escape:url}&amp;uid={$tag.user_id}" title="{$lang.drop}"> <img src="images/drop.gif" alt="{$lang.drop}" /> </a>&nbsp;&nbsp;
+          <!-- {/if} -->
+          </span>
+          <!-- 标签云结束 {/foreach}-->
+          <!-- {else} -->
+          <div class="tips">{$lang.no_tag}</div>
+          <!-- {/if} -->
+	</div>
+	
+</div>
+<!--主体内容 end-->
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

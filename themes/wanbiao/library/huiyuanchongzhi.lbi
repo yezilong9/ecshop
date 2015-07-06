@@ -1,0 +1,54 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="vip_right">
+  <div class="vip_title">
+    <p>会员充值<span>（享受VIP 专属7大特权）</span></p>
+  </div>
+  <div class="slideTxtBox2">
+    <div class="hd">
+      <ul >
+        <li class="vipNav_0" ></li>
+        <li class="vipNav_1" ></li>
+        <li class="vipNav_2" ></li>
+        <li class="vipNav_3" ></li>
+        <li class="vipNav_4"></li>
+        <li class="vipNav_5" ></li>
+        <li class="vipNav_6" ></li>
+      </ul>
+    </div>
+    <div class="bd">
+      <ul id="vipTab_0">
+        <b>包邮特权 （会员专属）</b>
+        <p>VIP会员终生全场包邮，EMS减免5元。</p>
+      </ul>
+      <ul id="vipTab_1" >
+        <b>VIP特卖（会员专属）</b>
+        <p>特权超值购物，名品再享折扣。</p>
+      </ul>
+      <ul id="vipTab_2" >
+        <b>Meclub积分（会员专属）</b>
+        <p>购物的同时即可获得积分，随时享受超值兑换。</p>
+      </ul>
+      <ul id="vipTab_3">
+        <b>MeBox （会员专属）</b>
+        <p>高级体验式定制服务，给自己的美丽惊喜</p>
+      </ul>
+      <ul id="vipTab_4" >
+        <b>生日礼包（会员专属）</b>
+        <p>客服会在您生日前一周送去祝福，并为您送上生日礼包</p>
+      </ul>
+      <ul id="vipTab_5" >
+        <b>专属客服（会员专属）</b>
+        <p>贵宾式一对一贴心服务，绿色通道最快时效处理问题。</p>
+      </ul>
+      <ul id="vipTab_6" >
+        <b>充值有礼（会员专属）</b>
+        <p>一次性充值500元以上，立即升级为VIP，更有好礼相送。</p>
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript">
+		jQuery(".slideTxtBox2").slide();
+		</script>
+  <div class="vip_btn"> <a href="/meclub/vip.html#vip"></a> </div>
+</div>

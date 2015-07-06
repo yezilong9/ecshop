@@ -1,0 +1,44 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+<script type="text/javascript">
+//收藏本站 bbs.ecmoban.com
+function AddFavorite(title, url) {
+  try {
+      window.external.addFavorite(url, title);
+  }
+catch (e) {
+     try {
+       window.sidebar.addPanel(title, url, "");
+    }
+     catch (e) {
+         alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+     }
+  }
+}
+</script>
+<div class="header_flow ">
+
+    <div class="heads_flow">
+      
+      <div class="user_control">
+       
+          {insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jquery.SuperSlide.js'}
+          {insert_scripts files='transport.js,utils.js,ecmoban_common.js'} 
+          
+          <p class="tel400 ps">全国客服电话: <span>020-87383888转8</span></p>
+          <p class="ps">&nbsp;|&nbsp;</p>  
+           <span class="tLnk1" id="member_info" style=" float:left; display:inline; padding-right:90px">
+          <font id="ECS_MEMBERZONE" style="height:25px; float:left;">
+          {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} <a  href="user.php" class="f12"style="float:left; display:inline;">会员中心</a></font></span>
+          <p class="ps">&nbsp;&nbsp;&nbsp;</p>
+       
+          <div class="shop_txt_out" id="ECS_CARTINFO"  style="display:inline; position:absolute;right:30px; float:left;*width:80px; z-index:999999999999999999">{insert name='cart_info'}</div>
+        
+      </div>
+    </div>
+    
+    
+ 
+</div>

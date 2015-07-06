@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<h1 class="mod3tit" style="background: url(images/category_tree_bg.gif) repeat-x;"><a href="catalog.php"   style=" color: #fff">{$lang.all_category}</a></h1>
+<div class="mod1 mod2 blank" id="historybox" style="background:#7D0003; border:none;">
+	<span class="lb"></span><span class="rb"></span>
+<div class="cagegoryCon clearfix">
+<!--{foreach from=$categories item=cat}-->
+ <dl class="dl">
+ <dt><a href="{$cat.url}" style="color:#fff;">{$cat.name|escape:html}</a></dt>
+ <!--{if $cat.cat_id}-->
+ <dd class="clearfix" >
+ <!--{foreach name=childs from=$cat.cat_id item=child}-->
+     <p onMouseOver="this.className='itemsbg'" onMouseOut="this.className=''"><a href="{$child.url}" title="{$child.name|escape:html}" class="txtdot" style="color:#fff">{$child.name|escape:html}</a></p>
+ <!--{/foreach}-->
+ </dd>
+ <!--{/if}-->
+ </dl>
+ <!--{/foreach}-->
+</div>
+<div class="blank"></div>
+</div>

@@ -1,0 +1,170 @@
+<!-- $Id: goods_list.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!-- 商品搜索 -->
+
+<div class="form-div">
+  <form action="javascript:searchGoods()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    {if $smarty.get.act neq "trash"}
+    <!-- 分类 -->
+    <select name="cat_id"><option value="0">{$lang.goods_cat}</option>{$cat_list}</select>
+    <!-- 品牌 -->
+    <select name="brand_id"><option value="0">{$lang.goods_brand}</option>{html_options options=$brand_list}</select>
+    {/if}
+     <!-- 推荐 -->
+     <select name="intro_type"><option value="0">{$lang.intro_type}</option>{html_options options=$intro_list selected=$smarty.get.intro_type}</select>
+      <!-- 上架 -->
+      <select name="is_on_sale"><option value=''>{$lang.intro_type}</option><option value="1">{$lang.on_sale}</option><option value="0">{$lang.not_on_sale}</option></select>
+    <!-- 关键字 -->
+    {$lang.keyword} <input type="text" name="keyword" size="15" />
+    <input type="submit" value="{$lang.button_search}" class="button" />
+  </form>
+</div>
+
+<!-- 商品列表 -->
+<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+  <div class="list-div" id="listDiv">
+{/if}
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+      <a href="javascript:listTable.sort('goods_id'); ">{$lang.record_id}</a>{$sort_goods_id}
+    </th>
+    <th><a href="javascript:listTable.sort('goods_name'); ">{$lang.goods_name}</a>{$sort_goods_name}</th>
+    <th><a href="javascript:listTable.sort('shop_price'); ">本店售价</a>{$sort_shop_price}</th>
+    {if $agency_price}<th>代理商价格</th>{/if}
+	
+    <th><a href="javascript:listTable.sort('costing_price');">成本价</a>{$sort_costing_price}</th>
+	
+   <th><a href="javascript:listTable.sort('start_num'); ">起购数量</a>{$sort_start_num}</th>
+   {if $rank_goods_start_num}<th>代理商起购数量</th>{/if}
+	
+    <th><a href="javascript:listTable.sort('is_on_sale'); ">{$lang.is_on_sale}</a>{$sort_is_on_sale}</th>
+    <th><a href="javascript:listTable.sort('is_best'); ">{$lang.is_best}</a>{$sort_is_best}</th>
+    <th><a href="javascript:listTable.sort('is_new'); ">{$lang.is_new}</a>{$sort_is_new}</th>
+    <th><a href="javascript:listTable.sort('is_hot'); ">{$lang.is_hot}</a>{$sort_is_hot}</th>
+    
+    <th><a href="javascript:listTable.sort('goods_number'); ">{$lang.goods_number}</a>{$sort_goods_number}</th>
+    
+  <tr>
+  {foreach from=$goods_list item=goods}
+  <tr>
+    <td align="center" {if !$goods.cat_id}style="color:#C0C0C0;" {/if}><input type="checkbox" name="checkboxes[]" value="{$goods.goods_id}" />{$goods.goods_id}</td>
+    <td class="first-cell" style="{if $goods.is_promote}color:red;{/if}"><span {if !$goods.cat_id}style="color:#C0C0C0;" {/if} >{$goods.goods_name|escape:html}</span></td>
+    <td align="right"><span id="new_shop_price{$goods.goods_id}" value="1">{$goods.shop_price}
+    </span></td><input type="hidden" name="new_shop_price[{$goods.goods_id}]" value="">	
+	
+    {if $agency_price}<td align="right"><span id="new_agency_price{$goods.goods_id}" value="1">{$goods.agency_price}
+    </span></td><input type="hidden" name="new_agency_price[{$goods.goods_id}]" value="">{/if}
+	
+	<td align="right"><span >{$goods.costing_price}
+    </span></td>
+	
+    <td align="right"><span >{if $goods.start_num}{$goods.start_num}{else}0{/if}</span></td>
+	{if $rank_goods_start_num}<td align="right"><span id="new_agency_num{$goods.goods_id}" >{$goods.rank_goods_start_num}</span></td><input type="hidden" name="new_agency_num[{$goods.goods_id}]" value="">{/if}
+    <td align="center"><img src="images/{if $goods.is_on_sale}yes{else}no{/if}.gif"  /></td>
+    <td align="center"><img src="images/{if $goods.is_best}yes{else}no{/if}.gif"  /></td>
+    <td align="center"><img src="images/{if $goods.is_new}yes{else}no{/if}.gif"  /></td>
+    <td align="center"><img src="images/{if $goods.is_hot}yes{else}no{/if}.gif"  /></td>
+    
+    <td align="right"><span >{$goods.goods_number}</span></td>
+    
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+<!-- end goods list -->
+
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+
+</div>
+
+<div>
+  <input type="hidden" name="act" value="batch" />
+  <select name="type" id="selAction" onchange="changeAction()">
+    <option value="">{$lang.select_please}</option>
+    <option value="batch_stock_goods">{$lang.batch_stock_goods}</option>
+  </select>
+  <select name="target_cat" style="display:none">
+    <option value="0">{$lang.select_please}</option>{$cat_list}
+  </select>
+  <input type="submit" value="{$lang.button_submit}" id="btnSubmit" name="btnSubmit" class="button" disabled="true" />
+</div>
+
+</form>
+
+<script type="text/javascript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+    startCheckOrder(); // 开始检查订单
+    document.forms['listForm'].reset();
+  }
+
+  /**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+
+  function changeAction()
+  {
+      var frm = document.forms['listForm'];
+
+      // 切换分类列表的显示
+      frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
+			
+			{if $suppliers_list > 0}
+      frm.elements['suppliers_id'].style.display = frm.elements['type'].value == 'suppliers_move_to' ? '' : 'none';
+			{/if}
+
+      if (!document.getElementById('btnSubmit').disabled &&
+          confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+  
+      function searchGoods(agency)
+    {
+    {/literal}
+        {if $smarty.get.act neq "trash"}
+
+        listTable.filter['cat_id'] = document.forms['searchForm'].elements['cat_id'].value;
+        listTable.filter['brand_id'] = document.forms['searchForm'].elements['brand_id'].value;
+        {/if}
+    {literal}
+        listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+        listTable.filter['intro_type'] = document.forms['searchForm'].elements['intro_type'].value;
+        listTable.filter['is_on_sale'] = document.forms['searchForm'].elements['is_on_sale'].value;
+        listTable.filter['page'] = 1;
+
+        listTable.loadList();
+    }
+  
+  
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

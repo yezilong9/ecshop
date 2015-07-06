@@ -1,0 +1,75 @@
+<!-- {if $full_page} -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<div class="form-div">
+{if $smarty.get.auid}
+{$lang.show_affiliate_orders}
+{else}
+<form action="consumer_compensate.php?act=list">
+<input type="hidden" name="act" value="list" />
+    {if $all}
+    选择代理商
+    <select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</caption>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>&nbsp;&nbsp;
+    {/if}
+搜索订单号:<input name="order_sn" type="text" id="order_sn" size="15"><input type="submit" value="{$lang.button_search}" class="button" />
+</form>
+{/if}
+</div>
+<form method="post" action="" name="listForm">
+<div class="list-div" id="listDiv">
+<!-- {/if} -->
+<table cellspacing='1' cellpadding='3'>
+<tr>
+  <th width="20%">订单号</th>
+  <th width="8%">订单状态</th>
+  <th>操作信息</th>
+  <th width="8%" align="center">操作时间</th>
+  <th width="10%">操作</th>
+</tr>
+<!-- {foreach from=$logdb item=val} -->
+<tr>
+  <td align="center"><a href="order.php?act=info&order_id={$val.order_id}">{$val.order_sn}</a></td>
+  <td>收货确认</td>
+  <td>{$val.info}</td>
+  <td align="center" >{$val.change_time}</td>
+  <td align="center">
+  <!-- {if $val.stat_fenrun eq 2 } -->
+  <a href="javascript:confirm_redirect('是否要进行消费补偿操作', 'consumer_compensate.php?act=separate&oid={$val.order_id}')"> 消费补偿 </a> 
+  <!-- {else} -->
+  已进行消费补偿
+  <!-- {/if} -->
+  </td>
+</tr>
+    <!-- {foreachelse} -->
+    <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+<!-- {/foreach} -->
+</table>
+  <table cellpadding="4" cellspacing="0">
+    <tr>
+      <td align="right">{include file="page.htm"}</td>
+    </tr>
+  </table>
+<!-- {if $full_page} -->
+</div>
+</form>
+<script type="Text/Javascript" language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+
+<!-- {literal} -->
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+<!-- {/literal} -->
+</script>
+{include file="pagefooter.htm"}
+<!-- {/if} -->

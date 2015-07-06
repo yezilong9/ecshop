@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+ {insert_scripts files='utils.js,transport.js,region.js,shopping_flow.js'}
+            <script type="text/javascript">
+              region.isAdmin = false;
+              {foreach from=$lang.flow_js item=item key=key}
+              var {$key} = "{$item}";
+              {/foreach}
+              {literal}
+              onload = function() {
+                if (!document.all)
+                {
+                  document.forms['theForm'].reset();
+                }
+              }
+              {/literal}
+            </script>
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1)" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">选择配送地址</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="index.php" class="link icon-only"><i class="icon icon-home"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="member-addresses" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section spacebetween">
+		   {foreach from=$consignee_list item=consignee key=sn}
+			  <form class="list-block" action="flow.php" method="post" name="theForm" id="theForm" onsubmit="return checkConsignee(this)" style="padding-bottom:20px;">
+              <fieldset class="field">
+                <div class="legend">
+                  <div class="legend-main">
+                    <h2 class="tit">收货人信息</h2><a href="javascript:void(0)" onclick="if (confirm('{$lang.confirm_drop_address}'))location.href='user.php?act=drop_consignee&id={$consignee.address_id}'">删除</a>
+                  </div>
+                  <div class="legend-side"><a href="#">配送地址</a></div>
+                </div>
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">配送区域</div>
+                        <div class="item-input">
+                         <select name="country" id="selCountries_{$sn}" onchange="region.changed(this, 1, 'selProvinces_{$sn}')" style="width:80px">
+						  <option value="0">{$lang.please_select}{$name_of_region[0]}</option>
+						  <!-- {foreach from=$country_list item=country} -->
+						  <option value="{$country.region_id}" {if $consignee.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
+						  <!-- {/foreach} -->
+						</select>
+						<select name="province" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')" style="width:80px">
+						  <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+						  <!-- {foreach from=$province_list.$sn item=province} -->
+						  <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+						  <!-- {/foreach} -->
+						</select>
+						<select name="city" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')" style="width:80px">
+						  <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+						  <!-- {foreach from=$city_list.$sn item=city} -->
+						  <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+						  <!-- {/foreach} -->
+						</select>
+						<select name="district" id="selDistricts_{$sn}" {if !$district_list.$sn}style="display:none"{/if} style="width:80px">
+						  <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+						  <!-- {foreach from=$district_list.$sn item=district} -->
+						  <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+						  <!-- {/foreach} -->
+						</select> 
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">收货人姓名</div>
+                        <div class="item-input">
+                          <input name="consignee" type="text" class="inputBg" id="consignee_{$sn}" value="{$consignee.consignee|escape}" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">E-mail</div>
+                        <div class="item-input">
+                          <input name="email" type="text" class="inputBg" id="email_{$sn}" value="{$consignee.email|escape}" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">详细地址</div>
+                        <div class="item-input">
+                          <input name="address" type="text" class="inputBg" id="address_{$sn}" value="{$consignee.address|escape}" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">邮政编码</div>
+                        <div class="item-input">
+                          <input  placeholder="{$lang.postalcode}" name="zipcode" type="text" class="inputBg" id="zipcode_{$sn}" value="{$consignee.zipcode|escape}" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+				  
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">手机</div>
+                        <div class="item-input">
+                          <input name="tel" type="text" class="inputBg" id="tel_{$sn}" value="{$consignee.tel|escape}" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </fieldset>
+			  
+			<!-- {if $consignee.consignee && $consignee.email} -->
+			<input style="width:140px" type="submit" name="submit"  class="button button-big button-fill color-red button-submit" value="配送至这个地址"  />
+			<!-- {else} -->
+			<input style="width:140px" type="submit" name="submit"  class="button button-big button-fill color-red button-submit"  value="配送至这个地址"/>
+			<!-- {/if} -->
+			   <input type="hidden" name="step" value="consignee" />
+			   <input type="hidden" name="act" value="checkout" />
+			   <input name="address_id" type="hidden" value="{$consignee.address_id}" />
+            </form>
+			{/foreach}
+                      </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+</body>
+</html>

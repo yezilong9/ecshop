@@ -1,0 +1,52 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $new_goods} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="box  ">
+  <div class="itemTit" id="itemNew">
+  <div class="tit">
+    <DIV class="f_l">
+  
+  新品上架
+   </div>
+   
+   <div class="f_r">
+            
+                   <a href="#">更多>></a>
+            
+            </div>
+  
+        </div>
+  </div>
+  
+  
+  <div class="blank"></div>
+  <div id="show_new_area"  class="clearfix">
+  <!-- {/if} -->
+  <!--{foreach from=$new_goods item=goods}-->
+  <div class="goodsItem">
+        
+           <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg" /></a><br />
+            <p class="f1"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+            <div class="price">
+            
+                    <font class="market f_l">{$goods.market_price}</font>
+                    
+                    <font class="f1 f_r" style=" font-size:15px; color:#963c00">
+           <!-- {if $goods.promote_price neq ""} -->
+          {$goods.promote_price}
+          <!-- {else}-->
+          {$goods.shop_price}
+          <!--{/if}-->
+           </font>
+           
+              </div>
+        </div>
+  <!--{/foreach}-->
+ 
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+
+</div>
+<div class="blank"></div>
+  <!-- {/if} -->
+<!-- {/if} -->

@@ -1,0 +1,213 @@
+/*快印页面1样式*/
+.putong{border-bottom: 1px solid #f2f2f2;margin-bottom: 20px;}
+.putong h2{color: #5d7895;font-size: 24px;line-height: 24px;border-bottom: 1px solid #5d7895;width: 245px;padding-bottom: 10px;}
+.putong h2 span{font-weight: normal;}
+
+/*打印版面1*/
+.printpic_bd{width: 903px;margin: 0 auto;padding-top: 40px;}
+
+/*打印版面2*/
+.printitem_bd{width: 726px;margin: 0 auto;}
+.printitem{border: 2px solid #f3f3f3;text-align: center;}
+
+.ptitem_btn{padding-left: 95px;}
+.jingxian{border-bottom: 1px solid #f2f2f2;margin-bottom: 20px;}
+.jingxian{border-bottom: 1px solid #f2f2f2;margin-bottom: 20px;}
+.jingxian h2{color: #5d7895;font-size: 24px;line-height: 24px;border-bottom: 1px solid #5d7895;width: 280px;padding-bottom: 10px;}
+.jingxian h2 span{font-weight: normal;}
+
+/*打印版面3*/
+.printshow_list{text-align:center; width: 990px;margin: 0 auto;}
+/*.printshow_list li{float: left;display: inline;}*/
+.printshow_list li{display: inline;}
+.printshow_list li{width: 495px;height: 701px;}
+.ptshowinputTxtA,.ptshowinputTxtB,.ptshowinputTxtC,.ptshowinputTxtD{width: 240px;height: 13px;line-height: 13px;}
+.ptshowinputTxtA{position: absolute;left: 655px;top:208px;}
+.ptshowinputTxtB{position: absolute;left: 655px;top:228px;}
+.ptshowinputTxtC{position: absolute;left: 410px;top:208px;}
+.ptshowinputTxtD{position: absolute;left: 410px;top:228px;}
+
+/* 各个层的样式，拖动图片修改产品位置时使用  todo by zjh */
+/* 一个普通层的CSS*/
+.itemshow_cpitem{width: 84px;height: 60px;background-color: #fff;text-align: center;margin: 0 auto;margin-top: 0px;}
+.itemshow_s_zhekou{background: url(http://portal.txd168.com/assets/images/s_zhekou.png) 0 0 no-repeat;width: 46px;height: 46px;position: absolute;right: -3px;top:15px;text-align: center;line-height: 50px;font-size: 18px;color: #f4e829;}
+.itemshow_chanpin_con ul .mr_lastitem{margin-right: 0;}
+.itemshow_chanpin_con ul li{position: relative;}
+.itemshow_chanpininfo{}
+.itemshow_chanpininfo p{font-weight: bold;font-family: "黑体";}
+.itemshow_cpxinxi{ font-family:"黑体"; margin:1px auto; width:90px; line-height:15px; overflow:hidden; text-align:left; text-overflow:ellipsis;color: #fff;padding-top: 5px;padding-left: 2px;}
+.itemshow_cpbianhao{color: #040000;background-color: #f5e828;height: 12px;width: 80px;line-height: 12px;margin-left: 2px;margin-top: 4px;}
+.itemshow_cpitemclose{background: url(http://portal.txd168.com/assets/images/cpitemclose.png) 0 0 no-repeat;width: 20px;height: 20px;position: absolute;right: 0;top:0;}
+
+.itemshow_1_normal_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:527px;top:263px;text-align:center;text-align: middle;}
+.itemshow_2_normal_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:641px;top:263px;text-align:center;text-align: middle;}
+.itemshow_3_normal_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:758px;top:263px;text-align:center;text-align: middle;}
+.itemshow_4_normal_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:873px;top:263px;text-align:center;text-align: middle;}
+.itemshow_5_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:516px;top:357px;text-align:center;text-align: middle;}
+.itemshow_6_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:610px;top:357px;text-align:center;text-align: middle;}
+.itemshow_7_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:704px;top:357px;text-align:center;text-align: middle;}
+.itemshow_8_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:798px;top:357px;text-align:center;text-align: middle;}
+.itemshow_9_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:892px;top:357px;text-align:center;text-align: middle;}
+.itemshow_10_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:516px;top:467px;text-align:center;text-align: middle;}
+.itemshow_11_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:610px;top:467px;text-align:center;text-align: middle;}
+.itemshow_12_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:704px;top:467px;text-align:center;text-align: middle;}
+.itemshow_13_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:798px;top:467px;text-align:center;text-align: middle;}
+.itemshow_14_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:892px;top:467px;text-align:center;text-align: middle;}
+.itemshow_15_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:516px;top:576px;text-align:center;text-align: middle;}
+.itemshow_16_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:610px;top:576px;text-align:center;text-align: middle;}
+.itemshow_17_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:704px;top:576px;text-align:center;text-align: middle;}
+.itemshow_18_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:798px;top:576px;text-align:center;text-align: middle;}
+.itemshow_19_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:892px;top:576px;text-align:center;text-align: middle;}
+
+.itemshow_20_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:29px;text-align:center;text-align: middle;}
+.itemshow_21_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:29px;text-align:center;text-align: middle;}
+.itemshow_22_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:29px;text-align:center;text-align: middle;}
+.itemshow_23_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:29px;text-align:center;text-align: middle;}
+.itemshow_24_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:29px;text-align:center;text-align: middle;}
+.itemshow_25_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:137px;text-align:center;text-align: middle;}
+.itemshow_26_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:137px;text-align:center;text-align: middle;}
+.itemshow_27_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:137px;text-align:center;text-align: middle;}
+.itemshow_28_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:137px;text-align:center;text-align: middle;}
+.itemshow_29_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:137px;text-align:center;text-align: middle;}
+.itemshow_30_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:246px;text-align:center;text-align: middle;}
+.itemshow_31_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:246px;text-align:center;text-align: middle;}
+.itemshow_32_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:246px;text-align:center;text-align: middle;}
+.itemshow_33_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:246px;text-align:center;text-align: middle;}
+.itemshow_34_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:246px;text-align:center;text-align: middle;}
+.itemshow_35_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:356px;text-align:center;text-align: middle;}
+.itemshow_36_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:356px;text-align:center;text-align: middle;}
+.itemshow_37_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:356px;text-align:center;text-align: middle;}
+.itemshow_38_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:356px;text-align:center;text-align: middle;}
+.itemshow_39_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:356px;text-align:center;text-align: middle;}
+.itemshow_40_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:465px;text-align:center;text-align:middle;}
+.itemshow_41_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:465px;text-align:center;text-align:middle;}
+.itemshow_42_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:465px;text-align:center;text-align:middle;}
+.itemshow_43_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:465px;text-align:center;text-align:middle;}
+.itemshow_44_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:465px;text-align:center;text-align:middle;}
+.itemshow_45_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:574px;text-align:center;text-align: middle;}
+.itemshow_46_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:574px;text-align:center;text-align: middle;}
+.itemshow_47_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:574px;text-align:center;text-align: middle;}
+.itemshow_48_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:574px;text-align:center;text-align: middle;}
+.itemshow_49_normal_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:574px;text-align:center;text-align: middle;}
+
+/* normal_b */
+.itemshow_31_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:511px;top:29px;text-align:center;text-align: middle;}
+.itemshow_32_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:605px;top:29px;text-align:center;text-align: middle;}
+.itemshow_33_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:699px;top:29px;text-align:center;text-align: middle;}
+.itemshow_34_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:793px;top:29px;text-align:center;text-align: middle;}
+.itemshow_35_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:887px;top:29px;text-align:center;text-align: middle;}
+.itemshow_36_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:511px;top:137px;text-align:center;text-align: middle;}
+.itemshow_37_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:605px;top:137px;text-align:center;text-align: middle;}
+.itemshow_38_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:699px;top:137px;text-align:center;text-align: middle;}
+.itemshow_39_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:793px;top:137px;text-align:center;text-align: middle;}
+.itemshow_40_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:887px;top:137px;text-align:center;text-align: middle;}
+.itemshow_41_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:511px;top:246px;text-align:center;text-align: middle;}
+.itemshow_42_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:605px;top:246px;text-align:center;text-align: middle;}
+.itemshow_43_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:699px;top:246px;text-align:center;text-align: middle;}
+.itemshow_44_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:793px;top:246px;text-align:center;text-align: middle;}
+.itemshow_45_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:887px;top:246px;text-align:center;text-align: middle;}
+.itemshow_46_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:511px;top:356px;text-align:center;text-align: middle;}
+.itemshow_47_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:605px;top:356px;text-align:center;text-align: middle;}
+.itemshow_48_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:699px;top:356px;text-align:center;text-align: middle;}
+.itemshow_49_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:793px;top:356px;text-align:center;text-align: middle;}
+.itemshow_50_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:887px;top:356px;text-align:center;text-align: middle;}
+.itemshow_51_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:511px;top:465px;text-align:center;text-align:middle;}
+.itemshow_52_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:605px;top:465px;text-align:center;text-align:middle;}
+.itemshow_53_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:699px;top:465px;text-align:center;text-align:middle;}
+.itemshow_54_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:793px;top:465px;text-align:center;text-align:middle;}
+.itemshow_55_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:887px;top:465px;text-align:center;text-align:middle;}
+.itemshow_56_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:511px;top:574px;text-align:center;text-align: middle;}
+.itemshow_57_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:605px;top:574px;text-align:center;text-align: middle;}
+.itemshow_58_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:699px;top:574px;text-align:center;text-align: middle;}
+.itemshow_59_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:793px;top:574px;text-align:center;text-align: middle;}
+.itemshow_60_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:887px;top:574px;text-align:center;text-align: middle;}
+
+.itemshow_1_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:29px;text-align:center;text-align: middle;}
+.itemshow_2_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:29px;text-align:center;text-align: middle;}
+.itemshow_3_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:29px;text-align:center;text-align: middle;}
+.itemshow_4_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:29px;text-align:center;text-align: middle;}
+.itemshow_5_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:29px;text-align:center;text-align: middle;}
+.itemshow_6_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:137px;text-align:center;text-align: middle;}
+.itemshow_7_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:137px;text-align:center;text-align: middle;}
+.itemshow_8_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:137px;text-align:center;text-align: middle;}
+.itemshow_9_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:137px;text-align:center;text-align: middle;}
+.itemshow_10_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:137px;text-align:center;text-align: middle;}
+.itemshow_11_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:246px;text-align:center;text-align: middle;}
+.itemshow_12_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:246px;text-align:center;text-align: middle;}
+.itemshow_13_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:246px;text-align:center;text-align: middle;}
+.itemshow_14_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:246px;text-align:center;text-align: middle;}
+.itemshow_15_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:246px;text-align:center;text-align: middle;}
+.itemshow_16_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:356px;text-align:center;text-align: middle;}
+.itemshow_17_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:356px;text-align:center;text-align: middle;}
+.itemshow_18_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:356px;text-align:center;text-align: middle;}
+.itemshow_19_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:356px;text-align:center;text-align: middle;}
+.itemshow_20_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:356px;text-align:center;text-align: middle;}
+.itemshow_21_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:465px;text-align:center;text-align:middle;}
+.itemshow_22_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:465px;text-align:center;text-align:middle;}
+.itemshow_23_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:465px;text-align:center;text-align:middle;}
+.itemshow_24_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:465px;text-align:center;text-align:middle;}
+.itemshow_25_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:465px;text-align:center;text-align:middle;}
+.itemshow_26_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:16px;top:574px;text-align:center;text-align: middle;}
+.itemshow_27_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:110px;top:574px;text-align:center;text-align: middle;}
+.itemshow_28_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:204px;top:574px;text-align:center;text-align: middle;}
+.itemshow_29_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:298px;top:574px;text-align:center;text-align: middle;}
+.itemshow_30_normal_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:392px;top:574px;text-align:center;text-align: middle;}
+
+/* simple_a */
+.itemshow_1_simple_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:279px;top:264px;text-align:center;text-align: middle;}
+.itemshow_2_simple_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:393px;top:264px;text-align:center;text-align: middle;}
+.itemshow_3_simple_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:510px;top:264px;text-align:center;text-align: middle;}
+.itemshow_4_simple_a{color:#fff;background:#fba30e;width:91px;height:83px;position:absolute;left:625px;top:264px;text-align:center;text-align: middle;}
+
+.itemshow_5_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:268px;top:359px;text-align:center;text-align: middle;}
+.itemshow_6_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:362px;top:359px;text-align:center;text-align: middle;}
+.itemshow_7_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:456px;top:359px;text-align:center;text-align: middle;}
+.itemshow_8_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:550px;top:359px;text-align:center;text-align: middle;}
+.itemshow_9_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:644px;top:359px;text-align:center;text-align: middle;}
+.itemshow_10_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:268px;top:467px;text-align:center;text-align: middle;}
+.itemshow_11_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:362px;top:467px;text-align:center;text-align: middle;}
+.itemshow_12_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:456px;top:467px;text-align:center;text-align: middle;}
+.itemshow_13_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:550px;top:467px;text-align:center;text-align: middle;}
+.itemshow_14_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:644px;top:467px;text-align:center;text-align: middle;}
+.itemshow_15_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:268px;top:576px;text-align:center;text-align: middle;}
+.itemshow_16_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:362px;top:576px;text-align:center;text-align: middle;}
+.itemshow_17_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:456px;top:576px;text-align:center;text-align: middle;}
+.itemshow_18_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:550px;top:576px;text-align:center;text-align: middle;}
+.itemshow_19_simple_a{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:644px;top:576px;text-align:center;text-align: middle;}
+
+/* simple_b */
+.itemshow_1_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:263px;top:29px;text-align:center;text-align: middle;}
+.itemshow_2_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:357px;top:29px;text-align:center;text-align: middle;}
+.itemshow_3_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:451px;top:29px;text-align:center;text-align: middle;}
+.itemshow_4_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:545px;top:29px;text-align:center;text-align: middle;}
+.itemshow_5_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:639px;top:29px;text-align:center;text-align: middle;}
+.itemshow_6_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:263px;top:137px;text-align:center;text-align: middle;}
+.itemshow_7_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:357px;top:137px;text-align:center;text-align: middle;}
+.itemshow_8_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:451px;top:137px;text-align:center;text-align: middle;}
+.itemshow_9_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:545px;top:137px;text-align:center;text-align: middle;}
+.itemshow_10_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:639px;top:137px;text-align:center;text-align: middle;}
+.itemshow_11_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:263px;top:246px;text-align:center;text-align: middle;}
+.itemshow_12_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:357px;top:246px;text-align:center;text-align: middle;}
+.itemshow_13_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:451px;top:246px;text-align:center;text-align: middle;}
+.itemshow_14_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:545px;top:246px;text-align:center;text-align: middle;}
+.itemshow_15_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:639px;top:246px;text-align:center;text-align: middle;}
+.itemshow_16_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:263px;top:356px;text-align:center;text-align: middle;}
+.itemshow_17_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:357px;top:356px;text-align:center;text-align: middle;}
+.itemshow_18_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:451px;top:356px;text-align:center;text-align: middle;}
+.itemshow_19_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:545px;top:356px;text-align:center;text-align: middle;}
+.itemshow_20_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:639px;top:356px;text-align:center;text-align: middle;}
+.itemshow_21_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:263px;top:465px;text-align:center;text-align:middle;}
+.itemshow_22_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:357px;top:465px;text-align:center;text-align:middle;}
+.itemshow_23_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:451px;top:465px;text-align:center;text-align:middle;}
+.itemshow_24_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:545px;top:465px;text-align:center;text-align:middle;}
+.itemshow_25_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:639px;top:465px;text-align:center;text-align:middle;}
+.itemshow_26_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:263px;top:574px;text-align:center;text-align: middle;}
+.itemshow_27_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:357px;top:574px;text-align:center;text-align: middle;}
+.itemshow_28_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:451px;top:574px;text-align:center;text-align: middle;}
+.itemshow_29_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:545px;top:574px;text-align:center;text-align: middle;}
+.itemshow_30_simple_b{color:#fff;background:#fba30e;width:84px;height:99px;position:absolute;left:639px;top:574px;text-align:center;text-align: middle;}
+
+
+
+/*弹窗样式*/
+.backto{background: url(http://portal.txd168.com/assets/images/backtogo.png) 0 0 no-repeat;width: 99px;height: 32px;position: absolute;left: 150px;top:150px;text-align: center;line-height: 32px;font-weight: bold;color: #fff;font-size: 14px;}

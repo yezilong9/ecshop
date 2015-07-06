@@ -1,0 +1,332 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+
+<script language="javascript" src="styles/pay/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+window.__Object_toJSONString = Object.prototype.toJSONString;
+delete Object.prototype.toJSONString;
+});
+</script>
+<div class="main-div">
+<form method="post" action="users.php" name="theForm" onsubmit="return validate()" enctype="multipart/form-data">
+<table width="100%" >
+{if $top_rank_name !=null}
+  <tr>
+    <td class="label">所属代理商:</td>
+    <td>{$top_rank_name.user_name}</td>
+  </tr>
+{/if}
+
+  <tr>
+    <td class="label">{$lang.username}:</td>
+    <td>{if $form_action eq "update"}{$user.user_name}<input type="hidden" name="username" value="{$user.user_name}" />{else}<input type="text" name="username" maxlength="60" value="{$user.user_name}" />{$lang.require_field}{/if}</td>
+  </tr>
+
+  {if $form_action eq "update"}
+  <tr>
+    <td class="label">{$lang.user_money}:</td>
+    <td>{$user.formated_user_money} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=user_money">[ {$lang.view_detail_account} ]</a> </td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.frozen_money}:</td>
+    <td>{$user.formated_frozen_money} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=frozen_money">[ {$lang.view_detail_account} ]</a> </td>
+  </tr>
+  <!--<tr>
+    <td class="label"><a href="javascript:showNotice('noticeRankPoints');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.rank_points}:</td>
+    <td>{$user.rank_points} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=rank_points">[ {$lang.view_detail_account} ]</a> <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeRankPoints">{$lang.notice_rank_points}</span></td>
+  </tr>
+  <tr>
+    <td class="label"><a href="javascript:showNotice('noticePayPoints');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}" /></a> {$lang.pay_points}:</td>
+    <td>{$user.pay_points} <a href="account_log.php?act=list&user_id={$user.user_id}&account_type=pay_points">[ {$lang.view_detail_account} ]</a> <br />
+        <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticePayPoints">{$lang.notice_pay_points}</span></td>
+  </tr>-->
+  {/if}
+  <tr>
+    <td class="label">{$lang.email}:</td>
+    <td><input type="text" name="email" maxlength="60" size="40" value="{$user.email}" />{$lang.require_field}</td>
+  </tr>
+  {if $form_action eq "insert"}
+  <tr>
+    <td class="label">{$lang.password}:</td>
+    <td><input type="password" name="password" maxlength="20" size="20" />{$lang.require_field}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.confirm_password}:</td>
+    <td><input type="password" name="confirm_password" maxlength="20" size="20" />{$lang.require_field}</td>
+  </tr>
+  {elseif  $form_action eq "update"}
+  <tr>
+    <td class="label">{$lang.newpass}:</td>
+    <td><input type="password" name="password" maxlength="20" size="20" /></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.confirm_password}:</td>
+    <td><input type="password" name="confirm_password" maxlength="20" size="20" /></td>
+  </tr>
+  {/if}
+  <tr>
+    <td class="label">{$lang.user_rank}:</td>
+    <td><select name="user_rank" id="user_rank"  {if $action_list eq 'all'}onchange="return rank()"{/if}>
+      <option value="0" >{$lang.not_special_rank}</option>
+      {foreach from=$special_ranks item=rank key=rank_val}
+	  {if $action_list eq 'all'}
+	  <option value="{$rank_val}" {if $op_user_rank eq $rank_val}selected="selected"{/if}>{$rank}</option>
+	  {elseif $rank_val neq 4}
+	  <option value="{$rank_val}" {if $op_user_rank eq $rank_val}selected="selected"{/if}>{$rank}</option>
+	  {/if}
+	  {/foreach}
+    </select></td>
+  </tr>
+
+  <tr id="rankRow" style="display:{if $top_rank_name !=null || $action_list == 'all'}back{else}none{/if}">
+    <td class="label">指定代理商:</td>
+    <td><select name="rankRow" onclick="return agency_top()">
+      <option value="0" >请选择</option>
+	  {foreach from=$rankRow item=rankRow}
+	  <option value="{$rankRow.user_id}" {if $top_rank_name.user_name eq $rankRow.user_name}selected="selected"{/if}>{$rankRow.user_name}</option>
+	  {/foreach}
+    </select></td>
+  </tr>
+
+  <tr>
+    <td class="label">{$lang.gender}:</td>
+    <td>{html_radios name="sex" options=$lang.sex checked=$user.sex }</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.birthday}:</td>
+    <td>{html_select_date field_order="YMD" prefix="birthday" time=$user.birthday start_year="-60" end_year="+1" display_days=true month_format="%m"}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.credit_line}:</td>
+    <td><input name="credit_line" type="text" id="credit_line" value="{$user.credit_line}" size="10" /></td>
+  </tr>
+  {foreach from=$extend_info_list item=field}
+
+{if $field.upload eq 1}
+
+	{if !empty($field.content)} 
+		  <tr>
+			<td class="label">证照:</td>
+			<td id="img_end">
+			{foreach from=$field.content item=img}
+			{if $img != null}
+				<img src="../{$img}" style="width:100px;height:100px;cursor:pointer;"onclick="javascript:window.open('../{$img}','_blank');">
+			{else}
+				暂无
+			{/if}
+			{/foreach}
+			</td>
+		  </tr>
+		  <tr>
+			<td class="label"></td>
+			<td>
+				<button type="button" onclick="return img_file()">修改证照</button>
+			</td>
+		  </tr>
+	{/if}
+  <tr id="img_field_one" style="display:{if $add eq 'add'}back{else}none{/if}">
+    <td class="label">{$field.reg_field_name}:</td>
+    <td>
+    身份证正面：<input name="extend_field{$field.id}[]" type="file" size="40" class="inputBg" style="width:180px;"/>
+    </td>
+  </tr>
+  <tr id="img_field_two" style="display:{if $add eq 'add'}back{else}none{/if}">
+    <td class="label"></td>
+    <td>
+    身份证反面：<input name="extend_field{$field.id}[]" type="file" size="40" class="inputBg" style="width:180px;"/>
+    </td>
+  </tr>
+  <tr id="img_field_three" style="display:{if $add eq 'add'}back{else}none{/if}">
+    <td class="label"></td>
+    <td>
+    营业执照&nbsp;&nbsp;&nbsp;&nbsp;：<input name="extend_field{$field.id}[]" type="file" size="40" class="inputBg" style="width:180px;"/>
+    </td>
+  </tr>
+  {else}
+	{if $field.id eq 101} 
+	  <tr id="agency_dz" style="display:{if $top_rank_name != null || $action_list != 'all'}none{/if}">
+		<td class="label">{$field.reg_field_name}:</td>
+		<td>
+		省：<select name="agency_dz_sheng" id="agency_dz_sheng" onchange="dzsheng()" >
+		<option value="0" >请选择</option>
+		{foreach from=$areaArr item=area}
+		<option value="{$area.region_id}" {if $field.sheng eq $area.region_name}selected="selected"{/if}>{$area.region_name}</option>
+		{/foreach}
+		</select>
+		&nbsp;&nbsp;市：<select name="agency_dz_shi" id="agency_dz_shi">
+		<option value="0" >请选择</option>
+		{if !empty($siteArr)}
+		{foreach from=$siteArr item=site}
+		<option value="{$site.region_id}" {if $field.shi eq $site.region_name}selected="selected"{/if}>{$site.region_name}</option>
+		{/foreach}
+		{/if}
+		</select>
+		</td>
+	  </tr>
+	{/if}
+	{if $field.id neq 101}
+	  <tr>
+		<td class="label">{$field.reg_field_name}:</td>
+		<td>
+		<input name="extend_field{$field.id}" type="text" size="40" class="inputBg" value="{$field.content}"/>
+		</td>
+	  </tr>
+	{/if}
+
+  {/if}
+  {/foreach}
+  {if $user.parent_id}
+  <tr>
+    <td class="label">{$lang.parent_user}:</td>
+    <td><a href="users.php?act=edit&id={$user.parent_id}">{$user.parent_username}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="users.php?act=remove_parent&id={$user.user_id}">{$lang.parent_remove}</a></td>
+  </tr>
+  {/if}
+  {if $affiliate.on eq 1 && $affdb}
+  <tr>
+    <td class="label">{$lang.affiliate_user}:</td>
+    <td>[<a href="users.php?act=aff_list&auid={$user.user_id}">{$lang.show_affiliate_users}</a>][<a href="affiliate_ck.php?act=list&auid={$user.user_id}">{$lang.show_affiliate_orders}</a>]</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>   
+    <table border="0" cellspacing="1" style="background: #dddddd; width:30%;">
+    <tr>
+    <td bgcolor="#ffffff">{$lang.affiliate_lever}</td>
+    {foreach from=$affdb key=level item=val0}
+    <td bgcolor="#ffffff">{$level}</td>
+    {/foreach}
+    </tr>
+    <tr>
+    <td bgcolor="#ffffff">{$lang.affiliate_num}</td>
+    {foreach from=$affdb item=val}
+    <td bgcolor="#ffffff">{$val.num}</td>
+    {/foreach}
+    </tr>
+    </table>
+    </td>
+  </tr>
+  {/if}
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="{$lang.button_submit}" class="button" />
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="id" value="{$user.user_id}" />    </td>
+  </tr>
+</table>
+
+</form>
+</div>
+<script>
+function img_file(){
+	var img_one = document.getElementById('img_field_one').style.display="";
+	var img_two = document.getElementById('img_field_two').style.display="";
+	var img_three = document.getElementById('img_field_three').style.display="";
+}
+function rank(){
+	var user_rank_val = document.getElementById('user_rank').value;
+	if(user_rank_val == 4){
+		document.getElementById('agency_dz').style.display="";
+		document.getElementById('rankRow').style.display="none";
+	}else{
+		document.getElementById('agency_dz').style.display="none";
+		document.getElementById('rankRow').style.display="";
+	}
+}
+
+function agency_top(){
+	var user_rank_val = document.getElementById('user_rank').value;
+	if(user_rank_val == 4){
+		alert('不能为代理商指定代理商');
+	}
+}
+onload=dzsheng();
+function dzsheng(){
+	var agency_dz_sheng = $('#agency_dz_sheng').val();
+	var dz = 'dz';
+	 Ajax.call('users.php', 'agency_dz_sheng=' + agency_dz_sheng+'&act='+dz,act_dz,'GET','JSON', true, true );
+}
+
+function act_dz(result){
+	var a="";
+	if(result)
+	{
+		for(i=0;i<result.length;i++){
+		a+='<option value='+result[i].region_id+'>'+result[i].region_name+'</option>';
+		}
+	}else{
+		a+='<option value="">请选择</option>';
+	}
+	$('#agency_dz_shi').html(a);
+} 
+</script>
+
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+
+if (document.forms['theForm'].elements['act'].value == "insert")
+{
+  document.forms['theForm'].elements['username'].focus();
+}
+else
+{
+  document.forms['theForm'].elements['email'].focus();
+}
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.isEmail("email", invalid_email, true);
+
+    if (document.forms['theForm'].elements['act'].value == "insert")
+    {
+        validator.required("username",  no_username);
+        validator.required("password", no_password);
+        validator.required("confirm_password", no_confirm_password);
+        validator.eqaul("password", "confirm_password", password_not_same);
+
+        var password_value = document.forms['theForm'].elements['password'].value;
+        if (password_value.length < 6)
+        {
+          validator.addErrorMsg(less_password);
+        }
+        if (/ /.test(password_value) == true)
+        {
+          validator.addErrorMsg(passwd_balnk);
+        }
+    }
+    else if (document.forms['theForm'].elements['act'].value == "update")
+    {
+        var newpass = document.forms['theForm'].elements['password'];
+        var confirm_password = document.forms['theForm'].elements['confirm_password'];
+        if(newpass.value.length > 0 || confirm_password.value.length)
+        {
+          if(newpass.value.length >= 6 || confirm_password.value.length >= 6)
+          {
+            validator.eqaul("password", "confirm_password", password_not_same);
+          }
+          else
+          {
+            validator.addErrorMsg(password_len_err);
+          }
+        }
+    }
+
+    return validator.passed();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

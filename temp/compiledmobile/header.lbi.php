@@ -1,0 +1,17 @@
+    <div class="navbar">
+      <div class="navbar-inner">
+        <h1 class="navbar-tit left sliding">天下店</h1>
+        <div class="right">
+		 
+          <a href="javascript:void(0);" class="link link-search  icon-only"><i class="icon icon-magnifier"></i></a>
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+      </div>
+	    <form class="searchbar none" id="search_exit" data-search-list=".list-block-search" data-search-in=".item-title" data-searchbar-found=".searchbar-found" data-searchbar-not-found=".searchbar-not-found" action="search.php">
+          <div class="searchbar-input">
+            <input type="search" name="keywords" placeholder="品牌/商品名" />
+            <a href="#" class="searchbar-clear"></a>
+          </div>
+          <button type="reset" id="search_button" class="btn-cancel">取 消</button>
+        </form>
+    </div>

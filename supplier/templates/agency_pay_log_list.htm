@@ -1,0 +1,287 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<!-- 订单搜索 -->
+<div class="form-div">
+  <form action="javascript:searchOrder()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    订单号：<input name="order_sn" type="text" id="order_sn" size="15">
+    {$lang.all_status}
+	状态：
+    <select name="status" id="status">
+      <option value="0">请选择</option>
+      <option value="1">成功</option>
+      <option value="2">失败</option>
+    </select>
+{if $all eq 'all'}
+	&nbsp;&nbsp;&nbsp;选择代理商:
+	<select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</caption>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>
+{else}
+	<input name="admin_agency_id" type="hidden">
+{/if}
+    <input type="submit" value="{$lang.button_search}" class="button" />
+	
+  </form>
+</div>
+
+<!-- 订单列表 -->
+<form method="post" action="order.php?act=operate" name="listForm" onsubmit="return check()">
+  <div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" /><a href="javascript:listTable.sort('id', 'DESC'); ">代理商平台订单号</a>{$sort_id}
+    </th>
+    <th><a href="javascript:listTable.sort('ag.agency_id', 'DESC'); ">代理商</a>{$sort_agency_id}</th>
+    <th><a href="javascript:listTable.sort('ag.user_id', 'DESC'); ">购物会员</a>{$sort_user_id}</th>
+    <th><a href="javascript:listTable.sort('order_amount', 'DESC'); ">金额</a>{$sort_order_amount}</th>
+    <th><a href="javascript:listTable.sort('status', 'DESC'); ">订单状态</a>{$sort_status}</th>
+    <th><a href="javascript:listTable.sort('time', 'DESC'); ">交易时间</a>{$sort_time}</th>
+
+  <tr>
+  {foreach from=$goods_res item=order key=okey}
+  <tr>
+    <td valign="top" nowrap="nowrap"><input type="checkbox" name="checkboxes" value="{$order.order_sn}" /><a href="order.php?act=info&order_id={$order.order_id}" id="order_{$okey}">{$order.order_sn}<br /><div align="center"></div><br /><div align="center"></div></a></td>
+	
+    <td>{$order.admin_name}</td>
+    <td align="center" valign="top">{if $order.user_name}{$order.user_name}{else}非会员{/if}</td>
+    <td align="center" valign="top" nowrap="nowrap">￥{$order.order_amount}元</td>
+    <td align="center" valign="top" nowrap="nowrap">{if $order.status eq 1}<span style="color:green">成功</span>{elseif $order.status eq 2}<span style="color:red">失败</span>{/if}</td>
+    <td align="center" valign="top" nowrap="nowrap">{$order.time}</td>
+  </tr>
+  {/foreach}
+</table>
+
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+  </div>
+
+</form>
+<script language="JavaScript">
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+
+{foreach from=$filter item=item key=key}
+listTable.filter.{$key} = '{$item}';
+{/foreach}
+{literal}
+
+    onload = function()
+    {
+        // 开始检查订单
+        startCheckOrder();
+    }
+
+    /**
+     * 搜索订单
+     */
+    function searchOrder()
+    {
+        listTable.filter['admin_agency_id'] = Utils.trim(document.forms['searchForm'].elements['admin_agency_id'].value);
+        listTable.filter['order_sn'] = Utils.trim(document.forms['searchForm'].elements['order_sn'].value);
+
+        listTable.filter['status'] = document.forms['searchForm'].elements['status'].value;
+        listTable.filter['page'] = 1;
+        listTable.loadList();
+    }
+
+    function check()
+    {
+      var snArray = new Array();
+      var eles = document.forms['listForm'].elements;
+      for (var i=0; i<eles.length; i++)
+      {
+        if (eles[i].tagName == 'INPUT' && eles[i].type == 'checkbox' && eles[i].checked && eles[i].value != 'on')
+        {
+          snArray.push(eles[i].value);
+        }
+      }
+      if (snArray.length == 0)
+      {
+        return false;
+      }
+      else
+      {
+        eles['order_id'].value = snArray.toString();
+        return true;
+      }
+    }
+    /**
+     * 显示订单商品及缩图
+     */
+    var show_goods_layer = 'order_goods_layer';
+    var goods_hash_table = new Object;
+    var timer = new Object;
+
+    /**
+     * 绑定订单号事件
+     *
+     * @return void
+     */
+    function bind_order_event()
+    {
+        var order_seq = 0;
+        while(true)
+        {
+            var order_sn = Utils.$('order_'+order_seq);
+            if (order_sn)
+            {
+                order_sn.onmouseover = function(e)
+                {
+                    try
+                    {
+                        window.clearTimeout(timer);
+                    }
+                    catch(e)
+                    {
+                    }
+                    var order_id = Utils.request(this.href, 'order_id');
+                    show_order_goods(e, order_id, show_goods_layer);
+                }
+                order_sn.onmouseout = function(e)
+                {
+                    hide_order_goods(show_goods_layer)
+                }
+                order_seq++;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    listTable.listCallback = function(result, txt) 
+    {
+        if (result.error > 0) 
+        {
+            alert(result.message);
+        }
+        else 
+        {
+            try 
+            {
+                document.getElementById('listDiv').innerHTML = result.content;
+                bind_order_event();
+                if (typeof result.filter == "object") 
+                {
+                    listTable.filter = result.filter;
+                }
+                listTable.pageCount = result.page_count;
+            }
+            catch(e)
+            {
+                alert(e.message);
+            }
+        }
+    }
+    /**
+     * 浏览器兼容式绑定Onload事件
+     *
+     */
+    if (Browser.isIE)
+    {
+        window.attachEvent("onload", bind_order_event);
+    }
+    else
+    {
+        window.addEventListener("load", bind_order_event, false);
+    }
+
+    /**
+     * 建立订单商品显示层
+     *
+     * @return void
+     */
+    function create_goods_layer(id)
+    {
+        if (!Utils.$(id))
+        {
+            var n_div = document.createElement('DIV');
+            n_div.id = id;
+            n_div.className = 'order-goods';
+            document.body.appendChild(n_div);
+            Utils.$(id).onmouseover = function()
+            {
+                window.clearTimeout(window.timer);
+            }
+            Utils.$(id).onmouseout = function()
+            {
+                hide_order_goods(id);
+            }
+        }
+        else
+        {
+            Utils.$(id).style.display = '';
+        }
+    }
+
+    /**
+     * 显示订单商品数据
+     *
+     * @return void
+     */
+    function show_order_goods(e, order_id, layer_id)
+    {
+        create_goods_layer(layer_id);
+        $layer_id = Utils.$(layer_id);
+        $layer_id.style.top = (Utils.y(e) + 12) + 'px';
+        $layer_id.style.left = (Utils.x(e) + 12) + 'px';
+        if (typeof(goods_hash_table[order_id]) == 'object')
+        {
+            response_goods_info(goods_hash_table[order_id]);
+        }
+        else
+        {
+            
+            Ajax.call('order.php?is_ajax=1&act=get_goods_info&order_id='+order_id, '', response_goods_info , 'POST', 'JSON');
+        }
+    }
+
+    /**
+     * 隐藏订单商品
+     *
+     * @return void
+     */
+    function hide_order_goods(layer_id)
+    {
+        $layer_id = Utils.$(layer_id);
+        window.timer = window.setTimeout('$layer_id.style.display = "none"', 500);
+    }
+
+    /**
+     * 处理订单商品的Callback
+     *
+     * @return void
+     */
+    function response_goods_info(result)
+    {
+        if (result.error > 0)
+        {
+            alert(result.message);
+            hide_order_goods(show_goods_layer);
+            return;
+        }
+        if (typeof(goods_hash_table[result.content[0].order_id]) == 'undefined')
+        {
+            goods_hash_table[result.content[0].order_id] = result;
+        }
+        Utils.$(show_goods_layer).innerHTML = result.content[0].str;
+    }
+</script>
+{/literal}
+
+{include file="pagefooter.htm"}
+{/if}

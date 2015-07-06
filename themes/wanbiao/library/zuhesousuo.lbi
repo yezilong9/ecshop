@@ -1,0 +1,85 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--组合搜索 开始-->
+<!--{if $brands.1 || $price_grade.1 || $filter_attr_list}-->
+<div class="search_rightChoseAll clearfix  ">
+   <!--<dl class="searchRight_chose">
+   <dt>您选择了：</dt>
+      <dd><a href="/hufu-mall/" title="洁面">男表<span class="close_icon"></span></a></dd>
+    <dd class="searchLeft_clear"><a href="/hufu-mall/">重置选择</a></dd>
+  </dl>-->
+  <div class="searchRight_brand "> 
+    <!--{if $brands.1}-->
+    <div class="screeBox clearfix"> <strong>{$lang.brand}：</strong>
+      <ul class="show_box" style=" height:30px;">
+        <!--{foreach from=$brands item=brand}--> 
+        <!-- {if $brand.selected} -->
+        <li><span>{$brand.brand_name}</span></li>
+        <!-- {else} -->
+        <li><a href="{$brand.url}">{$brand.brand_name}</a></li>
+        <!-- {/if} --> 
+        <!--{/foreach}-->
+      </ul>
+      <div class="next_selected_folddiv">
+        <div class="next_selected_folddiv_word" onclick="show_box(this,60)">显示全部</div>
+        <div class="next_selected_folddiv_arrow"></div>
+      </div>
+    </div>
+    <!--{/if}--> 
+    
+    <!--{foreach from=$filter_attr_list item=filter_attr}-->
+    <div class="screeBox clearfix"> <strong>{$filter_attr.filter_attr_name|escape:html}：</strong>
+      <ul class="show_box" style=" height:30px;">
+        <!--{foreach from=$filter_attr.attr_list item=attr}--> 
+        <!-- {if $attr.selected} -->
+        <li><span>{$attr.attr_value}</span></li>
+        <!-- {else} -->
+        <li><a href="{$attr.url}">{$attr.attr_value}</a> </li>
+        <!-- {/if} --> 
+        <!--{/foreach}-->
+      </ul>
+      <div class="next_selected_folddiv">
+        <div class="next_selected_folddiv_word" onclick="show_box(this,60)">显示全部</div>
+        <div class="next_selected_folddiv_arrow"></div>
+      </div>
+    </div>
+    <!--{/foreach}--> 
+    <!--{if $price_grade.1}-->
+    <div class="screeBox clearfix" style="border-bottom:none"> <strong>{$lang.price}：</strong>
+      <ul class="show_box"  style="width:750px;">
+        <!--{foreach from=$price_grade item=grade}--> 
+        <!-- {if $grade.selected} -->
+        <li><span>{$grade.price_range}</span></li>
+        <!-- {else} -->
+        <li><a href="{$grade.url}">{$grade.price_range}</a></li>
+        <!-- {/if} --> 
+        <!--{/foreach}-->
+      </ul>
+      
+    </div>
+    <!--{/if}--> 
+  </div>
+</div>
+<!-- {/if} --> 
+<!--组合搜索 结束--> 
+<script>
+function show_box(this_obj,h)
+{
+	var child_obj = this_obj.parentNode.parentNode.childNodes;
+	for(i=0; i<child_obj.length; i++)
+	{
+		if(child_obj[i].className == "show_box")
+		{
+			if(child_obj[i].style.height != "auto")
+			{
+				child_obj[i].style.height="auto";
+				this_obj.innerText="精简显示";
+			}
+			else
+			{
+				child_obj[i].style.height=h+'px';
+				this_obj.innerText="显示全部";
+			}
+		}
+	}
+}
+</script>

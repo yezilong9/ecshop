@@ -1,0 +1,94 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="slideGroup" style="margin:0 auto">
+			<div class="parHd">
+				<ul><li>相同品牌</li><li>相同价位</li><li>相同类别</li></ul>
+			</div>
+			<div class="parBd">
+
+					<div class="slideBox">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic1.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图1.1</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic1.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图1.2</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic1.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图1.3</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic1.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图1.4</a></div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+
+					<div class="slideBox">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic2.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图2.1</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic2.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图2.2</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic2.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图2.3</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic2.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图2.4</a></div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+
+					<div class="slideBox">
+						<a class="sPrev" href="javascript:void(0)"></a>
+						<ul>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic3.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图3.1</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic3.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图3.2</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic3.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图3.3</a></div>
+							</li>
+							<li>
+								<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank"><img src="images/pic3.jpg" /></a></div>
+								<div class="title"><a href="http://www.SuperSlide2.com" target="_blank">效果图3.4</a></div>
+							</li>
+						</ul>
+						<a class="sNext" href="javascript:void(0)"></a>
+					</div><!-- slideBox End -->
+
+			</div><!-- parBd End -->
+		</div>
+        
+        
+        <script type="text/javascript">
+			/*
+			SuperSlide组合注意：
+			1、内外层mainCell、targetCell、prevCell、nextCell等对象不能相同，除非特殊应用；
+			2、注意书写顺序，通常先写内层js调用，再写外层js调用
+			*/
+
+			/* 内层图片滚动切换 */
+			jQuery(".slideGroup .slideBox").slide({ mainCell:"ul",vis:4,prevCell:".sPrev",nextCell:".sNext",effect:"leftLoop"});
+
+			/* 外层tab切换 */
+			jQuery(".slideGroup").slide({titCell:".parHd li",mainCell:".parBd"});
+
+		</script>

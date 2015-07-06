@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$css_path}css/reset.css">
+<link rel="stylesheet" type="text/css" href="{$css_path}css/special_product.css">
+<title>地方特产</title>
+	{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.8.3.min.js}
+
+<script type="text/javascript">
+
+
+</script>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+	
+<div class="lay">
+	<!-- 头部直接嵌套 -->
+	<div class="wrap-con">
+		<!-- 地域特产 -->
+		<div class="tc-areas mt fn-clear">
+			<div class="leftDiv">
+				<a href="javascript:;" class="area-btn">
+					地方特产
+				</a>
+			</div>
+			<div class="rightDiv">
+				<p class="area-city"  style="padding-bottom:5px;">
+					{foreach from=$provinces_list key=key_n item=province}
+					<a href="javascript:get_province_special({$province.region_id},1)">{$province.region_name}</a>
+						{if $key_n eq 16}
+							</p>
+							<p class="area-city" style="padding-bottom:5px;">
+						{/if}
+					
+					{/foreach}
+				</p>
+				
+			</div>
+		</div>
+		<!-- 地域特产 end-->
+		
+		<!-- 图片轮番 -->
+		<div class="barner mt">
+			<div class="wrap-con">
+				<div id="rongqi">
+				<ul class="rongqiul fn-clear">
+					{foreach from=$ads_list key=key item=ad}
+					<li><a href="{$ad.url}" target="_blank"><img src="{$ad.img}"/></a></li>
+				   {/foreach}
+				</ul>
+				<ul class="dianrongqi fn-clear">
+					<li><img src="images/g-point.png"/></li>
+					
+					{foreach from=$ads_list key=key_k item=ad}
+						{if $key_k-1 neq 0}
+					<li><img src="images/w-point.png"/></li>
+					{/if}
+				   {/foreach}
+				
+				</ul>
+			   </div>
+			</div>
+		</div>
+		<!-- 图片轮番 end-->
+		
+		<!-- 特产列表 -->
+		<div class="tc-GZ">
+			<div class="box-count">
+				
+				<div class="gz-hd mod-hd" id="more_special">
+					<h2>{$province.province_name}特产</h2>
+				</div>
+				
+				<div class="gz-bd mod-bd">
+					<ul class="tc-list fn-clear" id="li_special">
+						
+					{foreach from=$special_goods key=key item=goods}
+						<li class="tc-item">
+							<h2>
+							<a href="goods.php?id={$goods.goods_id}" target="_blank" title="【限时特卖】【{$goods.city_name}{$goods.area_name}】{$goods.goods_name|escape:html}">【限时特卖】【{$goods.city_name}{$goods.area_name}】{$goods.goods_name|truncate:5:"..."|escape:html}
+							</a></h2>
+							<a href="goods.php?id={$goods.goods_id}" target="_blank" class="pic-link">
+								<img width="360px" height="360px" alt="【限时特卖】{$goods.city_name}{$goods.area_name}{$goods.goods_name}" src="{$goods.goods_thumb}"/>
+							</a>
+							<div class="tc-info">
+								<em>￥{if $goods.promote_price neq 0}{$goods.promote_price}{else}{$goods.shop_price}{/if}</em>
+								<i>￥{$goods.market_price}</i>
+								<a href="goods.php?id={$goods.goods_id}" target="_blank" class="tc-goto">立即购买</a>
+							</div>
+						</li>
+						{/foreach}
+						
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 广州特产 end-->
+		
+		<!-- 分页列表 -->
+		<div class="pagination fn-clear" id="page_str"  {if $page_str eq ''} style="display:none" {/if}>
+			
+				{$page_str}
+			
+		</div>
+		<!-- 分页列表 end-->
+		
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+  {literal}
+	 var yidongWidth = $("#rongqi").width(); //定义每次移动的距离宽度
+	 var jishu = 0; //定义一个计数器，通过这个计数器来控制移动；
+	 var cishu = $(".rongqiul li").length - 1; //移动到底的最多次数；
+	 var autoPlay = null; //清空定时器
+	 
+	 //轮播方法
+	 var qieHuan = function(){
+		 if(!$(".rongqiul").is(":animated")){//判断要移动的层是否处于动画状态。这种写法避免动画累加的BUG出现；
+			 if(jishu == cishu){//如果移动的次数等于最多的次数了。那么让它变成初始的0；
+					jishu = 0;	
+				}else{//只要不是移动的次数等于最多的次数的情况下，每次都让移动次数加累加
+					jishu++;
+				}				 
+			 $(".rongqiul").animate({left:jishu*(-yidongWidth)+"px"},500,function(){//控制被移动的层的left的值来进行切换。
+				$(".dianrongqi li").find("img").attr("src","images/w-point.png");//先将所有的切换点变成未选中的状态。
+			    $(".dianrongqi li").eq(jishu).find("img").attr("src","images/g-point.png"); //将当前的切换点变成选中的状态。
+			  });
+		 }
+	 };
+	 autoPlay = setInterval(qieHuan,2000); //加入自动轮播功能；
+	 
+	 
+	 //自动与手动切换
+	 $(".rongqiul,#leftbtn,#rightbtn,.dianrongqi").hover(function(){
+            window.clearInterval(autoPlay);	 //鼠标悬停在焦点图上时清空自动轮播改为手动切换
+		 },function(){
+		   autoPlay = setInterval(qieHuan,2000); //鼠标离开焦点图上时手动切换改为自动轮播
+	  });
+	 
+	 //指示点的切换
+	 $(".dianrongqi li").click(function(){
+	 	 var xuliehao = $(".dianrongqi li").index($(this));//获取当前点的序列号；
+		 //alert(xuliehao);
+		 $(".dianrongqi li").find("img").attr("src","images/w-point.png");//先将所有的切换点变成未选中的状态。
+		 $(".dianrongqi li").eq(xuliehao).find("img").attr("src","images/g-point.png");//将当前的切换点变成选中的状态。
+		 $(".rongqiul").animate({left:xuliehao*(-yidongWidth)+"px"},500,function(){
+			jishu = xuliehao;   //为了和自动轮播和手动切换同步，所以这里需要将jishu的变量等同于当前的序列号。 
+		 })
+	   }
+	 )  
+
+
+
+function change_style(obj){
+	if($(obj).hasClass('on_visited') != true ){
+			$('.page_li').removeClass('on_hover');
+			$(obj).addClass('on_hover');
+	}
+}
+
+function get_province_special(p_id,p){
+//alert(p);
+	data = {act:'province_special',province_id:p_id,page:p};
+	$.ajax({
+		url:'special_product.php',
+		type:'POST',
+		data:data,
+		beforeSend:function(){
+			//alert('ready...');
+		},
+		dataType:'json',
+		success:function(result){
+			//console.log(result.special_goods);
+			if(result){
+				var more_special_str = '';
+				var li_special_str = '';
+				more_special_str = "<h2>"
+									+result.province.province_name
+									+"特产</h2>";
+				
+				var goods = result.special_goods;
+				var g_len = goods.length;
+				if(g_len>0){
+					for(var i=0;i<g_len;i++){
+						var good_price = goods[i]['promote_price']>0 ? goods[i]['promote_price']:goods[i]['shop_price'];
+						li_special_str += "<li class='tc-item'><h2><a href='goods.php?id="
+										 +goods[i].goods_id
+										 +"' target='_blank'  title='"
+										 +"【限时特卖】【"
+										 +goods[i].city_name
+										 +goods[i].area_name
+										 +"】"
+										 +goods[i].goods_name  //title end
+										 
+										 +"'>【限时特卖】【"
+										 +goods[i].city_name
+										 +goods[i].area_name
+										 +"】"
+										 +goods[i].short_name
+										 +"...</a></h2><a href='goods.php?id="
+										 +goods[i].goods_id
+										 +"' target='_blank' class='pic-link'><img width='360' height='360' alt='【限时特卖】"
+										 +goods[i].city_name
+										 +goods[i].area_name
+										 +goods[i].goods_name
+										 +"' src='"
+										 +goods[i].goods_thumb
+										 +"'/></a><div class='tc-info'><em>￥"
+										 +good_price
+										 +"</em><i>￥"
+										 +goods[i].market_price
+										 +"</i><a href='goods.php?id="
+										 +goods[i].goods_id
+										 +"' target='_blank' class='tc-goto'>立即购买</a></div></li>";
+					}
+					
+				}else{
+					li_special_str = "<li style='width:100%;font-size:18px;text-align:center;color:red;padding-bottom:20px;'>还没有"+result.province.province_name+"的特产商品哦！</li>";
+				}
+				//console.log(more_special_str);
+				//console.log(li_special_str);
+				$('#more_special').html('').append(more_special_str);
+				$('#li_special').html('').append(li_special_str);
+				
+			if(result.page_str != ''){
+				$('#page_str').html('').append(result.page_str);
+				$('#page_str').css('display','block');
+			}else{
+				$('#page_str').css('display','none');
+			}
+			
+			
+			
+			}
+			
+		}//success end
+	});//$.ajax end
+
+}
+
+
+  {/literal}
+</script>	
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+</body>
+</html>

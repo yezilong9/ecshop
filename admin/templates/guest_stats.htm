@@ -1,0 +1,86 @@
+<!-- $Id: guest_stats.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{if $all == 'all'}
+<div class="form-div">
+  <form name="TimeInterval" action="guest_stats.php?act=list" method="post" style="margin:0px">
+	选择代理商
+	<select name="admin_agency_id">
+      <option value="0">{$lang.select_please}</caption>
+      {html_options options=$agency_list selected=$admin_agency_id}
+    </select>
+    <input type="submit" name="submit" value="{$lang.query}" class="button" />
+  </form>
+</div>
+{/if}
+<div class="list-div">
+  <table width="100%" cellspacing="1" cellpadding="3">
+    <tr>
+    <th colspan="5" align="left" style="padding-left:10px;">
+    {$lang.percent_buy_member}<span style="font:12px;color:#777;">{$lang.buy_member_formula}</span>
+    </th>
+    </tr>
+    <tr align="center">
+      <td>{$lang.member_count}</td>
+      <td>{$lang.order_member_count}</td>
+      <td>{$lang.member_order_count}</td>
+      <td>{$lang.percent_buy_member}</td>
+    </tr>
+    <tr align="center">
+      <td>{$user_num}</td>
+      <td>{$have_order_usernum}</td>
+      <td>{$user_order_turnover}</td>
+      <td>{$user_ratio}%</td>
+    </tr>
+  </table>
+</div>
+<div class="list-div">
+  <table width="100%" cellspacing="1" cellpadding="3">
+    <tr>
+    <th colspan="5" align="left" style="padding-left:10px;">
+    {$lang.order_turnover_peruser}<span style="font:12px;color:#777;">{$lang.member_order_amount}
+    {$lang.member_buy_amount}</span>
+    </th>
+    </tr>
+    <tr align="center">
+      <td>{$lang.member_sum}</td>
+      <td>{$lang.average_member_order}</td>
+      <td>{$lang.member_order_sum}</td>
+    </tr>
+    <tr align="center">
+      <td>{$user_all_turnover}</td>
+      <td>{$ave_user_ordernum}</td>
+      <td>{$ave_user_turnover}</td>
+    </tr>
+  </table>
+</div>
+<div class="list-div">
+  <table width="100%" cellspacing="1" cellpadding="3">
+    <tr><th colspan="5" align="left" style="padding-left:10px;">
+    {$lang.order_turnover_percus}<span style="font:12px;color:#777;">{$lang.guest_all_ordercount}</span>
+    </th>
+    </tr>
+    <tr align="center">
+      <td>{$lang.guest_member_orderamount}</td>
+      <td>{$lang.guest_member_ordercount}</td>
+      <td>{$lang.guest_order_sum}</td>
+    </tr>
+    <tr align="center">
+      <td>{$guest_all_turnover}</td>
+      <td>{$guest_order_num}</td>
+      <td>{$guest_order_amount}</td>
+    </tr>
+  </table>
+</div>
+
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+onload = function()
+{
+    // &#64138;&#53036;&#10870;鵥
+    startCheckOrder();
+}
+{/literal}
+//-->
+</script>
+{include file="pagefooter.htm"}

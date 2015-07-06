@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript" src="js/action.js"></script>
+<style>
+.cagegoryCon{
+ padding:5px 10px; border:none;
+}
+.ur_here{ width:760px;}
+</style>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="block clearfix">
+  <div id="pageLeft" class="fl">
+	 <!-- TemplateBeginEditable name="左边区域" -->
+	 <!-- #BeginLibraryItem "/library/article_category_tree.lbi" --><!-- #EndLibraryItem -->
+	 <!-- #BeginLibraryItem "/library/helpleft.lbi" --><!-- #EndLibraryItem -->
+   <!-- TemplateEndEditable -->
+	</div>
+	<div id="pageRight" class="fr">
+	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+	<div class="mod1" id="articleCat">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$lang.article_list}</p>
+	 <div class="more">
+	 <form action="{$search_url}" name="search_form" method="post" class="articleSearch">
+        <input name="keywords" type="text" id="requirement" size="40" value="{$search_value}" class="InputBorder" />
+        <input name="id" type="hidden" value="{$cat_id}" />
+		<input name="cur_url" id="cur_url" type="hidden" value="" />
+        <input type="submit" value="{$lang.button_search}" class="bnt_number4" />
+   </form>
+	 </div>
+	</h1>
+	<div class="mod1con">
+	<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+      <tr>
+        <th bgcolor="#ffffff" width="50%">{$lang.article_title}</th>
+          <th bgcolor="#ffffff" width="20%">{$lang.article_author}</th>
+          <th bgcolor="#ffffff" width="30%">{$lang.article_add_time}</th>
+        </tr>
+      <!-- {foreach from=$artciles_list item=article} -->
+      <tr>
+        <td bgcolor="#ffffff"><a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title}</a></td>
+          <td bgcolor="#ffffff">{$article.author}</td>
+          <td bgcolor="#ffffff" align="center">{$article.add_time}</td>
+        </tr>
+      <!-- {/foreach} -->
+    </table>
+	</div>
+	</div>
+	<script type="text/javascript">divheight("articleCat");</script>
+	<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	<!-- TemplateBeginEditable name="文章列表下可编辑区域" -->  
+  <!-- TemplateEndEditable -->
+
+	</div>
+</div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+<script type="text/javascript">
+document.getElementById('cur_url').value = window.location.href;
+</script>
+</html>

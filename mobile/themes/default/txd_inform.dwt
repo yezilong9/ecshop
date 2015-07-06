@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="javascript:history.go(-1);" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">提交订单成功</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="index.php" class="link icon-only"><i class="icon icon-home"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="order-succeed" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!-- section(start) -->
+          <div class="section">
+            <!--发货单(start)-->
+            <div class="order-succeed-info">
+              <div class="order-succeed-info-hd">
+                <h2 class="tit">{if $order}支付成功{else}支付失败{/if}</h2>
+              </div>
+              <!--模块主体(start)-->
+              <div class="order-succeed-info-bd" style="width: 270px;">
+			  {if $order}
+                <p>
+支付金额：<strong class="orange">{$order.total_fee}元</strong><br />
+订单：<strong class="orange">{$order.order_id}</strong><br />
+
+<a href="user.php?act=order_detail&order_id={$order.ec_order_id}" style="color:red;">查看订单</a>
+ <!-- {if $lucky_draw} -->
+<a href="/active/201412/draw.php?{$sign_message}&sign_message_md={$sign_message_md}" target="_blank">
+<center><span style="font-size:20px; color:red;">点击抽奖活动(抽奖的订单不能退货退款)</span></center>
+</a>
+<!-- {/if} -->
+{/if}
+                </p>
+              </div>            
+              <!--模块主体(end)-->
+            </div>
+            <!--商品列表(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->
+</div>
+<!-- Views(end) -->
+</body>
+</html>

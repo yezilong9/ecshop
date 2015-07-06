@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="android">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+		<!-- 头部-->
+		<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="home" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!--Header(start)-->
+			<!--导航栏-->
+			<!-- #BeginLibraryItem "/library/meun.lbi" --><!-- #EndLibraryItem -->
+          <!--Header(end)-->
+          <!-- section(start) -->
+          <div class="section">
+            <!-- Slider(start) -->
+            <div class="home-focus slider-container">
+              <!-- Slides wrapper -->
+              <div class="slider-wrapper">
+			  <!-- 首页广告 -->
+
+				{foreach from=$xml item=ads}
+				<div class="slider-slide">
+					<a href="{$ads.url}"><img src="{$ads.src}" width="320" /></a>
+				</div>
+				{/foreach}
+              </div>
+              <!-- Pagination(start) -->
+              <div class="slider-pagination"></div>
+            </div> 
+            <!-- Slider(end) -->
+            <!--新品上市(start)-->
+            <div class="products">
+              <!--新品上市模块首(start)-->
+              <div class="products-hd">
+                <h2 class="tit">[新品上市]</h2>
+                <a class="link-more" href="search.php?intro=new">更多&nbsp;&raquo;</a>
+              </div>
+              <!--市模块首(end)-->
+              <!--模块主体(start)-->
+              <div class="products-bd">
+                <div class="items clearfix">
+				{foreach from=$new_goods item=n_goods name="new_goods"}
+					{if $smarty.foreach.new_goods.index < 6}
+                  <div class="item">
+                    <a href="{$n_goods.url}">
+                      <div class="item-pic"><img src="{$n_goods.thumb}" width="145" /></div>
+                      <p class="item-info">
+                        <span class="item-name">{$n_goods.short_style_name}</span>
+                        <strong class="item-price">{$n_goods.shop_price}</strong>
+                      </p>
+                    </a>
+                  </div>
+					{/if}
+				{/foreach}
+                </div>
+              </div>
+              <!--模块主体(end)-->
+            </div>
+            <!--新品上市(end)-->
+            <!--火爆热销(start)-->
+            <div class="products">
+              <!--模块首(start)-->
+              <div class="products-hd">
+                <h2 class="tit">[火爆热销]</h2>
+                <a class="link link-more" href="search.php?intro=hot">更多&nbsp;&raquo;</a>
+              </div>
+              <!--模块首(end)-->
+              <!--模块主体(start)-->
+              <div class="products-bd">
+                <div class="items clearfix">
+				{foreach from=$hot_goods item=h_goods name="hot_goods"}
+					{if $smarty.foreach.hot_goods.index < 6}
+                  <div class="item">
+                    <a href="{$h_goods.url}">
+                      <div class="item-pic"><img src="{$h_goods.thumb}" width="145" /></div>
+                      <p class="item-info">
+                        <span class="item-name">{$h_goods.short_style_name}</span>
+                        <strong class="item-price">{$h_goods.shop_price}</strong>
+                      </p>
+                    </a>
+                  </div>
+					{/if}
+				{/foreach}
+                </div>
+              </div>
+              <!--模块主体(end)-->
+            </div>
+            <!--火爆热销(end)-->
+            <!--精品推荐(start)-->
+            <div class="products">
+              <!--模块首(start)-->
+              <div class="products-hd">
+                <h2 class="tit">[精品推荐]</h2>
+                <a class="link-more" href="search.php?intro=best">更多&nbsp;&raquo;</a>
+              </div>
+              <!--模块首(end)-->
+              <!--模块主体(start)-->
+              <div class="products-bd">
+                <div class="items clearfix">
+				{foreach from=$best_goods item=b_goods name="best_goods"}
+					{if $smarty.foreach.best_goods.index < 6}
+                  <div class="item">
+                    <a href="{$b_goods.url}">
+                      <div class="item-pic"><img src="{$b_goods.thumb}" width="145" /></div>
+                      <p class="item-info">
+                        <span class="item-name">{$b_goods.short_style_name}</span>
+                        <strong class="item-price">{$b_goods.shop_price}</strong>
+                      </p>
+                    </a>
+                  </div>
+					{/if}
+				{/foreach}
+                </div>
+              </div>
+              <!--模块主体(end)-->
+            </div>
+            <!--精品推荐(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->         
+</div>
+<!-- Views(end) -->
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+
+
+</body>
+</html>

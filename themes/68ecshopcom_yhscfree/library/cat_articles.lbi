@@ -1,0 +1,12 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<h1 class="mod2tit" style="height:0"><a href="{$articles_cat.url}" class="more" style="margin-top:3px;">更多</a></h1>
+<div class="mod2con clearfix">
+    <ul>
+     <!--{foreach from=$articles item=article_item}-->
+    <li style="width:250px; margin-right:20px; display:inline;" class="fl"><a href="{$article_item.url}" title="{$article_item.title|escape:html}" class="txtdot">{$article_item.short_title|truncate:13}</a></li>
+    <!--{/foreach}-->
+    <ul>
+</div>
+
+<script type="text/javascript">divheight("catArticles");</script>

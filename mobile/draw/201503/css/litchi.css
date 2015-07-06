@@ -1,0 +1,136 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, 
+
+input, textarea, th, td{margin: 0; padding: 0;}
+body{font: 14px/1.5 'XinGothic-SinaWeibo' , 'Microsoft Yahei' , 'Simsun';}
+.clearfix{clear: both;}
+.clearfix:before, .clearfix:after{content: " "; display: table;}
+.clearfix:after{clear: both;}
+ul, ol, li{list-style: none;}
+img{border: none;}
+input, img{vertical-align: middle;}
+a{text-decoration: none; color:#000;}
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+
+/*top-nav*/
+.top-nav{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align:center;
+  height:50px;
+  line-height:50px;
+  background-color:#ca1d48;
+  font-size:20px;
+  z-index:99;
+}
+.top-nav a{
+  color:#fff;
+}
+/*header*/
+
+.idx-pic img{
+  width:100%;
+  padding-top:50px;
+}
+.fixed-title{
+  width:100%;
+  height:43px;
+  line-height:43px;
+  text-align: center;
+  background-color:#fff;
+  z-index:99;
+  border-top:2px solid #ccc;
+  border-bottom:1px solid #8b8b8b;
+}
+.fixed-title.pos{
+  position: fixed;
+  top:50px;
+}
+.fixed-title li{
+  width:50%;
+  float:left;  
+}
+.fixed-title li.curr{
+  color:#ff5000;
+  border-bottom:2px solid #ff5000;
+}
+/*section*/
+section.index{
+  padding:10px;
+}
+
+section.details{
+  padding-bottom:67px;
+}
+section ul,section ol{
+  line-height: 24px;
+  border-bottom:1px solid #ccc;
+  padding:10px 0px;
+}
+section.index ol{
+  border-bottom:none;
+}
+.details-item ol:last-child{
+  border-bottom:none;
+}
+.bleft{
+  list-style: none;
+  font-weight:bold;
+  border-left:3px solid #ff7800;
+  padding-left: 8px;
+  margin-left:0px;
+}
+section ol li{
+  list-style:decimal;
+  margin-left: 2.3em;
+}
+section ul li{
+  margin-left: 1em;
+}
+section.details ul li{
+  padding-top:5px;
+}
+section.details ul li img{
+  width:100%;
+}
+.details-item:last-child{
+  padding:10px;
+  display:none;
+}
+.details-item:first-child{
+  border-bottom:none;
+  padding:0px;
+}
+.details-item:first-child li{
+  margin-left:0px;
+}
+.details-item.pad{
+  padding-top:50px;
+}
+/*footer*/
+footer{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  text-align:center;
+  border-top:3px solid #fff;
+}
+footer a{
+  color:#fff;
+}
+.book-tip,.buy-tip{
+  width:50%;
+  float:left;
+  padding:10px 0px;
+}
+.book-tip{
+  background-color:#fea61a; 
+}
+.buy-tip{
+  background-color:#d10000;
+}

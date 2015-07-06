@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $pictures}-->
+ <div class="picture" id="imglist">
+		 <img src="{$goods.goods_img}" alt="{$goods.goods_name}" lang="{$goods.goods_img}" class="onbg" />
+		  <!-- {foreach from=$pictures item=picture}-->
+       <img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}" lang="{$picture.img_url}" class="autobg" />
+     <!--{/foreach}-->
+</div>
+ <script type="text/javascript">picturs();</script>
+<!-- {/if}-->

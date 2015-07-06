@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $helps}-->
+
+   <div class="left_help clearfix">
+<!-- {foreach from=$helps item=help_cat} -->
+<dl>
+  <dt> <img src="../images/left_help_biao.gif"> <a href='{$help_cat.cat_id}' title="{$help_cat.cat_name}">{$help_cat.cat_name}</a></dt>
+  <!-- {foreach from=$help_cat.article item=item} -->
+  <dd><a href="{$item.url}" title="{$item.title|escape:html}">{$item.short_title}</a></dd>
+  <!-- {/foreach} -->
+</dl>
+<!-- {/foreach} -->
+  </div>
+<div class="blank"></div>
+<!--{/if}-->

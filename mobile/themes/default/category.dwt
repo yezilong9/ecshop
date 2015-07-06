@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit" />
+  <title>{$page_title}</title>
+  <link href="themes/default/styles/master.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="themes/default/scripts/jquery1.8.min.js"></script>
+</head><body>
+<!-- Views(start) -->
+<div class="views">
+  <!-- main view(start) -->
+  <div class="view view-main">
+    <!-- Top Navbar(start)-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="allcate.php" class="back link">
+            <i class="icon icon-back"></i>
+            <h1 class="left navbar-tit">{$cat_name}</h1>
+          </a>
+        </div>
+        <div class="right">
+          <a href="#" class="link icon-only"><i class="icon icon-magnifier"></i></a>
+          <a href="flow.php" class="link icon-only"><i class="icon icon-shoppingcart"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Top Navbar(end)-->
+    <!-- Pages(start) -->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page(start) -->
+      <div data-page="products-template" class="page">
+        <!--Page Content(start)-->
+        <div class="page-content">
+          <!--排序(start)-->
+          <div class="products-sorting">
+            <ul class="items">
+              <li class="item {if $pager.sort == 'click_count'}on{/if}"><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=click_count&order=<!-- {if $pager.sort == 'click_count' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->">人气
+			  <!-- {if $pager.sort == 'click_count' && $pager.order == 'DESC'} -->↓<!-- {elseif $pager.sort == 'click_count'} -->↑<!-- {/if} --></a></li>
+              <li class="item {if $pager.sort == 'last_update'}on{/if}"><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=last_update&order=
+			  <!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->">销 量
+			  <!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->↓<!-- {elseif $pager.sort == 'last_update'} -->↑<!-- {/if} --></a></li>
+              <li class="item {if $pager.sort == 'shop_price'}on{/if}"><a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->">价 格
+			  <!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->↓<!-- {elseif $pager.sort == 'shop_price'} -->↑<!-- {/if} -->
+			  </a></li>
+            </ul>
+          </div>
+          <!--排序(end)-->
+          <!-- section(start) -->
+          <div class="section">
+            <!--新品上市(start)-->
+            <div class="products">
+              <!--模块主体(start)-->
+              <div class="products-bd">
+                <div class="items" id="goods_list">
+				{foreach name=goods_list from=$goods_list item=goods}
+                  <div class="item">
+                    <a href="{$goods.url}">
+                      <div class="pic"><img src="{$goods.goods_img}" width="145" /></div>
+                      <p class="item-info">
+                        <span class="item-name">{$goods.name}</span>
+                        <strong class="item-price">{$goods.shop_price}</strong>
+                      </p>
+                    </a>
+                  </div>
+				{/foreach}
+                </div>
+              </div>
+              <!--模块主体(end)-->
+            </div>
+            <!--新品上市(end)-->
+          </div>
+          <!-- section(end) -->
+        </div>
+        <!--Page Content(end)-->
+      </div>
+      <!-- Page(end) -->
+    </div>
+    <!-- Pages(end) -->
+  </div>
+  <!-- main view(end) -->         
+</div>
+<input type="hidden" value="{$pager.page_next}" id="pager_url"/>
+<!-- Views(end) -->
+<script>
+var page = 1;
+$(document).ready(function(){
+  $(document).scroll(function(){
+	var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+	var tops = $(document).scrollTop();
+	var sctop = $(document).height() - $(window).height();
+	if (tops >= sctop){
+		var Url = $('#pager_url').val();
+		Url = Url.replace(/&page(.*?)&/,"&");
+		if(page < '{$pager.page_count}'*1){
+			page = ++page;
+			Url += '&json=1&page='+page;
+			$.get(Url, function (data) {
+				$("#goods_list").append(data);
+			});
+		}
+	}
+  });
+});
+</script >
+<script type="text/javascript" src="themes/default/scripts/framework7.min.js"></script>
+<script type="text/javascript" src="themes/default/scripts/frontend.js"></script>
+
+
+
+</body>
+</html>

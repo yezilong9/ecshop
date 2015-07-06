@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+</head>
+<body class="index_body" style=" background:#f6f6f6">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+
+
+<div class="block clearfix">
+  <!--left start-->
+  <div class="AreaL">
+  <!-- TemplateBeginEditable name="左边区域" -->
+<!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+
+
+  <div id="category_tree">
+  
+    <!--{foreach from=$categories item=cat}-->
+     <dl>
+     <dt><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+     <dd><!--{foreach from=$cat.cat_id item=child}-->
+     <a href="{$child.url}">{$child.name|escape:html}</a>
+      
+     <!--{/foreach}-->
+       </dd>
+       </dl>
+    <!--{/foreach}--> 
+  </div>
+
+<div class="blank"></div>
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/top10.lbi" -->
+
+<div class="box top10">
+ 
+ <div class="box_1">
+   <h3><span>销售排行榜</span></h3>
+  <div class="top10List clearfix">
+  <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+  <ul class="clearfix">
+	<img src="../images/top_{$smarty.foreach.top_goods.iteration}.gif" class="iteration" />
+	<!-- {if $smarty.foreach.top_goods.iteration<4}-->
+      <li class="topimg">
+      <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="samllimg" /></a>
+      </li>
+	<!-- {/if} -->		
+      <li {if $smarty.foreach.top_goods.iteration<4}class="iteration1"{/if}>
+      <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a><br />
+      <font class="f1">{$goods.price}</font><br />
+      </li>
+    </ul>
+  <!-- {/foreach} -->
+  </div>
+ </div>
+</div>
+<div class="blank5"></div>
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+
+  </div>
+  <!--left end-->
+  <!--right start-->
+  <div class="AreaR">
+  
+  <TABLE cellSpacing=0 cellPadding=0 width=770 align=center border=0 >
+  <TBODY>
+  <TR>
+   
+    <TD height="28" width="100%">
+      <MARQUEE scrollAmount=4 scrollDelay=90 direction=rtl 
+      >{$shop_notice}</MARQUEE></TD>
+  </TR></TBODY></TABLE>
+  <!-- TemplateBeginEditable name="首页顶部广告" -->
+<!-- TemplateEndEditable -->
+  
+  
+  
+   <!--焦点图和站内快讯 START-->
+    <div class="box clearfix">
+       <!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/new_articles.lbi" --><!-- #EndLibraryItem -->
+        </div>
+    <div class="blank"></div>
+   <!-- TemplateBeginEditable name="右边主区域" -->
+<!-- #BeginLibraryItem "/library/recommend_hot.lbi" -->
+
+<!-- {if $hot_goods} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="box  ">
+  <div class="itemTit" id="itemHot">
+   <div class="tit">
+   
+           <div class="f_l">
+           
+                   热卖商品
+                   
+            </div>
+            
+            <div class="f_r">
+            
+                   <a href="#">更多>></a>
+            
+            </div>
+      
+      </div>
+  </div>
+  
+  
+  <div class="blank"></div>
+  <div id="show_hot_area" class="clearfix">
+  <!-- {/if} -->
+  <!--{foreach from=$hot_goods item=goods}-->
+  <div class="goodsItem">
+ 
+           <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg" /></a><br />
+            <p class="f1"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+            
+              <div class="price">
+            
+                    <font class="market f_l">{$goods.market_price}</font>
+                    
+                    <font class="f1 f_r" style=" font-size:15px; color:#963c00">
+           <!-- {if $goods.promote_price neq ""} -->
+          {$goods.promote_price}
+          <!-- {else}-->
+          {$goods.shop_price}
+          <!--{/if}-->
+           </font>
+           
+              </div>
+        </div>
+  <!--{/foreach}-->
+
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+
+</div>
+<div class="blank"></div>
+  <!-- {/if} -->
+<!-- {/if} -->
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/recommend_best.lbi" -->
+
+<!-- {if $best_goods} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="box  ">
+
+  <div class="itemTit" id="itemBest">
+  
+  <div class="tit">
+    <div class="f_l">
+  精品推荐 
+      </div>
+      
+      <div class="f_r">
+            
+                   <a href="#">更多>></a>
+            
+            </div>
+   
+      </div>
+  </div>
+  
+  <div class="blank"></div>
+  
+  
+  <div id="show_best_area" class="clearfix">
+  <!-- {/if} -->
+  <!--{foreach from=$best_goods item=goods}-->
+  <div class="goodsItem">
+       
+           <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg" /></a><br />
+           <div class="price">
+            
+                    <font class="market f_l">{$goods.market_price}</font>
+                    
+                    <font class="f1 f_r" style=" font-size:15px; color:#963c00">
+           <!-- {if $goods.promote_price neq ""} -->
+          {$goods.promote_price}
+          <!-- {else}-->
+          {$goods.shop_price}
+          <!--{/if}-->
+           </font>
+           
+              </div>
+        </div>
+  <!--{/foreach}-->
+ 
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+
+</div>
+<div class="blank"></div>
+  <!-- {/if} -->
+<!-- {/if} -->
+
+ <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/recommend_new.lbi" -->
+
+<!-- {if $new_goods} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="box  ">
+  <div class="itemTit" id="itemNew">
+  <div class="tit">
+    <DIV class="f_l">
+  
+  新品上架
+   </div>
+   
+   <div class="f_r">
+            
+                   <a href="#">更多>></a>
+            
+            </div>
+  
+        </div>
+  </div>
+  
+  
+  <div class="blank"></div>
+  <div id="show_new_area"  class="clearfix">
+  <!-- {/if} -->
+  <!--{foreach from=$new_goods item=goods}-->
+  <div class="goodsItem">
+        
+           <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg" /></a><br />
+            <p class="f1"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+            <div class="price">
+            
+                    <font class="market f_l">{$goods.market_price}</font>
+                    
+                    <font class="f1 f_r" style=" font-size:15px; color:#963c00">
+           <!-- {if $goods.promote_price neq ""} -->
+          {$goods.promote_price}
+          <!-- {else}-->
+          {$goods.shop_price}
+          <!--{/if}-->
+           </font>
+           
+              </div>
+        </div>
+  <!--{/foreach}-->
+ 
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+
+</div>
+<div class="blank"></div>
+  <!-- {/if} -->
+<!-- {/if} -->
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+  </div>
+  <!--right end-->
+  
+<div style="clear:both"></div> 
+  
+  
+  <!-- TemplateBeginEditable name="全宽行" -->
+<!-- TemplateEndEditable -->
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+ 
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

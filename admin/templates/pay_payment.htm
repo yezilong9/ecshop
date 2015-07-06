@@ -1,0 +1,226 @@
+﻿
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+<TITLE>支付商管理--系统管理</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css href="styles/pay/admin.css"><LINK 
+rel=stylesheet type=text/css href="styles/pay/css.css"><LINK 
+rel=stylesheet type=text/css href="styles/pay/style.css"><!--前台JQ-->
+
+<SCRIPT language=javascript 
+src="styles/pay/jquery-1.8.3.min.js"></SCRIPT>
+
+<SCRIPT language=javascript type=text/javascript>
+  function check_cp_frm(){
+    var str_pay_way_id   = $('#pay_way_id').val();
+    var pay_way_code   = $('#pay_way_code').val();
+    var str_pay_way_name = $('#pay_way_name').val();
+    var str_status       = $('#status').val();
+    var is_fix_rate      = $("input:radio[name=is_fix_rate]:checked").val();                           
+    var fix_rate         = $('#fix_rate').val();
+    var upper_limit      = $('#change_rate_upper_limit').val();
+    var change_rate      = $('#change_rate').val();  
+	
+    var rate_desc      = $('#rate_desc').val(); 
+    var rate_note      = $('#rate_note').val(); 
+    var pay_config      = $('#pay_config').val(); 
+	
+    if (str_pay_way_name == ''){
+        alert('支付商名称不能为空');
+        $('#pay_way_name').focus();
+        return false;
+    }
+    if (pay_way_code == ''){
+        alert('支付商代码不能为空');
+        $('#pay_way_name').focus();
+        return false;
+    }
+    if (str_pay_way_id == '') {
+        alert('支付商标识不能为空');
+        $('#pay_way_id').focus();
+        return false;
+    }
+    if (str_status == '') {
+        alert('支付商状态不能为空');
+        $('#status').focus();
+        return false;
+    }
+    if (is_fix_rate == 1) {//1 固定费率
+        if (fix_rate.length < 1) {
+            alert("固定费率值不能为空");
+            $('#fix_rate').focus();
+            return false;
+        }
+    }
+    if (is_fix_rate == 2) {//2 浮动费率
+        if (upper_limit.length < 1) {
+            alert("浮动费率上限值不能为空");
+            $('#change_rate_upper_limit').focus();
+            return false;
+        }
+		
+        if (change_rate.length < 1) {
+            alert("浮动费率值不能为空");
+            $('#change_rate').focus();
+            return false;
+        }
+    }
+    if (rate_desc == '') {
+        alert('支付费率描述不能为空');
+        $('#rate_desc').focus();
+        return false;
+    }
+    if (rate_note == '') {
+        alert('支付商描述不能为空');
+        $('#rate_note').focus();
+        return false;
+    }
+    if (pay_config == '') {
+        alert('支付方式配置不能为空');
+        $('#pay_config').focus();
+        return false;
+    }
+    return true;
+  } 
+  
+  function change_rateType (rate_type) {
+    var rate_type;
+    var span01 = $('#id_span_01'); 
+    var span02 = $('#id_span_02');
+    
+    if (rate_type == 1) {//1 固定费率
+        span01.show();
+        span02.hide();
+    }    
+    if (rate_type == 2) {//2 浮动费率
+        span01.hide();
+        span02.show();
+    }
+  }
+</SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.7601.17514"></HEAD>
+<BODY>
+
+<HR>
+
+<TABLE class=functionBar border=0 cellSpacing=0 width="100%">
+  <TBODY>
+  <TR class=bTitle>
+    <td class="top-font01" height="25">&nbsp;
+      <a href="pay.php?act=payment">支付商管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_type">支付方式管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=bank">支付商银行管理</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=pay_set">支付通道设置</a>&nbsp;|&nbsp;
+      <a href="pay_message.php?act=message">支付商银行查询</a>&nbsp;|&nbsp;
+      <a href="pay.php?act=show_bank">银行设置</a>&nbsp;|&nbsp;
+    </td> 
+</TR></TBODY></TABLE>
+<HR SIZE=1>
+
+<FIELDSET><LEGEND top-font01?>支付商管理 </LEGEND>
+<TABLE border=0 cellSpacing=1 width="100%" bgColor=#d8d8d8>
+  <FORM onsubmit=return(check_cp_frm()) method=POST name=cp_frm 
+  action='pay.php'><INPUT value=payment_add type=hidden name=act> 
+  <TBODY>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width="10%" align=right>支付商名称：</TD>
+    <TD bgColor=#ffffff width="40%" align=left><INPUT id=pay_way_name 
+      name=pay_way_name value="{$payment.pay_name}"> <SPAN class=comment>[例如：支付宝]</SPAN> </TD>
+    <TD bgColor=#c2e0e2 width="10%" align=right>排序：</TD>
+    <TD bgColor=#ffffff width="40%" align=left><INPUT id=pay_order 
+      name=pay_order> <SPAN class=comment>[不填则默认：0]</SPAN> </TD></TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>支付商代码：</TD>
+    <TD bgColor=#ffffff align=left><INPUT id=pay_way_code name=pay_way_code> 
+      <SPAN class=comment>[例如(大写)：ALIPAY]</SPAN> </TD>
+    <TD bgColor=#c2e0e2 align=right>商户状态：</TD>
+    <TD bgColor=#ffffff align=left><INPUT id=status value=1 CHECKED type=radio 
+      name=status>开启 <INPUT id=status value=0 type=radio name=status>关闭 </TD></TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 align=right>固定(浮动)费率：</TD>
+    <TD bgColor=#ffffff align=left><INPUT id=is_fix_rate 
+      onclick=javascript:change_rateType(1); value=1 CHECKED type=radio 
+      name=is_fix_rate>固定费率 <INPUT id=is_fix_rate 
+      onclick=javascript:change_rateType(2); value=2 type=radio 
+      name=is_fix_rate>浮动费率 </TD>
+    <TD bgColor=#c2e0e2 align=right>费率：</TD>
+    <TD bgColor=#ffffff align=left><SPAN style="DISPLAY: block" 
+      id=id_span_01><INPUT id=fix_rate maxLength=10 name=fix_rate><SPAN 
+      class=comment>[例如：0.001] 千分之一</SPAN> </SPAN><SPAN style="DISPLAY: none" 
+      id=id_span_02><INPUT id=change_rate value=0.00000 maxLength=8 size=6 
+      name=change_rate><SPAN class=comment>[例如：0.001]</SPAN> 上限：<INPUT 
+      id=change_rate_upper_limit maxLength=2 size=3 
+      name=change_rate_upper_limit>元 <SPAN class=comment>[例如：1] 元 整数</SPAN> 
+      </SPAN></TD></TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>支付费率中文描述：</TD>
+    <TD bgColor=#ffffff colSpan=3 align=left><INPUT id=rate_desc maxLength=80 
+      size=80 name=rate_desc> </TD>
+	</TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>账号：</TD>
+    <TD bgColor=#ffffff colSpan=3 align=left><INPUT id=cfg_value maxLength=80 
+      size=80 name=cfg_value> </TD>
+	</TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>校验码 ：</TD>
+    <TD bgColor=#ffffff colSpan=3 align=left><INPUT id=cfg_key maxLength=80 
+      size=80 name=cfg_key> </TD>
+	</TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>身份ID(商户ID)：</TD>
+    <TD bgColor=#ffffff colSpan=3 align=left><INPUT id=cfg_id maxLength=80 
+      size=80 name=cfg_id value="{$pay_config.cfg_id}"> </TD>
+	</TR>
+	<TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>应用ID：</TD>
+    <TD bgColor=#ffffff colSpan=3 align=left><INPUT id=cfg_id maxLength=80 
+      size=80 name=app_id value="{$pay_config.app_id}"> </TD>
+	</TR>
+	<TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>应用密钥ID：</TD>
+    <TD bgColor=#ffffff colSpan=3 align=left><INPUT id=cfg_id maxLength=80 
+      size=80 name=app_key value="{$pay_config.app_key}"> </TD>
+	</TR>
+  <TR>
+    <TD bgColor=#c2e0e2 height=25 width=150 align=right>支付网关：</TD>
+    <TD bgColor=#ffffff colSpan=3 align=left><INPUT id=cfg_gate maxLength=80 
+      size=80 name=cfg_gate> </TD>
+	</TR>
+
+
+  <TR bgColor=#ffffff>
+    <TD bgColor=#c2e0e2 height=25 align=right></TD>
+    <TD height=30 colSpan=4 align=left><INPUT class=right-button07 value=提交 type=submit> <INPUT class=right-button07 value="重 置" type=reset> 
+</TD></TR></FORM></TBODY></TABLE></FIELDSET> <!--新增 结束-->
+<HR SIZE=1>
+<BR>
+<TABLE border=0 cellSpacing=1 cellPadding=3 width="100%" bgColor=#cccccc>
+  <TBODY>
+  <TR align=middle bgColor=#c2e0e2>
+    <TH height=30 width="5%">排序</TH>
+    <TH height=30 width="8%">支付商名称</TH>
+    <TH width="7%">支付商代码</TH>
+    <TH width="15%">固定(浮动)费率/费率[上限]</TH>
+    <TH width="6%">商户状态</TH>
+    <TH width="13%">支付费率中文描述</TH>
+    <TH width="7%">操作</TH></TR>
+	
+	{foreach from=$payment_list item=payment}
+  <TR bgColor=#ffffff>
+    <TD height=25 align=middle>{$payment.pay_order}</TD>
+    <TD height=25 align=middle>{$payment.pay_name}</TD>
+    <TD align=middle>{$payment.pay_code}</TD>
+    <TD height=25 align=middle>{if $payment.Is_fix_rate eq 1}固定费率 / 费率：{$payment.fix_rate}{elseif $payment.Is_fix_rate eq 2}浮动费率 / 费率：{$payment.change_rate}上限[{$payment.upper_limit}]元封顶{/if}</TD>
+    <TD align=middle>{if $payment.enabled eq '0'}<font color='red'>关闭</font>{elseif $payment.enabled eq '1'}开启{/if}</TD>
+    <TD align=middle>{$payment.rate_desc}</TD>
+
+    <TD align=middle><A 
+      href="pay.php?act=payment_edit&pay_id={$payment.pay_id}">修改</A>&nbsp;&nbsp;&nbsp;&nbsp;
+      <A 
+      onclick="if(window.confirm('您确定要删除此条记录吗？')) this.href='pay.php?act=payment_del&pay_id={$payment.pay_id}'" 
+      href="javascript:void(0)">删除</A> </TD></TR>
+	{/foreach}
+
+
+</TBODY></TABLE></BODY></HTML>

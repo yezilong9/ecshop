@@ -1,0 +1,112 @@
+﻿<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>支付通道设置--系统管理</title>
+<link href="styles/pay/admin.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/css.css" rel="stylesheet" type="text/css">
+<link href="styles/pay/style.css" rel="stylesheet" type="text/css">
+{insert_scripts files="../js/jquery-1.8.3.min.js,agency_region_city.js"}
+
+
+</head>
+
+<body>
+
+<script language="javascript" type="text/javascript">
+function check_cp_frm(){
+  /**/
+  var agency_url      = document.getElementById("agency_url").value;
+  var agency_user_id  = document.getElementById("agency_user_id").value;
+
+
+  if(agency_url == ''){
+    alert('域名不能为空');
+    return false;
+  }
+  if(agency_user_id < 1){
+    alert('请选择代理商');
+    return false;
+  }
+  return true;
+}
+
+
+</script>
+<hr>
+<table class="functionBar" cellspacing="0" border="0" width="100%">
+  <tbody><tr class="bTitle">
+    <td class="top-font01" height="25">&nbsp;
+      <a href="#">代理商域名设置</a>&nbsp;|&nbsp;
+
+    </td>    
+  </tr>
+</tbody></table><hr size="1">
+<fieldset>
+<legend class="" top-font01"=""> 代理商域名设置 </legend>
+<hr size="1">
+<form name="cp_frm" method="POST" action="agency_url_config.php" onSubmit="return(check_cp_frm())">
+
+<!--新增 开始-->
+<table cellspacing="1" bgcolor="#D8D8D8" border="0" width="100%">
+  <input name="act" value="url_edit_info" type="hidden">
+  <input name="url_id" value="{$url.id}" type="hidden">
+  <tbody>
+  <tr>
+     <td align="right" bgcolor="#C2E0E2" height="25">代理商域名：</td>
+     <td align="left" bgcolor="#FFFFFF" >
+      	<input type="text" id="agency_url" name="agency_url" value="{$url.agency_url}" style="width:350px;">
+		 
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选择代理商：</span>
+			<select name="agency_user_id" id="agency_user_id">
+			  <option value="0">{$lang.select_please}</caption>
+			  {html_options options=$agency_list selected=$agency_user_id}
+			</select>
+      </td>
+   </tr>
+   <tr>
+     <td align="right" bgcolor="#C2E0E2" height="25">选择代理商所在的区域：</td>
+     <td align="left" bgcolor="#FFFFFF" >
+		<select name="province" id="province"  class="select_region">
+			<option value="0">--选择省份--</option>
+		</select>
+		<select name="city" id="city"  class="select_region">
+			<option value="0">--选择城市--</option>
+		</select>
+		<select name="area" id="area"  class="select_region">
+			<option value="0">--选择区县--</option>
+		</select>
+      </td>
+   </tr>
+	<tr bgcolor="#FFFFFF">
+	  <td align="right" bgcolor="#C2E0E2" height="25"></td>
+	   <td colspan="2" align="left" height="30">
+      <input value="确 定" class="right-button07" type="submit">
+      <input value="重 置" class="right-button07" type="reset">
+	  <input value="返 回" class="right-button07" onClick="javascript:history.go(-1)" type="button"> 
+	</tr>
+</tbody></table>
+</fieldset>
+</form> 
+<!--新增 结束-->
+<hr size="1">
+<br>
+<table cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" border="0" width="100%"> 
+  <tbody><tr>
+    <th align="center" bgcolor="#C2E0E2" height="30" width="50">id</th>
+	<th align="center" bgcolor="#C2E0E2" width="160">代理商名称</th>
+    <th align="center" bgcolor="#C2E0E2" width="244">域名</th>>
+	<th align="center" bgcolor="#C2E0E2" width="160">所属区县</th>
+	<th align="center" bgcolor="#C2E0E2" width="218">操作</th>
+  </tr>
+     <tr onMouseOver="hightlightOnEvent(this, 'OVER', '#FFFFFF')" onMouseOut="hightlightOnEvent(this, 'OUT', '#FFFFFF')" onClick="hightlightOnEvent(this, 'CLICK', '#F2F2F2')" bgcolor="#FFFFFF">
+    <td align="center" height="25">{$url.id}</td>
+    <td align="center">{$agency_list.$url.agency_user_id}</td>
+	<td align="center">{$url.agency_url}</td>
+	<td align="center">{$url.area_name}</td>
+	<td align="center">
+	 <a href="agency_url_config.php?act=url_edit&url_id={$url.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <a href="javascript:void(0)" onClick="if(window.confirm('您确定要删除此条记录吗？')) this.href='agency_url_config.php?act=url_del&url_id={$url.id}'">删除</a>
+    </td>
+  </tr>
+ </tbody></table>
+
+</body></html>

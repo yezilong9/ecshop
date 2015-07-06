@@ -1,0 +1,25 @@
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class=" hot_top10">
+
+  <div class="h_top"><div class="h_tit">爱宝时表热销排行</div></div>
+  <div class=" clearfix">
+{foreach name=top_goods from=$top_goods item=goods}
+  <ul class="proExp">
+  
+      <li class="topimg">
+     
+      <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="samllimg" /></a>
+      </li>
+		
+      <li class="proWord">
+      <a href="{$goods.url}" title="{$goods.name|escape:html}" >{$goods.short_name}</a>
+      <font class="market">{$goods.price}</font>
+      </li>
+
+      
+    </ul>
+{/foreach}
+  </div>
+
+</div>
+<div class="blank5"></div>-->

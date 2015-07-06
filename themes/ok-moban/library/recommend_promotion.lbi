@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $promotion_goods} -->
+<div class="box">
+
+      <div class="clearfix"  style="border:1px #DEDEDE solid; padding-top:10px;">
+         <!--{foreach from=$promotion_goods item=goods name="promotion_foreach"}-->
+
+
+  <div class="goodsItem">
+       
+           <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg" /></a><br />
+           <p class="f1"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+           
+           
+      <font class="market">{$goods.market_price}</font><br />
+      
+           <font class="f1">{$goods.promote_price}</font>
+        </div>
+         <!--{/foreach}-->
+       </div>
+</div>
+<div class="blank"></div>
+<!-- {/if} -->

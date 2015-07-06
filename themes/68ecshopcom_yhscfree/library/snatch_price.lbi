@@ -1,0 +1,12 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="mod1 mod2 blank" id="new_price">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod2tit">{$lang.new_price}</h1>
+	<div class="mod2con">
+    <!--{foreach from=$price_list item=item}-->
+    {$item.user_name}&nbsp;&nbsp;<font class="price">{$item.bid_price}</font><br />
+    <!--{/foreach}-->
+  </div>
+</div>
+<script type="text/javascript">divheight("new_price");</script>
+

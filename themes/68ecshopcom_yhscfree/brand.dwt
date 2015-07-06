@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strice//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,global.js,compare.js'}
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<!--主体内容 start-->
+<div class="block clearfix">
+	<div id="pageLeft" class="fl">
+	<!-- TemplateBeginEditable name="左边区域" -->
+	  <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/promotion_info.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem -->
+		<!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+	<!-- TemplateEndEditable -->
+	</div>
+	<div id="pageRight" class="fr">
+	
+	<div class="mod1 blank" id="brandInfo">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$brand.brand_name}</h1>
+		<div class="mod1con clearfix" id="brandInfo1">
+				 <div class="fl brandsLogo">
+          <!-- {if $brand.brand_logo} -->
+            <img src="data/brandlogo/{$brand.brand_logo}" />
+          <!-- {/if} -->
+          </div>
+         <div class="fl brand_desc">
+          {$brand.brand_desc|nl2br}<br />
+            <!-- {if $brand.site_url} -->
+            {$lang.official_site} <a href="{$brand.site_url}" target="_blank" >{$brand.site_url}</a><br />
+            <!-- {/if} -->
+            {$lang.brand_category}<br />
+              <!-- {foreach from=$brand_cat_list item=cat} -->
+            <a href="{$cat.url}">{$cat.cat_name|escape:html} {if $cat.goods_count}({$cat.goods_count}){/if}</a>
+              <!-- {/foreach} -->
+          </div> 
+	  </div>
+		<script type="text/javascript">divheight("brandInfo1");</script>
+	</div>	
+   <script type="text/javascript">divheight("brandInfo");</script>
+		<!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	</div>
+
+	
+</div>
+<!--主体内容 end-->
+
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

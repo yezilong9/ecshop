@@ -1,0 +1,106 @@
+/*公共样式*/
+.cp_last{margin-right: 0;}
+.cp_pic{width: 420px;height: 320px;background-color: #fff;border-radius: 3px 3px 0 0;text-align: center;margin: 0 auto;margin-top:12px;}
+.zhekou{background: url(http://portal.txd168.com/assets/images/zhekou.png) 0 0 no-repeat;width: 191px;height: 190px;text-align: center;position: absolute;right: 20px;top:150px;font-weight: bold;color: #eae93a;font-size: 45px;}
+.zhekou span{position: absolute;left: 25px;top:85px;font-weight: bold;}
+.cp_info{padding-left: 22px;padding-top: 30px;}
+.cp_info p{font-family: "黑体";color: #fff;line-height: 35px;font-size: 30px;}
+.cp_bianhao{width: 267px;height: 40px;background-color: #eae839;color: #080809;line-height: 40px;
+    font-family: "黑体";text-align: center;margin-top: 20px;margin-left: 22px;font-size: 30px;
+    position:absolute;bottom:20px;}
+
+/*A4版左边页面*/
+.lt_pic{background: url(http://portal.txd168.com/assets/images/lt_pic_bg.jpg) center 0 no-repeat;height: 3508px;position: relative;width: 2480px;}
+.chanpin_list{padding-top: 124px;padding-left: 68px;}
+.chanpin_list li{width: 450px;height: 515px;float: left;display: inline;margin-right: 20px;background-color: #ed8735;border-radius: 3px;position: relative;margin-bottom: 30px;overflow: hidden;}
+.chanpin_list .cp_info{width: 415px;padding-top: 15px;}
+.chanpin_list .cp_bianhao{margin-top: 0;position:absolute;bottom:20px;}
+
+/*A4版右边页面*/
+.rt_pic{background: url(http://portal.txd168.com/assets/images/rt_pic_bg.jpg) center 0 no-repeat;height: 3508px;position: relative;width: 2480px;}
+.txtA span{position: absolute;left:800px;width: 1124px;height: 76px;line-height: 76px;}
+.txtA .inputTxt_01{top:1093px; font-size: 55px; font-family: "黑体";color: #fff;line-height: 55px;}
+.txtA .inputTxt_02{top:1198px;font-size: 55px; font-family: "黑体";color: #fff;line-height: 55px;}
+.tj_box_01{position: absolute;left: 110px;top:1300px;width: 2290px;}
+.tejiapart{background: url(http://portal.txd168.com/assets/images/tejiapart.jpg) center 0 no-repeat;height: 533px;position: relative;}
+
+.tj_box_01 .tj_count{position: absolute;left: 80px;top:0px;}
+.tj_box_01 .tj_hd{color: #761a25;font-size: 35px;line-height: 55px;}
+.tj_box_01 .tj_pic{width: 472px;height: 320px;background-color: #fff;border-radius: 3px;text-align: center;}
+.tj_box_01 .tj_price {font-size: 30px;}
+.tj_box_01 .tj_price em{font-style:normal;color: #eae93a;font-size: 30px;}
+.tj_box_01 .tj_info{color: #fff;font-weight: bold;font-size: 20px; margin-top: 10px;}
+.tj_box_01 .tj_bianhao{width: 178px;height: 35px;line-height: 35px;color: #080809;margin-left: 100px;display: inline-block;background-color: #eae839;text-align: center;font-size: 28px;margin-top: 5px;}
+.tj_box_01 .tj_info .tj_clothes{font-family: "黑体";color: #fff;line-height: 34px;font-size: 30px;margin-top: 10px;}
+.tj_box_01 .tj_list li{float: left;display: inline;width: 472px;margin-right: 80px;}
+
+
+.pro_list{position: absolute;left: 100px;top:1830px;width: 2270px;}
+.pro_list ul{padding-left: 68px;padding-top: 24px;}
+.pro_list ul li{width: 420px;height: 500px;float: left;display: inline;margin-right: 20px;background-color: #ed8735;border-radius: 3px;position: relative;margin-bottom: 15px;overflow: hidden;}
+.pro_list ul .cp_last{margin-right: 0;}
+.pro_list .cp_pic{width: 400px;height: 320px;background-color: #fff;border-radius: 3px 3px 0 0;text-align: center;margin: 0 auto;margin-top:12px;}
+.pro_list .cp_info{padding-top: 10px;}
+.pro_list .cp_bianhao{margin-top: 0;position:absolute;bottom:10px;}
+
+/*普通版A面*/
+.layA{width: 6875px;height: 5129px;position: relative;}
+.pt_lt{position: absolute;left: 0;top:0;width: 3438px;}
+.pt_rt{position: absolute;left: 3438px;top:0;width: 3438px;}
+.part_01{background: url(http://portal.txd168.com/assets/images/tm_tupian_01.jpg) 0 0 no-repeat;height: 5129px;}
+.part_02{background: url(http://portal.txd168.com/assets/images/tm_tupian_02.jpg) 0 0 no-repeat;height: 5129px;}
+.txt span{position: absolute;left:1100px;width: 1500px;height: 96px;line-height: 96px;}
+.txt .inputTxt_01{top:1620px; font-size: 85px; font-family: "黑体";color: #fff;line-height: 85px;}
+.txt .inputTxt_02{top:1795px;font-size: 85px; font-family: "黑体";color: #fff;line-height: 85px;}
+
+.tj_box{position: absolute;left: 0;top:1880px;width: 3306px;}
+.tj_count{position: absolute;left: 80px;top:0px;}
+.tj_hd{color: #761a25;font-size: 55px;line-height: 75px;}
+.tj_pic{width: 472px;height: 320px;background-color: #fff;border-radius: 3px;text-align: center;}
+.tj_price {font-size: 40px;}
+.tj_price em{font-style:normal;color: #eae93a;font-size: 40px;}
+.tj_info{color: #fff;font-weight: bold;font-size: 20px; margin-top: 10px;}
+.tj_bianhao{width: 228px;height: 35px;line-height: 35px;color: #080809;margin-left: 120px;display: inline-block;background-color: #eae839;text-align: center;font-size: 30px;margin-top: 5px;}
+.tj_info .tj_clothes{font-family: "黑体";color: #fff;line-height: 42px;font-size: 37px;}
+.tj_list li{float: left;display: inline;width: 472px;margin-right: 80px;}
+
+
+.tejiapartA{background: url(http://portal.txd168.com/assets/images/tejiapart_02.jpg) 0 0 no-repeat;height: 800px;}
+.tejiapartA .tj_count{position: absolute;left: 160px;top:60px;}
+.tejiapartA .tj_pic{width: 640px;height: 460px;background-color: #fff;border-radius: 3px;text-align: center;margin-top: 10px;}
+.tejiapartA .tj_list li{float: left;display: inline;width: 640px;margin-right: 120px;}
+
+.pro_listA{width: 3230px;position: absolute;left: 30px;top:2400px;}
+/*.pro_listA ul li{width: 610px;height: 540px;float: left;display: inline;margin-right: 20px;background-color: #ed8735;border-radius: 3px;position: relative;margin-bottom: 15px;overflow: hidden;}*/
+.pro_listA{float: left;display: inline;}
+.pro_listA{float: right;display: inline;}
+.pro_listA ul{position: absolute;left: 100px;top:300px;}
+.pro_listA ul li{width: 600px;height: 705px;float: left;display: inline;margin-right: 20px;background-color: #ed8735;border-radius: 3px;position: relative;margin-bottom: 50px;overflow: hidden;}
+.pro_listA ul li .cp_pic{width: 560px;height: 460px;background-color: #fff;border-radius: 3px 3px 0 0;text-align: center;margin: 0 auto;margin-top:12px;}
+.pro_listA ul li .cp_info{padding-left: 22px;padding-top: 30px;}
+.pro_listA ul li .cp_info p{font-family: "黑体";color: #fff;line-height: 42px;font-size: 37px;} 
+.pro_listA .zhekou{top:310px;}
+
+
+/*普通版B面*/
+.layB{background: url(http://portal.txd168.com/assets/images/tm_tupian_03.jpg) center 0 no-repeat;width: 6875px;height: 5129px;}
+.pro_lt,.pro_rt{width: 3230px;position: relative;}
+.pro_lt{float: left;display: inline;}
+.pro_rt{float: right;display: inline;}
+.pro_lt ul{position: absolute;left: 100px;top:300px;}
+.pro_lt ul li{width: 600px;height: 705px;float: left;display: inline;margin-right: 20px;background-color: #ed8735;border-radius: 3px;position: relative;margin-bottom: 50px;overflow: hidden;}
+.pro_lt ul li .cp_pic{width: 560px;height: 460px;background-color: #fff;border-radius: 3px 3px 0 0;text-align: center;margin: 0 auto;margin-top:12px;}
+.pro_lt ul li .cp_info{padding-left: 22px;padding-top: 30px;}
+.pro_lt ul li .cp_info p{font-family: "黑体";color: #fff;line-height: 42px;font-size: 37px;} 
+.pro_lt .zhekou{top:310px;}
+
+.pro_rt ul{position: absolute;left: -350px;top:300px;}
+.pro_rt ul li{width: 600px;height: 705px;float: left;display: inline;margin-right: 20px;background-color: #ed8735;border-radius: 3px;position: relative;margin-bottom: 50px;overflow: hidden;}
+.pro_rt ul li .cp_pic{width: 560px;height: 460px;background-color: #fff;border-radius: 3px 3px 0 0;text-align: center;margin: 0 auto;margin-top:12px;}
+.pro_rt ul li .cp_info{padding-left: 22px;padding-top: 30px;}
+.pro_rt ul li .cp_info p{font-family: "黑体";color: #fff;line-height: 42px;font-size: 37px;} 
+.pro_rt .zhekou{top:310px;}
+
+
+
+

@@ -1,0 +1,50 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- {if $best_goods} -->
+<div class="pro_box">
+ 
+   <h2 class="top10" style="position:relative">
+      <a href="search.php" target="_blank" style="display: block;width: 50px;height: 18px;right: 17px;
+      position: absolute;top: 25px;">
+      </a>
+    </h2>
+ <div id="slides" class="slides_boxs">
+      
+          <div class="slides_control" >    
+               <div class="slide" style="overflow:hidden; zoom:1;" >
+                   
+                   <!--{foreach from=$best_goods item=goods name=best_goods}-->
+  
+                 <div class="item">
+                   <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"   /></a> 
+                   <div></div>
+                   <p>{$goods.short_style_name}</p>
+                   <p>
+                        
+                  <span class="price">
+                   <!-- {if $goods.promote_price neq ""} -->
+                {$goods.promote_price}
+                  <!-- {else}-->
+                  {$goods.shop_price}
+                  <!--{/if}-->
+                   </span>
+                  </p>
+                                     
+                   </div>        
+         
+          <!--{/foreach}--> 
+                 
+                    
+               </div>
+   
+          </div>
+
+				<a  class="prev">Prev</a>			
+				<a  class="next">Next</a>
+      
+       <!--{/if}-->
+         <script type="text/javascript">
+          jQuery(".slides_boxs").slide({mainCell:".slides_control .slide",autoPage:true,effect:"leftLoop",
+		  scroll:5,vis:5,easing:"easeOutCirc",delayTime:700})
+		</script>
+  </div>      

@@ -1,0 +1,93 @@
+<!-- $Id: goods_search.htm 16790 2009-11-10 08:56:15Z wangleisvn $ -->
+<div class="form-div">
+  <form action="javascript:searchGoods()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+    {if $smarty.get.act neq "trash"}
+    <!-- 分类 -->
+    <select name="cat_id"><option value="0">{$lang.goods_cat}</option>{$cat_list}</select>
+    <!-- 品牌 -->
+    <select name="brand_id"><option value="0">{$lang.goods_brand}</option>{html_options options=$brand_list}</select>
+      <!-- 供货商 -->
+      <select name="suppliers_id"><option value="0">{$lang.intro_type}</option>{html_options options=$suppliers_list_name selected=$smarty.get.suppliers_id}</select>
+   
+      <!-- 是否采购 -->
+      <select name="is_purchase"><option value=''>{$lang.intro_type}</option><option value="1">{$lang.is_purchase}</option><option value="0">{$lang.not_is_purchase}</option></select>
+    {/if}
+    <!-- 关键字 -->
+    {$lang.keyword} <input type="text" name="keyword" size="15" />
+    <input type="submit" value="{$lang.button_search}" class="button" />
+  </form>
+</div>
+<script>
+function ceshi()
+{
+	var price_ratio_v = $('#price_ratio').val()*1;
+	if(isNaN(price_ratio_v) || price_ratio_v == 0){
+		alert('请输入正确的价格比例');
+		return false;
+	}
+	var price_arr = eval(listTable.filter.goods_price_arr);
+	var for_arr = eval(listTable.filter.goods_id_arr);
+
+	for(var i=0;i<for_arr.length;i++){
+		$('#new_shop_price'+for_arr[i]).html((price_arr[i]*price_ratio_v).toFixed(2));
+		$('#new_shop_price'+for_arr[i]).attr('value',(price_arr[i]*price_ratio_v).toFixed(2));
+		$('input[name="new_shop_price['+for_arr[i]+']"]').attr('value',(price_arr[i]*price_ratio_v).toFixed(2))
+	}
+}
+function agency_price()
+{
+	var price_ratio_v = $('#price_ratio').val()*1;
+	if(isNaN(price_ratio_v) || price_ratio_v == 0){
+		alert('请输入正确的价格比例');
+		return false;
+	}
+	var price_arr = eval(listTable.filter.goods_price_arr);
+	var for_arr = eval(listTable.filter.goods_id_arr);
+
+	for(var i=0;i<for_arr.length;i++){
+		$('#new_agency_price'+for_arr[i]).html((price_arr[i]*price_ratio_v).toFixed(2));
+		$('#new_agency_price'+for_arr[i]).attr('value',(price_arr[i]*price_ratio_v).toFixed(2));
+		$('input[name="new_agency_price['+for_arr[i]+']"]').attr('value',(price_arr[i]*price_ratio_v).toFixed(2))
+	}
+}
+function agency_num()
+{
+	var price_ratio_v = $('#fill_agency_num').val()*1;
+	if(isNaN(price_ratio_v) || price_ratio_v == 0){
+		alert('请输入正确的价格比例');
+		return false;
+	}
+	var price_arr = eval(listTable.filter.goods_price_arr);
+	var for_arr = eval(listTable.filter.goods_id_arr);
+
+	for(var i=0;i<for_arr.length;i++){
+		$('#new_agency_num'+for_arr[i]).html(price_ratio_v);
+		$('#new_agency_num'+for_arr[i]).attr('value',price_ratio_v);
+		$('input[name="new_agency_num['+for_arr[i]+']"]').attr('value',price_ratio_v)
+	}
+}
+</script>
+{literal}
+<script language="JavaScript">
+    function searchGoods(agency)
+    {
+{/literal}
+        {if $smarty.get.act neq "trash"}
+
+        listTable.filter['cat_id'] = document.forms['searchForm'].elements['cat_id'].value;
+        listTable.filter['brand_id'] = document.forms['searchForm'].elements['brand_id'].value;
+ //       listTable.filter['intro_type'] = document.forms['searchForm'].elements['intro_type'].value;
+          {if $suppliers_exists eq 1}
+          listTable.filter['suppliers_id'] = document.forms['searchForm'].elements['suppliers_id'].value;
+          {/if}
+        listTable.filter['is_purchase'] = document.forms['searchForm'].elements['is_purchase'].value;
+        {/if}
+{literal}
+        listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+        listTable.filter['page'] = 1;
+
+        listTable.loadList();
+    }
+</script>
+{/literal}

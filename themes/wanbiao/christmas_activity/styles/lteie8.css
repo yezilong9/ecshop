@@ -1,0 +1,64 @@
+@charset "utf-8";
+/*————————————————————————————————————————————————————
+  Website:        xxx(http://xxxx.com/)
+  Version:        1.0.0(2014-11-17)
+  Type:           compatible
+  Description:
+ ————————————————————————————————————————————————————*/
+
+ /*表单*/
+ button{*overflow-x:visible;  /*for ie6,7 修正value增多两边留白也随着增加*/}
+ /*input{*margin-top:-1px;for ie6,7*/}
+ .inp{vertical-align:middle;}
+
+
+ .header{filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#BF000000,endColorStr=#BF000000,gradientType=0);}
+ 
+ 
+ /*覆盖层 for ie6,7,8*/
+ .area-overlay{
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#99FFFFFF,endColorStr=#99FFFFFF,gradientType=0);
+  background-image:url('blank');
+ }
+ 
+ /*覆盖层 for ie6*/
+ .area-overlay{_position:absolute;}
+ 
+ /*用iframe來挡住ie6的下拉框*/
+ #ie6_iframe{
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  border:none;
+  z-index:-1;
+  filter:alpha(opacity=0);
+ }
+ 
+ 
+
+ /*弹出框 for ie6,7,8*/
+ .popup-wrap{
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#4C000000,endColorStr=#4C000000,gradientType=0);
+ }
+ /*弹出框 for ie6*/
+ .popup-wrap{
+  _position:absolute;
+  _width:1%;
+ }
+ .popup__bd{_white-space:nowrap;}
+ 
+ 
+ 
+ /*本次活动的弹出框(登录)*/
+ .popup-login-wrap{
+  filter:none;
+  width:606px;
+ }
+ 
+ /*本次活动的弹出框*/
+ .popup-gift-wrap{
+  filter:none;
+ }
+ 
+
+ 

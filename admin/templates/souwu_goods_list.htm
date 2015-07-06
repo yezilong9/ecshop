@@ -1,0 +1,196 @@
+<!-- $Id: goods_list.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!-- 商品搜索 -->
+<!-- $Id: goods_search.htm 16790 2009-11-10 08:56:15Z wangleisvn $ -->
+<div class="form-div">
+  <form action="javascript:searchGoods()" name="searchForm">
+    <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+	分类：
+	<select name="productcatename">
+     <option value="0">{$lang.select_please}</caption>
+      {html_options options=$category selected=$productcatename}
+    </select>
+    <!-- 关键字 -->
+    关键字 <input type="text" name="keyword" size="15" />
+    <input type="submit" value="{$lang.button_search}" class="button" />
+	
+    <!--<input style="float:right;" onclick="location.href=''" type="button" value="全部添加" class="button" />
+    <input style="float:right;" type="button" value="分类转化设置" class="button" />-->
+	
+  </form>
+</div>
+
+{literal}
+<script language="JavaScript">
+    function searchGoods(agency)
+    {
+{/literal}
+        {if $smarty.get.act neq "trash"}
+
+
+
+
+          {if $suppliers_exists eq 1}
+          listTable.filter['suppliers_id'] = document.forms['searchForm'].elements['suppliers_id'].value;
+          {/if}
+
+        {/if}
+{literal}
+
+        listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+        listTable.filter['productcatename'] = Utils.trim(document.forms['searchForm'].elements['productcatename'].value);
+        listTable.filter['page'] = 1;
+
+        listTable.loadList();
+    }
+</script>
+{/literal}
+<!-- 商品列表 -->
+<form method="post" action="souwu.php" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+  <div class="list-div" id="listDiv">
+{/if}
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+      <a href="javascript:listTable.sort('id'); ">{$lang.record_id}</a>{$sort_id}
+    </th>
+    <th><a href="javascript:listTable.sort('producttitle'); ">商品名称</a>{$sort_producttitle}</th>
+    <th><a href="javascript:listTable.sort('productcatenamestr'); ">分类</a>{$sort_productcatenamestr}</th>
+    <th><a href="">分类路径</a>{$sort_productcatenamestr}</th>
+    <th><a href="javascript:listTable.sort('markprice'); ">市场价</a>{$sort_markprice}</th>
+    <th><a href="javascript:listTable.sort('costprice'); ">成本价</a>{$sort_costprice}</th>
+	
+
+    <th><a href="javascript:listTable.sort('and_add'); ">是否已添加</a>{$sort_and_add}</th>
+
+    <th><a href="javascript:listTable.sort('productnum'); ">库存</a>{$sort_productnum}</th>
+
+    <th></th>
+  <tr>
+  {foreach from=$goods_res item=goods}
+  <tr>
+    <td><input type="checkbox" name="checkboxes[]" value="{$goods.id}" />{$goods.id}</td>
+    <td class="first-cell" style=""><span>{$goods.producttitle}</span></td>
+    <td style="{if $goods.is_promote}color:red;{/if}"><span>{$goods.productcatenamestr}</span></td>
+    <td style=""><span>{$goods.classPath}</span></td>
+    <td><span >{$goods.markprice}</span></td>
+    <td align="right"><span >{$goods.costprice}</span></td>
+	
+
+    <td align="center"><span >{if $goods.and_add eq 1}<span style="color:red">已添加</span>{else}待添加{/if}</span></td>
+
+    <td align="right"><span >{$goods.productnum}</span></td>
+    <td align="center">
+
+    </td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+<!-- end goods list -->
+
+<!-- 分页 -->
+<table id="page-table" cellspacing="0">
+  <tr>
+    <td align="right" nowrap="true">
+    {include file="page.htm"}
+    </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+
+<div>
+  <input type="hidden" name="act" value="batch" />
+  <select name="type" id="selAction" onchange="changeAction()">
+	<option value="0">选择分类</option>
+    <option value="">{$cat_list}</option>
+  </select>
+  
+
+	{if $suppliers_list > 0}
+  <!--二级主菜单：转移供货商-->
+  <select name="suppliers_id" style="display:none">
+    <option value="-1">{$lang.select_please}</option>
+    <option value="0">{$lang.lab_to_shopex}</option>
+    {foreach name=sln from=$suppliers_list item=sl}
+      <option value="{$sl.suppliers_id}">{$sl.suppliers_name}</option>
+    {/foreach}
+  </select>
+  <!--end!-->
+	{/if}  
+  <input type="submit" value="{$lang.button_submit}" id="btnSubmit" name="btnSubmit" class="button" disabled="true" />
+</div>
+</form>
+
+<script type="text/javascript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+    startCheckOrder(); // 开始检查订单
+    document.forms['listForm'].reset();
+  }
+
+  /**
+   * @param: bool ext 其他条件：用于转移分类
+   */
+  function confirmSubmit(frm, ext)
+  {
+      if (frm.elements['type'].value == 'trash')
+      {
+          return confirm(batch_trash_confirm);
+      }
+      else if (frm.elements['type'].value == 'not_on_sale')
+      {
+          return confirm(batch_no_on_sale);
+      }
+      else if (frm.elements['type'].value == 'move_to')
+      {
+          ext = (ext == undefined) ? true : ext;
+          return ext && frm.elements['target_cat'].value != 0;
+      }
+      else if (frm.elements['type'].value == '')
+      {
+          return false;
+      }
+      else
+      {
+          return true;
+      }
+  }
+
+  function changeAction()
+  {
+      var frm = document.forms['listForm'];
+
+      // 切换分类列表的显示
+      
+			
+	{if $suppliers_list > 0}
+      frm.elements['suppliers_id'].style.display = frm.elements['type'].value == 'suppliers_move_to' ? '' : 'none';
+	{/if}
+		
+      if (!document.getElementById('btnSubmit').disabled && confirmSubmit(frm, false))
+      {
+          frm.submit();
+      }
+  }
+{/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- 开始循环属性关联的商品 {foreach name=links from=$attribute_linked item=linked}-->
+<!-- {if $linked.goods} -->
+<div class="mod1 mod2 blank" id="attribute{$smarty.foreach.links.iteration}">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod2tit">{$linked.title|truncate:11:"...":true}</h1>
+	<div class="mod2con">
+	<!-- {foreach from=$linked.goods item=linked_goods_data} -->
+  <ul class="attribute">
+      <li class="clearfix">
+      <a href="{$linked_goods_data.url}" target="_blank" class="fl"><img src="{$linked_goods_data.goods_thumb}" alt="{$linked_goods_data.name|escape:html}" align="left" /></a>
+			<p class="fl" style="width:110px;"><a href="{$linked_goods_data.url}" target="_blank" title="{$goods.linked_goods_data_name|escape:html}" >{$linked_goods_data.short_name|escape:html}</a><br />
+      {$lang.shop_price}<b class="f1">{$linked_goods_data.shop_price}</b></p>
+      </li>
+  </ul>
+  
+ <!-- {/foreach} -->
+ </div>
+</div> 
+<script type="text/javascript">divheight("attribute{$smarty.foreach.links.iteration}");</script>
+<!-- {/if} -->
+<!-- 结束属性关联的商品 {/foreach}-->

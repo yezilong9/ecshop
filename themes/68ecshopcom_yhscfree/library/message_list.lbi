@@ -1,0 +1,36 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="infotit clearfix">
+<h2><span class="l"></span><span class="r"></span>{$lang.message_board}</h2>
+</div>
+
+<!--{foreach name=message_lists from=$msg_lists key=key item=msg}-->
+<div class="commentsTit">
+ <b>{$msg.msg_type}</b>&nbsp;
+ <font class=" username">
+ {$msg.user_name}
+ <!-- {if $msg.user_name eq ''} -->
+ {$lang.anonymous}
+ <!-- {/if} -->：
+ </font>
+ <!-- {if $msg.id_value gt 0} -->
+ {$lang.feed_user_comment}
+ &nbsp;&nbsp;<a href="{$msg.goods_url}" target="_blank" title="{$msg.goods_name}"><font class="f2">{$msg.goods_name}</font></a>&nbsp;&nbsp;
+ <!-- {/if} -->
+ <font class="f1">{$msg.msg_title}</font> 
+ <span>({$msg.msg_time})</span>
+ <!-- {if $msg.comment_rank gt 0} -->
+ 给出 <img src="../images/stars{$msg.comment_rank}.gif" alt="{$msg.comment_rank}" />  评分
+ <!-- {/if} -->
+</div>
+<div class="commentsContent word">
+{$msg.msg_content}<br>
+<!-- {if $msg.re_content} -->
+<div class="re_content">
+ <font class="a f14b">{$lang.shopman_reply}：</font><br />
+ {$msg.re_content}
+</div>
+<!-- {/if} -->
+</div>
+<!--{/foreach}-->  
+
+

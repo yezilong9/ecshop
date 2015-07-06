@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<div class="block clearfix">
+  <div id="pageLeft" class="fl">
+	 <!-- TemplateBeginEditable name="左边区域" -->
+	 <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem --> 
+	 <!-- #BeginLibraryItem "/library/promotion_info.lbi" --><!-- #EndLibraryItem -->
+   <!-- TemplateEndEditable -->
+	 <div id="ECS_PRICE_LIST">
+    <!-- #BeginLibraryItem "/Library/snatch_price.lbi" --><!-- #EndLibraryItem -->
+   </div>
+	 
+  <div class="mod1 mod2 blank" id="activity_list">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod2tit">{$lang.activity_list}</h1>
+	<div class="mod2con">
+	 <!--{foreach from=$snatch_list item=item}-->
+		 <a href="{$item.url}" class="txtdot">{$item.snatch_name}</a>&nbsp;&nbsp;
+			<!--{if $item.overtime }-->
+			( <font class="f1">{$lang.end}</font> )
+			<!--{/if}-->
+     <br />
+		<!--{/foreach}-->
+	</div>
+	</div>
+	<script type="text/javascript">divheight("activity_list");</script>
+	</div>
+	<div id="pageRight" class="fr">
+	
+  
+  <div class="mod1 blank" id="snatch">
+	<span class="lt"></span><span class="lb"></span><span class="rt"></span><span class="rb"></span>
+	<h1 class="mod1tit">{$lang.treasure_info}</h1>
+	<div class="mod1con">
+		<div class="grouplist clearfix">
+	    <div class="group_buy_list clearfix" style="border-bottom:none;">
+			<div class="fl groupImg">
+				<a href="{$snatch_goods.url}"><img src="{$snatch_goods.goods_thumb}" alt="{$snatch_goods.goods_name|escape:html}" /></a>
+			</div>
+			<div class="fl">
+				 {insert_scripts files='lefttime.js'}
+				 <a href="{$goods.url}"><font class="f14b">{$snatch_goods.goods_name|escape:html}</font></a><br />
+				 {$lang.shop_price} <font class="price">{$snatch_goods.formated_shop_price}</font><br />
+				 {$lang.market_price} <font class="market">{$snatch_goods.formated_market_price}</font> <br />
+				 {$lang.residual_time} <font class="f1"><font id="leftTime">{$lang.please_waiting}</font></font><br />
+				 {$lang.activity_desc}：<br />{$snatch_goods.desc|escape:html|nl2br}
+			</div>
+  </div>
+ 	  </div>
+	</div>
+	</div>
+	<script type="text/javascript">divheight("snatch");</script>
+	
+	<div class="goodsTitle blank">{$lang.activity_intro}</div>
+	<div class="mod2con">
+	{$snatch_goods.snatch_time}<br />
+    {$lang.price_extent}{$snatch_goods.formated_start_price} - {$snatch_goods.formated_end_price} <br />
+    {$lang.user_to_use_up}{$snatch_goods.cost_points} {$points_name}<br />
+    {$lang.snatch_victory_desc}<br />
+    <!--{if $snatch_goods.max_price neq 0}-->    {$lang.price_less_victory}{$snatch_goods.formated_max_price}，{$lang.price_than_victory}{$snatch_goods.formated_max_price}，{$lang.or_can}{$snatch_goods.formated_max_price}{$lang.shopping_product}。
+    <!--{else}-->
+    {$lang.victory_price_product}
+    <!--{/if}-->
+	</div>
+    
+
+		<div id="ECS_SNATCH">
+		 <!-- #BeginLibraryItem "/Library/snatch.lbi" --><!-- #EndLibraryItem -->
+		</div>
+		
+
+	</div>
+</div>
+
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+<script type="text/javascript">
+var gmt_end_time = {$snatch_goods.gmt_end_time|default:0};
+var id = {$id};
+{foreach from=$lang.snatch_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+<!-- {literal} -->
+
+onload = function()
+{
+  try
+  {
+    window.setInterval("newPrice(" + id + ")", 8000);
+    onload_leftTime();
+  }
+  catch (e)
+  {}
+}
+<!-- {/literal} -->
+</script>
+</html>
