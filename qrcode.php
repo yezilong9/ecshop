@@ -1,7 +1,11 @@
 <?php 
 
+/*
+ 统一生成二维码的接口
+*/
 include './phpqrcode/phpqrcode.php'; 
-$value = $_GET["text"]; //二维码内容   
+$value = $_GET["text"]; //二维码内容
+$fileNama = $_GET["file_name"];//文件名称，如果有值则为   
 $errorCorrectionLevel = 'L';//容错级别   
 $matrixPointSize = 12;//生成图片大小
 //生成二维码图片   
